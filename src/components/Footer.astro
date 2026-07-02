@@ -16,42 +16,48 @@ const waIcon = '<svg class="w-4 h-4" viewBox="0 0 24 24" fill="none"><path d="M3
 ---
 
 <footer class="bg-sand text-ink/80">
-  <!-- Link columns + contact -->
-  <div class="max-w-7xl mx-auto px-5 lg:px-8 py-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-8 text-base text-center">
-    {cols.map((section) => (
-      <div>
-        <p class="text-clay eyebrow uppercase text-sm mb-4">{labelMap[section.label]}</p>
-        <ul class="space-y-1">
+  <!-- Link columns: accordion on mobile, static columns on sm+ -->
+  <div class="max-w-7xl mx-auto px-5 lg:px-8 py-6 lg:py-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 sm:gap-8 text-sm">
+    {cols.map((section, i) => (
+      <div class="border-b border-ink/10 sm:border-0">
+        <input type="checkbox" id={`foot-${i}`} class="peer sr-only" />
+        <label
+          for={`foot-${i}`}
+          class="flex items-center justify-between gap-2 py-3 cursor-pointer select-none
+                 sm:cursor-default sm:pointer-events-none sm:justify-center sm:py-0 sm:mb-3
+                 peer-checked:[&_svg]:rotate-180"
+        >
+          <span class="text-clay eyebrow uppercase text-sm">{labelMap[section.label]}</span>
+          <svg class="w-4 h-4 shrink-0 text-clay transition-transform duration-200 sm:hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+        </label>
+        <ul class="hidden peer-checked:block sm:block pb-3 sm:pb-0 text-center">
           {section.children.slice(0, 3).map((child) => (
-            <li><a href={child.href} class="inline-block py-1.5 hover:text-clay transition">{child.label.replace(' (₹)', '')}</a></li>
+            <li><a href={child.href} class="inline-block py-1 hover:text-clay transition">{child.label.replace(' (₹)', '')}</a></li>
           ))}
-          {section.label === 'About' && <li><a href="/contact" class="inline-block py-1.5 hover:text-clay transition">Contact us</a></li>}
+          {section.label === 'About' && <li><a href="/contact" class="inline-block py-1 hover:text-clay transition">Contact us</a></li>}
         </ul>
       </div>
     ))}
   </div>
 
-  <!-- Bottom bar -->
+  <!-- Bottom bar: socials + legal on as few lines as possible -->
   <div class="border-t border-ink/10">
-    <div class="max-w-7xl mx-auto px-5 lg:px-8 py-6 flex flex-col gap-4 items-center text-sm text-stone">
-      <!-- Social links, centered -->
-      <div class="flex flex-wrap items-center justify-center gap-3">
-        <a href={CONTACT.social.linkedin} class="inline-flex items-center gap-1.5 rounded-full bg-white border border-sand hover:border-clay hover:text-clay transition px-3.5 py-1.5 text-ever"><Fragment set:html={liIcon} />{CONTACT.social.linkedinHandle}</a>
-        <a href={CONTACT.social.instagram} class="inline-flex items-center gap-1.5 rounded-full bg-white border border-sand hover:border-clay hover:text-clay transition px-3.5 py-1.5 text-ever"><Fragment set:html={igIcon} />{CONTACT.social.instagramHandle}</a>
-        <a href={CONTACT.social.whatsapp} class="inline-flex items-center gap-1.5 rounded-full bg-white border border-sand hover:border-clay hover:text-clay transition px-3.5 py-1.5 text-ever"><Fragment set:html={waIcon} />WhatsApp</a>
+    <div class="max-w-7xl mx-auto px-5 lg:px-8 py-4 flex flex-col gap-3 items-center text-sm text-stone">
+      <div class="flex flex-wrap items-center justify-center gap-2.5">
+        <a href={CONTACT.social.linkedin} class="inline-flex items-center gap-1.5 rounded-full bg-white border border-sand hover:border-clay hover:text-clay transition px-3 py-1 text-ever"><Fragment set:html={liIcon} />{CONTACT.social.linkedinHandle}</a>
+        <a href={CONTACT.social.instagram} class="inline-flex items-center gap-1.5 rounded-full bg-white border border-sand hover:border-clay hover:text-clay transition px-3 py-1 text-ever"><Fragment set:html={igIcon} />{CONTACT.social.instagramHandle}</a>
+        <a href={CONTACT.social.whatsapp} class="inline-flex items-center gap-1.5 rounded-full bg-white border border-sand hover:border-clay hover:text-clay transition px-3 py-1 text-ever"><Fragment set:html={waIcon} />WhatsApp</a>
       </div>
-      <!-- Copyright + legal entities on their own line -->
-      <div class="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-center">
+      <div class="flex flex-wrap items-center justify-center gap-x-2.5 gap-y-1 text-center text-xs">
         <span>© {year} ResetWell Plus LLC</span>
         <span class="text-stone/40">·</span>
         <span>ResetWell Plus Pvt. Ltd.</span>
-      </div>
-      <div class="flex flex-wrap justify-center items-center gap-x-3 gap-y-1">
-        <a href="/privacy-policy" class="inline-block py-1 hover:text-clay transition">Privacy Policy</a>
-        <span class="text-stone/40">|</span>
-        <a href="/terms" class="inline-block py-1 hover:text-clay transition">Terms of Use</a>
-        <span class="text-stone/40">|</span>
-        <a href="/disclaimer" class="inline-block py-1 hover:text-clay transition">Medical Disclaimer</a>
+        <span class="text-stone/40">·</span>
+        <a href="/privacy-policy" class="hover:text-clay transition">Privacy Policy</a>
+        <span class="text-stone/40">·</span>
+        <a href="/terms" class="hover:text-clay transition">Terms of Use</a>
+        <span class="text-stone/40">·</span>
+        <a href="/disclaimer" class="hover:text-clay transition">Medical Disclaimer</a>
       </div>
     </div>
   </div>
