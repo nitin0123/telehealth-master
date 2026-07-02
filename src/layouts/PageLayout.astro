@@ -34,12 +34,12 @@ const breadcrumbSchema = {
 <BaseLayout title={seoTitle} description={description ?? lede} keywords={keywords} image={image} noindex={noindex}>
   <script type="application/ld+json" slot="head" set:html={JSON.stringify(breadcrumbSchema)} />
 
-  <section class="max-w-5xl mx-auto px-5 lg:px-8 pt-10 lg:pt-16">
+  <section class="max-w-5xl mx-auto px-5 lg:px-8 pt-8 lg:pt-12">
     <h1 class="font-serif text-3xl sm:text-4xl lg:text-6xl leading-[1.05] text-ever reveal lg:-ml-1">{title}</h1>
     {lede && <p class="mt-5 text-lg text-stone reveal" style="--reveal-delay:80ms">{lede}</p>}
   </section>
 
-  <div class="max-w-5xl mx-auto px-5 lg:px-8 py-12 lg:py-16">
+  <div class="max-w-5xl mx-auto px-5 lg:px-8 py-10 lg:py-12">
     <slot />
   </div>
 </BaseLayout>

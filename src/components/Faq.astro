@@ -10,8 +10,8 @@ interface Props {
 const { items = defaultFaqs, heading = 'Questions, answered', variant = 'band' } = Astro.props;
 ---
 <section class={variant === 'band' ? 'bg-sand/50' : ''}>
-  <div class="max-w-3xl mx-auto px-5 lg:px-8 py-12 lg:py-16">
-    <h2 class="font-serif text-3xl lg:text-5xl text-ever text-center mb-10 reveal">{heading}</h2>
+  <div class="max-w-3xl mx-auto px-5 lg:px-8 py-10 lg:py-12">
+    <h2 class="font-serif text-3xl lg:text-5xl text-ever text-center mb-8 reveal">{heading}</h2>
     <div class="space-y-3">
       {items.map((f) => (
         <details class="bg-cream rounded-3xl px-6 py-4 group reveal">
