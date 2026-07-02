@@ -1,6 +1,5 @@
 ---
 import PageLayout from '../../layouts/PageLayout.astro';
-import { BOOK_HREF } from '../../data/nav';
 
 const founders = [
   { name: 'Swati Singh', role: 'Menopause educator, speaker & women\'s wellness advocate' },
@@ -33,23 +32,30 @@ const founders = [
   <!-- Our Story -->
   <div class="bg-white border border-sand rounded-5xl p-8 lg:p-12 reveal">
     <p class="eyebrow uppercase text-sm font-semibold text-clay mb-4">Our Story</p>
-    <div class="space-y-5 text-stone text-lg leading-relaxed max-w-2xl">
-      <p class="font-serif text-2xl text-ever">Welcome to ResetWell Plus, crafted with care for women's wellness.</p>
-      <p>
-        A space created by women who have walked the journey themselves and are determined to make sure no one else walks
-        it alone. We are Swati and Reshma, menopause educators, motivational speakers and women's wellness advocates.
-        After experiencing firsthand how confusing, isolating, and overlooked this stage of life can be, we made it our
-        mission to bring clarity, compassion, and community to women everywhere.
-      </p>
-      <p>
-        At ResetWell Plus, we break the silence. We replace fear with knowledge. We replace confusion with confidence.
-        And we replace isolation with a supportive sisterhood.
-      </p>
-      <p>
-        Through empowering events, honest conversations, expert interviews, and practical guidance, we help women
-        understand their bodies, and embrace and rediscover the strength and brilliance they already possess.
-      </p>
-      <a href={BOOK_HREF} class="mt-3 btn-primary">Book a Consultation</a>
+    <div class="grid lg:grid-cols-[1.4fr_1fr] gap-8 lg:gap-12 items-center">
+      <div class="space-y-5 text-stone text-lg leading-relaxed">
+        <p class="font-serif text-2xl text-ever">Welcome to ResetWell Plus, crafted with care for women's wellness.</p>
+        <p>
+          A space created by women who have walked the journey themselves and are determined to make sure no one else walks
+          it alone. We are Swati and Reshma, menopause educators, motivational speakers and women's wellness advocates.
+          After experiencing firsthand how confusing, isolating, and overlooked this stage of life can be, we made it our
+          mission to bring clarity, compassion, and community to women everywhere.
+        </p>
+        <p>
+          At ResetWell Plus, we break the silence. We replace fear with knowledge. We replace confusion with confidence.
+          And we replace isolation with a supportive sisterhood.
+        </p>
+        <p>
+          Through empowering events, honest conversations, expert interviews, and practical guidance, we help women
+          understand their bodies, and embrace and rediscover the strength and brilliance they already possess.
+        </p>
+      </div>
+      <img
+        src="/our-story.webp"
+        alt="Women supporting each other through their wellness journey"
+        loading="lazy"
+        class="w-full rounded-4xl object-cover aspect-[4/5] shadow-sm"
+      />
     </div>
   </div>
 </PageLayout>
