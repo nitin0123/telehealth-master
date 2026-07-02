@@ -1,7 +1,7 @@
 // Central SEO + brand configuration. Update brand/contact details here once.
 
 export const BRAND = 'ResetWell Plus';
-export const WORDMARK = 'ResetWell+'; // compact logo lockup
+export const WORDMARK = 'ResetWell Plus'; // brand wordmark shown in the header/drawer
 
 export const SITE = {
   name: BRAND,

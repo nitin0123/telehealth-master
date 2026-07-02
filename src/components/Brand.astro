@@ -1,0 +1,10 @@
+---
+// Brand wordmark lockup — elegant two-tone serif: "ResetWell" in the deep
+// brand purple with "Plus" set lighter in the clay accent. Size is passed in
+// via `class` so the header and mobile drawer can share one source of truth.
+interface Props {
+  class?: string;
+}
+const { class: className = '' } = Astro.props;
+---
+<span class:list={['font-serif tracking-tight leading-none text-ever', className]}>ResetWell<span class="text-clay font-light"> Plus</span></span>
