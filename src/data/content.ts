@@ -96,6 +96,20 @@ export interface PressFeature {
 }
 export const pressFeatures: PressFeature[] = [
   {
+    publication: 'Ahmedabad Mirror',
+    title: 'Swati Singh & Reshma Tiwari: Why so many women feel angry during menopause',
+    href: 'https://www.ahmedabadmirror.com/swati-singh--reshma-tiwari-why-so-many-women-feel-angry-during-menopause/81916930.html',
+    date: 'Jul 2026',
+    img: '/press-ahmedabad-mirror.jpg',
+  },
+  {
+    publication: 'Mid-Day',
+    title: "Why don't we talk about sex? Swati Singh & Reshma Tiwari on menopause, intimacy, silence and women's wellbeing",
+    href: 'https://www.mid-day.com/buzz/article/why-don-t-we-talk-about-sex-swati-singh-and-reshma-tiwari-on-menopause-intimacy-silence-and-women-s-wellbeing-10137',
+    date: 'Jun 2026',
+    img: '/press-mid-day.webp',
+  },
+  {
     publication: 'Dainik Jagran',
     title: 'ResetWell Plus founders Swati Singh and Reshma Tiwari say menopause awareness must begin with daughters, not after mothers suffer',
     href: 'https://english.dainikjagranmpcg.com/life-style/indias-resetwell-plus-founders-swati-singh-and-reshma-tiwari-say/article-20724',
