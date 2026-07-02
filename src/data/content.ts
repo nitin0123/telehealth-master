@@ -99,6 +99,54 @@ export const onDemandVideos: OnDemandVideo[] = [
     img: '/yt-pIMAaq4ur2U.jpg',
     date: '30 Jun 2026',
   },
+  {
+    title: 'The Hidden Oral Symptoms of Menopause Every Woman Should Know',
+    href: 'https://www.youtube.com/watch?v=-KA06dsUXK4',
+    img: '/yt--KA06dsUXK4.jpg',
+    date: '19 May 2026',
+  },
+  {
+    title: 'Menopause, Joint Pain, and YOU: The Solutions You Need! With Dr. Jodi Thomas',
+    href: 'https://www.youtube.com/watch?v=LqFxWZ-MhtM',
+    img: '/yt-LqFxWZ-MhtM.jpg',
+    date: '5 May 2026',
+  },
+  {
+    title: "Menopause Doesn't Have to Be This Hard: Hormones, HRT & Healing",
+    href: 'https://www.youtube.com/watch?v=SbfSDdyyQtg',
+    img: '/yt-SbfSDdyyQtg.jpg',
+    date: '29 Mar 2026',
+  },
+  {
+    title: 'Dr. Smita Ohri on Menopause: Treatment, Misconceptions, and Being an Unstoppable Woman',
+    href: 'https://www.youtube.com/watch?v=6qfcU5D18iQ',
+    img: '/yt-6qfcU5D18iQ.jpg',
+    date: '29 Nov 2025',
+  },
+  {
+    title: 'Hormone Replacement Therapy: A Call for Informed Decision',
+    href: 'https://www.youtube.com/watch?v=yEvF9rqyKq0',
+    img: '/yt-yEvF9rqyKq0.jpg',
+    date: '9 Nov 2025',
+  },
+  {
+    title: 'From Mood Swings to Marriage Struggles: The Untold Side of Menopause',
+    href: 'https://www.youtube.com/watch?v=0tN_inyZV6o',
+    img: '/yt-0tN_inyZV6o.jpg',
+    date: '31 Oct 2025',
+  },
+  {
+    title: 'Menopause: Way More Than Just Hot Flashes',
+    href: 'https://www.youtube.com/watch?v=Mj8I8rJJ8pQ',
+    img: '/yt-Mj8I8rJJ8pQ.jpg',
+    date: '25 Oct 2025',
+  },
+  {
+    title: 'Breaking the Silence and Normalizing Menopause Conversation',
+    href: 'https://www.youtube.com/watch?v=YqBrxIa-xZE',
+    img: '/yt-YqBrxIa-xZE.jpg',
+    date: '17 Oct 2025',
+  },
 ];
 
 export interface PressFeature {
