@@ -30,7 +30,7 @@ export const CONTACT = {
     linkedin: 'https://www.linkedin.com/company/resetwellplus',
     linkedinHandle: '/resetwellplus',
     youtube: 'https://www.youtube.com/@resetwellplus',
-    whatsapp: '#', // TODO: WhatsApp community invite link
+    whatsapp: 'https://chat.whatsapp.com/CLWhb62O00qKW1bdOevWzT',
   },
 };
 
