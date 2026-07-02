@@ -66,7 +66,7 @@ export interface Faq {
 export const faqs: Faq[] = [
   { q: 'Do I need a referral to book?', a: "No referral needed. Book directly and we'll handle everything from there." },
   { q: 'How does payment work?', a: 'We charge patients directly, a flat transparent fee per consultation, with no insurance paperwork or hidden costs. See the Pricing page for details.' },
-  { q: 'Online or in person?', a: 'Visits are virtual by default, with in-clinic options in select cities.' },
+  { q: 'Online or in person?', a: 'All consultations are online, so you can get expert care from wherever you are.' },
   { q: 'What does it cost?', a: 'Consultations start at ₹1,499. See the Pricing page for full details.' },
 ];
 
