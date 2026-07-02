@@ -1,82 +1,105 @@
-# Aria — Midlife & Menopause Care (Astro)
+# ResetWell Plus
 
-A polished, mobile-first marketing site for a women's midlife & menopause care brand.
-Built with [Astro](https://astro.build) + [Tailwind CSS](https://tailwindcss.com). Purple-and-white
-theme, direct-pay (no insurance), full navigation architecture, and working symptom-checker /
-booking / community flows.
+Marketing + lead-capture website for **ResetWell Plus**, an expert-led women's midlife &
+menopause wellness platform for India. Built with [Astro](https://astro.build) and
+[Tailwind CSS](https://tailwindcss.com), deployed on [Vercel](https://vercel.com). Pages are
+pre-rendered to static HTML; the contact and SMS-consent forms are backed by serverless API
+routes that write to Postgres and send email via [Resend](https://resend.com).
+
+## Tech stack
+
+- **Astro 4** with `output: 'hybrid'` — every page is static except a couple of API routes
+- **@astrojs/vercel** serverless adapter (functions run on Node **20**)
+- **Tailwind CSS** for styling; brand tokens in `tailwind.config.mjs`
+- **Geist** (single typeface site-wide, via `@fontsource-variable/geist`)
+- **@vercel/postgres** (Neon) for data, **Resend** for transactional email
 
 ## Quick start
 
 ```bash
 npm install      # install dependencies
 npm run dev      # local dev server at http://localhost:4321
-npm run build    # production build into ./dist
-npm run preview  # preview the production build locally
+npm run build    # production build (Vercel output)
+npm run preview  # preview the build locally
 ```
 
-Requires Node.js 18.20+ or 20.3+ (any current LTS works).
+Use **Node 20** (`.nvmrc` + `engines` pin it — Node 20 maps to the `nodejs20.x` Vercel runtime).
+Run `nvm use` to switch.
 
 ## Project structure
 
 ```
 src/
-  data/
-    nav.ts          # navigation architecture (single source of truth)
-    content.ts      # copy: stats, care needs, steps, specialists, testimonials, FAQs, events
+  data/            # single source of truth for copy + config
+    nav.ts         # navigation architecture
+    content.ts     # stats, care needs, steps, specialists, testimonials, FAQs, events
+    seo.ts         # brand, SITE config, contact details, org JSON-LD
   layouts/
-    BaseLayout.astro  # <head>, Nav, Footer, scroll-reveal script
-    PageLayout.astro  # inner-page wrapper: breadcrumb + title + lede + slot
-  components/
-    Nav.astro Announcement.astro Footer.astro
-    Hero.astro ValueStrip.astro CareGrid.astro Expertise.astro
-    Testimonials.astro HowItWorks.astro EventsCommunity.astro Faq.astro FinalCta.astro
-    SymptomChecker.astro BookingForm.astro JoinForm.astro
-    SpecialistsGrid.astro EventsList.astro
+    BaseLayout.astro   # <head>/SEO, Nav, Footer, fonts, scroll-reveal
+    PageLayout.astro   # inner-page wrapper: breadcrumb + title + lede + slot
+  components/          # Hero, CareGrid, ThreePathways, HowItWorks, Testimonials, Faq, …
+  lib/
+    db.ts          # Postgres pool (reads POSTGRES_URL or DATABASE_URL)
   pages/
-    index.astro
-    understand-your-symptoms/ {perimenopause-101, symptom-checker, knowledge-centre}
-    get-care/ {how-it-works, our-specialists, book-a-consultation, pricing}
-    events/ {upcoming, on-demand, for-corporates}
-    community/ {join, stories-of-reset, faqs}
-    about/ {our-story, our-team, in-the-press, workplace-wellness}
-public/
-  favicon.svg
-_prototype-html/    # the original single-file HTML prototype, for reference
+    index.astro    # homepage
+    api/           # serverless endpoints (prerender = false)
+      contact.ts        # POST → contact_messages + Resend email
+      sms-consent.ts    # POST → sms_consent
+    about/ get-care/ events/ community/ understand-your-symptoms/
+    book.astro contact.astro sms-consent.astro
+    privacy-policy.astro terms.astro disclaimer.astro coming-soon.astro 404.astro
+db/
+  contact_messages.sql   # table schema
+  sms_consent.sql        # table schema
+  migrate.sh             # apply all db/*.sql to a Postgres URL
+public/                  # images, favicon, robots.txt, og image
 ```
 
-Astro uses **file-based routing**: each `.astro` file under `src/pages` becomes a URL
-(e.g. `src/pages/get-care/pricing.astro` → `/get-care/pricing`).
+Astro uses **file-based routing**: `src/pages/get-care/pricing.astro` → `/get-care/pricing`.
 
-## Editing content
+## Editing content & theming
 
-Most copy lives in `src/data/content.ts` and `src/data/nav.ts`. Change it there and it updates
-everywhere it's used. Page-specific copy lives in the relevant file under `src/pages`.
+- Most copy lives in `src/data/content.ts` and `src/data/nav.ts` — edit there and it updates
+  everywhere. Page-specific copy lives in the page under `src/pages`.
+- Brand colours live in `tailwind.config.mjs` (`theme.extend.colors`). Both `font-sans` and
+  `font-serif` map to **Geist** for a single consistent typeface; point the `serif` token at a
+  serif family to give headings a different look.
 
-## Theming
+## Environment variables
 
-Brand colors and fonts are defined in `tailwind.config.mjs` (the `colors` and `fontFamily` keys).
-Adjusting a color there re-skins the whole site. Global styles and the reveal/carousel CSS live in
-`src/styles/global.css`.
+Set these in Vercel → Settings → Environment Variables (scope per environment) and, for local
+dev, in `.env.local`. See `.env.example`.
 
-## Images
+| Variable | Purpose |
+|----------|---------|
+| `POSTGRES_URL` **or** `DATABASE_URL` | Postgres connection string (the app accepts either) |
+| `RESEND_API_KEY` | Resend API key for the contact email |
+| `CONTACT_EMAIL_TO` | Where contact-form submissions are emailed |
+| `CONTACT_EMAIL_FROM` | Verified Resend sender (e.g. `ResetWell Plus <noreply@resetwellplus.com>`) |
 
-Colored blocks labelled "Photo" / "Portrait" are placeholders. Drop real images into `public/`
-(or `src/assets/` and use Astro's `<Image />`), then replace the placeholder `<div>`s.
+## Database
 
-## Hooking up a backend
+Schemas live in `db/*.sql` (idempotent — `CREATE TABLE IF NOT EXISTS`). Apply them with:
 
-The forms are wired for it. Each has a clearly marked `TODO` in its `<script>`:
+```bash
+db/migrate.sh "<postgres-connection-string>"   # runs every db/*.sql
+```
 
-- `src/components/BookingForm.astro` — booking submit
-- `src/components/JoinForm.astro` and `EventsCommunity.astro` — community sign-up
+Run it once per database. Tables: `contact_messages`, `sms_consent`.
 
-To accept submissions server-side, add Astro **API routes** (e.g. `src/pages/api/book.ts`) and a
-server adapter (`@astrojs/node`, Vercel, Netlify, etc.), then `fetch('/api/book', …)` from the form.
-Or point the forms at any third-party endpoint (Calendly/Cal.com for booking, a CRM, an email
-provider, etc.). See README "Hooking up a backend" notes inline in each component.
+## Deployment (Vercel)
 
-## Deploying
+Two branches map to two Vercel environments, each with its **own database**:
 
-`npm run build` outputs a static site to `./dist` that can be hosted anywhere
-(Netlify, Vercel, Cloudflare Pages, S3, GitHub Pages). Add API routes + an adapter only if you
-need server-side form handling.
+| Branch | Vercel environment | Database |
+|--------|--------------------|----------|
+| `main` | Preview | preview DB |
+| `release` | Production | prod DB |
+
+Promote preview → production by fast-forwarding `release` to `main`:
+
+```bash
+git push origin main:release
+```
+
+Vercel rebuilds from Git on every push; the local `.vercel/` build output is gitignored.
