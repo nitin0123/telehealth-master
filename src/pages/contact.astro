@@ -1,6 +1,12 @@
 ---
 import PageLayout from '../layouts/PageLayout.astro';
 import { CONTACT } from '../data/seo';
+
+// Social icons (currentColor, so they inherit the link's hover colour).
+const igIcon = '<svg class="w-5 h-5" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.6"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>';
+const fbIcon = '<svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.25-1.5 1.53-1.5H17V3.6c-.28-.04-1.25-.12-2.37-.12-2.35 0-3.96 1.43-3.96 4.07v2.27H8v3.1h2.67V21h2.83z"/></svg>';
+const liIcon = '<svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M6.94 8.5H4.06V20h2.88V8.5zM5.5 7.2A1.7 1.7 0 105.5 3.8a1.7 1.7 0 000 3.4zM20 20h-2.88v-5.7c0-1.36-.49-2.29-1.71-2.29-.93 0-1.49.63-1.73 1.24-.09.22-.11.52-.11.82V20H10.7s.04-9.36 0-10.32h2.88v1.46c.38-.59 1.07-1.43 2.6-1.43 1.9 0 3.32 1.24 3.32 3.9V20z"/></svg>';
+const ytIcon = '<svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M23 12s0-3.1-.4-4.6a2.5 2.5 0 0 0-1.75-1.75C19.3 5.25 12 5.25 12 5.25s-7.3 0-8.85.4A2.5 2.5 0 0 0 1.4 7.4C1 8.9 1 12 1 12s0 3.1.4 4.6a2.5 2.5 0 0 0 1.75 1.75c1.55.4 8.85.4 8.85.4s7.3 0 8.85-.4a2.5 2.5 0 0 0 1.75-1.75C23 15.1 23 12 23 12zM9.75 15.02V8.98L15.5 12l-5.75 3.02z"/></svg>';
 ---
 <PageLayout
   section="About"
@@ -78,10 +84,10 @@ import { CONTACT } from '../data/seo';
       <div class="bg-sand/50 rounded-4xl p-6 reveal" style="--reveal-delay:80ms">
         <p class="eyebrow uppercase text-xs font-semibold text-clay mb-3">Connect</p>
         <div class="flex flex-wrap gap-2">
-          <a href={CONTACT.social.instagram} class="rounded-full border border-sand bg-white px-4 py-2 text-sm hover:border-clay hover:text-clay transition">Instagram</a>
-          <a href={CONTACT.social.facebook} class="rounded-full border border-sand bg-white px-4 py-2 text-sm hover:border-clay hover:text-clay transition">Facebook</a>
-          <a href={CONTACT.social.linkedin} class="rounded-full border border-sand bg-white px-4 py-2 text-sm hover:border-clay hover:text-clay transition">LinkedIn</a>
-          <a href={CONTACT.social.youtube} class="rounded-full border border-sand bg-white px-4 py-2 text-sm hover:border-clay hover:text-clay transition">YouTube</a>
+          <a href={CONTACT.social.instagram} target="_blank" rel="noopener" aria-label="Instagram" title="Instagram" class="w-10 h-10 grid place-items-center rounded-full border border-sand bg-white text-ever hover:border-clay hover:text-clay transition"><Fragment set:html={igIcon} /></a>
+          <a href={CONTACT.social.facebook} target="_blank" rel="noopener" aria-label="Facebook" title="Facebook" class="w-10 h-10 grid place-items-center rounded-full border border-sand bg-white text-ever hover:border-clay hover:text-clay transition"><Fragment set:html={fbIcon} /></a>
+          <a href={CONTACT.social.linkedin} target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn" class="w-10 h-10 grid place-items-center rounded-full border border-sand bg-white text-ever hover:border-clay hover:text-clay transition"><Fragment set:html={liIcon} /></a>
+          <a href={CONTACT.social.youtube} target="_blank" rel="noopener" aria-label="YouTube" title="YouTube" class="w-10 h-10 grid place-items-center rounded-full border border-sand bg-white text-ever hover:border-clay hover:text-clay transition"><Fragment set:html={ytIcon} /></a>
         </div>
       </div>
     </aside>
