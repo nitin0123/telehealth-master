@@ -19,7 +19,7 @@ import { testimonials } from '../data/content';
 
   <div data-carousel class="snap-row flex gap-5 overflow-x-auto pb-2 -mx-5 px-5 lg:mx-0 lg:px-0 reveal">
     {testimonials.map((t) => (
-      <figure class={`shrink-0 w-[80%] sm:w-[46%] lg:w-[31%] rounded-3xl p-7 ${t.feature ? 'bg-ever text-cream' : 'bg-white border border-sand'}`}>
+      <figure class={`shrink-0 w-[80%] sm:w-[46%] lg:w-[31%] rounded-3xl p-7 transition-all duration-300 ease-out will-change-transform hover:-translate-y-1.5 hover:shadow-xl hover:shadow-ever/15 ${t.feature ? 'bg-ever text-cream' : 'bg-white border border-sand'}`}>
         {!t.feature && <div class="text-clay mb-2">★★★★★</div>}
         <blockquote class={t.feature ? 'font-serif text-xl leading-snug' : 'text-ink/90'}>{t.quote}</blockquote>
         <figcaption class={`mt-4 text-sm ${t.feature ? 'text-cream/70' : 'text-stone'}`}>{t.name}</figcaption>

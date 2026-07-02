@@ -10,7 +10,7 @@ import { BOOK_HREF } from '../data/nav';
     </div>
     <div class="grid md:grid-cols-3 gap-5">
       {steps.map((s, i) => (
-        <div class="bg-white/5 rounded-4xl p-6 reveal" style={`--reveal-delay:${i * 90}ms`}>
+        <div class="bg-white/5 rounded-4xl p-6 transition-all duration-300 ease-out will-change-transform hover:-translate-y-1.5 hover:bg-white/10 reveal" style={`--reveal-delay:${i * 90}ms`}>
           <div class="flex items-baseline gap-3">
             <span class="font-serif text-4xl text-sage leading-none">{s.n}</span>
             <h3 class="font-serif text-2xl">{s.title}</h3>
