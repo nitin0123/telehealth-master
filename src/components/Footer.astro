@@ -15,40 +15,40 @@ const liIcon = '<svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><pa
 const waIcon = '<svg class="w-4 h-4" viewBox="0 0 24 24" fill="none"><path d="M3 21l1.6-4A8 8 0 1 1 8 18.8L3 21z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>';
 ---
 
-<footer class="bg-ever text-cream/85">
+<footer class="bg-sand text-ink/80">
   <!-- Link columns + contact -->
   <div class="max-w-7xl mx-auto px-5 lg:px-8 py-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-8 text-base text-center">
     {cols.map((section) => (
       <div>
-        <p class="text-cream/75 eyebrow uppercase text-sm mb-4">{labelMap[section.label]}</p>
+        <p class="text-clay eyebrow uppercase text-sm mb-4">{labelMap[section.label]}</p>
         <ul class="space-y-1">
           {section.children.slice(0, 3).map((child) => (
-            <li><a href={child.href} class="inline-block py-1.5 hover:text-white transition">{child.label.replace(' (₹)', '')}</a></li>
+            <li><a href={child.href} class="inline-block py-1.5 hover:text-clay transition">{child.label.replace(' (₹)', '')}</a></li>
           ))}
-          {section.label === 'About' && <li><a href="/contact" class="inline-block py-1.5 hover:text-white transition">Contact us</a></li>}
+          {section.label === 'About' && <li><a href="/contact" class="inline-block py-1.5 hover:text-clay transition">Contact us</a></li>}
         </ul>
       </div>
     ))}
   </div>
 
   <!-- Bottom bar -->
-  <div class="border-t border-white/10">
-    <div class="max-w-7xl mx-auto px-5 lg:px-8 py-6 flex flex-col gap-4 items-center text-sm text-cream/60">
+  <div class="border-t border-ink/10">
+    <div class="max-w-7xl mx-auto px-5 lg:px-8 py-6 flex flex-col gap-4 items-center text-sm text-stone">
       <div class="flex flex-wrap items-center justify-center gap-x-3 gap-y-2">
         <span>© {year} ResetWell Plus LLC</span>
-        <span class="text-cream/25">·</span>
+        <span class="text-stone/40">·</span>
         <span>ResetWell Plus Pvt. Ltd.</span>
-        <span class="text-cream/25">·</span>
-        <a href={CONTACT.social.linkedin} class="inline-flex items-center gap-1.5 rounded-full bg-everdk/60 hover:bg-everdk transition px-3.5 py-1.5 text-cream"><Fragment set:html={liIcon} />{CONTACT.social.linkedinHandle}</a>
-        <a href={CONTACT.social.instagram} class="inline-flex items-center gap-1.5 rounded-full bg-everdk/60 hover:bg-everdk transition px-3.5 py-1.5 text-cream"><Fragment set:html={igIcon} />{CONTACT.social.instagramHandle}</a>
-        <a href={CONTACT.social.whatsapp} class="inline-flex items-center gap-1.5 rounded-full bg-everdk/60 hover:bg-everdk transition px-3.5 py-1.5 text-cream"><Fragment set:html={waIcon} />WhatsApp</a>
+        <span class="text-stone/40">·</span>
+        <a href={CONTACT.social.linkedin} class="inline-flex items-center gap-1.5 rounded-full bg-white border border-sand hover:border-clay hover:text-clay transition px-3.5 py-1.5 text-ever"><Fragment set:html={liIcon} />{CONTACT.social.linkedinHandle}</a>
+        <a href={CONTACT.social.instagram} class="inline-flex items-center gap-1.5 rounded-full bg-white border border-sand hover:border-clay hover:text-clay transition px-3.5 py-1.5 text-ever"><Fragment set:html={igIcon} />{CONTACT.social.instagramHandle}</a>
+        <a href={CONTACT.social.whatsapp} class="inline-flex items-center gap-1.5 rounded-full bg-white border border-sand hover:border-clay hover:text-clay transition px-3.5 py-1.5 text-ever"><Fragment set:html={waIcon} />WhatsApp</a>
       </div>
       <div class="flex flex-wrap justify-center items-center gap-x-3 gap-y-1">
-        <a href="/privacy-policy" class="inline-block py-1 hover:text-white transition">Privacy Policy</a>
-        <span class="text-cream/25">|</span>
-        <a href="/terms" class="inline-block py-1 hover:text-white transition">Terms of Use</a>
-        <span class="text-cream/25">|</span>
-        <a href="/disclaimer" class="inline-block py-1 hover:text-white transition">Medical Disclaimer</a>
+        <a href="/privacy-policy" class="inline-block py-1 hover:text-clay transition">Privacy Policy</a>
+        <span class="text-stone/40">|</span>
+        <a href="/terms" class="inline-block py-1 hover:text-clay transition">Terms of Use</a>
+        <span class="text-stone/40">|</span>
+        <a href="/disclaimer" class="inline-block py-1 hover:text-clay transition">Medical Disclaimer</a>
       </div>
     </div>
   </div>

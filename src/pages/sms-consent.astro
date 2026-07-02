@@ -1,0 +1,133 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import { CONTACT } from '../data/seo';
+// Text mirrors resetwellplus.com/sms-consent. Capture follows the same
+// client-side pattern as the contact form: the payload is logged with a TODO
+// to POST it to a backend endpoint (e.g. /api/sms-consent) + your database.
+---
+<PageLayout
+  section="About"
+  sectionHref="/about/our-story"
+  kicker="SMS Messaging"
+  title="SMS Communication Opt-In"
+  metaTitle="SMS Consent | ResetWell Plus"
+  description="Opt in to receive promotional and informational SMS text messages from ResetWell Plus. Message and data rates may apply. Reply STOP to opt out."
+  lede="ResetWell Plus — Proof of Consent (Opt-In) for SMS Messaging."
+>
+  <div class="bg-white border border-sand rounded-5xl p-6 lg:p-10 shadow-sm reveal max-w-3xl mx-auto">
+    <!-- Terms -->
+    <div class="space-y-5 text-stone text-sm leading-relaxed">
+      <div>
+        <h2 class="font-serif text-xl text-ever mb-2">Terms of Service</h2>
+        <p>By providing your phone number below, you can choose to receive promotional (marketing) and/or informational SMS text messages from ResetWell Plus or ResetWell Plus LLC. Each type of message can be opted in to separately.</p>
+      </div>
+
+      <div class="bg-peach/40 border border-sand rounded-2xl p-4 space-y-3">
+        <h3 class="font-semibold text-ink">Message Types</h3>
+        <div>
+          <p class="font-medium text-ink">Promotional (Marketing)</p>
+          <ul class="list-disc pl-5 mt-1 space-y-1">
+            <li>Exclusive offers and promotional deals</li>
+            <li>Wellness retreat announcements</li>
+          </ul>
+        </div>
+        <div>
+          <p class="font-medium text-ink">Informational</p>
+          <ul class="list-disc pl-5 mt-1 space-y-1">
+            <li>Event updates and reminders</li>
+            <li>Booking confirmations and changes</li>
+            <li>Transactional messages related to your reservations</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bg-peach/40 border border-sand rounded-2xl p-4">
+        <h3 class="font-semibold text-ink mb-1">Message Frequency</h3>
+        <p>Message frequency varies. Standard message and data rates may apply.</p>
+      </div>
+
+      <div class="bg-peach/40 border border-sand rounded-2xl p-4">
+        <h3 class="font-semibold text-ink mb-1">Cancellation</h3>
+        <p>To stop receiving messages, text STOP to the number sending the message. Reply HELP for more information.</p>
+      </div>
+
+      <p class="text-xs text-stone/80"><strong>Proof of Consent:</strong> By submitting this form, you are providing documented proof of opt-in consent to receive SMS messages from ResetWell Plus or ResetWell Plus LLC.</p>
+    </div>
+
+    <!-- Consent capture form -->
+    <form data-sms-form novalidate class="mt-8 space-y-5">
+      <div>
+        <label class="block text-sm font-medium text-ink mb-1" for="sms-phone">Phone Number <span class="text-clay">*</span></label>
+        <input id="sms-phone" name="phone" type="tel" required placeholder="+1 (555) 123-4567"
+          class="w-full rounded-2xl border border-sand bg-cream px-4 py-3 focus:outline-none focus:ring-2 focus:ring-clay/40" />
+      </div>
+
+      <div class="space-y-3">
+        <label class="flex items-start gap-3 text-sm text-stone cursor-pointer">
+          <input type="checkbox" name="consentMarketing" class="mt-1 h-4 w-4 shrink-0 accent-clay" />
+          <span>I agree to receive promotional SMS text messages from ResetWell Plus or ResetWell Plus LLC, including offers and exclusive deals. I understand that message and data rates may apply and I can opt out by texting STOP at any time.</span>
+        </label>
+        <label class="flex items-start gap-3 text-sm text-stone cursor-pointer">
+          <input type="checkbox" name="consentInformational" class="mt-1 h-4 w-4 shrink-0 accent-clay" />
+          <span>I agree to receive informational SMS text messages from ResetWell Plus or ResetWell Plus LLC, including event updates, booking confirmations, and transactional information. I understand that message and data rates may apply and I can opt out by texting STOP at any time.</span>
+        </label>
+      </div>
+
+      <p data-sms-err class="hidden text-sm text-clay"></p>
+
+      <button class="w-full rounded-full bg-clay hover:bg-claydk text-white font-semibold px-8 py-3.5 transition">I Agree and Opt In</button>
+      <p class="text-xs text-stone/70 text-center">This opt-in is recorded as proof of consent for SMS communication verification purposes.</p>
+    </form>
+
+    <!-- Success state -->
+    <div data-sms-success class="hidden text-center py-10">
+      <h3 class="font-serif text-3xl text-ever mb-2">Consent recorded ✓</h3>
+      <p class="text-stone">Your SMS consent has been recorded. Thank you for opting in!</p>
+    </div>
+
+    <div class="mt-8 text-center">
+      <p class="text-xs text-stone/70">Questions? Contact us at <a href={`mailto:${CONTACT.email}`} class="text-clay hover:text-claydk underline">{CONTACT.email}</a></p>
+    </div>
+  </div>
+
+  <script>
+    document.querySelectorAll<HTMLFormElement>('[data-sms-form]').forEach((form) => {
+      const errEl = form.querySelector('[data-sms-err]');
+      const showErr = (msg: string) => {
+        if (!errEl) return;
+        errEl.textContent = msg;
+        errEl.classList.remove('hidden');
+      };
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const phone = (form.elements.namedItem('phone') as HTMLInputElement)?.value.trim();
+        const marketing = (form.elements.namedItem('consentMarketing') as HTMLInputElement)?.checked;
+        const informational = (form.elements.namedItem('consentInformational') as HTMLInputElement)?.checked;
+
+        if (!phone) {
+          showErr('Please enter a phone number.');
+          return;
+        }
+        if (!marketing && !informational) {
+          showErr('Please opt in to at least one type of messaging.');
+          return;
+        }
+        errEl?.classList.add('hidden');
+
+        const data = {
+          phoneNumber: phone,
+          consentMarketing: !!marketing,
+          consentInformational: !!informational,
+          timestamp: new Date().toISOString(),
+        };
+        // TODO: POST `data` to your backend (e.g. /api/sms-consent) and persist
+        // it to your database as documented proof of consent.
+        console.log('sms-consent payload', data);
+
+        form.classList.add('hidden');
+        form.parentElement?.querySelector('[data-sms-success]')?.classList.remove('hidden');
+      });
+    });
+  </script>
+</PageLayout>
