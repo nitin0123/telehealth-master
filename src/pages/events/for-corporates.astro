@@ -1,6 +1,5 @@
 ---
 import PageLayout from '../../layouts/PageLayout.astro';
-import { BOOK_HREF } from '../../data/nav';
 const blocks = [
   ['Workshops & webinars', 'Live, expert-led sessions tailored to your teams, from perimenopause basics to manager training.'],
   ['Subsidised employee visits', 'Offer your people direct access to specialist consultations as part of their benefits.'],
@@ -25,6 +24,6 @@ const blocks = [
     ))}
   </div>
   <div class="mt-10 text-center">
-    <a href={BOOK_HREF} class="btn-primary">Talk to our team</a>
+    <a href="/contact" class="btn-primary">Talk to our team</a>
   </div>
 </PageLayout>

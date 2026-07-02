@@ -2,8 +2,8 @@
 import PageLayout from '../../layouts/PageLayout.astro';
 
 const founders = [
-  { name: 'Swati Singh', role: 'Menopause educator, speaker & women\'s wellness advocate', img: '/swati-singh.webp' },
-  { name: 'Reshma Tiwari', role: 'Menopause educator, speaker & women\'s wellness advocate', img: '/reshma-tiwari.webp' },
+  { name: 'Swati Singh', role: 'Author, menopause educator, speaker & women\'s wellness advocate', img: '/swati.jpeg' },
+  { name: 'Reshma Tiwari', role: 'Menopause educator, speaker & women\'s wellness advocate', img: '/reshma.jpeg' },
 ];
 ---
 <PageLayout
@@ -19,12 +19,10 @@ const founders = [
   <!-- Founders -->
   <div class="grid sm:grid-cols-2 gap-5 mb-14">
     {founders.map((f) => (
-      <article class="bg-white border border-sand rounded-4xl overflow-hidden reveal">
-        <img src={f.img} alt={f.name} loading="lazy" class="w-full aspect-[4/5] object-cover object-top" />
-        <div class="p-6">
-          <h2 class="font-serif text-2xl text-ever">{f.name}</h2>
-          <p class="text-stone mt-1">{f.role}</p>
-        </div>
+      <article class="bg-white border border-sand rounded-4xl p-8 text-center reveal">
+        <img src={f.img} alt={f.name} loading="lazy" class="w-40 h-40 mx-auto rounded-full object-cover object-center border-4 border-sand shadow-sm" />
+        <h2 class="mt-5 font-serif text-2xl text-ever">{f.name}</h2>
+        <p class="text-stone mt-1">{f.role}</p>
       </article>
     ))}
   </div>
@@ -32,7 +30,7 @@ const founders = [
   <!-- Our Story -->
   <div class="bg-white border border-sand rounded-5xl p-8 lg:p-12 reveal">
     <p class="eyebrow uppercase text-sm font-semibold text-clay mb-4">Our Story</p>
-    <div class="space-y-5 text-stone text-lg leading-relaxed max-w-3xl">
+    <div class="space-y-5 text-stone text-lg leading-relaxed">
       <p class="font-serif text-2xl text-ever">Welcome to ResetWell Plus, crafted with care for women's wellness.</p>
       <p>
         A space created by women who have walked the journey themselves and are determined to make sure no one else walks
