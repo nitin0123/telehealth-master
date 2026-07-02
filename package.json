@@ -11,7 +11,9 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "db:push": "db/push.sh preview",
+    "db:push:prod": "db/push.sh prod"
   },
   "dependencies": {
     "@astrojs/vercel": "^7.8.2",

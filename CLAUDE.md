@@ -13,8 +13,15 @@ static; only the API routes run as serverless functions.
 ```bash
 npm run build     # ALWAYS run this to verify a change compiles before committing
 npm run dev       # local dev server (see note below)
-db/migrate.sh "<postgres-url>"   # apply db/*.sql to a database
+npm run db:push        # apply db/*.sql to the PREVIEW db (.env.local: POSTGRES_URL/DATABASE_URL)
+npm run db:push:prod   # apply db/*.sql to the PRODUCTION db (.env.prod: PROD_DATABASE_URL)
+db/migrate.sh "<postgres-url>"   # low-level: apply db/*.sql to an explicit URL
 ```
+
+- `db:push` / `db:push:prod` wrap `db/push.sh`, which reads the connection string from the
+  matching `.env` file so you never paste URLs. Idempotent (`CREATE TABLE IF NOT EXISTS`); it
+  creates missing tables but does **not** alter existing ones — for a schema change add an
+  idempotent `ALTER TABLE ... ADD COLUMN IF NOT EXISTS` to the relevant `db/*.sql` first.
 
 - Verify changes with `npm run build`. The site is visually reviewed on **Vercel preview deploys**,
   not a long-running local server — don't ask the user to check a localhost URL.
