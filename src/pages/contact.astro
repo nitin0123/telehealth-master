@@ -18,6 +18,10 @@ import { CONTACT } from '../data/seo';
       <div class="bg-white border border-sand rounded-5xl p-6 lg:p-10 shadow-sm reveal">
         <h2 class="font-serif text-3xl text-ever mb-6">Send us a message</h2>
         <form data-contact-form novalidate>
+          <!-- Honeypot: hidden from users; bots that fill it are silently dropped -->
+          <div class="hidden" aria-hidden="true">
+            <label>Company<input type="text" name="company" tabindex="-1" autocomplete="off" /></label>
+          </div>
           <div class="mb-4">
             <label class="block text-sm text-stone mb-1" for="cf-name">Name <span class="text-clay">*</span></label>
             <input id="cf-name" name="name" required placeholder="Your full name"
@@ -51,7 +55,8 @@ import { CONTACT } from '../data/seo';
             <p data-captcha-err class="hidden mt-2 text-sm text-clay">That answer isn't right, please try again.</p>
           </div>
 
-          <button class="w-full sm:w-auto rounded-full bg-clay hover:bg-claydk text-white font-semibold px-8 py-3.5 transition">Send Message</button>
+          <button class="w-full sm:w-auto rounded-full bg-clay hover:bg-claydk text-white font-semibold px-8 py-3.5 transition disabled:opacity-60 disabled:cursor-not-allowed">Send Message</button>
+          <p data-contact-err class="hidden mt-3 text-sm text-clay"></p>
         </form>
 
         <div data-contact-success class="hidden text-center py-10">
@@ -89,22 +94,45 @@ import { CONTACT } from '../data/seo';
       const b = Math.floor(Math.random() * 8) + 2;
       const qEl = form.querySelector('[data-captcha-q]');
       if (qEl) qEl.textContent = `${a} + ${b}`;
-      const errEl = form.querySelector('[data-captcha-err]');
+      const captchaErr = form.querySelector('[data-captcha-err]');
+      const submitErr = form.querySelector('[data-contact-err]');
+      const btn = form.querySelector('button') as HTMLButtonElement | null;
 
-      form.addEventListener('submit', (e) => {
+      form.addEventListener('submit', async (e) => {
         e.preventDefault();
         if (!form.reportValidity()) return;
         const captcha = (form.elements.namedItem('captcha') as HTMLInputElement)?.value.trim();
         if (Number(captcha) !== a + b) {
-          errEl?.classList.remove('hidden');
+          captchaErr?.classList.remove('hidden');
           return;
         }
-        errEl?.classList.add('hidden');
-        const data = Object.fromEntries(new FormData(form).entries());
-        // TODO: POST `data` to your backend / email service.
-        console.log('contact payload', data);
-        form.classList.add('hidden');
-        form.parentElement?.querySelector('[data-contact-success]')?.classList.remove('hidden');
+        captchaErr?.classList.add('hidden');
+        submitErr?.classList.add('hidden');
+
+        const data = Object.fromEntries(new FormData(form).entries()) as Record<string, string>;
+        delete data.captcha;
+
+        const original = btn?.textContent ?? 'Send Message';
+        if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+        try {
+          const res = await fetch('/api/contact', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data),
+          });
+          if (!res.ok) {
+            const info = await res.json().catch(() => ({}));
+            throw new Error(info.error || 'Something went wrong. Please try again.');
+          }
+          form.classList.add('hidden');
+          form.parentElement?.querySelector('[data-contact-success]')?.classList.remove('hidden');
+        } catch (err) {
+          if (submitErr) {
+            submitErr.textContent = err instanceof Error ? err.message : 'Something went wrong. Please try again.';
+            submitErr.classList.remove('hidden');
+          }
+          if (btn) { btn.disabled = false; btn.textContent = original; }
+        }
       });
     });
   </script>

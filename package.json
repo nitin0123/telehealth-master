@@ -11,9 +11,12 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/vercel": "^7.8.2",
     "@fontsource-variable/fraunces": "^5.1.0",
     "@fontsource-variable/geist": "^5.1.0",
-    "astro": "^4.16.18"
+    "@vercel/postgres": "^0.10.0",
+    "astro": "^4.16.18",
+    "resend": "^6.16.0"
   },
   "devDependencies": {
     "@astrojs/sitemap": "3.2.1",
