@@ -75,7 +75,7 @@ import { CONTACT } from '../data/seo';
 
       <p data-sms-err class="hidden text-sm text-clay"></p>
 
-      <button class="w-full rounded-full bg-clay hover:bg-claydk text-white font-semibold px-8 py-3.5 transition">I Agree and Opt In</button>
+      <button class="w-full rounded-full bg-clay hover:bg-claydk text-white font-semibold px-8 py-3.5 transition disabled:opacity-60 disabled:cursor-not-allowed">I Agree and Opt In</button>
       <p class="text-xs text-stone/70 text-center">This opt-in is recorded as proof of consent for SMS communication verification purposes.</p>
     </form>
 
@@ -99,7 +99,9 @@ import { CONTACT } from '../data/seo';
         errEl.classList.remove('hidden');
       };
 
-      form.addEventListener('submit', (e) => {
+      const btn = form.querySelector('button') as HTMLButtonElement | null;
+
+      form.addEventListener('submit', async (e) => {
         e.preventDefault();
         const phone = (form.elements.namedItem('phone') as HTMLInputElement)?.value.trim();
         const marketing = (form.elements.namedItem('consentMarketing') as HTMLInputElement)?.checked;
@@ -115,18 +117,28 @@ import { CONTACT } from '../data/seo';
         }
         errEl?.classList.add('hidden');
 
-        const data = {
-          phoneNumber: phone,
-          consentMarketing: !!marketing,
-          consentInformational: !!informational,
-          timestamp: new Date().toISOString(),
-        };
-        // TODO: POST `data` to your backend (e.g. /api/sms-consent) and persist
-        // it to your database as documented proof of consent.
-        console.log('sms-consent payload', data);
-
-        form.classList.add('hidden');
-        form.parentElement?.querySelector('[data-sms-success]')?.classList.remove('hidden');
+        const original = btn?.textContent ?? 'I Agree and Opt In';
+        if (btn) { btn.disabled = true; btn.textContent = 'Recording…'; }
+        try {
+          const res = await fetch('/api/sms-consent', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              phoneNumber: phone,
+              consentMarketing: !!marketing,
+              consentInformational: !!informational,
+            }),
+          });
+          if (!res.ok) {
+            const info = await res.json().catch(() => ({}));
+            throw new Error(info.error || 'Something went wrong. Please try again.');
+          }
+          form.classList.add('hidden');
+          form.parentElement?.querySelector('[data-sms-success]')?.classList.remove('hidden');
+        } catch (err) {
+          showErr(err instanceof Error ? err.message : 'Something went wrong. Please try again.');
+          if (btn) { btn.disabled = false; btn.textContent = original; }
+        }
       });
     });
   </script>

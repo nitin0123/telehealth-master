@@ -1,0 +1,52 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+
+// Written by Swati Singh (co-founder). Blurb + cover sourced from the Amazon
+// listing below.
+const AMAZON_URL = 'https://www.amazon.com/MENOPAUSE-Me-TIME-RECLAIM-YOUR-ebook/dp/B0GX32VS9L';
+const discover = [
+  'The early whispers of perimenopause most women miss until they\'re roaring',
+  'The real story on HRT, stripped of outdated fear and Hollywood headlines',
+  'How menopause rewires your brain, mood, sleep, bones, and sex life',
+  'The nutrition and movement strategies that actually move the needle',
+  'How to advocate for yourself when your doctor brushes you off',
+];
+---
+<PageLayout
+  section="Book"
+  sectionHref="/book"
+  kicker="The Book"
+  title="Menopause & Me"
+  metaTitle="Menopause & Me by Swati Singh | ResetWell Plus"
+  description="Menopause & Me: It's Time to Reclaim Your Life — an honest, science-backed guide by Swati Singh, co-founder of ResetWell Plus. Available on Amazon."
+  lede="It's Time to Reclaim Your Life — an honest, science-backed guide by Swati Singh, co-founder of ResetWell Plus."
+>
+  <div class="grid lg:grid-cols-[auto_1fr] gap-8 lg:gap-14 items-start">
+    <!-- Cover + buy CTA -->
+    <div class="mx-auto lg:mx-0 w-56 sm:w-64 reveal">
+      <img
+        src="/menopause-and-me-cover.jpg"
+        alt="Cover of Menopause & Me: It's Time to Reclaim Your Life by Swati Singh"
+        width="1708"
+        height="2560"
+        class="w-full rounded-2xl shadow-xl shadow-ever/20"
+      />
+      <a href={AMAZON_URL} target="_blank" rel="noopener" class="btn-primary mt-6 w-full">Buy on Amazon →</a>
+      <p class="mt-2 text-center text-xs text-stone">Kindle edition · Amazon US</p>
+    </div>
+
+    <!-- Blurb -->
+    <div class="space-y-4 text-stone text-lg leading-relaxed reveal" style="--reveal-delay:80ms">
+      <p class="font-serif text-2xl text-ever">The honest, science-backed guide every woman wishes she'd had sooner.</p>
+      <p>It's 3 a.m. Your heart is pounding. Sleep won't come. Your mood feels foreign, your body feels borrowed, and your doctor just told you your labs are "normal." Sound familiar?</p>
+      <p>For generations, women have been told to grit their teeth through perimenopause and menopause. Anxiety, brain fog, joint pain, stubborn weight, vanishing libido — all waved away as "just stress" or "just aging." Meanwhile, you're left wondering if you're losing your mind. You're not. And you're not alone.</p>
+      <p><em>Menopause &amp; Me</em> is the conversation you should have had a decade ago. Written by Swati Singh, co-founder of ResetWell Plus, this clear, compassionate guide pairs lived experience with the latest evidence so you can finally understand what's happening inside your body, and exactly what to do about it.</p>
+      <p class="font-medium text-ink pt-2">Inside, you'll discover:</p>
+      <ul class="list-disc pl-6 space-y-1">
+        {discover.map((d) => <li>{d}</li>)}
+      </ul>
+      <p>Menopause isn't the end of your vitality. It's a transition — and you deserve to walk through it with clarity, confidence, and a plan.</p>
+      <p class="font-serif text-xl text-ever">Stop suffering in silence. Reclaim your energy, your sleep, your spark, your self.</p>
+    </div>
+  </div>
+</PageLayout>
