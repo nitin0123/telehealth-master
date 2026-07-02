@@ -34,14 +34,17 @@ const waIcon = '<svg class="w-4 h-4" viewBox="0 0 24 24" fill="none"><path d="M3
   <!-- Bottom bar -->
   <div class="border-t border-ink/10">
     <div class="max-w-7xl mx-auto px-5 lg:px-8 py-6 flex flex-col gap-4 items-center text-sm text-stone">
-      <div class="flex flex-wrap items-center justify-center gap-x-3 gap-y-2">
-        <span>© {year} ResetWell Plus LLC</span>
-        <span class="text-stone/40">·</span>
-        <span>ResetWell Plus Pvt. Ltd.</span>
-        <span class="text-stone/40">·</span>
+      <!-- Social links, centered -->
+      <div class="flex flex-wrap items-center justify-center gap-3">
         <a href={CONTACT.social.linkedin} class="inline-flex items-center gap-1.5 rounded-full bg-white border border-sand hover:border-clay hover:text-clay transition px-3.5 py-1.5 text-ever"><Fragment set:html={liIcon} />{CONTACT.social.linkedinHandle}</a>
         <a href={CONTACT.social.instagram} class="inline-flex items-center gap-1.5 rounded-full bg-white border border-sand hover:border-clay hover:text-clay transition px-3.5 py-1.5 text-ever"><Fragment set:html={igIcon} />{CONTACT.social.instagramHandle}</a>
         <a href={CONTACT.social.whatsapp} class="inline-flex items-center gap-1.5 rounded-full bg-white border border-sand hover:border-clay hover:text-clay transition px-3.5 py-1.5 text-ever"><Fragment set:html={waIcon} />WhatsApp</a>
+      </div>
+      <!-- Copyright + legal entities on their own line -->
+      <div class="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-center">
+        <span>© {year} ResetWell Plus LLC</span>
+        <span class="text-stone/40">·</span>
+        <span>ResetWell Plus Pvt. Ltd.</span>
       </div>
       <div class="flex flex-wrap justify-center items-center gap-x-3 gap-y-1">
         <a href="/privacy-policy" class="inline-block py-1 hover:text-clay transition">Privacy Policy</a>
