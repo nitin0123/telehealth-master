@@ -40,8 +40,9 @@ const pathways = [
   <div class="grid md:grid-cols-3 gap-5 lg:gap-6">
     {pathways.map((p, i) => (
       <div class="group flex flex-col bg-white border border-sand rounded-4xl overflow-hidden transition-all duration-300 ease-out will-change-transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-ever/20 hover:border-clay/40 reveal" style={`--reveal-delay:${i * 90}ms`}>
-        <div class="aspect-[16/10] overflow-hidden">
+        <div class="relative aspect-[16/10] overflow-hidden">
           <img src={p.img} alt={p.alt} class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105" loading="lazy" />
+          <div class="pointer-events-none absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out bg-gradient-to-r from-transparent via-white/40 to-transparent"></div>
         </div>
         <div class="p-7 flex flex-col flex-1">
           <h3 class="font-serif text-2xl text-ever">{p.title}</h3>
