@@ -9,11 +9,10 @@ node_modules/
 .DS_Store
 *.log
 
-# env
+# env — ignore all .env files except the committed template
 .env
-.env.production
-.env.local
-.env*.local
+.env.*
+!.env.example
 
 # vercel build output
 .vercel
