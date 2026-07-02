@@ -12,6 +12,8 @@ node_modules/
 # env
 .env
 .env.production
+.env.local
+.env*.local
 
 # vercel build output
 .vercel

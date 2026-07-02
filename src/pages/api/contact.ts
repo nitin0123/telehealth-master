@@ -3,7 +3,7 @@
 export const prerender = false;
 
 import type { APIRoute } from 'astro';
-import { sql } from '@vercel/postgres';
+import { db } from '../../lib/db';
 import { Resend } from 'resend';
 
 const json = (body: unknown, status = 200) =>
@@ -42,7 +42,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
 
   // 1) Persist to the database (source of truth).
   try {
-    await sql`
+    await db().sql`
       INSERT INTO contact_messages (name, email, phone, message, ip_address)
       VALUES (${name}, ${email}, ${phone}, ${message}, ${ip})
     `;

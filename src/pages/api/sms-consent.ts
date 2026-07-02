@@ -3,7 +3,7 @@
 export const prerender = false;
 
 import type { APIRoute } from 'astro';
-import { sql } from '@vercel/postgres';
+import { db } from '../../lib/db';
 
 const json = (body: unknown, status = 200) =>
   new Response(JSON.stringify(body), { status, headers: { 'Content-Type': 'application/json' } });
@@ -32,7 +32,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
   const userAgent = request.headers.get('user-agent');
 
   try {
-    await sql`
+    await db().sql`
       INSERT INTO sms_consent (phone_number, consent_marketing, consent_informational, ip_address, user_agent)
       VALUES (${phone}, ${marketing}, ${informational}, ${ip}, ${userAgent})
     `;
