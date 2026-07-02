@@ -19,7 +19,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
     return json({ error: 'Invalid request body.' }, 400);
   }
 
-  // Honeypot — real users never fill this hidden field; bots do. Pretend success.
+  // Honeypot: real users never fill this hidden field; bots do. Pretend success.
   if (str(body.company)) return json({ ok: true });
 
   const name = str(body.name);
@@ -51,7 +51,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
     return json({ error: 'Sorry, something went wrong saving your message. Please try again.' }, 500);
   }
 
-  // 2) Email a notification (best-effort — the message is already saved).
+  // 2) Email a notification (best-effort; the message is already saved).
   const apiKey = process.env.RESEND_API_KEY;
   const to = process.env.CONTACT_EMAIL_TO;
   const from = process.env.CONTACT_EMAIL_FROM || 'ResetWell Plus <onboarding@resend.dev>';
@@ -69,7 +69,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
       console.error('[contact] Resend email failed (message was still saved):', err);
     }
   } else {
-    console.warn('[contact] RESEND_API_KEY or CONTACT_EMAIL_TO not set — skipping email.');
+    console.warn('[contact] RESEND_API_KEY or CONTACT_EMAIL_TO not set, skipping email.');
   }
 
   return json({ ok: true });

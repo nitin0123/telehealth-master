@@ -61,6 +61,6 @@ export const nav: NavSection[] = [
   },
 ];
 
-// Booking is pre-launch — all "Book a Consultation" CTAs point to the Coming Soon page.
+// Booking is pre-launch. All "Book a Consultation" CTAs point to the Coming Soon page.
 // When ready, switch this back to '/get-care/book-a-consultation'.
 export const BOOK_HREF = '/coming-soon';
