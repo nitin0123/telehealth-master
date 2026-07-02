@@ -81,3 +81,25 @@ export const events: EventItem[] = [
   { title: 'Nutrition in Midlife', meta: 'Thu, 17 Jul · 6:30 PM IST', tag: 'Live · Online' },
   { title: 'Strength & Bones', meta: 'On demand · 35 min', tag: 'On Demand' },
 ];
+
+export interface PressFeature {
+  /** Publication name, e.g. 'Dainik Jagran' */
+  publication: string;
+  /** Article headline */
+  title: string;
+  /** Full URL to the article */
+  href: string;
+  /** Short date label shown on the card, e.g. 'Jun 2026' */
+  date?: string;
+  /** Thumbnail in public/, e.g. '/press-dainik-jagran.webp'. Omit for a branded text fallback. */
+  img?: string;
+}
+export const pressFeatures: PressFeature[] = [
+  {
+    publication: 'Dainik Jagran',
+    title: 'ResetWell Plus founders Swati Singh and Reshma Tiwari say menopause awareness must begin with daughters, not after mothers suffer',
+    href: 'https://english.dainikjagranmpcg.com/life-style/indias-resetwell-plus-founders-swati-singh-and-reshma-tiwari-say/article-20724',
+    date: 'Jun 2026',
+    img: '/press-dainik-jagran.webp',
+  },
+];
