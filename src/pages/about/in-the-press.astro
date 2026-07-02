@@ -1,0 +1,32 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+const press = ['Vogue', 'Mint', 'ELLE', 'The Hindu', 'Femina', 'YourStory'];
+---
+<PageLayout
+  section="About"
+  kicker="About"
+  title="In the press"
+  metaTitle="In The Press | ResetWell Plus"
+  description="Press coverage and media features for ResetWell Plus, India's expert-led platform for perimenopause and menopause care. Coming soon."
+  lede="Coverage and recognition for our work in women's midlife health."
+>
+  <!-- Coming soon notice -->
+  <div class="bg-ever text-cream rounded-5xl p-8 lg:p-12 text-center reveal">
+    <span class="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-sm font-semibold">
+      <span class="w-2 h-2 rounded-full bg-clay animate-pulse"></span> Coming soon
+    </span>
+    <h2 class="mt-5 font-serif text-3xl lg:text-4xl">Our press room is on its way.</h2>
+    <p class="mt-3 text-cream/70 max-w-xl mx-auto text-lg">
+      We're just getting started. Media features, interviews and coverage will appear here soon. For press enquiries,
+      please get in touch.
+    </p>
+    <a href="/contact" class="mt-6 inline-flex items-center rounded-full bg-cream text-ever font-semibold px-6 py-3 hover:bg-white transition">Contact us</a>
+  </div>
+
+  <p class="mt-10 text-center eyebrow uppercase text-sm font-semibold text-clay reveal">As featured in (soon)</p>
+  <div class="mt-5 grid grid-cols-2 sm:grid-cols-3 gap-4 opacity-50">
+    {press.map((p) => (
+      <div class="bg-white border border-sand rounded-3xl py-10 grid place-items-center font-serif text-2xl text-ever/40 reveal">{p}</div>
+    ))}
+  </div>
+</PageLayout>

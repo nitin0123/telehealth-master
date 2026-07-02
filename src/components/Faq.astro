@@ -1,0 +1,26 @@
+---
+import { faqs as defaultFaqs, type Faq } from '../data/content';
+
+interface Props {
+  items?: Faq[];
+  heading?: string;
+  /** wrapper background: 'band' adds the soft sand section background */
+  variant?: 'band' | 'plain';
+}
+const { items = defaultFaqs, heading = 'Questions, answered', variant = 'band' } = Astro.props;
+---
+<section class={variant === 'band' ? 'bg-sand/50' : ''}>
+  <div class="max-w-3xl mx-auto px-5 lg:px-8 py-12 lg:py-16">
+    <h2 class="font-serif text-3xl lg:text-5xl text-ever text-center mb-10 reveal">{heading}</h2>
+    <div class="space-y-3">
+      {items.map((f) => (
+        <details class="bg-cream rounded-3xl px-6 py-4 group reveal">
+          <summary class="flex justify-between items-center cursor-pointer font-medium text-ever list-none">
+            {f.q}<span class="text-clay group-open:rotate-45 transition">+</span>
+          </summary>
+          <p class="mt-3 text-stone text-base leading-relaxed">{f.a}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>

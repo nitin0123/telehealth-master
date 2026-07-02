@@ -1,0 +1,38 @@
+---
+import { careNeeds } from '../data/content';
+---
+<section class="max-w-7xl mx-auto px-5 lg:px-8 py-12 lg:py-16">
+  <div class="text-center max-w-2xl mx-auto mb-8 reveal">
+    <p class="eyebrow uppercase text-xs font-semibold text-clay mb-3">Support at 30, 40, 50+</p>
+    <h2 class="font-serif text-3xl lg:text-5xl text-ever">Never too early. Never too late.</h2>
+    <p class="mt-4 text-stone">Wherever you are in your journey, we'll meet you there with the solutions you need.</p>
+  </div>
+  <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5">
+    {careNeeds.map((c, i) => (
+      <a
+        href={c.href}
+        class="group relative rounded-4xl overflow-hidden bg-white border border-sand shadow-sm reveal
+               transition-all duration-300 ease-out will-change-transform
+               hover:-translate-y-2 hover:shadow-2xl hover:shadow-ever/20 hover:border-clay/40"
+        style={`--reveal-delay:${(i % 4) * 70}ms`}
+      >
+        <!-- illustration with zoom + shine sweep -->
+        <div class="relative overflow-hidden">
+          <img src={c.img} alt="" loading="lazy" class="aspect-[4/3] w-full object-cover transition-transform duration-500 ease-out group-hover:scale-110" />
+          <div class="pointer-events-none absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out bg-gradient-to-r from-transparent via-white/40 to-transparent"></div>
+        </div>
+
+        <!-- title + expanding descriptor -->
+        <div class="relative p-5">
+          <div class="flex items-center justify-between gap-2">
+            <h3 class="font-serif text-xl text-ever group-hover:text-clay transition-colors duration-200">{c.title}</h3>
+            <span class="shrink-0 text-clay opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" aria-hidden="true">→</span>
+          </div>
+          <div class="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-[grid-template-rows] duration-300 ease-out">
+            <p class="overflow-hidden text-sm text-stone group-hover:mt-2">{c.blurb}</p>
+          </div>
+        </div>
+      </a>
+    ))}
+  </div>
+</section>

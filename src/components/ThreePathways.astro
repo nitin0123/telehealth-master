@@ -1,0 +1,49 @@
+---
+import { BOOK_HREF } from '../data/nav';
+// 3.3 How We Help — Three Pathways.
+// Images: (1) online event in progress, specialist on screen, engaged attendees;
+//         (2) woman relaxed on a laptop video call, home setting, soft light;
+//         (3) group of diverse Indian women in warm conversation, multigenerational.
+const pathways = [
+  {
+    title: 'Expert Events',
+    body: 'Live and on-demand sessions led by gynaecologists and menopause specialists. Every event ends with Q&A.',
+    cta: 'Reserve a Seat',
+    href: '/events/upcoming',
+    grad: 'from-peach to-sage/40',
+  },
+  {
+    title: 'Virtual Care',
+    body: 'One-on-one virtual consultation with a trained specialist. Care plan within 24 hours. All of India.',
+    cta: 'Book a Consultation',
+    href: BOOK_HREF,
+    grad: 'from-sand to-clay/30',
+  },
+  {
+    title: 'Community',
+    body: 'A private, expert-facilitated community of Indian women navigating the same transitions as you.',
+    cta: 'Join Free',
+    href: '/community/join',
+    grad: 'from-sage/50 to-peach',
+  },
+];
+---
+<section class="max-w-7xl mx-auto px-5 lg:px-8 py-12 lg:py-16">
+  <div class="mb-8 reveal">
+    <p class="eyebrow uppercase text-xs font-semibold text-clay mb-3">How we help</p>
+    <h2 class="font-serif text-3xl lg:text-5xl text-ever whitespace-normal lg:whitespace-nowrap">Three pathways to feeling like yourself.</h2>
+  </div>
+
+  <div class="grid md:grid-cols-3 gap-5 lg:gap-6">
+    {pathways.map((p, i) => (
+      <div class="flex flex-col bg-white border border-sand rounded-4xl overflow-hidden hover:shadow-xl hover:shadow-ever/5 transition reveal" style={`--reveal-delay:${i * 90}ms`}>
+        <div class={`aspect-[16/10] bg-gradient-to-br ${p.grad} grid place-items-center text-ever/30 font-serif`}>Photo</div>
+        <div class="p-7 flex flex-col flex-1">
+          <h3 class="font-serif text-2xl text-ever">{p.title}</h3>
+          <p class="mt-2 text-stone text-base leading-relaxed flex-1">{p.body}</p>
+          <a href={p.href} class="mt-5 inline-flex items-center gap-1 font-semibold text-clay hover:gap-2 transition-all">{p.cta} <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>

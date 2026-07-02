@@ -1,0 +1,54 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import JoinForm from '../../components/JoinForm.astro';
+import { CONTACT } from '../../data/seo';
+
+const channels = [
+  {
+    name: 'WhatsApp Community',
+    find: 'Daily wellness tips, event alerts, community questions, and peer support in English and Hindi. Moderated by our care team.',
+    cta: 'Join the WhatsApp Community',
+    href: CONTACT.social.whatsapp,
+  },
+  {
+    name: 'Instagram & Facebook',
+    find: 'Educational reels, specialist Q&A clips, real stories from our community, and event previews. In Hinglish.',
+    cta: 'Follow on Instagram',
+    href: CONTACT.social.instagram,
+  },
+  {
+    name: 'LinkedIn',
+    find: 'Corporate wellness content, research updates, and B2B resources for HR leaders.',
+    cta: 'Follow on LinkedIn',
+    href: CONTACT.social.linkedin,
+  },
+  {
+    name: 'YouTube',
+    find: 'Full recordings of past events, specialist explainer series, podcasts, and patient story documentaries. Free to watch.',
+    cta: 'Subscribe on YouTube',
+    href: CONTACT.social.youtube,
+  },
+];
+---
+<PageLayout
+  section="Community"
+  title="Join the community"
+  metaTitle="Menopause Community for Indian Women | ResetWell Plus"
+  description="Join a private, expert-facilitated menopause and perimenopause community for Indian women. Peer support in English and Hindi, on WhatsApp, Instagram and more."
+  keywords="menopause community India women, menopause support group India, perimenopause community"
+  lede="A private, moderated, judgement-free space for women who get it. Join free, then connect with us wherever you already are."
+>
+  <JoinForm />
+
+  <div class="mt-16">
+    <div class="grid md:grid-cols-2 gap-5">
+      {channels.map((c, i) => (
+        <div class="flex flex-col bg-white border border-sand rounded-4xl p-6 reveal" style={`--reveal-delay:${(i % 2) * 80}ms`}>
+          <h3 class="font-serif text-2xl text-ever">{c.name}</h3>
+          <p class="mt-2 text-stone text-base leading-relaxed flex-1">{c.find}</p>
+          <a href={c.href} class="mt-4 inline-flex items-center gap-1 font-semibold text-clay hover:gap-2 transition-all">{c.cta} <span aria-hidden="true">→</span></a>
+        </div>
+      ))}
+    </div>
+  </div>
+</PageLayout>

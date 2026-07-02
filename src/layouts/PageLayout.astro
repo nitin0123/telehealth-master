@@ -1,0 +1,45 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import { SITE } from '../data/seo';
+
+interface Props {
+  title: string;
+  lede?: string;
+  kicker?: string;
+  section?: string;
+  /** Path of the parent section (for the breadcrumb link) */
+  sectionHref?: string;
+  metaTitle?: string;
+  description?: string;
+  keywords?: string;
+  image?: string;
+  noindex?: boolean;
+}
+const { title, lede, kicker, section, sectionHref, metaTitle, description, keywords, image, noindex } = Astro.props;
+
+// SEO title falls back to the brand template
+const seoTitle = metaTitle ?? `${title} | ResetWell Plus`;
+
+// Breadcrumb structured data
+const crumbs = [{ name: 'Home', url: SITE.url + '/' }];
+if (section) crumbs.push({ name: section, url: new URL(sectionHref ?? Astro.url.pathname, SITE.url).href });
+crumbs.push({ name: title, url: new URL(Astro.url.pathname, SITE.url).href });
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: crumbs.map((c, i) => ({ '@type': 'ListItem', position: i + 1, name: c.name, item: c.url })),
+};
+---
+
+<BaseLayout title={seoTitle} description={description ?? lede} keywords={keywords} image={image} noindex={noindex}>
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(breadcrumbSchema)} />
+
+  <section class="max-w-5xl mx-auto px-5 lg:px-8 pt-10 lg:pt-16">
+    <h1 class="font-serif text-3xl sm:text-4xl lg:text-6xl leading-[1.05] text-ever reveal lg:-ml-1">{title}</h1>
+    {lede && <p class="mt-5 text-lg text-stone reveal" style="--reveal-delay:80ms">{lede}</p>}
+  </section>
+
+  <div class="max-w-5xl mx-auto px-5 lg:px-8 py-12 lg:py-16">
+    <slot />
+  </div>
+</BaseLayout>

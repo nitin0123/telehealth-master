@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Faq from '../../components/Faq.astro';
+import { faqs } from '../../data/content';
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  title="Menopause Care FAQs (India) | ResetWell Plus"
+  description="Answers to common questions about ResetWell Plus: referrals, payment, online vs in-person visits, whether HRT is safe in India, and the average menopause age in India."
+  keywords="is HRT safe in India, menopause age in India, menopause care FAQ"
+>
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(faqSchema)} />
+
+  <section class="max-w-5xl mx-auto px-5 lg:px-8 pt-10 lg:pt-16">
+    <h1 class="font-serif text-3xl sm:text-4xl lg:text-6xl leading-[1.05] text-ever reveal">Frequently asked questions</h1>
+    <p class="mt-5 text-lg text-stone max-w-2xl reveal" style="--reveal-delay:80ms">Everything to know before you book.</p>
+  </section>
+  <Faq heading="" variant="plain" />
+</BaseLayout>

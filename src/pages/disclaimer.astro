@@ -1,0 +1,31 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import { BOOK_HREF } from '../data/nav';
+---
+<PageLayout
+  section="About"
+  sectionHref="/about/our-story"
+  kicker="Legal"
+  title="Medical Disclaimer"
+  metaTitle="Medical Disclaimer | ResetWell Plus"
+  description="The content on the ResetWell Plus website is for informational and educational purposes only and is not a substitute for professional medical advice."
+>
+  <div class="bg-white border border-sand rounded-5xl p-8 lg:p-12 reveal">
+    <div class="space-y-5 text-stone text-lg leading-relaxed max-w-2xl">
+      <p>
+        The content on this website is for informational and educational purposes only. It is not intended as a
+        substitute for professional medical advice, diagnosis, or treatment.
+      </p>
+      <p>
+        Always seek the advice of a qualified healthcare provider with any questions you may have regarding a medical
+        condition. Never disregard professional medical advice or delay seeking it because of something you have read on
+        this website.
+      </p>
+      <p>
+        Hormone therapy and other treatments discussed on this site may not be appropriate for every individual. A
+        personalised consultation with a ResetWell Plus specialist is required before any treatment is initiated.
+      </p>
+      <a href={BOOK_HREF} class="mt-3 btn-primary">Book a Consultation</a>
+    </div>
+  </div>
+</PageLayout>

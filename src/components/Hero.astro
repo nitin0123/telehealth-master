@@ -1,0 +1,42 @@
+---
+import { BOOK_HREF } from '../data/nav';
+// HERO IMAGE: South Asian woman, mid-40s, thoughtful by a window, natural morning light.
+// Drop the real photo into /public and replace the placeholder div below.
+---
+<section class="max-w-7xl mx-auto px-5 lg:px-8 pt-8 pb-10 lg:pt-12 lg:pb-14">
+  <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+    <div>
+      <p class="eyebrow uppercase text-xs font-semibold text-clay mb-5 reveal">Expert-led midlife care for women in India</p>
+      <h1 class="font-serif text-[2rem] sm:text-5xl lg:text-[3.75rem] leading-[1.08] text-ever reveal" style="--reveal-delay:60ms">
+        Your body isn't failing you. It's asking for care you haven't been given yet.
+      </h1>
+      <p class="mt-6 text-lg text-stone max-w-xl reveal" style="--reveal-delay:140ms">
+        ResetWell Plus is India's expert-led women's midlife health platform for perimenopause, menopause, and every hormonal transition in between, with virtual consultations, events, and a community of women who truly get it.
+      </p>
+      <div class="mt-8 flex flex-col sm:flex-row gap-3 reveal" style="--reveal-delay:220ms">
+        <a href="/understand-your-symptoms/symptom-checker" class="btn-primary px-7 py-4">Take the Free Symptom Quiz</a>
+        <a href={BOOK_HREF} class="btn-ghost px-7 py-4">Book a Consultation</a>
+      </div>
+    </div>
+    <div class="relative reveal" style="--reveal-delay:120ms">
+      <div class="aspect-square rounded-5xl overflow-hidden bg-gradient-to-br from-peach via-sand to-sage/60 relative">
+        <img
+          src="/hero-woman.jpg"
+          alt="A woman in her mid-40s sitting by a window in natural morning light, resting her chin on her hand and smiling thoughtfully"
+          class="absolute inset-0 w-full h-full object-cover object-center"
+          width="1200"
+          height="1200"
+          loading="eager"
+          decoding="async"
+        />
+        <div class="absolute bottom-5 left-5 bg-cream/90 backdrop-blur rounded-3xl px-5 py-4 shadow-lg">
+          <div class="flex items-center gap-2 text-ever font-semibold">
+            <svg class="w-5 h-5 text-clay" viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.4 6.3L19 8l-5 4.2L15.6 19 10 15.3 4.4 19 6 12.2 1 8l6.6-.7z"/></svg>
+            4.9 / 5
+          </div>
+          <p class="text-xs text-stone mt-0.5">from 12,000+ women</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

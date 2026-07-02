@@ -1,0 +1,30 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import { BOOK_HREF } from '../../data/nav';
+const blocks = [
+  ['Workshops & webinars', 'Live, expert-led sessions tailored to your teams, from perimenopause basics to manager training.'],
+  ['Subsidised employee visits', 'Offer your people direct access to specialist consultations as part of their benefits.'],
+  ['Policy & culture support', 'Practical guidance to make your workplace genuinely menopause-confident.'],
+];
+---
+<PageLayout
+  section="Events"
+  kicker="Events"
+  title="ResetWell Plus for employers"
+  metaTitle="Menopause at Work: Corporate Wellness in India | ResetWell Plus"
+  description="Bring expert menopause and midlife care to your workplace in India: workshops, webinars, subsidised employee consultations and policy support."
+  keywords="menopause at work India, workplace wellness India, corporate menopause programme"
+  lede="Offer expert midlife care as part of your benefits package."
+>
+  <div class="grid sm:grid-cols-3 gap-4">
+    {blocks.map(([h, p]) => (
+      <div class="bg-white border border-sand rounded-4xl p-6 reveal">
+        <h2 class="font-serif text-2xl text-ever">{h}</h2>
+        <p class="mt-2 text-stone text-base leading-relaxed">{p}</p>
+      </div>
+    ))}
+  </div>
+  <div class="mt-10 text-center">
+    <a href={BOOK_HREF} class="btn-primary">Talk to our team</a>
+  </div>
+</PageLayout>

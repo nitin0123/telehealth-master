@@ -1,0 +1,30 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+const sections = [
+  ['What is perimenopause?', 'The transition leading up to menopause, when hormone levels begin to fluctuate. In India it can start in the late 30s or 40s and last several years, sometimes earlier than many women expect.'],
+  ['Common symptoms', 'Irregular periods, hot flushes, disrupted sleep, mood changes, brain fog, joint aches, and shifts in energy and weight. Over forty symptoms in total.'],
+  ['Why it happens', 'Oestrogen and progesterone rise and fall unpredictably, affecting far more than your cycle, from your brain to your bones.'],
+  ['What can help', 'From lifestyle and nutrition to hormone therapy where appropriate, a specialist can build a plan tailored to you. HRT is safe for many women when guided by an expert.'],
+];
+---
+<PageLayout
+  section="Understand Your Symptoms"
+  kicker="Understand Your Symptoms"
+  title="Perimenopause 101"
+  metaTitle="Perimenopause Symptoms in India: Perimenopause 101 | ResetWell Plus"
+  description="Perimenopause symptoms in India explained: the signs, the average menopause age in India, early menopause, perimenopause at 38, and whether HRT is safe. Reviewed by menopause specialists."
+  keywords="perimenopause symptoms in India, menopause age in India, early menopause India women, perimenopause at 38 India, is HRT safe in India"
+  lede="The years before your last period can bring forty-plus symptoms. Here is what is happening for women in India, and what helps."
+>
+  <div class="grid sm:grid-cols-2 gap-4">
+    {sections.map(([h, p]) => (
+      <div class="bg-white border border-sand rounded-4xl p-7 reveal">
+        <h2 class="font-serif text-2xl text-ever">{h}</h2>
+        <p class="mt-3 text-stone text-lg leading-relaxed">{p}</p>
+      </div>
+    ))}
+  </div>
+  <div class="mt-10 text-center">
+    <a href="/understand-your-symptoms/symptom-checker" class="btn-primary">Take the Free Symptom Quiz</a>
+  </div>
+</PageLayout>

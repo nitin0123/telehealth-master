@@ -1,0 +1,78 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+
+const tiers = [
+  {
+    name: 'Single visit',
+    price: '₹1,499',
+    sub: 'per consultation',
+    desc: 'Everything you need for a focused, unhurried first consultation with a menopause specialist.',
+    items: [
+      '30-minute specialist consultation',
+      'Personalised written care plan',
+      'Prescription if clinically needed',
+      'Secure video or in-clinic visit',
+      'A care summary you keep forever',
+      'Message your clinician after your visit',
+    ],
+    note: 'No hidden charges. No referral needed.',
+    cta: 'Book now',
+    href: '/coming-soon',
+    featured: false,
+  },
+  {
+    name: 'Corporate',
+    price: 'Custom',
+    sub: 'for teams & employers',
+    desc: 'Bring expert midlife and menopause care to your whole organisation, designed around your people.',
+    items: [
+      'Live workshops & expert webinars',
+      'Subsidised employee consultations',
+      'Manager & HR awareness training',
+      'Menopause-at-work policy guidance',
+      'Workplace wellness resources',
+      'A dedicated account manager',
+    ],
+    note: 'Tailored to your team size and goals.',
+    cta: 'Talk to us',
+    href: '/events/for-corporates',
+    featured: false,
+  },
+];
+---
+<PageLayout
+  section="Get Care"
+  title="Simple, transparent pricing"
+  metaTitle="Menopause Consultation Cost in India | ResetWell Plus Pricing"
+  description="Transparent menopause consultation pricing in India. Pay patients directly with no insurance paperwork. Single visits from ₹1,499 and ongoing care plans."
+  keywords="menopause consultation cost India, menopause treatment India, menopause consultation price"
+  lede="We charge patients directly, with no insurance paperwork and no hidden fees. All prices in ₹."
+>
+  <div class="grid sm:grid-cols-2 gap-6 max-w-4xl">
+    {tiers.map((t) => (
+      <div class={`rounded-5xl p-7 lg:p-9 flex flex-col reveal ${t.featured ? 'bg-ever text-cream shadow-xl' : 'bg-white border border-sand'}`}>
+        <p class={`eyebrow uppercase text-xs font-semibold ${t.featured ? 'text-sage' : 'text-clay'}`}>{t.name}</p>
+        <p class="font-serif text-5xl mt-2">{t.price}</p>
+        <p class={`text-sm mt-1 ${t.featured ? 'text-cream/60' : 'text-stone'}`}>{t.sub}</p>
+        <p class={`mt-4 ${t.featured ? 'text-cream/80' : 'text-stone'}`}>{t.desc}</p>
+
+        <ul class={`mt-6 space-y-3.5 flex-1 ${t.featured ? 'text-cream/90' : 'text-ink/80'}`}>
+          {t.items.map((it) => (
+            <li class="flex items-start gap-3">
+              <span class={`mt-0.5 shrink-0 w-5 h-5 rounded-full grid place-items-center ${t.featured ? 'bg-white/15 text-cream' : 'bg-peach text-clay'}`}>
+                <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+              <span>{it}</span>
+            </li>
+          ))}
+        </ul>
+
+        <p class={`mt-7 text-sm ${t.featured ? 'text-cream/55' : 'text-stone/70'}`}>{t.note}</p>
+        <a
+          href={t.href}
+          class={`mt-4 block text-center rounded-full py-3.5 font-semibold transition ${t.featured ? 'bg-clay text-white hover:bg-claydk' : 'border border-ever/25 text-ever hover:bg-cream'}`}
+        >{t.cta}</a>
+      </div>
+    ))}
+  </div>
+</PageLayout>

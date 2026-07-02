@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 450" role="img" aria-label="Illustration of a ResetWell Plus clinician">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#C4B5FD"/>
+      <stop offset="0.5" stop-color="#FCFAFF"/>
+      <stop offset="1" stop-color="#EBD9FB"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="450" fill="url(#bg)"/>
+  <circle cx="300" cy="220" r="150" fill="#FCFAFF" opacity="0.5"/>
+  <circle cx="500" cy="80" r="70" fill="#6D28D9" opacity="0.06"/>
+  <circle cx="90" cy="380" r="60" fill="#6D28D9" opacity="0.06"/>
+
+  <!-- Clinician figure (stylised) -->
+  <g transform="translate(300,250)">
+    <!-- coat / shoulders -->
+    <path d="M -120,150 C -120,40 -70,10 0,10 C 70,10 120,40 120,150 Z" fill="#FFFFFF"/>
+    <path d="M 0,10 L -28,150 M 0,10 L 28,150" stroke="#EADCF8" stroke-width="6" fill="none"/>
+    <!-- collar -->
+    <path d="M 0,10 L -34,52 L -6,72 Z" fill="#EADCF8"/>
+    <path d="M 0,10 L 34,52 L 6,72 Z" fill="#EADCF8"/>
+    <!-- neck -->
+    <rect x="-22" y="-40" width="44" height="60" rx="20" fill="#6D28D9" opacity="0.85"/>
+    <!-- head -->
+    <circle cx="0" cy="-78" r="56" fill="#6D28D9"/>
+    <!-- hair -->
+    <path d="M -56,-78 C -56,-128 56,-128 56,-78 C 56,-96 40,-104 40,-104 C 40,-104 30,-118 0,-118 C -42,-118 -56,-98 -56,-78 Z" fill="#4C1D95"/>
+    <!-- stethoscope -->
+    <path d="M -40,30 C -52,70 -52,110 -16,120" stroke="#9333EA" stroke-width="8" fill="none" stroke-linecap="round"/>
+    <circle cx="-16" cy="124" r="12" fill="#9333EA"/>
+    <!-- care heart badge -->
+    <g transform="translate(46,96)">
+      <path d="M 0,18 C -18,5 -24,-8 -13,-16 C -6,-21 0,-13 0,-9 C 0,-13 6,-21 13,-16 C 24,-8 18,5 0,18 Z" fill="#9333EA"/>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,23 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+// Booking is pre-launch. This route forwards to the Coming Soon page.
+// The full booking experience lives in ../../components/BookingForm.astro. When you
+// launch, restore the page below and point BOOK_HREF in src/data/nav.ts back here:
+//
+//   import PageLayout from '../../layouts/PageLayout.astro';
+//   import BookingForm from '../../components/BookingForm.astro';
+//   <PageLayout section="Get Care" kicker="Get Care" title="Book your virtual visit"
+//     lede="Same-week appointments. Flat, transparent fee. No referral needed.">
+//     <BookingForm />
+//   </PageLayout>
+const target = '/coming-soon';
+---
+<BaseLayout title="Booking opens soon | ResetWell Plus" noindex={true}>
+  <meta http-equiv="refresh" content={`0;url=${target}`} slot="head" />
+  <link rel="canonical" href={target} slot="head" />
+  <section class="max-w-xl mx-auto px-5 py-16 lg:py-24 text-center">
+    <h1 class="font-serif text-3xl text-ever">Taking you to booking…</h1>
+    <p class="mt-3 text-stone">If you are not redirected, <a href={target} class="text-clay underline">continue here</a>.</p>
+  </section>
+  <script is:inline define:vars={{ target }}>window.location.replace(target);</script>
+</BaseLayout>

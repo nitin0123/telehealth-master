@@ -1,10 +1,41 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
----
+import Hero from '../components/Hero.astro';
+import ProblemStrip from '../components/ProblemStrip.astro';
+import ThreePathways from '../components/ThreePathways.astro';
+import ValueStrip from '../components/ValueStrip.astro';
+import CareGrid from '../components/CareGrid.astro';
+import Expertise from '../components/Expertise.astro';
+import Testimonials from '../components/Testimonials.astro';
+import HowItWorks from '../components/HowItWorks.astro';
+import Faq from '../components/Faq.astro';
+import FinalCta from '../components/FinalCta.astro';
+import { faqs } from '../data/content';
 
-<BaseLayout title="Telehealth — Master Site">
-  <main>
-    <h1>Telehealth Master Site</h1>
-    <p>Scaffold ready. Replace this page with your base structure.</p>
-  </main>
+// FAQPage structured data for the homepage FAQ block
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<BaseLayout
+  keywords="menopause care India, perimenopause treatment India, online gynaecologist consultation India, menopause specialist India, HRT India"
+>
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(faqSchema)} />
+
+  <Hero />
+  <ProblemStrip />
+  <ThreePathways />
+  <ValueStrip />
+  <CareGrid />
+  <Expertise />
+  <HowItWorks />
+  <Testimonials />
+  <Faq />
+  <FinalCta />
 </BaseLayout>

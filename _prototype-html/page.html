@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Aria</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<script>
+  tailwind.config = { theme: { extend: {
+    colors: { cream:'#FCFAFF', sand:'#EADCF8', clay:'#9333EA', claydk:'#7E22CE', peach:'#EBD9FB', ever:'#6D28D9', everdk:'#4C1D95', sage:'#C4B5FD', moss:'#7C5BBE', ink:'#2E2440', stone:'#6B6280' },
+    fontFamily: { serif:['Newsreader','Georgia','serif'], sans:['Inter','system-ui','sans-serif'] }, borderRadius:{'4xl':'2rem','5xl':'2.75rem'} } } };
+</script>
+<style>html{scroll-behavior:smooth}.eyebrow{letter-spacing:.18em}@media(min-width:1024px){.nav-item:hover .nav-panel{opacity:1;visibility:visible;transform:translateY(0)}}.nav-panel{transition:all .18s ease}</style>
+</head>
+<body class="bg-cream text-ink font-sans antialiased">
+
+  <header class="sticky top-0 z-50 bg-cream/90 backdrop-blur border-b border-sand">
+    <nav class="max-w-7xl mx-auto px-5 lg:px-8 flex items-center justify-between h-16 lg:h-20">
+      <a href="index.html" class="font-serif text-3xl text-ever tracking-tight">Aria</a>
+      <ul class="hidden lg:flex items-center gap-7 text-[15px] font-medium text-ink/75" id="deskNav"></ul>
+      <div class="flex items-center gap-3">
+        <a href="page.html?section=Get%20Care&item=Book%20a%20Consultation" class="hidden sm:inline-flex items-center rounded-full bg-clay hover:bg-claydk transition text-white text-sm font-semibold px-5 py-2.5">Book a Consultation</a>
+        <button id="menuBtn" class="lg:hidden p-2 -mr-2 text-ever"><svg class="w-6 h-6" viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+      </div>
+    </nav>
+  </header>
+
+  <div id="drawer" class="fixed inset-0 z-[60] hidden lg:hidden">
+    <div id="drawerBg" class="absolute inset-0 bg-ink/40 backdrop-blur-sm"></div>
+    <aside class="absolute right-0 top-0 h-full w-[88%] max-w-sm bg-cream shadow-2xl flex flex-col">
+      <div class="flex items-center justify-between px-5 h-16 border-b border-sand"><span class="font-serif text-3xl text-ever">Aria</span><button id="closeBtn" class="p-2 text-ever"><svg class="w-6 h-6" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button></div>
+      <nav class="flex-1 overflow-y-auto px-3 py-4" id="mobileNav"><a href="index.html" class="block px-3 py-3 font-medium">Home</a></nav>
+      <div class="p-4 border-t border-sand"><a href="page.html?section=Get%20Care&item=Book%20a%20Consultation" class="block text-center rounded-full bg-clay text-white font-semibold px-5 py-3.5">Book a Consultation</a></div>
+    </aside>
+  </div>
+
+  <section class="max-w-5xl mx-auto px-5 lg:px-8 pt-10 lg:pt-16">
+    <nav class="text-xs text-stone mb-5"><a href="index.html" class="hover:text-clay">Home</a> <span class="mx-1">/</span> <span id="crumbSection"></span> <span class="mx-1">/</span> <span class="text-clay" id="crumbItem"></span></nav>
+    <p class="eyebrow uppercase text-xs font-semibold text-clay mb-3" id="kicker"></p>
+    <h1 class="font-serif text-4xl lg:text-6xl leading-[1.03] text-ever" id="pageTitle"></h1>
+    <p class="mt-5 text-lg text-stone max-w-2xl" id="pageLede"></p>
+  </section>
+
+  <main id="content" class="max-w-5xl mx-auto px-5 lg:px-8 py-12 lg:py-16"></main>
+
+  <footer class="bg-everdk text-cream/80 mt-10">
+    <div class="max-w-7xl mx-auto px-5 lg:px-8 py-12 text-sm flex flex-col sm:flex-row justify-between gap-6">
+      <div><span class="font-serif text-3xl text-cream">Aria</span><p class="mt-2 text-cream/50 max-w-xs">Expert virtual care for perimenopause, menopause and midlife.</p></div>
+      <a href="page.html?section=Get%20Care&item=Book%20a%20Consultation" class="self-start inline-flex items-center rounded-full bg-clay text-white font-semibold px-6 py-3">Book a Consultation</a>
+    </div>
+    <div class="border-t border-white/10 py-6 text-center text-xs text-cream/40">© 2026 Aria Health. For information only; does not replace medical advice.</div>
+  </footer>
+
+<script>
+  const menu=[['Understand Your Symptoms',['Perimenopause 101','Symptom Checker','Knowledge Centre']],['Get Care',['How It Works','Our Specialists','Book a Consultation','Pricing']],['Events',['Upcoming','On Demand','For Corporates']],['Community',['Join','Stories of Reset','FAQs']],['About',['Our Story','Our Team','In The Press','Workplace Wellness']]];
+  const link=(s,i)=>'page.html?section='+encodeURIComponent(s)+'&item='+encodeURIComponent(i);
+
+  const dn=document.getElementById('deskNav');
+  dn.innerHTML='<li><a href="index.html" class="hover:text-clay transition">Home</a></li>';
+  menu.forEach(([sec,items])=>{const li=document.createElement('li');li.className='nav-item relative';li.innerHTML='<button class="flex items-center gap-1 hover:text-clay transition">'+sec.replace('Understand Your Symptoms','Understand Symptoms')+'<svg class="w-3 h-3 mt-0.5" viewBox="0 0 12 12" fill="none"><path d="M3 4.5 6 7.5 9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>';const p=document.createElement('div');p.className='nav-panel absolute left-0 top-full pt-4 opacity-0 invisible -translate-y-1';p.innerHTML='<div class="w-64 bg-white rounded-3xl shadow-xl shadow-ever/10 border border-sand p-2">'+items.map(it=>'<a href="'+link(sec,it)+'" class="block px-4 py-3 rounded-2xl hover:bg-cream transition font-medium text-ink">'+it+(it==='Pricing'?' (₹)':'')+'</a>').join('')+'</div>';li.appendChild(p);dn.appendChild(li);});
+
+  const mn=document.getElementById('mobileNav');
+  menu.forEach(([sec,items])=>{const d=document.createElement('details');d.className='border-b border-sand';d.innerHTML='<summary class="flex justify-between items-center px-3 py-3 font-medium cursor-pointer list-none">'+sec+'<span class="text-clay">+</span></summary>'+items.map(it=>'<a href="'+link(sec,it)+'" class="block pl-6 pr-3 py-2.5 text-stone hover:text-clay">'+it+'</a>').join('');mn.appendChild(d);});
+
+  const drawer=document.getElementById('drawer');
+  document.getElementById('menuBtn').onclick=()=>drawer.classList.remove('hidden');
+  document.getElementById('closeBtn').onclick=()=>drawer.classList.add('hidden');
+  document.getElementById('drawerBg').onclick=()=>drawer.classList.add('hidden');
+
+  const q=new URLSearchParams(location.search);
+  const section=q.get('section')||'About', item=q.get('item')||'Our Story';
+  document.title='Aria — '+item;
+  document.getElementById('crumbSection').textContent=section;
+  document.getElementById('crumbItem').textContent=item;
+  document.getElementById('kicker').textContent=section;
+  const copy={'Perimenopause 101':['Perimenopause 101','The years before your last period can bring forty-plus symptoms. Here is what is happening, and what helps.'],'Symptom Checker':['What are you experiencing?','A quick, clinically-informed check. Personalised picture, clear next step, no sign-up.'],'Knowledge Centre':['Knowledge Centre','Evidence-based articles and guides, reviewed by our medical team.'],'How It Works':['Ready for relief?','From booking your visit to your personalised care plan, in three simple steps.'],'Our Specialists':['Meet our specialists','Clinicians who specialise in women\'s midlife health — so you feel heard from your first visit.'],'Book a Consultation':['Book your virtual visit','Same-week appointments. Flat, transparent fee. No referral needed.'],'Pricing':['Simple, transparent pricing','We charge patients directly — no insurance paperwork, no hidden fees. All prices in ₹.'],'Upcoming':['Upcoming events','Live, expert-led sessions you can join from anywhere.'],'On Demand':['On demand','Watch past sessions anytime.'],'For Corporates':['Aria for employers','Offer expert midlife care as part of your benefits package.'],'Join':['Join the community','A private, judgement-free space for women who get it.'],'Stories of Reset':['True stories of transformation','Real women on the turning points that changed everything.'],'FAQs':['Frequently asked questions','Everything to know before you book.'],'Our Story':['Our story','Why we built the midlife care women deserve.'],'Our Team':['Our team','The clinicians and builders behind Aria.'],'In The Press':['In the press','Coverage and recognition.'],'Workplace Wellness':['Partner with Aria','Bring expert menopause care to your organisation.']};
+  const c=copy[item]||[item,''];
+  document.getElementById('pageTitle').textContent=c[0];
+  document.getElementById('pageLede').textContent=c[1];
+
+  const main=document.getElementById('content');
+  const card=(h,p)=>'<div class="bg-white border border-sand rounded-4xl p-6"><h3 class="font-serif text-2xl text-ever">'+h+'</h3><p class="mt-2 text-stone text-sm">'+p+'</p></div>';
+
+  if(item==='Symptom Checker'){
+    main.innerHTML='<div class="max-w-xl mx-auto bg-white border border-sand rounded-5xl p-6 lg:p-10 shadow-sm"><div class="h-2 bg-sand rounded-full mb-8"><div id="bar" class="h-2 bg-clay rounded-full transition-all" style="width:20%"></div></div><div id="step"></div></div>';
+    const qs=[['How old are you?',['Under 40','40–45','46–52','Over 52']],['How are your periods?',['Regular','Less frequent','Heavier / unpredictable','Stopped 12+ months']],['Which bothers you most?',['Hot flushes / sweats','Sleep','Mood / anxiety','Brain fog']],['Daily-life impact?',['A little','Moderate','A lot','Severe']]];
+    let i=0;const ans=[];const bar=()=>document.getElementById('bar').style.width=((i+1)/(qs.length+1)*100)+'%';
+    function render(){const s=document.getElementById('step');bar();if(i<qs.length){s.innerHTML='<p class="eyebrow uppercase text-xs font-semibold text-clay mb-3">Question '+(i+1)+' of '+qs.length+'</p><h3 class="font-serif text-3xl text-ever mb-6">'+qs[i][0]+'</h3>'+qs[i][1].map(o=>'<button class="opt w-full text-left rounded-2xl border border-sand hover:border-clay hover:bg-peach/30 px-5 py-4 mb-3 transition">'+o+'</button>').join('');s.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{ans[i]=b.textContent;i++;render();});}else{s.innerHTML='<p class="eyebrow uppercase text-xs font-semibold text-clay mb-3">Your result</p><h3 class="font-serif text-3xl text-ever mb-3">Your symptoms point to perimenopause.</h3><p class="text-stone mb-6">Speaking with a specialist could help. A consultation gives you a clear, personalised plan.</p><a href="'+link("Get Care","Book a Consultation")+'" class="block text-center rounded-full bg-clay hover:bg-claydk text-white font-semibold py-4 mb-3">Book a Consultation</a><button id="restart" class="w-full text-sm text-ever underline">Start over</button>';document.getElementById('restart').onclick=()=>{i=0;render();};}}
+    render();
+  }
+  else if(item==='Book a Consultation'){
+    main.innerHTML='<div class="max-w-xl mx-auto bg-white border border-sand rounded-5xl p-6 lg:p-10 shadow-sm"><form onsubmit="this.innerHTML=\'<div class=&quot;text-center py-10&quot;><h3 class=&quot;font-serif text-3xl text-ever mb-2&quot;>You are booked ✓</h3><p class=&quot;text-stone&quot;>Check your inbox for confirmation and intake.</p></div>\';return false;"><label class="block text-sm text-stone mb-1">Visit type</label><div class="grid grid-cols-2 gap-3 mb-4"><label class="rounded-2xl border border-sand px-4 py-3 cursor-pointer hover:border-clay"><input type="radio" name="t" class="mr-2" checked>Virtual</label><label class="rounded-2xl border border-sand px-4 py-3 cursor-pointer hover:border-clay"><input type="radio" name="t" class="mr-2">In clinic</label></div><label class="block text-sm text-stone mb-1">Full name</label><input required class="w-full rounded-2xl border border-sand bg-cream px-4 py-3 mb-4 focus:outline-none focus:ring-2 focus:ring-clay/40"><label class="block text-sm text-stone mb-1">Email</label><input type="email" required class="w-full rounded-2xl border border-sand bg-cream px-4 py-3 mb-4 focus:outline-none focus:ring-2 focus:ring-clay/40"><label class="block text-sm text-stone mb-1">Preferred date</label><input type="date" required class="w-full rounded-2xl border border-sand bg-cream px-4 py-3 mb-6 focus:outline-none focus:ring-2 focus:ring-clay/40"><button class="w-full rounded-full bg-clay hover:bg-claydk text-white font-semibold py-4">Confirm Booking</button><p class="text-xs text-stone mt-3 text-center">Same-week slots · No referral needed · Reschedule anytime</p></form></div>';
+  }
+  else if(item==='Pricing'){
+    main.innerHTML='<div class="grid md:grid-cols-3 gap-6"><div class="bg-white border border-sand rounded-5xl p-7"><p class="eyebrow uppercase text-xs font-semibold text-clay">Single visit</p><p class="font-serif text-4xl text-ever mt-2">₹1,499</p><p class="text-stone text-sm mt-1">per consultation</p><ul class="mt-5 space-y-2 text-sm text-stone"><li>45-min specialist visit</li><li>Personalised care plan</li><li>Prescription if needed</li></ul><a href="'+link("Get Care","Book a Consultation")+'" class="mt-6 block text-center rounded-full border border-ever/25 text-ever py-3 font-semibold hover:bg-cream">Book now</a></div><div class="bg-ever text-cream rounded-5xl p-7 shadow-xl relative"><span class="absolute -top-3 left-7 bg-clay text-white text-xs font-semibold px-3 py-1 rounded-full">Most popular</span><p class="eyebrow uppercase text-xs font-semibold text-sage">Care Plan</p><p class="font-serif text-4xl mt-2">₹4,999</p><p class="text-cream/60 text-sm mt-1">3 months ongoing care</p><ul class="mt-5 space-y-2 text-sm text-cream/85"><li>Initial + 2 follow-ups</li><li>Nutrition &amp; lifestyle plan</li><li>Unlimited messaging</li><li>Community access</li></ul><a href="'+link("Get Care","Book a Consultation")+'" class="mt-6 block text-center rounded-full bg-clay text-white py-3 font-semibold hover:bg-claydk">Start the plan</a></div><div class="bg-white border border-sand rounded-5xl p-7"><p class="eyebrow uppercase text-xs font-semibold text-clay">Corporate</p><p class="font-serif text-4xl text-ever mt-2">Custom</p><p class="text-stone text-sm mt-1">for teams &amp; employers</p><ul class="mt-5 space-y-2 text-sm text-stone"><li>Workshops &amp; webinars</li><li>Subsidised employee visits</li><li>Workplace wellness support</li></ul><a href="'+link("Events","For Corporates")+'" class="mt-6 block text-center rounded-full border border-ever/25 text-ever py-3 font-semibold hover:bg-cream">Talk to us</a></div></div>';
+  }
+  else if(item==='Join'){
+    main.innerHTML='<div class="max-w-md mx-auto bg-white border border-sand rounded-5xl p-8"><form onsubmit="this.innerHTML=\'<p class=&quot;text-center text-ever font-serif text-2xl py-6&quot;>Welcome in ✓</p>\';return false;"><label class="block text-sm text-stone mb-1">Email address</label><input type="email" required class="w-full rounded-2xl border border-sand bg-cream px-4 py-3 mb-4 focus:outline-none focus:ring-2 focus:ring-clay/40"><button class="w-full rounded-full bg-clay hover:bg-claydk text-white font-semibold py-3.5">Join the Community</button><p class="text-xs text-stone mt-3 text-center">Free · Private · Unsubscribe anytime</p></form></div>';
+  }
+  else if(item==='FAQs'){
+    const faqs=[['Do I need a referral?','No referral needed — book directly.'],['How does payment work?','We charge patients directly — a flat, transparent fee per visit, with no insurance paperwork or hidden costs.'],['Online or in person?','Virtual by default, in-clinic in select cities.'],['What does it cost?','Consultations start at ₹1,499.']];
+    main.innerHTML='<div class="max-w-2xl mx-auto space-y-3">'+faqs.map(([qq,a])=>'<details class="bg-white border border-sand rounded-3xl px-6 py-4 group"><summary class="flex justify-between items-center cursor-pointer font-medium list-none">'+qq+'<span class="text-clay group-open:rotate-45 transition">+</span></summary><p class="mt-3 text-stone text-sm">'+a+'</p></details>').join('')+'</div>';
+  }
+  else if(['Upcoming','On Demand'].includes(item)){
+    main.innerHTML='<div class="grid md:grid-cols-2 gap-6">'+card('Perimenopause &amp; Sleep','Tue, 8 Jul · 7:00 PM IST · Live online')+card('HRT: Myths vs Facts','On demand · 48 min')+card('Nutrition in Midlife','Thu, 17 Jul · 6:30 PM IST')+card('Strength &amp; Bones','On demand · 35 min')+'</div>';
+  }
+  else if(item==='Our Specialists'||item==='Our Team'){
+    const ppl=[['Dr. Ananya Rao','Menopause Specialist'],['Dr. Sara Mathew','Endocrinologist'],['Priya Nair','Nutritionist'],['Dr. Leela Menon','Women\'s Health Lead']];
+    main.innerHTML='<div class="grid grid-cols-2 lg:grid-cols-4 gap-5">'+ppl.map(([n,r])=>'<article><div class="aspect-[3/4] rounded-4xl bg-gradient-to-br from-peach to-sage/40 mb-3 grid place-items-center text-ever/30 font-serif">Portrait</div><h3 class="font-serif text-xl text-ever">'+n+'</h3><p class="text-sm text-stone">'+r+'</p></article>').join('')+'</div>';
+  }
+  else if(item==='Stories of Reset'){
+    main.innerHTML='<div class="columns-1 sm:columns-2 lg:columns-3 gap-5 [&>*]:mb-5">'+[['“For the first time, a clinician actually listened.”','Meera, 49'],['“Within two weeks my hot flushes were gone.”','Anjali, 47'],['“Same-week appointment, clear flat pricing.”','Fatima, 52'],['“I spent years being dismissed. Finally, real help.”','Libby, 51'],['“My moods levelled out. Best I have felt in a year.”','Diana, 53'],['“The care was more than I could have hoped for.”','Sabrina, 46']].map(([t,n])=>'<figure class="break-inside-avoid bg-white border border-sand rounded-3xl p-6"><div class="text-clay mb-2">★★★★★</div><blockquote class="text-ink/90">'+t+'</blockquote><figcaption class="mt-4 text-sm text-stone">'+n+'</figcaption></figure>').join('')+'</div>';
+  }
+  else if(item==='How It Works'){
+    main.innerHTML='<div class="grid md:grid-cols-3 gap-6">'+[['1','Book your visit','Pick a time and pay a flat, transparent fee — no referral, no insurance paperwork.'],['2','Meet your specialist','A virtual visit to discuss your history, symptoms and goals.'],['3','Start your care plan','A personalised, holistic plan with support at every step.']].map(([n,h,p])=>'<div class="bg-sand/50 rounded-4xl p-8"><span class="font-serif text-5xl text-clay">'+n+'</span><h3 class="mt-3 font-serif text-2xl text-ever">'+h+'</h3><p class="mt-2 text-stone text-sm">'+p+'</p></div>').join('')+'</div><div class="mt-10 text-center"><a href="'+link("Get Care","Book a Consultation")+'" class="inline-flex rounded-full bg-clay hover:bg-claydk text-white font-semibold px-7 py-3.5">Book a Consultation</a></div>';
+  }
+  else {
+    main.innerHTML='<div class="bg-white border border-sand rounded-5xl p-8 lg:p-12"><p class="text-stone leading-relaxed">This is a scaffold page for <strong class="text-ever">'+item+'</strong>. Drop your content here — it inherits the warm, Midi-inspired styling, navigation, persistent booking CTA and mobile layout.</p><div class="mt-8 grid sm:grid-cols-3 gap-4">'+card('Section block','Reusable content card.')+card('Section block','Reusable content card.')+card('Section block','Reusable content card.')+'</div><a href="'+link("Get Care","Book a Consultation")+'" class="mt-8 inline-flex rounded-full bg-clay hover:bg-claydk text-white font-semibold px-7 py-3.5">Book a Consultation</a></div>';
+  }
+</script>
+</body>
+</html>

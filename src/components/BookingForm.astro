@@ -1,0 +1,39 @@
+---
+// A direct-pay booking form. Wire `data-booking-form` up to your backend
+// (see the submit handler's TODO) to create real appointments.
+---
+<div class="max-w-xl mx-auto bg-white border border-sand rounded-5xl p-6 lg:p-10 shadow-sm reveal">
+  <form data-booking-form>
+    <label class="block text-sm text-stone mb-1">Visit type</label>
+    <div class="grid grid-cols-2 gap-3 mb-4">
+      <label class="rounded-2xl border border-sand px-4 py-3 cursor-pointer hover:border-clay"><input type="radio" name="type" value="virtual" class="mr-2" checked />Virtual</label>
+      <label class="rounded-2xl border border-sand px-4 py-3 cursor-pointer hover:border-clay"><input type="radio" name="type" value="clinic" class="mr-2" />In clinic</label>
+    </div>
+    <label class="block text-sm text-stone mb-1" for="bf-name">Full name</label>
+    <input id="bf-name" name="name" required class="w-full rounded-2xl border border-sand bg-cream px-4 py-3 mb-4 focus:outline-none focus:ring-2 focus:ring-clay/40" />
+    <label class="block text-sm text-stone mb-1" for="bf-email">Email</label>
+    <input id="bf-email" name="email" type="email" required class="w-full rounded-2xl border border-sand bg-cream px-4 py-3 mb-4 focus:outline-none focus:ring-2 focus:ring-clay/40" />
+    <label class="block text-sm text-stone mb-1" for="bf-date">Preferred date</label>
+    <input id="bf-date" name="date" type="date" required class="w-full rounded-2xl border border-sand bg-cream px-4 py-3 mb-6 focus:outline-none focus:ring-2 focus:ring-clay/40" />
+    <button class="w-full rounded-full bg-clay hover:bg-claydk text-white font-semibold py-4">Confirm Booking</button>
+    <p class="text-xs text-stone mt-3 text-center">No referral needed · Reschedule anytime</p>
+  </form>
+  <div data-booking-success class="hidden text-center py-10">
+    <h2 class="font-serif text-3xl text-ever mb-2">You're booked ✓</h2>
+    <p class="text-stone">Check your inbox for confirmation and a short intake form.</p>
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLFormElement>('[data-booking-form]').forEach((form) => {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(form).entries());
+      // TODO: send `data` to your backend, e.g.
+      //   await fetch('/api/book', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
+      console.log('booking payload', data);
+      form.classList.add('hidden');
+      form.parentElement?.querySelector('[data-booking-success]')?.classList.remove('hidden');
+    });
+  });
+</script>

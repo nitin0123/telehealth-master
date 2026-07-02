@@ -1,0 +1,19 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import SpecialistsGrid from '../../components/SpecialistsGrid.astro';
+import { BOOK_HREF } from '../../data/nav';
+---
+<PageLayout
+  section="Get Care"
+  kicker="Get Care"
+  title="Meet our specialists"
+  metaTitle="Menopause Specialists & Experts in India | ResetWell Plus"
+  description="Meet ResetWell Plus menopause experts in India: gynaecologists, endocrinologists and nutritionists who specialise in women's midlife health."
+  keywords="menopause expert India, menopause specialist India, gynaecologist menopause India"
+  lede="Clinicians who specialise in women's midlife health, so you feel heard from your first visit."
+>
+  <SpecialistsGrid />
+  <div class="mt-10 text-center">
+    <a href={BOOK_HREF} class="btn-primary">Book a Consultation</a>
+  </div>
+</PageLayout>

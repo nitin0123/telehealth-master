@@ -1,0 +1,23 @@
+---
+// Community join form. Wire `data-join-form` up to your email provider / backend.
+---
+<div class="max-w-md mx-auto bg-white border border-sand rounded-5xl p-8 reveal">
+  <form data-join-form>
+    <label class="block text-sm text-stone mb-1" for="join-email">Email address</label>
+    <input id="join-email" name="email" type="email" required class="w-full rounded-2xl border border-sand bg-cream px-4 py-3 mb-4 focus:outline-none focus:ring-2 focus:ring-clay/40" />
+    <button class="w-full rounded-full bg-clay hover:bg-claydk text-white font-semibold py-3.5">Join the Community</button>
+    <p class="text-xs text-stone mt-3 text-center">Free · Private · Unsubscribe anytime</p>
+  </form>
+  <p data-join-msg class="hidden text-center text-ever font-serif text-2xl py-6">Welcome in ✓</p>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLFormElement>('[data-join-form]').forEach((form) => {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      // TODO: POST the email to your backend / newsletter provider.
+      form.classList.add('hidden');
+      form.parentElement?.querySelector('[data-join-msg]')?.classList.remove('hidden');
+    });
+  });
+</script>

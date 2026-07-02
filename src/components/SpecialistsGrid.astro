@@ -1,0 +1,12 @@
+---
+import { specialists } from '../data/content';
+---
+<div class="grid grid-cols-2 lg:grid-cols-4 gap-5">
+  {specialists.map((p) => (
+    <article class="reveal">
+      <div class="aspect-[3/4] rounded-4xl bg-gradient-to-br from-peach to-sage/40 mb-3 grid place-items-center text-ever/30 font-serif">Portrait</div>
+      <h2 class="font-serif text-xl text-ever">{p.name}</h2>
+      <p class="text-sm text-stone">{p.role}</p>
+    </article>
+  ))}
+</div>

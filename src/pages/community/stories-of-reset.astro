@@ -1,0 +1,15 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import { testimonials } from '../../data/content';
+---
+<PageLayout section="Community" kicker="Community" title="True stories of transformation" lede="Real women on the turning points that changed everything.">
+  <div class="columns-1 sm:columns-2 lg:columns-3 gap-5 [&>*]:mb-5">
+    {testimonials.map((t) => (
+      <figure class="break-inside-avoid bg-white border border-sand rounded-3xl p-6 reveal">
+        <div class="text-clay mb-2">★★★★★</div>
+        <blockquote class="text-ink/90">{t.quote}</blockquote>
+        <figcaption class="mt-4 text-sm text-stone">{t.name}</figcaption>
+      </figure>
+    ))}
+  </div>
+</PageLayout>

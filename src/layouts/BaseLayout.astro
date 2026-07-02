@@ -1,24 +1,113 @@
 ---
+// Self-hosted fonts (bundled into the build, no external requests):
+import '@fontsource-variable/geist'; // sans, body and UI (matches Ideogram)
+import '@fontsource-variable/fraunces'; // serif, display headings
 import '../styles/global.css';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { SITE, organizationSchema } from '../data/seo';
 
 interface Props {
-  title: string;
+  title?: string;
   description?: string;
+  /** Comma-separated keyword string for this page */
+  keywords?: string;
+  /** Open Graph image path (defaults to the brand image) */
+  image?: string;
+  /** Set true for pre-launch / utility pages that should not be indexed */
+  noindex?: boolean;
+  /** og:type, e.g. "website" or "article" */
+  ogType?: string;
 }
+const {
+  title = SITE.defaultTitle,
+  description = SITE.defaultDescription,
+  keywords,
+  image = SITE.ogImage,
+  noindex = false,
+  ogType = 'website',
+} = Astro.props;
 
-const { title, description = 'Telehealth master site' } = Astro.props;
+const canonical = new URL(Astro.url.pathname, SITE.url).href;
+const ogImage = new URL(image, SITE.url).href;
+const robots = noindex ? 'noindex, nofollow' : 'index, follow';
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en-IN" class="no-js">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content={description} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Primary meta -->
     <title>{title}</title>
+    <meta name="description" content={description} />
+    {keywords && <meta name="keywords" content={keywords} />}
+    <meta name="robots" content={robots} />
+    <link rel="canonical" href={canonical} />
+
+    <!-- Open Graph -->
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content={SITE.locale} />
+    {SITE.altLocales.map((l) => <meta property="og:locale:alternate" content={l} />)}
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content={SITE.twitter} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- Site-wide structured data -->
+    <script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
+
+    <!-- Page-specific structured data (breadcrumbs, FAQ, etc.) -->
+    <slot name="head" />
+
+    <script is:inline>
+      // Swap no-js -> js as early as possible so reveal styles can animate.
+      document.documentElement.classList.remove('no-js');
+    </script>
   </head>
   <body>
-    <slot />
+    <!-- Ambient brand-glow background (soft multi-hue blobs), shown on every page -->
+    <div class="fixed inset-0 -z-10 overflow-hidden pointer-events-none" aria-hidden="true">
+      <div class="absolute -top-40 -left-32 w-[34rem] h-[34rem] rounded-full bg-peach/50 blur-3xl"></div>
+      <div class="absolute top-1/4 -right-40 w-[36rem] h-[36rem] rounded-full bg-sage/40 blur-3xl"></div>
+      <div class="absolute bottom-[-10rem] left-1/4 w-[30rem] h-[30rem] rounded-full bg-clay/10 blur-3xl"></div>
+    </div>
+
+    <Nav />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+
+    <!-- Tasteful scroll-reveal: progressive enhancement via IntersectionObserver -->
+    <script>
+      const els = document.querySelectorAll<HTMLElement>('.reveal');
+      if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        els.forEach((el) => el.classList.add('is-visible'));
+      } else {
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                io.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.12, rootMargin: '0px 0px -8% 0px' }
+        );
+        els.forEach((el) => io.observe(el));
+      }
+    </script>
   </body>
 </html>

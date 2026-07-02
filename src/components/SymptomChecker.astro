@@ -1,0 +1,97 @@
+---
+import { BOOK_HREF } from '../data/nav';
+// 4.2 Symptom Checker — "Is It Perimenopause?" 10-question, India-adapted self-assessment.
+// IMAGE idea: warm illustrated symptom icons (joint, brain, thermometer, moon) in the brand palette.
+const ROUTES = {
+  book: BOOK_HREF,
+  liveSession: '/events/upcoming',
+  guide: '/understand-your-symptoms/perimenopause-101',
+  knowledge: '/understand-your-symptoms/knowledge-centre',
+};
+---
+<div class="max-w-xl bg-white border border-sand rounded-5xl p-6 lg:p-10 shadow-sm reveal">
+  <div class="h-2 bg-sand rounded-full mb-8" aria-hidden="true">
+    <div data-bar class="h-2 bg-clay rounded-full transition-all duration-300" style="width:9%"></div>
+  </div>
+  <div data-step></div>
+</div>
+
+<script is:inline define:vars={{ ROUTES }}>
+  // Each option: [label, points]. Higher points = stronger alignment with perimenopause.
+  const questions = [
+    ['Your age', [['Under 35', 0], ['35-39', 1], ['40-44', 2], ['45-49', 3], ['50-54', 3], ['55 or older', 2]]],
+    ['Periods in the last 6 months', [['Regular as always', 0], ['Slightly irregular', 1], ['Very irregular or skipping months', 3], ['No periods for 12+ months', 3]]],
+    ['Joint pain or body aches, especially in the morning', [['None', 0], ['Mild, occasional', 1], ['Often', 2], ['Significant, affecting daily activities', 3]]],
+    ['Sleep, compared to 3 years ago', [['Still good', 0], ['Slightly worse', 1], ['Often disrupted or waking early', 2], ['Much worse, significantly affecting energy and mood', 3]]],
+    ['Mood, anxiety, or emotional changes', [['No change', 0], ['Mild', 1], ['Noticeable, people around me have mentioned it', 2], ['Significant, affecting work or relationships', 3]]],
+    ['Weight, especially around the abdomen, without diet changes', [['No change', 0], ['Slight', 1], ['Yes, noticeable', 2]]],
+    ['Brain fog, forgetting words, difficulty concentrating', [['Rarely', 0], ['Sometimes', 1], ['Often', 2], ['Affecting my work or daily function', 3]]],
+    ['Hot flashes, night sweats, or sudden waves of heat', [['Never', 0], ['Occasionally', 1], ['Often', 2], ['Daily or more', 3]]],
+    ['Fatigue that is different from normal tiredness', [['Not really', 0], ['Mild', 1], ['Often', 2], ['Significant and heavy', 3]]],
+    ["'Your tests are normal', but you still feel something is wrong?", [['No', 0], ['Yes, once', 1], ['Yes, multiple times', 2]]],
+  ];
+
+  const results = {
+    high: {
+      kicker: 'High alignment',
+      title: 'Your symptom pattern is consistent with perimenopause.',
+      body: "What you're experiencing lines up closely with perimenopause. A specialist can confirm and build a plan for you.",
+      ctas: [
+        ['Book a Consultation', ROUTES.book, true],
+        ["Join the 'Is It Perimenopause?' Live Session", ROUTES.liveSession, false],
+      ],
+    },
+    moderate: {
+      kicker: 'Moderate alignment',
+      title: 'Your symptoms overlap with perimenopause, but may also have other components.',
+      body: 'Some of your symptoms align with perimenopause, though other factors could be involved. A conversation, or some reading, is a good next step.',
+      ctas: [
+        ['Book a Consultation', ROUTES.book, true],
+        ['Start with our Perimenopause 101 guide', ROUTES.guide, false],
+      ],
+    },
+    lower: {
+      kicker: 'Lower alignment',
+      title: "Your responses don't strongly indicate perimenopause at this stage.",
+      body: 'Hormonal health is dynamic, so this can change over time. Learning the signs now means you will recognise them early.',
+      ctas: [['Browse our Knowledge Centre', ROUTES.knowledge, true]],
+    },
+  };
+
+  const stepEl = document.querySelector('[data-step]');
+  const barEl = document.querySelector('[data-bar]');
+  let i = 0;
+  let score = 0;
+
+  const setBar = () => { barEl.style.width = ((i + 1) / (questions.length + 1)) * 100 + '%'; };
+
+  function render() {
+    setBar();
+    if (i < questions.length) {
+      const [q, opts] = questions[i];
+      stepEl.innerHTML =
+        '<p class="eyebrow uppercase text-xs font-semibold text-clay mb-3">Question ' + (i + 1) + ' of ' + questions.length + '</p>' +
+        '<h2 class="font-serif text-2xl sm:text-3xl text-ever mb-6">' + q + '</h2>' +
+        opts.map((o, k) => '<button data-k="' + k + '" class="opt w-full text-left rounded-2xl border border-sand hover:border-clay hover:bg-peach/30 px-5 py-4 mb-3 transition">' + o[0] + '</button>').join('');
+      stepEl.querySelectorAll('.opt').forEach((b) =>
+        b.addEventListener('click', () => { score += opts[+b.dataset.k][1]; i++; render(); })
+      );
+    } else {
+      barEl.style.width = '100%';
+      // Max possible = 28. Thresholds: High >= 16, Moderate 9-15, Lower < 9.
+      const r = score >= 16 ? results.high : score >= 9 ? results.moderate : results.lower;
+      stepEl.innerHTML =
+        '<p class="eyebrow uppercase text-xs font-semibold text-clay mb-3">' + r.kicker + '</p>' +
+        '<h2 class="font-serif text-2xl sm:text-3xl text-ever mb-3">' + r.title + '</h2>' +
+        '<p class="text-stone mb-6">' + r.body + '</p>' +
+        r.ctas.map((c) =>
+          '<a href="' + c[1] + '" class="block text-center rounded-full ' +
+          (c[2] ? 'bg-clay hover:bg-claydk text-white' : 'border border-ever/25 text-ever hover:bg-cream') +
+          ' font-semibold py-3.5 mb-3 transition">' + c[0] + '</a>'
+        ).join('') +
+        '<button data-restart class="w-full text-sm text-ever underline mt-1">Start over</button>';
+      stepEl.querySelector('[data-restart]').addEventListener('click', () => { i = 0; score = 0; render(); });
+    }
+  }
+  render();
+</script>

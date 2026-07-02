@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Pre-launch pages — keep out of the index
+Disallow: /coming-soon
+
+Sitemap: https://www.resetwellplus.com/sitemap-index.xml
