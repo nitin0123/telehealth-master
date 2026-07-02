@@ -1,0 +1,37 @@
+---
+import { onDemandVideos } from '../data/content';
+---
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5">
+  {onDemandVideos.map((v, i) => (
+    <a
+      href={v.href}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="group relative flex flex-col rounded-4xl overflow-hidden bg-white border border-sand shadow-sm reveal
+             transition-all duration-300 ease-out will-change-transform
+             hover:-translate-y-2 hover:shadow-2xl hover:shadow-ever/20 hover:border-clay/40"
+      style={`--reveal-delay:${(i % 3) * 70}ms`}
+    >
+      <!-- thumbnail with play badge, zoom + shine sweep -->
+      <div class="relative overflow-hidden">
+        <img src={v.img} alt={v.title} loading="lazy" class="aspect-[16/9] w-full object-cover transition-transform duration-500 ease-out group-hover:scale-110" />
+        <div class="absolute inset-0 grid place-items-center">
+          <span class="grid place-items-center w-14 h-14 rounded-full bg-ever/70 text-cream backdrop-blur-sm transition-transform duration-300 group-hover:scale-110 group-hover:bg-clay">
+            <svg viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 translate-x-0.5" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
+          </span>
+        </div>
+        <div class="pointer-events-none absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out bg-gradient-to-r from-transparent via-white/40 to-transparent"></div>
+      </div>
+
+      <!-- date + title + watch link -->
+      <div class="relative flex flex-1 flex-col p-5">
+        <p class="eyebrow uppercase text-xs font-semibold text-clay">{v.date}</p>
+        <h3 class="mt-2 font-serif text-base text-ever line-clamp-2 group-hover:text-clay transition-colors duration-200">{v.title}</h3>
+        <span class="mt-auto pt-4 inline-flex items-center gap-1 text-sm font-semibold text-clay">
+          Watch on YouTube
+          <span class="transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true">→</span>
+        </span>
+      </div>
+    </a>
+  ))}
+</div>

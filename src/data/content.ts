@@ -82,6 +82,25 @@ export const events: EventItem[] = [
   { title: 'Strength & Bones', meta: 'On demand · 35 min', tag: 'On Demand' },
 ];
 
+export interface OnDemandVideo {
+  /** Video title, shown as the card title */
+  title: string;
+  /** Full YouTube watch URL */
+  href: string;
+  /** Thumbnail in public/, e.g. '/yt-pIMAaq4ur2U.jpg' */
+  img: string;
+  /** Date the video was posted, e.g. '30 Jun 2026' */
+  date: string;
+}
+export const onDemandVideos: OnDemandVideo[] = [
+  {
+    title: 'Perimenopause: What No One Tells Women About This Transition',
+    href: 'https://www.youtube.com/watch?v=pIMAaq4ur2U',
+    img: '/yt-pIMAaq4ur2U.jpg',
+    date: '30 Jun 2026',
+  },
+];
+
 export interface PressFeature {
   /** Publication name, e.g. 'Dainik Jagran' */
   publication: string;
