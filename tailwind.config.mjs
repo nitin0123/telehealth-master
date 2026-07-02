@@ -17,8 +17,8 @@ export default {
         stone: '#6B6280',
       },
       fontFamily: {
-        // `font-serif` = display headings (Ideogram uses "Exposure"; Fraunces is the free analog)
-        serif: ['Fraunces Variable', 'Fraunces', 'Georgia', 'serif'],
+        // `font-serif` = display headings — Playfair Display (elegant serif with conventional glyphs)
+        serif: ['Playfair Display Variable', 'Playfair Display', 'Georgia', 'serif'],
         // `font-sans` = body & UI, matching Ideogram exactly with Geist
         sans: ['Geist Variable', 'Geist', 'Inter', 'system-ui', 'sans-serif'],
       },
