@@ -10,21 +10,24 @@ const pathways = [
     body: 'Live and on-demand sessions led by gynaecologists and menopause specialists. Every event ends with Q&A.',
     cta: 'Reserve a Seat',
     href: '/events/upcoming',
-    grad: 'from-peach to-sage/40',
+    img: '/events.jpeg',
+    alt: 'Expert events',
   },
   {
     title: 'Virtual Care',
     body: 'One-on-one virtual consultation with a trained specialist. Care plan within 24 hours. All of India.',
     cta: 'Book a Consultation',
     href: BOOK_HREF,
-    grad: 'from-sand to-clay/30',
+    img: '/virtual-care.jpeg',
+    alt: 'Virtual care consultation',
   },
   {
     title: 'Community',
     body: 'A private, expert-facilitated community of Indian women navigating the same transitions as you.',
     cta: 'Join Free',
     href: '/community/join',
-    grad: 'from-sage/50 to-peach',
+    img: '/community.jpeg',
+    alt: 'Community of women',
   },
 ];
 ---
@@ -37,7 +40,9 @@ const pathways = [
   <div class="grid md:grid-cols-3 gap-5 lg:gap-6">
     {pathways.map((p, i) => (
       <div class="flex flex-col bg-white border border-sand rounded-4xl overflow-hidden hover:shadow-xl hover:shadow-ever/5 transition reveal" style={`--reveal-delay:${i * 90}ms`}>
-        <div class={`aspect-[16/10] bg-gradient-to-br ${p.grad} grid place-items-center text-ever/30 font-serif`}>Photo</div>
+        <div class="aspect-[16/10] overflow-hidden">
+          <img src={p.img} alt={p.alt} class="w-full h-full object-cover" loading="lazy" />
+        </div>
         <div class="p-7 flex flex-col flex-1">
           <h3 class="font-serif text-2xl text-ever">{p.title}</h3>
           <p class="mt-2 text-stone text-base leading-relaxed flex-1">{p.body}</p>
