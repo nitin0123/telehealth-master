@@ -29,7 +29,7 @@ export interface Step {
   body: string;
 }
 export const steps: Step[] = [
-  { n: '1', title: 'Book your visit', body: 'Pick a time that suits you and pay a flat, transparent fee, with no referral and no insurance paperwork.' },
+  { n: '1', title: 'Book your visit', body: 'Pick a time that suits you and pay a flat, transparent fee.' },
   { n: '2', title: 'Meet your specialist', body: 'Join a virtual visit to discuss your health history, symptoms and goals, and get your questions answered.' },
   { n: '3', title: 'Start your care plan', body: 'Your clinician designs a personalised, holistic plan and supports your progress at every step.' },
 ];
