@@ -19,9 +19,9 @@ const founders = [
   <!-- Founders -->
   <div class="grid sm:grid-cols-2 gap-5 mb-14">
     {founders.map((f) => (
-      <article class="bg-white border border-sand rounded-4xl p-6 flex items-center gap-5 reveal">
-        <img src={f.img} alt={f.name} loading="lazy" class="w-24 h-24 shrink-0 rounded-full object-cover object-top border border-sand" />
-        <div>
+      <article class="bg-white border border-sand rounded-4xl overflow-hidden reveal">
+        <img src={f.img} alt={f.name} loading="lazy" class="w-full aspect-[4/5] object-cover object-top" />
+        <div class="p-6">
           <h2 class="font-serif text-2xl text-ever">{f.name}</h2>
           <p class="text-stone mt-1">{f.role}</p>
         </div>

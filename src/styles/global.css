@@ -1,5 +1,5 @@
 /* Fonts are self-hosted via @fontsource-variable packages, imported in
-   src/layouts/BaseLayout.astro (Geist = sans, Fraunces = display serif). */
+   src/layouts/BaseLayout.astro (Geist = sans, Playfair Display = display serif). */
 
 @tailwind base;
 @tailwind components;
