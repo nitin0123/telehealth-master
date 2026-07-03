@@ -26,10 +26,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       </p>
 
       <form data-notify-form class="mt-8 max-w-md mx-auto flex flex-col sm:flex-row gap-3 reveal" style="--reveal-delay:180ms">
-        <input type="email" name="email" required placeholder="you@example.com"
+        <input type="email" name="email" required placeholder="you@example.com" autocomplete="email"
           class="flex-1 rounded-full border border-sand bg-white px-5 py-3.5 focus:outline-none focus:ring-2 focus:ring-clay/40" />
-        <button class="rounded-full bg-clay hover:bg-claydk transition text-white font-semibold px-7 py-3.5 whitespace-nowrap">Notify me</button>
+        <!-- Honeypot: hidden from users, catches bots -->
+        <input type="text" name="company" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
+        <button class="rounded-full bg-clay hover:bg-claydk transition text-white font-semibold px-7 py-3.5 whitespace-nowrap disabled:opacity-60">Notify me</button>
       </form>
+      <p data-notify-err class="hidden mt-4 text-sm text-red-600">Something went wrong. Please try again.</p>
       <p data-notify-msg class="hidden mt-4 text-ever font-serif text-xl">Thank you ✓ We'll be in touch soon.</p>
 
       <div class="mt-8 flex justify-center reveal" style="--reveal-delay:240ms">
@@ -40,11 +43,38 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
   <script>
     document.querySelectorAll<HTMLFormElement>('[data-notify-form]').forEach((form) => {
-      form.addEventListener('submit', (e) => {
+      const errEl = form.parentElement?.querySelector('[data-notify-err]');
+      const btn = form.querySelector('button') as HTMLButtonElement | null;
+
+      form.addEventListener('submit', async (e) => {
         e.preventDefault();
-        // TODO: POST the email to your backend / waitlist provider.
-        form.classList.add('hidden');
-        form.parentElement?.querySelector('[data-notify-msg]')?.classList.remove('hidden');
+        if (!form.reportValidity()) return;
+        errEl?.classList.add('hidden');
+
+        const data = Object.fromEntries(new FormData(form).entries()) as Record<string, string>;
+        data.source = 'coming-soon';
+
+        const original = btn?.textContent ?? 'Notify me';
+        if (btn) { btn.disabled = true; btn.textContent = 'Submitting…'; }
+        try {
+          const res = await fetch('/api/subscribe', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data),
+          });
+          if (!res.ok) {
+            const info = await res.json().catch(() => ({}));
+            throw new Error(info.error || 'Something went wrong. Please try again.');
+          }
+          form.classList.add('hidden');
+          form.parentElement?.querySelector('[data-notify-msg]')?.classList.remove('hidden');
+        } catch (err) {
+          if (errEl) {
+            errEl.textContent = err instanceof Error ? err.message : 'Something went wrong. Please try again.';
+            errEl.classList.remove('hidden');
+          }
+          if (btn) { btn.disabled = false; btn.textContent = original; }
+        }
       });
     });
   </script>

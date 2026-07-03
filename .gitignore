@@ -16,3 +16,4 @@ node_modules/
 
 # vercel build output
 .vercel
+.env*.local
