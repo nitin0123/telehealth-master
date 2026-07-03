@@ -18,8 +18,8 @@ export const careNeeds: CareNeed[] = [
   { title: 'Sleep', href: '/understand-your-symptoms/knowledge-centre', img: '/illustrations/sleep.jpeg', blurb: 'Rest that actually restores you.' },
   { title: 'Mood & Memory', href: '/understand-your-symptoms/knowledge-centre', img: '/illustrations/mood-memory.jpeg', blurb: 'Steadier mood, sharper focus.' },
   { title: 'Weight', href: '/understand-your-symptoms/knowledge-centre', img: '/illustrations/weight.jpeg', blurb: 'Midlife metabolism, understood.' },
-  { title: 'Sexual Wellness', href: '/understand-your-symptoms/knowledge-centre', img: '/illustrations/sexual-wellness.jpeg', blurb: 'Intimacy and comfort, restored.' },
   { title: 'Hair & Skin', href: '/understand-your-symptoms/knowledge-centre', img: '/illustrations/hair-skin.jpeg', blurb: 'Hormonal changes, addressed.' },
+  { title: 'Sexual Wellness', href: '/understand-your-symptoms/knowledge-centre', img: '/illustrations/sexual-wellness.jpeg', blurb: 'Intimacy and comfort, restored.' },
   { title: 'Bone & Heart', href: '/get-care/how-it-works', img: '/illustrations/bone-heart.jpeg', blurb: 'Protect your long-term health.' },
 ];
 
