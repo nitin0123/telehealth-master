@@ -20,24 +20,6 @@ const tiers = [
     href: '/coming-soon',
     featured: false,
   },
-  {
-    name: 'Corporate',
-    price: 'Custom',
-    sub: 'for teams & employers',
-    desc: 'Bring expert midlife and menopause care to your whole organisation, designed around your people.',
-    items: [
-      'Live workshops & expert webinars',
-      'Subsidised employee consultations',
-      'Manager & HR awareness training',
-      'Menopause-at-work policy guidance',
-      'Workplace wellness resources',
-      'A dedicated account manager',
-    ],
-    note: 'Tailored to your team size and goals.',
-    cta: 'Talk to us',
-    href: '/events/for-corporates',
-    featured: false,
-  },
 ];
 ---
 <PageLayout
@@ -48,7 +30,7 @@ const tiers = [
   keywords="menopause consultation cost India, menopause treatment India, menopause consultation price"
   lede="We charge patients directly, with no insurance paperwork and no hidden fees. All prices in ₹."
 >
-  <div class="grid sm:grid-cols-2 gap-6 max-w-4xl">
+  <div class="grid gap-6 max-w-md">
     {tiers.map((t) => (
       <div class={`rounded-5xl p-7 lg:p-9 flex flex-col reveal ${t.featured ? 'bg-ever text-cream shadow-xl' : 'bg-white border border-sand'}`}>
         <p class={`eyebrow uppercase text-xs font-semibold ${t.featured ? 'text-sage' : 'text-clay'}`}>{t.name}</p>
