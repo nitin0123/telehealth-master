@@ -2,8 +2,8 @@
 import PageLayout from '../../layouts/PageLayout.astro';
 
 const founders = [
-  { name: 'Swati Singh', role: 'Author, menopause educator, speaker & women\'s wellness advocate', img: '/swati.jpeg' },
-  { name: 'Reshma Tiwari', role: 'Menopause educator, speaker & women\'s wellness advocate', img: '/reshma.jpeg' },
+  { name: 'Swati Singh', role: 'Author, menopause educator, speaker & women\'s wellness advocate', img: '/swati.jpeg', bio: '/about/swati-singh' },
+  { name: 'Reshma Tiwari', role: 'Menopause educator, speaker & women\'s wellness advocate', img: '/reshma.jpeg', bio: '/about/reshma-tiwari' },
 ];
 ---
 <PageLayout
@@ -23,6 +23,7 @@ const founders = [
         <img src={f.img} alt={f.name} loading="lazy" class="w-40 h-40 mx-auto rounded-full object-cover object-center border-4 border-sand shadow-sm" />
         <h2 class="mt-5 font-serif text-2xl text-ever">{f.name}</h2>
         <p class="text-stone mt-1">{f.role}</p>
+        <a href={f.bio} class="mt-4 inline-flex items-center gap-1 font-semibold text-clay hover:gap-2 transition-all">Read full bio <span aria-hidden="true">→</span></a>
       </article>
     ))}
   </div>
