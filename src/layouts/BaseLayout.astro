@@ -30,6 +30,8 @@ const {
 const canonical = new URL(Astro.url.pathname, SITE.url).href;
 const ogImage = new URL(image, SITE.url).href;
 const robots = noindex ? 'noindex, nofollow' : 'index, follow';
+// Hide the floating Contact button on the contact page itself (redundant there).
+const isContactPage = Astro.url.pathname.replace(/\/$/, '') === '/contact';
 ---
 
 <!doctype html>
@@ -87,6 +89,21 @@ const robots = noindex ? 'noindex, nofollow' : 'index, follow';
       <slot />
     </main>
     <Footer />
+
+    <!-- Floating Contact button, shown site-wide (except on the contact page) -->
+    {!isContactPage && (
+      <a
+        href="/contact"
+        aria-label="Contact us"
+        class="fixed bottom-5 right-5 z-40 inline-flex items-center gap-2 rounded-full bg-clay hover:bg-claydk text-white font-semibold shadow-lg shadow-ever/25 px-4 py-3.5 sm:px-5 transition-all duration-200 hover:-translate-y-0.5"
+      >
+        <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="3" y="5" width="18" height="14" rx="2" />
+          <path d="m3 7 9 6 9-6" />
+        </svg>
+        <span class="hidden sm:inline">Contact</span>
+      </a>
+    )}
 
     <!-- Tasteful scroll-reveal: progressive enhancement via IntersectionObserver -->
     <script>
