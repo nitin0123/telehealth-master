@@ -15,9 +15,16 @@
 </div>
 
 <script>
+  import { subscribeSchema, firstError } from '../lib/schemas';
+
   document.querySelectorAll<HTMLFormElement>('[data-join-form]').forEach((form) => {
     const errEl = form.querySelector('[data-join-err]');
     const btn = form.querySelector('button') as HTMLButtonElement | null;
+    const showErr = (msg: string) => {
+      if (!errEl) return;
+      errEl.textContent = msg;
+      errEl.classList.remove('hidden');
+    };
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -26,6 +33,9 @@
 
       const data = Object.fromEntries(new FormData(form).entries()) as Record<string, string>;
       data.source = 'community-join';
+
+      const check = subscribeSchema.safeParse(data);
+      if (!check.success) { showErr(firstError(check.error)); return; }
 
       const original = btn?.textContent ?? 'Join the Community';
       if (btn) { btn.disabled = true; btn.textContent = 'Joining…'; }

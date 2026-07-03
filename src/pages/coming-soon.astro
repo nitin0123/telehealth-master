@@ -42,9 +42,16 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   </section>
 
   <script>
+    import { subscribeSchema, firstError } from '../lib/schemas';
+
     document.querySelectorAll<HTMLFormElement>('[data-notify-form]').forEach((form) => {
       const errEl = form.parentElement?.querySelector('[data-notify-err]');
       const btn = form.querySelector('button') as HTMLButtonElement | null;
+      const showErr = (msg: string) => {
+        if (!errEl) return;
+        errEl.textContent = msg;
+        errEl.classList.remove('hidden');
+      };
 
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
@@ -53,6 +60,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
         const data = Object.fromEntries(new FormData(form).entries()) as Record<string, string>;
         data.source = 'coming-soon';
+
+        const check = subscribeSchema.safeParse(data);
+        if (!check.success) { showErr(firstError(check.error)); return; }
 
         const original = btn?.textContent ?? 'Notify me';
         if (btn) { btn.disabled = true; btn.textContent = 'Submitting…'; }

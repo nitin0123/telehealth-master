@@ -94,6 +94,8 @@ const ytIcon = '<svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><pa
   </div>
 
   <script>
+    import { contactSchema, firstError } from '../lib/schemas';
+
     document.querySelectorAll<HTMLFormElement>('[data-contact-form]').forEach((form) => {
       // Generate a fresh maths captcha each load
       const a = Math.floor(Math.random() * 8) + 2;
@@ -117,6 +119,15 @@ const ytIcon = '<svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><pa
 
         const data = Object.fromEntries(new FormData(form).entries()) as Record<string, string>;
         delete data.captcha;
+
+        const check = contactSchema.safeParse(data);
+        if (!check.success) {
+          if (submitErr) {
+            submitErr.textContent = firstError(check.error);
+            submitErr.classList.remove('hidden');
+          }
+          return;
+        }
 
         const original = btn?.textContent ?? 'Send Message';
         if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }

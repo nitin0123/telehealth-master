@@ -22,7 +22,8 @@
     "@fontsource-variable/playfair-display": "^5.2.8",
     "@vercel/postgres": "^0.10.0",
     "astro": "^4.16.18",
-    "resend": "^6.16.0"
+    "resend": "^6.16.0",
+    "zod": "^3.25.76"
   },
   "devDependencies": {
     "@astrojs/sitemap": "3.2.1",

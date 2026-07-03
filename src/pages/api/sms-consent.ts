@@ -4,6 +4,7 @@ export const prerender = false;
 
 import type { APIRoute } from 'astro';
 import { db } from '../../lib/db';
+import { smsConsentSchema, firstError } from '../../lib/schemas';
 
 const json = (body: unknown, status = 200) =>
   new Response(JSON.stringify(body), { status, headers: { 'Content-Type': 'application/json' } });
@@ -16,16 +17,11 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
     return json({ error: 'Invalid request body.' }, 400);
   }
 
-  const phone = typeof body.phoneNumber === 'string' ? body.phoneNumber.trim() : '';
-  const marketing = body.consentMarketing === true;
-  const informational = body.consentInformational === true;
-
-  if (!phone) {
-    return json({ error: 'Please enter a phone number.' }, 400);
+  const parsed = smsConsentSchema.safeParse(body);
+  if (!parsed.success) {
+    return json({ error: firstError(parsed.error) }, 400);
   }
-  if (!marketing && !informational) {
-    return json({ error: 'Please opt in to at least one type of messaging.' }, 400);
-  }
+  const { phoneNumber: phone, consentMarketing: marketing, consentInformational: informational } = parsed.data;
 
   let ip: string | null = null;
   try { ip = clientAddress ?? null; } catch { ip = null; }

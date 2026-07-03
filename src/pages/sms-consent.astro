@@ -91,6 +91,8 @@ import { CONTACT } from '../data/seo';
   </div>
 
   <script>
+    import { smsConsentSchema, firstError } from '../lib/schemas';
+
     document.querySelectorAll<HTMLFormElement>('[data-sms-form]').forEach((form) => {
       const errEl = form.querySelector('[data-sms-err]');
       const showErr = (msg: string) => {
@@ -107,12 +109,14 @@ import { CONTACT } from '../data/seo';
         const marketing = (form.elements.namedItem('consentMarketing') as HTMLInputElement)?.checked;
         const informational = (form.elements.namedItem('consentInformational') as HTMLInputElement)?.checked;
 
-        if (!phone) {
-          showErr('Please enter a phone number.');
-          return;
-        }
-        if (!marketing && !informational) {
-          showErr('Please opt in to at least one type of messaging.');
+        const payload = {
+          phoneNumber: phone,
+          consentMarketing: !!marketing,
+          consentInformational: !!informational,
+        };
+        const check = smsConsentSchema.safeParse(payload);
+        if (!check.success) {
+          showErr(firstError(check.error));
           return;
         }
         errEl?.classList.add('hidden');
@@ -123,11 +127,7 @@ import { CONTACT } from '../data/seo';
           const res = await fetch('/api/sms-consent', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              phoneNumber: phone,
-              consentMarketing: !!marketing,
-              consentInformational: !!informational,
-            }),
+            body: JSON.stringify(payload),
           });
           if (!res.ok) {
             const info = await res.json().catch(() => ({}));

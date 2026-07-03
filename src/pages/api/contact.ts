@@ -5,6 +5,7 @@ export const prerender = false;
 import type { APIRoute } from 'astro';
 import { db } from '../../lib/db';
 import { Resend } from 'resend';
+import { contactSchema, firstError } from '../../lib/schemas';
 
 const json = (body: unknown, status = 200) =>
   new Response(JSON.stringify(body), { status, headers: { 'Content-Type': 'application/json' } });
@@ -22,20 +23,11 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
   // Honeypot: real users never fill this hidden field; bots do. Pretend success.
   if (str(body.company)) return json({ ok: true });
 
-  const name = str(body.name);
-  const email = str(body.email);
-  const phone = str(body.phone);
-  const message = str(body.message);
-
-  if (!name || !email || !phone || !message) {
-    return json({ error: 'Please fill in all fields.' }, 400);
+  const parsed = contactSchema.safeParse(body);
+  if (!parsed.success) {
+    return json({ error: firstError(parsed.error) }, 400);
   }
-  if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
-    return json({ error: 'Please enter a valid email address.' }, 400);
-  }
-  if (message.length > 5000) {
-    return json({ error: 'Message is too long.' }, 400);
-  }
+  const { name, email, phone, message } = parsed.data;
 
   let ip: string | null = null;
   try { ip = clientAddress ?? null; } catch { ip = null; }
