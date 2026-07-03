@@ -3,7 +3,7 @@
 
 export const stats = [
   { value: '30 min', label: 'unhurried specialist visit' },
-  { value: '₹1,499', label: 'flat consultation fee' },
+  { value: '₹1,599', label: 'flat consultation fee' },
 ];
 
 export interface CareNeed {
@@ -67,7 +67,7 @@ export const faqs: Faq[] = [
   { q: 'Do I need a referral to book?', a: "No referral needed. Book directly and we'll handle everything from there." },
   { q: 'How does payment work?', a: 'We charge patients directly, a flat transparent fee per consultation, with no insurance paperwork or hidden costs. See the Pricing page for details.' },
   { q: 'Online or in person?', a: 'All consultations are online, so you can get expert care from wherever you are.' },
-  { q: 'What does it cost?', a: 'Consultations start at ₹1,499. See the Pricing page for full details.' },
+  { q: 'What does it cost?', a: 'Consultations start at ₹1,599. See the Pricing page for full details.' },
 ];
 
 export interface EventItem {
