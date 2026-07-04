@@ -77,6 +77,7 @@ dev, in `.env.local`. See `.env.example`.
 | `CONTACT_EMAIL_TO` | Where contact-form submissions are emailed |
 | `CONTACT_EMAIL_FROM` | Verified Resend sender (e.g. `ResetWell Plus <noreply@resetwellplus.com>`) |
 | `PUBLIC_GTM_ID` | Optional. Google Tag Manager container id; loads only after cookie consent |
+| `PUBLIC_GA4_ID` | Optional. GA4 measurement id via gtag.js; skip if GA4 is a tag inside GTM |
 | `PUBLIC_META_PIXEL_ID` | Optional. Meta Pixel id; loads only after cookie consent |
 | `PUBLIC_GSC_VERIFICATION` | Optional. Google Search Console meta-tag verification token |
 

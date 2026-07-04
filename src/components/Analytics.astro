@@ -4,7 +4,12 @@
 // IDs come from env vars (set per-environment in Vercel; pages are prerendered,
 // so changing them requires a redeploy):
 //   PUBLIC_GTM_ID            e.g. GTM-XXXXXXX
+//   PUBLIC_GA4_ID            e.g. G-XXXXXXXXXX (direct GA4 via gtag.js)
 //   PUBLIC_META_PIXEL_ID     numeric pixel id
+//
+// GA4 double-counting: if you configure a GA4 tag INSIDE the GTM container,
+// leave PUBLIC_GA4_ID unset (or remove the GTM tag); running both counts every
+// pageview twice.
 //
 // Nothing renders when neither ID is set. When at least one is set, a consent
 // banner is shown on first visit and the trackers load ONLY after the visitor
@@ -16,8 +21,9 @@
 // two tags need. A new tag added inside GTM that loads from another domain will
 // be blocked until that domain is added to the CSP.
 const gtmId = import.meta.env.PUBLIC_GTM_ID || '';
+const ga4Id = import.meta.env.PUBLIC_GA4_ID || '';
 const pixelId = import.meta.env.PUBLIC_META_PIXEL_ID || '';
-const enabled = Boolean(gtmId || pixelId);
+const enabled = Boolean(gtmId || ga4Id || pixelId);
 ---
 {enabled && (
   <div
@@ -37,7 +43,7 @@ const enabled = Boolean(gtmId || pixelId);
     </div>
   </div>
 
-  <script is:inline define:vars={{ gtmId, pixelId }}>
+  <script is:inline define:vars={{ gtmId, ga4Id, pixelId }}>
     (function () {
       var KEY = 'rwp-consent';
       var banner = document.getElementById('consent-banner');
@@ -51,6 +57,17 @@ const enabled = Boolean(gtmId || pixelId);
           s.async = true;
           s.src = 'https://www.googletagmanager.com/gtm.js?id=' + encodeURIComponent(gtmId);
           document.head.appendChild(s);
+        }
+        if (ga4Id && !window.__rwpGaLoaded) {
+          window.__rwpGaLoaded = true;
+          var g = document.createElement('script');
+          g.async = true;
+          g.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(ga4Id);
+          document.head.appendChild(g);
+          window.dataLayer = window.dataLayer || [];
+          window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
+          window.gtag('js', new Date());
+          window.gtag('config', ga4Id);
         }
         if (pixelId && !window.fbq) {
           var n = (window.fbq = function () {
