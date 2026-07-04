@@ -20,10 +20,10 @@
   }
   /* Primary pill button */
   .btn-primary {
-    @apply inline-flex justify-center items-center rounded-full bg-clay text-white font-semibold px-7 py-3.5 transition-colors duration-200 hover:bg-claydk;
+    @apply inline-flex justify-center items-center rounded-full bg-clay text-white font-semibold px-7 py-3.5 transition-colors duration-200 hover:bg-ever;
   }
   .btn-ghost {
-    @apply inline-flex justify-center items-center rounded-full bg-white border border-ever/20 text-ever font-semibold px-7 py-3.5 transition-colors duration-200 hover:border-ever/40;
+    @apply inline-flex justify-center items-center rounded-full bg-white border border-ever/20 text-ever font-semibold px-7 py-3.5 transition-colors duration-200 hover:bg-ever hover:border-ever hover:text-cream;
   }
 }
 
