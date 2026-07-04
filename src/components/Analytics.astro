@@ -1,0 +1,102 @@
+---
+// Consent-gated analytics: Google Tag Manager + Meta Pixel.
+//
+// IDs come from env vars (set per-environment in Vercel; pages are prerendered,
+// so changing them requires a redeploy):
+//   PUBLIC_GTM_ID            e.g. GTM-XXXXXXX
+//   PUBLIC_META_PIXEL_ID     numeric pixel id
+//
+// Nothing renders when neither ID is set. When at least one is set, a consent
+// banner is shown on first visit and the trackers load ONLY after the visitor
+// accepts (DPDP-friendly: off by default, choice stored on the device). The
+// footer's "Cookie preferences" link is unhidden by this script and lets the
+// visitor change their mind later.
+//
+// NOTE: the CSP in vercel.json allowlists exactly the Google/Meta domains these
+// two tags need. A new tag added inside GTM that loads from another domain will
+// be blocked until that domain is added to the CSP.
+const gtmId = import.meta.env.PUBLIC_GTM_ID || '';
+const pixelId = import.meta.env.PUBLIC_META_PIXEL_ID || '';
+const enabled = Boolean(gtmId || pixelId);
+---
+{enabled && (
+  <div
+    id="consent-banner"
+    role="dialog"
+    aria-label="Cookie consent"
+    class="hidden fixed bottom-4 left-4 right-4 sm:left-auto sm:right-5 sm:max-w-sm z-50 bg-white border border-sand rounded-3xl shadow-xl shadow-ever/15 p-5"
+  >
+    <p class="text-sm text-stone">
+      We use cookies for analytics and to measure our outreach (Google Tag Manager, Meta Pixel).
+      They stay off unless you accept. Read more in our
+      <a href="/privacy-policy" class="text-clay hover:text-claydk underline underline-offset-2">Privacy Policy</a>.
+    </p>
+    <div class="mt-4 flex gap-2">
+      <button id="consent-accept" class="flex-1 rounded-full bg-clay hover:bg-ever text-white font-semibold text-sm px-4 py-2.5 transition-colors">Accept</button>
+      <button id="consent-decline" class="flex-1 rounded-full bg-white border border-ever/20 hover:border-ever text-ever font-semibold text-sm px-4 py-2.5 transition-colors">Decline</button>
+    </div>
+  </div>
+
+  <script is:inline define:vars={{ gtmId, pixelId }}>
+    (function () {
+      var KEY = 'rwp-consent';
+      var banner = document.getElementById('consent-banner');
+
+      function loadTrackers() {
+        if (gtmId && !window.__rwpGtmLoaded) {
+          window.__rwpGtmLoaded = true;
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+          var s = document.createElement('script');
+          s.async = true;
+          s.src = 'https://www.googletagmanager.com/gtm.js?id=' + encodeURIComponent(gtmId);
+          document.head.appendChild(s);
+        }
+        if (pixelId && !window.fbq) {
+          var n = (window.fbq = function () {
+            n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+          });
+          if (!window._fbq) window._fbq = n;
+          n.push = n;
+          n.loaded = true;
+          n.version = '2.0';
+          n.queue = [];
+          var t = document.createElement('script');
+          t.async = true;
+          t.src = 'https://connect.facebook.net/en_US/fbevents.js';
+          document.head.appendChild(t);
+          window.fbq('init', pixelId);
+          window.fbq('track', 'PageView');
+        }
+      }
+
+      function choose(value) {
+        try { localStorage.setItem(KEY, value); } catch (e) {}
+        if (banner) banner.classList.add('hidden');
+        if (value === 'granted') loadTrackers();
+      }
+
+      var stored = null;
+      try { stored = localStorage.getItem(KEY); } catch (e) {}
+      if (stored === 'granted') loadTrackers();
+      else if (!stored && banner) banner.classList.remove('hidden');
+
+      var accept = document.getElementById('consent-accept');
+      var decline = document.getElementById('consent-decline');
+      if (accept) accept.addEventListener('click', function () { choose('granted'); });
+      if (decline) decline.addEventListener('click', function () { choose('denied'); });
+
+      // Unhide the footer "Cookie preferences" link and let it reopen the banner.
+      document.querySelectorAll('[data-cookie-prefs-wrap]').forEach(function (wrap) {
+        wrap.classList.remove('hidden');
+      });
+      document.querySelectorAll('[data-cookie-prefs]').forEach(function (link) {
+        link.addEventListener('click', function (e) {
+          e.preventDefault();
+          try { localStorage.removeItem(KEY); } catch (err) {}
+          if (banner) banner.classList.remove('hidden');
+        });
+      });
+    })();
+  </script>
+)}

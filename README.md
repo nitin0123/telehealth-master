@@ -76,6 +76,9 @@ dev, in `.env.local`. See `.env.example`.
 | `RESEND_API_KEY` | Resend API key for the contact email |
 | `CONTACT_EMAIL_TO` | Where contact-form submissions are emailed |
 | `CONTACT_EMAIL_FROM` | Verified Resend sender (e.g. `ResetWell Plus <noreply@resetwellplus.com>`) |
+| `PUBLIC_GTM_ID` | Optional. Google Tag Manager container id; loads only after cookie consent |
+| `PUBLIC_META_PIXEL_ID` | Optional. Meta Pixel id; loads only after cookie consent |
+| `PUBLIC_GSC_VERIFICATION` | Optional. Google Search Console meta-tag verification token |
 
 ## Database
 

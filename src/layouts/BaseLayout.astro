@@ -4,7 +4,11 @@ import '@fontsource-variable/geist'; // single typeface — body, UI and heading
 import '../styles/global.css';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import Analytics from '../components/Analytics.astro';
 import { SITE, organizationSchema } from '../data/seo';
+
+// Google Search Console ownership verification (meta-tag method).
+const gscToken = import.meta.env.PUBLIC_GSC_VERIFICATION || '';
 
 interface Props {
   title?: string;
@@ -46,6 +50,7 @@ const isContactPage = Astro.url.pathname.replace(/\/$/, '') === '/contact';
     <meta name="description" content={description} />
     {keywords && <meta name="keywords" content={keywords} />}
     <meta name="robots" content={robots} />
+    {gscToken && <meta name="google-site-verification" content={gscToken} />}
     <link rel="canonical" href={canonical} />
 
     <!-- Open Graph -->
@@ -89,6 +94,7 @@ const isContactPage = Astro.url.pathname.replace(/\/$/, '') === '/contact';
       <slot />
     </main>
     <Footer />
+    <Analytics />
 
     <!-- Floating Contact button, shown site-wide (except on the contact page) -->
     {!isContactPage && (
