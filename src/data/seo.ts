@@ -50,7 +50,12 @@ export const organizationSchema = {
     { '@type': 'MedicalProcedure', name: 'Hormone replacement therapy (HRT) consultation' },
   ],
   knowsLanguage: ['en', 'hi'],
-  sameAs: [CONTACT.social.instagram, CONTACT.social.facebook],
+  sameAs: [
+    CONTACT.social.instagram,
+    CONTACT.social.facebook,
+    CONTACT.social.linkedin,
+    CONTACT.social.youtube,
+  ],
 };
 
 /**

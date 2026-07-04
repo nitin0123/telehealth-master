@@ -1,6 +1,19 @@
 ---
 import PageLayout from '../../layouts/PageLayout.astro';
 import SymptomChecker from '../../components/SymptomChecker.astro';
+import { SITE } from '../../data/seo';
+
+const medicalSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'MedicalWebPage',
+  name: 'Perimenopause Symptom Checker',
+  url: `${SITE.url}/understand-your-symptoms/symptom-checker`,
+  description:
+    'A free 5-minute perimenopause self-assessment adapted for women in India. Not a diagnosis; a starting point for a specialist conversation.',
+  about: { '@type': 'MedicalCondition', name: 'Perimenopause' },
+  audience: 'https://schema.org/Patient',
+  inLanguage: 'en-IN',
+};
 ---
 <PageLayout
   section="Understand Your Symptoms"
@@ -11,5 +24,6 @@ import SymptomChecker from '../../components/SymptomChecker.astro';
   keywords="perimenopause quiz India, menopause symptom checker, perimenopause symptoms quiz, menopause joint pain India"
   lede="This is not a medical diagnosis, only a specialist can provide that. But this 5-minute assessment will help you make sense of what you've been experiencing, understand whether your symptoms align with perimenopause, and know exactly what to discuss at your first consultation. It is free, private, and takes 5 minutes."
 >
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(medicalSchema)} />
   <SymptomChecker />
 </PageLayout>

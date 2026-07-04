@@ -1,5 +1,18 @@
 ---
 import PageLayout from '../../layouts/PageLayout.astro';
+import { SITE } from '../../data/seo';
+
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Swati Singh',
+  jobTitle: 'Co-founder',
+  description: "Author of Menopause & Me, menopause educator, speaker and women's wellness advocate.",
+  url: `${SITE.url}/about/swati-singh`,
+  image: `${SITE.url}/swati.jpeg`,
+  worksFor: { '@type': 'Organization', name: SITE.name, url: SITE.url },
+  knowsAbout: ['Menopause', 'Perimenopause', "Women's midlife health"],
+};
 ---
 <PageLayout
   section="About"
@@ -10,6 +23,7 @@ import PageLayout from '../../layouts/PageLayout.astro';
   description="Swati Singh, co-founder of ResetWell Plus: author, menopause educator, speaker and women's wellness advocate."
   lede="Author, menopause educator, speaker & women's wellness advocate."
 >
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(personSchema)} />
   <div class="grid md:grid-cols-[auto_1fr] gap-8 lg:gap-10 items-start">
     <img
       src="/swati.jpeg"

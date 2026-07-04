@@ -1,11 +1,24 @@
 ---
 import PageLayout from '../layouts/PageLayout.astro';
+import { SITE } from '../data/seo';
 
 // Written by Swati Singh (co-founder). Blurb + cover sourced from the Amazon
 // listing below.
 const AMAZON_IN_URL = 'https://amzn.in/d/0bQwcnbR';
 const AMAZON_INTL_URL = 'https://www.amazon.com/MENOPAUSE-Me-TIME-RECLAIM-YOUR-ebook/dp/B0GX32VS9L';
 const KINDLE_URL = 'https://www.amazon.com/dp/B0GX32VS9L';
+
+const bookSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Book',
+  name: "Menopause & Me: It's Time to Reclaim Your Life",
+  author: { '@type': 'Person', name: 'Swati Singh', url: `${SITE.url}/about/swati-singh` },
+  url: `${SITE.url}/book`,
+  image: `${SITE.url}/menopause-and-me-cover.jpg`,
+  bookFormat: 'https://schema.org/EBook',
+  inLanguage: 'en',
+  sameAs: [AMAZON_IN_URL, AMAZON_INTL_URL],
+};
 const discover = [
   'The early whispers of perimenopause most women miss until they\'re roaring',
   'The real story on HRT, stripped of outdated fear and Hollywood headlines',
@@ -23,6 +36,7 @@ const discover = [
   description="Menopause & Me: It's Time to Reclaim Your Life. An honest, science-backed guide by Swati Singh, co-founder of ResetWell Plus. Available on Amazon."
   lede="It's Time to Reclaim Your Life. An honest, science-backed guide by Swati Singh, co-founder of ResetWell Plus."
 >
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(bookSchema)} />
   <div class="grid lg:grid-cols-[auto_1fr] gap-8 lg:gap-14 items-start">
     <!-- Cover + buy CTA -->
     <div class="mx-auto lg:mx-0 w-56 sm:w-64 reveal">

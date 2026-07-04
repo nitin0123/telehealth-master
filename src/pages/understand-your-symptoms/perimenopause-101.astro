@@ -1,5 +1,19 @@
 ---
 import PageLayout from '../../layouts/PageLayout.astro';
+import { SITE } from '../../data/seo';
+
+const medicalSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'MedicalWebPage',
+  name: 'Perimenopause 101',
+  url: `${SITE.url}/understand-your-symptoms/perimenopause-101`,
+  description:
+    'Perimenopause symptoms in India explained: the signs, the average menopause age in India, early menopause, and what helps.',
+  about: { '@type': 'MedicalCondition', name: 'Perimenopause' },
+  audience: 'https://schema.org/Patient',
+  inLanguage: 'en-IN',
+};
+
 const sections = [
   ['What is perimenopause?', 'The transition leading up to menopause, when hormone levels begin to fluctuate. In India it can start in the late 30s or 40s and last several years, sometimes earlier than many women expect.'],
   ['Common symptoms', 'Irregular periods, hot flushes, disrupted sleep, mood changes, brain fog, joint aches, and shifts in energy and weight. Over forty symptoms in total.'],
@@ -16,6 +30,7 @@ const sections = [
   keywords="perimenopause symptoms in India, menopause age in India, early menopause India women, perimenopause at 38 India, is HRT safe in India"
   lede="The years before your last period can bring forty-plus symptoms. Here is what is happening for women in India, and what helps."
 >
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(medicalSchema)} />
   <div class="grid sm:grid-cols-2 gap-4">
     {sections.map(([h, p]) => (
       <div class="bg-white border border-sand rounded-4xl p-7 reveal">

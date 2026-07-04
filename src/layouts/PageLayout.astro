@@ -32,7 +32,11 @@ const breadcrumbSchema = {
 ---
 
 <BaseLayout title={seoTitle} description={description ?? lede} keywords={keywords} image={image} noindex={noindex}>
-  <script type="application/ld+json" slot="head" set:html={JSON.stringify(breadcrumbSchema)} />
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    <!-- Page-specific structured data from pages using this layout -->
+    <slot name="head" />
+  </Fragment>
 
   <section class="max-w-5xl mx-auto px-5 lg:px-8 pt-8 lg:pt-12">
     <h1 class="font-serif text-3xl sm:text-4xl lg:text-6xl leading-[1.05] text-ever reveal lg:-ml-1">{title}</h1>
