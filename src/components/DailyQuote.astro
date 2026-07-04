@@ -1,0 +1,39 @@
+---
+// "Today's Reset": one wellness quote per day, picked by day of year in IST so
+// every visitor sees the same quote on a given date. Pages are prerendered, so
+// the quote baked in at build time is only a fallback; the script below
+// recomputes it on the visitor's device, meaning the quote rotates daily
+// without a rebuild.
+import { quotes } from '../data/quotes';
+
+const IST_OFFSET_MS = 5.5 * 60 * 60 * 1000;
+const ist = new Date(Date.now() + IST_OFFSET_MS);
+const dayOfYear = Math.floor(
+  (Date.UTC(ist.getUTCFullYear(), ist.getUTCMonth(), ist.getUTCDate()) - Date.UTC(ist.getUTCFullYear(), 0, 0)) / 86400000
+);
+const quote = quotes[dayOfYear % quotes.length];
+---
+<section class="max-w-7xl mx-auto px-5 lg:px-8 py-10 lg:py-12">
+  <div class="relative overflow-hidden rounded-5xl bg-gradient-to-br from-peach via-sand to-sage/60 px-6 py-10 lg:px-16 lg:py-14 text-center reveal">
+    <!-- Oversized decorative quote mark -->
+    <span class="absolute -top-6 left-4 lg:left-10 font-serif text-[10rem] leading-none text-clay/15 select-none" aria-hidden="true">&ldquo;</span>
+    <p class="eyebrow uppercase text-xs font-semibold text-clay mb-4">Today&rsquo;s Reset</p>
+    <blockquote data-daily-quote class="relative font-serif text-2xl lg:text-4xl text-ever leading-snug max-w-3xl mx-auto">
+      &ldquo;{quote}&rdquo;
+    </blockquote>
+    <p class="mt-4 text-sm text-stone">A new thought for women in midlife, every day.</p>
+  </div>
+</section>
+
+<script>
+  import { quotes } from '../data/quotes';
+
+  // Same day-of-year (IST) formula as the server fallback above.
+  const ist = new Date(Date.now() + 5.5 * 60 * 60 * 1000);
+  const dayOfYear = Math.floor(
+    (Date.UTC(ist.getUTCFullYear(), ist.getUTCMonth(), ist.getUTCDate()) - Date.UTC(ist.getUTCFullYear(), 0, 0)) / 86400000
+  );
+  const quote = quotes[dayOfYear % quotes.length];
+  const el = document.querySelector('[data-daily-quote]');
+  if (el && quote) el.textContent = `“${quote}”`;
+</script>
