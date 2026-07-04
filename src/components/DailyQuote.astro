@@ -44,16 +44,38 @@ const shareHref = `https://wa.me/?text=${encodeURIComponent(shareText)}`;
 <script>
   import { quotes } from '../data/quotes';
 
-  // Same days-since-epoch (IST) formula as the server fallback above.
-  const istDay = Math.floor((Date.now() + 5.5 * 60 * 60 * 1000) / 86400000);
-  const quote = quotes[istDay % quotes.length];
+  const IST_OFFSET_MS = 5.5 * 60 * 60 * 1000;
+  const DAY_MS = 86400000;
   const el = document.querySelector('[data-daily-quote]');
-  if (el && quote) el.textContent = quote;
-
-  // Keep the WhatsApp share link in sync with the quote shown today.
   const share = document.querySelector('[data-daily-quote-share]');
-  if (share && quote) {
-    const text = `Today's Reset from ResetWell Plus:\n\n"${quote}"\n\nA new thought for women in midlife, every day: https://www.resetwellplus.com`;
-    share.setAttribute('href', `https://wa.me/?text=${encodeURIComponent(text)}`);
+
+  // Same days-since-epoch (IST) formula as the server fallback above.
+  function apply() {
+    const istDay = Math.floor((Date.now() + IST_OFFSET_MS) / DAY_MS);
+    const quote = quotes[istDay % quotes.length];
+    if (!quote) return;
+    if (el) el.textContent = quote;
+    // Keep the WhatsApp share link in sync with the quote shown today.
+    if (share) {
+      const text = `Today's Reset from ResetWell Plus:\n\n"${quote}"\n\nA new thought for women in midlife, every day: https://www.resetwellplus.com`;
+      share.setAttribute('href', `https://wa.me/?text=${encodeURIComponent(text)}`);
+    }
   }
+  apply();
+
+  // Long-lived tabs: re-check when the tab regains focus (e.g. left open
+  // overnight), and at the IST midnight tick if it stays open. Only the quote
+  // text updates; the page never reloads.
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) apply();
+  });
+  function scheduleMidnight() {
+    const istNow = Date.now() + IST_OFFSET_MS;
+    const untilMidnight = (Math.floor(istNow / DAY_MS) + 1) * DAY_MS - istNow;
+    setTimeout(() => {
+      apply();
+      scheduleMidnight();
+    }, untilMidnight + 1000);
+  }
+  scheduleMidnight();
 </script>
