@@ -41,7 +41,8 @@ export const organizationSchema = {
   name: SITE.legalName,
   url: SITE.url,
   description: SITE.defaultDescription,
-  email: CONTACT.email,
+  // email intentionally omitted: the org JSON-LD is embedded on every page and
+  // is a favourite harvesting spot for spam bots.
   medicalSpecialty: ['Gynecologic', 'Endocrine'],
   areaServed: { '@type': 'Country', name: 'India' },
   availableService: [

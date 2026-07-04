@@ -1,6 +1,5 @@
 ---
 import PageLayout from '../layouts/PageLayout.astro';
-import { CONTACT } from '../data/seo';
 // Text mirrors resetwellplus.com/sms-consent. Capture follows the same
 // client-side pattern as the contact form: the payload is logged with a TODO
 // to POST it to a backend endpoint (e.g. /api/sms-consent) + your database.
@@ -88,7 +87,7 @@ import { CONTACT } from '../data/seo';
     </div>
 
     <div class="mt-8 text-center">
-      <p class="text-xs text-stone/70">Questions? Contact us at <a href={`mailto:${CONTACT.email}`} class="text-clay hover:text-claydk underline">{CONTACT.email}</a></p>
+      <p class="text-xs text-stone/70">Questions? Reach us through the <a href="/contact" class="text-clay hover:text-claydk underline">contact page</a>.</p>
     </div>
   </div>
 
