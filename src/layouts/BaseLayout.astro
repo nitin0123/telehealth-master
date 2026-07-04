@@ -148,13 +148,17 @@ const robots = noindex ? 'noindex, nofollow' : 'index, follow';
         const io = new IntersectionObserver(
           (entries) => {
             entries.forEach((entry) => {
-              if (entry.isIntersecting) {
+              if (!entry.isIntersecting) return;
+              // Very tall elements (e.g. long legal-text cards) can never reach
+              // the 12% ratio, so reveal those as soon as they intersect at all.
+              const tall = entry.boundingClientRect.height > window.innerHeight * 0.8;
+              if (tall || entry.intersectionRatio >= 0.12) {
                 entry.target.classList.add('is-visible');
                 io.unobserve(entry.target);
               }
             });
           },
-          { threshold: 0.12, rootMargin: '0px 0px -8% 0px' }
+          { threshold: [0, 0.12], rootMargin: '0px 0px -8% 0px' }
         );
         els.forEach((el) => io.observe(el));
       }
