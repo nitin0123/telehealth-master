@@ -75,10 +75,11 @@ export interface EventItem {
   meta: string;
   tag: string;
 }
+// No live events scheduled right now: the upcoming-events page shows its
+// "coming soon" state until an entry tagged 'Live · Online' is added here,
+// e.g. { title: '…', meta: 'Tue, 8 Jul · 7:00 PM IST · Live online', tag: 'Live · Online' }.
 export const events: EventItem[] = [
-  { title: 'Perimenopause & Sleep', meta: 'Tue, 8 Jul · 7:00 PM IST · Live online', tag: 'Live · Online' },
   { title: 'HRT: Myths vs Facts', meta: 'On demand · 48 min', tag: 'On Demand' },
-  { title: 'Nutrition in Midlife', meta: 'Thu, 17 Jul · 6:30 PM IST', tag: 'Live · Online' },
   { title: 'Strength & Bones', meta: 'On demand · 35 min', tag: 'On Demand' },
 ];
 
