@@ -5,6 +5,7 @@ import PageLayout from '../layouts/PageLayout.astro';
 // listing below.
 const AMAZON_IN_URL = 'https://amzn.in/d/0bQwcnbR';
 const AMAZON_INTL_URL = 'https://www.amazon.com/MENOPAUSE-Me-TIME-RECLAIM-YOUR-ebook/dp/B0GX32VS9L';
+const KINDLE_URL = 'https://www.amazon.com/dp/B0GX32VS9L';
 const discover = [
   'The early whispers of perimenopause most women miss until they\'re roaring',
   'The real story on HRT, stripped of outdated fear and Hollywood headlines',
@@ -34,7 +35,7 @@ const discover = [
       />
       <a href={AMAZON_IN_URL} target="_blank" rel="noopener" class="btn-primary mt-6 w-full">Buy on Amazon India</a>
       <a href={AMAZON_INTL_URL} target="_blank" rel="noopener" class="btn-ghost mt-3 w-full text-center">Buy on Amazon<br />US/Canada/UK</a>
-      <p class="mt-2 text-center text-xs text-stone">Kindle edition</p>
+      <p class="mt-2 text-center text-xs text-stone"><a href={KINDLE_URL} target="_blank" rel="noopener" class="text-clay hover:text-claydk underline underline-offset-2">Kindle edition</a></p>
     </div>
 
     <!-- Blurb -->
