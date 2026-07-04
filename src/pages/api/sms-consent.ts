@@ -5,9 +5,12 @@ export const prerender = false;
 import type { APIRoute } from 'astro';
 import { db } from '../../lib/db';
 import { smsConsentSchema, firstError } from '../../lib/schemas';
+import { rateLimited } from '../../lib/rateLimit';
 
 const json = (body: unknown, status = 200) =>
   new Response(JSON.stringify(body), { status, headers: { 'Content-Type': 'application/json' } });
+
+const str = (v: unknown) => (typeof v === 'string' ? v.trim() : '');
 
 export const POST: APIRoute = async ({ request, clientAddress }) => {
   let body: Record<string, unknown>;
@@ -17,14 +20,20 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
     return json({ error: 'Invalid request body.' }, 400);
   }
 
+  // Honeypot: real users never fill this hidden field; bots do. Pretend success.
+  if (str(body.company)) return json({ ok: true });
+
+  let ip: string | null = null;
+  try { ip = clientAddress ?? null; } catch { ip = null; }
+  if (rateLimited(ip)) {
+    return json({ error: 'Too many submissions from your network. Please try again in a few minutes.' }, 429);
+  }
+
   const parsed = smsConsentSchema.safeParse(body);
   if (!parsed.success) {
     return json({ error: firstError(parsed.error) }, 400);
   }
   const { phoneNumber: phone, consentMarketing: marketing, consentInformational: informational } = parsed.data;
-
-  let ip: string | null = null;
-  try { ip = clientAddress ?? null; } catch { ip = null; }
   const userAgent = request.headers.get('user-agent');
 
   try {

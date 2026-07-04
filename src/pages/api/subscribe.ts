@@ -7,6 +7,7 @@ import type { APIRoute } from 'astro';
 import { db } from '../../lib/db';
 import { Resend } from 'resend';
 import { subscribeSchema, firstError } from '../../lib/schemas';
+import { rateLimited } from '../../lib/rateLimit';
 
 const json = (body: unknown, status = 200) =>
   new Response(JSON.stringify(body), { status, headers: { 'Content-Type': 'application/json' } });
@@ -29,15 +30,18 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
   // Honeypot: real users never fill this hidden field; bots do. Pretend success.
   if (str(body.company)) return json({ ok: true });
 
+  let ip: string | null = null;
+  try { ip = clientAddress ?? null; } catch { ip = null; }
+  if (rateLimited(ip)) {
+    return json({ error: 'Too many submissions from your network. Please try again in a few minutes.' }, 429);
+  }
+
   const parsed = subscribeSchema.safeParse(body);
   if (!parsed.success) {
     return json({ error: firstError(parsed.error) }, 400);
   }
   const email = parsed.data.email;
   const source = parsed.data.source ?? 'unknown';
-
-  let ip: string | null = null;
-  try { ip = clientAddress ?? null; } catch { ip = null; }
 
   // 1) Persist to the database (source of truth). Re-signups are idempotent.
   try {

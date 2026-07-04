@@ -6,6 +6,7 @@ import type { APIRoute } from 'astro';
 import { db } from '../../lib/db';
 import { Resend } from 'resend';
 import { contactSchema, firstError } from '../../lib/schemas';
+import { rateLimited } from '../../lib/rateLimit';
 
 const json = (body: unknown, status = 200) =>
   new Response(JSON.stringify(body), { status, headers: { 'Content-Type': 'application/json' } });
@@ -23,14 +24,17 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
   // Honeypot: real users never fill this hidden field; bots do. Pretend success.
   if (str(body.company)) return json({ ok: true });
 
+  let ip: string | null = null;
+  try { ip = clientAddress ?? null; } catch { ip = null; }
+  if (rateLimited(ip)) {
+    return json({ error: 'Too many messages from your network. Please try again in a few minutes.' }, 429);
+  }
+
   const parsed = contactSchema.safeParse(body);
   if (!parsed.success) {
     return json({ error: firstError(parsed.error) }, 400);
   }
   const { name, email, phone, message } = parsed.data;
-
-  let ip: string | null = null;
-  try { ip = clientAddress ?? null; } catch { ip = null; }
 
   // 1) Persist to the database (source of truth).
   try {
@@ -54,7 +58,8 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
         from,
         to,
         replyTo: email,
-        subject: `New contact message from ${name}`,
+        // Collapse any embedded line breaks: the subject must stay a single line.
+        subject: `New contact message from ${name.replace(/[\r\n]+/g, ' ')}`,
         text: [`Name:  ${name}`, `Email: ${email}`, `Phone: ${phone}`, '', 'Message:', message].join('\n'),
       });
     } catch (err) {

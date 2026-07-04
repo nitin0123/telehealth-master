@@ -56,6 +56,8 @@ import { CONTACT } from '../data/seo';
 
     <!-- Consent capture form -->
     <form data-sms-form novalidate class="mt-8 space-y-5">
+      <!-- Honeypot: hidden from users, catches bots -->
+      <input type="text" name="company" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
       <div>
         <label class="block text-sm font-medium text-ink mb-1" for="sms-phone">Phone Number <span class="text-clay">*</span></label>
         <input id="sms-phone" name="phone" type="tel" required placeholder="+1 (555) 123-4567"
@@ -113,6 +115,8 @@ import { CONTACT } from '../data/seo';
           phoneNumber: phone,
           consentMarketing: !!marketing,
           consentInformational: !!informational,
+          // Honeypot passthrough; the endpoint silently drops bot submissions.
+          company: (form.elements.namedItem('company') as HTMLInputElement)?.value ?? '',
         };
         const check = smsConsentSchema.safeParse(payload);
         if (!check.success) {
