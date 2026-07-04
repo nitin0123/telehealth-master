@@ -78,7 +78,6 @@ const ytIcon = '<svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><pa
         <p class="eyebrow uppercase text-xs font-semibold text-clay mb-3">Reach us directly</p>
         <!-- Email/phone are base64-encoded and only decoded in the browser on
              click, so address-harvesting bots reading the HTML get nothing. -->
-        <p class="text-stone text-sm">Email and phone</p>
         <button
           data-reveal-contact
           data-email={Buffer.from(CONTACT.email).toString('base64')}
