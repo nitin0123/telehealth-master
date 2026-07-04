@@ -14,7 +14,7 @@ export const SITE = {
   titleTemplate: '%s | ResetWell Plus',
   defaultDescription:
     "ResetWell Plus is India's expert-led platform for perimenopause and menopause. Consult a menopause specialist online, check your symptoms, and get a personalised treatment plan.",
-  ogImage: '/og-default.svg',
+  ogImage: '/og-default.jpg',
   twitter: '@resetwellplus',
 };
 
