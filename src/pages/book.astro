@@ -3,7 +3,8 @@ import PageLayout from '../layouts/PageLayout.astro';
 
 // Written by Swati Singh (co-founder). Blurb + cover sourced from the Amazon
 // listing below.
-const AMAZON_URL = 'https://www.amazon.com/MENOPAUSE-Me-TIME-RECLAIM-YOUR-ebook/dp/B0GX32VS9L';
+const AMAZON_IN_URL = 'https://amzn.in/d/0bQwcnbR';
+const AMAZON_INTL_URL = 'https://www.amazon.com/MENOPAUSE-Me-TIME-RECLAIM-YOUR-ebook/dp/B0GX32VS9L';
 const discover = [
   'The early whispers of perimenopause most women miss until they\'re roaring',
   'The real story on HRT, stripped of outdated fear and Hollywood headlines',
@@ -31,8 +32,9 @@ const discover = [
         height="1024"
         class="w-full rounded-2xl shadow-xl shadow-ever/20"
       />
-      <a href={AMAZON_URL} target="_blank" rel="noopener" class="btn-primary mt-6 w-full">Buy on Amazon →</a>
-      <p class="mt-2 text-center text-xs text-stone">Kindle edition · Amazon US</p>
+      <a href={AMAZON_IN_URL} target="_blank" rel="noopener" class="btn-primary mt-6 w-full">Buy on Amazon India →</a>
+      <a href={AMAZON_INTL_URL} target="_blank" rel="noopener" class="btn-ghost mt-3 w-full">Amazon US/Canada/UK →</a>
+      <p class="mt-2 text-center text-xs text-stone">Kindle edition</p>
     </div>
 
     <!-- Blurb -->
