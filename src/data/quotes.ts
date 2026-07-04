@@ -1,5 +1,6 @@
 // 300 original daily wellness and motivational quotes for women in midlife,
-// shown one per day by the DailyQuote component (picked by day of year, IST).
+// shown one per day by the DailyQuote component (picked by days since the
+// Unix epoch in IST, so the list cycles with no repeats inside any 300 days).
 // Keep each under ~20 words, warm and midlife-aware. House style: no em-dashes.
 // All quotes are original to ResetWell Plus; do not attribute them to public figures.
 export const quotes: string[] = [
