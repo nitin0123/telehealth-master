@@ -188,7 +188,7 @@ export const faqSections: FaqSection[] = [
     ],
   },
   {
-    title: 'Sexual and Urinary Health (Often the Hardest to Ask About)',
+    title: 'Sexual and Urinary Health',
     items: [
       {
         q: 'Vaginal dryness and painful sex started after menopause. Is this permanent?',
