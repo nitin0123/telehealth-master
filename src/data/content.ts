@@ -184,4 +184,14 @@ export const pressFeatures: PressFeature[] = [
     date: 'Jun 2026',
     img: '/press-dainik-jagran.webp',
   },
+  {
+    publication: 'The Hindustan Express',
+    title: 'Swati Singh & Reshma Tiwari: Why so many women feel angry during menopause',
+    href: 'https://thehindustanexpress.co.in/swati-singh-reshma-tiwari-why-so-many-women-feel-angry-during-menopause/',
+  },
+  {
+    publication: 'India Global Live',
+    title: "Why don't we talk about sex? Swati Singh & Reshma Tiwari on menopause, intimacy, silence & women's wellbeing",
+    href: 'https://indiagloballive.co.in/why-dont-we-talk-about-sex-swati-singh-reshma-tiwari-on-menopause-intimacy-silence-womens-wellbeing/',
+  },
 ];
