@@ -14,12 +14,12 @@ export interface CareNeed {
 }
 export const careNeeds: CareNeed[] = [
   { title: 'Perimenopause', href: '/understand-your-symptoms/perimenopause-101', img: '/illustrations/perimenopause.jpeg', blurb: 'The early years of change, explained.' },
-  { title: 'Menopause', href: '/understand-your-symptoms/knowledge-centre', img: '/illustrations/menopause.jpeg', blurb: 'Care for the transition and beyond.' },
-  { title: 'Sleep', href: '/understand-your-symptoms/knowledge-centre', img: '/illustrations/sleep.jpeg', blurb: 'Rest that actually restores you.' },
-  { title: 'Mood & Memory', href: '/understand-your-symptoms/knowledge-centre', img: '/illustrations/mood-memory.jpeg', blurb: 'Steadier mood, sharper focus.' },
-  { title: 'Weight', href: '/understand-your-symptoms/knowledge-centre', img: '/illustrations/weight.jpeg', blurb: 'Midlife metabolism, understood.' },
-  { title: 'Hair & Skin', href: '/understand-your-symptoms/knowledge-centre', img: '/illustrations/hair-skin.jpeg', blurb: 'Hormonal changes, addressed.' },
-  { title: 'Sexual Wellness', href: '/understand-your-symptoms/knowledge-centre', img: '/illustrations/sexual-wellness.jpeg', blurb: 'Intimacy and comfort, restored.' },
+  { title: 'Menopause', href: '/community/faqs', img: '/illustrations/menopause.jpeg', blurb: 'Care for the transition and beyond.' },
+  { title: 'Sleep', href: '/community/faqs', img: '/illustrations/sleep.jpeg', blurb: 'Rest that actually restores you.' },
+  { title: 'Mood & Memory', href: '/community/faqs', img: '/illustrations/mood-memory.jpeg', blurb: 'Steadier mood, sharper focus.' },
+  { title: 'Weight', href: '/community/faqs', img: '/illustrations/weight.jpeg', blurb: 'Midlife metabolism, understood.' },
+  { title: 'Hair & Skin', href: '/community/faqs', img: '/illustrations/hair-skin.jpeg', blurb: 'Hormonal changes, addressed.' },
+  { title: 'Sexual Wellness', href: '/community/faqs', img: '/illustrations/sexual-wellness.jpeg', blurb: 'Intimacy and comfort, restored.' },
   { title: 'Bone & Heart', href: '/get-care/how-it-works', img: '/illustrations/bone-heart.jpeg', blurb: 'Protect your long-term health.' },
 ];
 

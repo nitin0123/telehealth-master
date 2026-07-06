@@ -1,5 +1,12 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    {
+      "source": "/understand-your-symptoms/knowledge-centre",
+      "destination": "/understand-your-symptoms/perimenopause-101",
+      "permanent": false
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)\\.(jpg|jpeg|png|webp|avif|gif|svg|ico)",

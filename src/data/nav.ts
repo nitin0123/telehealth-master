@@ -21,7 +21,6 @@ export const nav: NavSection[] = [
     children: [
       { label: 'Perimenopause 101', href: '/understand-your-symptoms/perimenopause-101', blurb: 'Start here: the basics' },
       { label: 'Symptom Checker', href: '/understand-your-symptoms/symptom-checker', blurb: '2-min self-assessment' },
-      { label: 'Knowledge Centre', href: '/understand-your-symptoms/knowledge-centre', blurb: 'Guides & research' },
     ],
   },
   {
