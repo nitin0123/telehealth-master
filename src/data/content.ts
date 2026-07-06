@@ -162,6 +162,7 @@ export interface PressFeature {
   /** Thumbnail in public/, e.g. '/press-dainik-jagran.webp'. Omit for a branded text fallback. */
   img?: string;
 }
+// Ordered newest first; keep it that way when adding entries.
 export const pressFeatures: PressFeature[] = [
   {
     publication: 'Ahmedabad Mirror',
@@ -169,6 +170,20 @@ export const pressFeatures: PressFeature[] = [
     href: 'https://www.ahmedabadmirror.com/swati-singh--reshma-tiwari-why-so-many-women-feel-angry-during-menopause/81916930.html',
     date: 'Jul 2026',
     img: '/press-ahmedabad-mirror.jpg',
+  },
+  {
+    publication: 'The Hindustan Express',
+    title: 'Swati Singh & Reshma Tiwari: Why so many women feel angry during menopause',
+    href: 'https://thehindustanexpress.co.in/swati-singh-reshma-tiwari-why-so-many-women-feel-angry-during-menopause/',
+    date: 'Jul 2026',
+    img: '/press-hindustan-express.jpg',
+  },
+  {
+    publication: 'India Global Live',
+    title: "Why don't we talk about sex? Swati Singh & Reshma Tiwari on menopause, intimacy, silence & women's wellbeing",
+    href: 'https://indiagloballive.co.in/why-dont-we-talk-about-sex-swati-singh-reshma-tiwari-on-menopause-intimacy-silence-womens-wellbeing/',
+    date: 'Jun 2026',
+    img: '/press-india-global-live.jpg',
   },
   {
     publication: 'Mid-Day',
@@ -183,15 +198,5 @@ export const pressFeatures: PressFeature[] = [
     href: 'https://english.dainikjagranmpcg.com/life-style/indias-resetwell-plus-founders-swati-singh-and-reshma-tiwari-say/article-20724',
     date: 'Jun 2026',
     img: '/press-dainik-jagran.webp',
-  },
-  {
-    publication: 'The Hindustan Express',
-    title: 'Swati Singh & Reshma Tiwari: Why so many women feel angry during menopause',
-    href: 'https://thehindustanexpress.co.in/swati-singh-reshma-tiwari-why-so-many-women-feel-angry-during-menopause/',
-  },
-  {
-    publication: 'India Global Live',
-    title: "Why don't we talk about sex? Swati Singh & Reshma Tiwari on menopause, intimacy, silence & women's wellbeing",
-    href: 'https://indiagloballive.co.in/why-dont-we-talk-about-sex-swati-singh-reshma-tiwari-on-menopause-intimacy-silence-womens-wellbeing/',
   },
 ];
