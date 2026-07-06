@@ -79,6 +79,7 @@ dev, in `.env.local`. See `.env.example`.
 | `PUBLIC_GTM_ID` | Optional. Google Tag Manager container id; loads only after cookie consent |
 | `PUBLIC_GA4_ID` | Optional. GA4 measurement id via gtag.js; skip if GA4 is a tag inside GTM |
 | `PUBLIC_META_PIXEL_ID` | Optional. Meta Pixel id; loads only after cookie consent |
+| `PUBLIC_META_DOMAIN_VERIFICATION` | Optional. Meta domain-verification meta-tag token |
 | `PUBLIC_GSC_VERIFICATION` | Optional. Google Search Console meta-tag verification token |
 
 ## Database

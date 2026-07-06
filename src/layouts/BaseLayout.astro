@@ -9,6 +9,9 @@ import { SITE, organizationSchema } from '../data/seo';
 
 // Google Search Console ownership verification (meta-tag method).
 const gscToken = import.meta.env.PUBLIC_GSC_VERIFICATION || '';
+// Meta (Facebook) domain verification for ad campaigns (Business Settings →
+// Brand Safety → Domains → Meta-tag method).
+const fbDomainToken = import.meta.env.PUBLIC_META_DOMAIN_VERIFICATION || '';
 
 interface Props {
   title?: string;
@@ -49,6 +52,7 @@ const robots = noindex ? 'noindex, nofollow' : 'index, follow';
     {keywords && <meta name="keywords" content={keywords} />}
     <meta name="robots" content={robots} />
     {gscToken && <meta name="google-site-verification" content={gscToken} />}
+    {fbDomainToken && <meta name="facebook-domain-verification" content={fbDomainToken} />}
     <link rel="canonical" href={canonical} />
 
     <!-- Open Graph -->
