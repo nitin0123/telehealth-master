@@ -26,7 +26,6 @@ By the end of the week, she was asking herself what so many women silently wonde
 
 **"What is happening to me?"**
 
----
 
 ## It Might Be Perimenopause
 
@@ -61,7 +60,6 @@ You're not alone.
 
 **The important truth:** this is biological, not a sign that you're "losing it."
 
----
 
 ## 2. Hot Flashes & Night Sweats
 
@@ -86,7 +84,6 @@ Sound familiar?
 
 **Why it matters:** it's not just discomfort, it can impact **confidence, sleep, and daily life**.
 
----
 
 ## 3. Sleep Disruptions
 
@@ -109,7 +106,6 @@ Many women find themselves:
 
 It becomes a cycle.
 
----
 
 ## So… What Can You Do?
 
@@ -125,7 +121,6 @@ There are **evidence-based ways** to manage these symptoms, including:
 
 The key is understanding what's happening in your body first.
 
----
 
 ## You're Not Alone
 
@@ -143,7 +138,6 @@ Just like Ava eventually realized, the first step isn't fixing everything. It's 
 
 **"Could this be menopause?"**
 
----
 
 Midlife isn't the problem. **Lack of awareness is.**
 
