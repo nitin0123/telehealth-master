@@ -12,6 +12,11 @@ export default defineConfig({
   // run as Vercel serverless functions.
   output: 'hybrid',
   adapter: vercel(),
+  // @astrojs/sitemap writes /sitemap-index.xml, but many crawlers and SEO
+  // tools blindly request /sitemap.xml; give them a real redirect.
+  redirects: {
+    '/sitemap.xml': '/sitemap-index.xml',
+  },
   integrations: [
     tailwind(),
     sitemap({
