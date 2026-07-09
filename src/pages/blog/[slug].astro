@@ -159,7 +159,15 @@ const articleSchema = {
     padding-left: 1rem;
     color: theme('colors.stone');
   }
+  /* Consistent image footprint: centered, capped width AND height so square
+     infographics, wide covers, and small diagrams all render at a similar size */
   .post-body img {
+    display: block;
+    width: auto;
+    max-width: min(100%, 680px);
+    max-height: 420px;
+    margin-left: auto;
+    margin-right: auto;
     border-radius: 1rem;
     border: 1px solid theme('colors.sand');
   }
@@ -167,6 +175,7 @@ const articleSchema = {
   .post-body .img-pair {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     gap: 0.875rem;
     margin-top: 1.25rem;
   }
@@ -174,6 +183,7 @@ const articleSchema = {
     flex: 1 1 200px;
     max-width: 285px;
     height: auto;
+    margin: 0;
     object-fit: cover;
   }
 </style>
