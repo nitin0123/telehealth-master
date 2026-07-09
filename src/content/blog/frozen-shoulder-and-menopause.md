@@ -4,10 +4,11 @@ subtitle: "A painful, deeply frustrating symptom flying under the radar that bli
 synopsis: "If reaching for a seatbelt or sleeping on your side has become agonizing, you are not alone. There is a direct biological link between plunging hormones and stiff, locked joints."
 author: ResetWell Plus Editorial Team
 publishedAt: 2026-06-26
-cover: /blog/frozen-shoulder-and-menopause/cover.png
+cover: /blog/frozen-shoulder-and-menopause/cover.jpg
+keywords: "frozen shoulder menopause, adhesive capsulitis women, oestrogen loss joint pain, menopause shoulder pain, frozen shoulder stages, menopause joint stiffness"
 ---
 
-<img src="/blog/frozen-shoulder-and-menopause/cover.png" alt="Frozen Shoulder and Menopause: woman holding her inflamed shoulder" width="1066" height="600" loading="lazy" />
+<img src="/blog/frozen-shoulder-and-menopause/cover.jpg" alt="Frozen Shoulder and Menopause: woman holding her inflamed shoulder" width="900" height="506" loading="lazy" />
 
 When we talk about menopause, the conversation usually centres around hot flashes, night sweats, and mood swings. But there is a painful, deeply frustrating symptom flying under the radar that blindsides thousands of women in midlife: frozen shoulder.
 
@@ -41,7 +42,7 @@ Your joints rely on synovial fluid to stay lubricated and move smoothly. Oestrog
 
 A menopausal frozen shoulder typically progresses through three distinct, grueling phases:
 
-<img src="/blog/frozen-shoulder-and-menopause/inline-2.png" alt="Table of the three frozen shoulder stages: freezing (6 weeks to 9 months, severe pain that worsens at night), frozen (4 to 12 months, locked and stiff), and thawing (6 months to 2 years, motion slowly returns)" width="600" height="400" loading="lazy" />
+<img src="/blog/frozen-shoulder-and-menopause/inline-2.jpg" alt="Table of the three frozen shoulder stages: freezing (6 weeks to 9 months, severe pain that worsens at night), frozen (4 to 12 months, locked and stiff), and thawing (6 months to 2 years, motion slowly returns)" width="600" height="400" loading="lazy" />
 
 ## Actionable Steps: How to Defrost Your Shoulder
 

@@ -16,7 +16,7 @@ interface Props {
 }
 const { post } = Astro.props;
 const { Content } = await post.render();
-const { title, subtitle, synopsis, author, publishedAt, cover } = post.data;
+const { title, subtitle, synopsis, author, publishedAt, cover, keywords } = post.data;
 
 // timeZone UTC: frontmatter dates are date-only, so formatting must not shift
 // with the build machine's timezone.
@@ -33,6 +33,7 @@ const articleSchema = {
   publisher: { '@type': 'Organization', name: BRAND, url: SITE.url },
   mainEntityOfPage: new URL(Astro.url.pathname, SITE.url).href,
   ...(cover ? { image: new URL(cover, SITE.url).href } : {}),
+  ...(keywords ? { keywords } : {}),
 };
 ---
 
@@ -42,6 +43,7 @@ const articleSchema = {
   section="Blog"
   sectionHref="/blog"
   description={synopsis}
+  keywords={keywords}
   image={cover}
   ogType="article"
 >

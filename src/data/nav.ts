@@ -11,7 +11,9 @@ export interface NavSection {
   label: string;
   /** Shorter label used in the desktop bar where space is tight */
   shortLabel?: string;
-  children: NavChild[];
+  /** When set, the item renders as a plain link instead of a dropdown */
+  href?: string;
+  children?: NavChild[];
 }
 
 export const nav: NavSection[] = [
@@ -47,6 +49,10 @@ export const nav: NavSection[] = [
       { label: 'Stories of Reset', href: '/community/stories-of-reset' },
       { label: 'FAQs', href: '/community/faqs' },
     ],
+  },
+  {
+    label: 'Blog',
+    href: '/blog',
   },
   {
     label: 'About',

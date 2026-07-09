@@ -3,7 +3,9 @@ title: 3 Most Common Menopause Symptoms
 subtitle: And why they're not "just in your head"
 synopsis: You don't have to just live with these symptoms. Evidence-based options exist.
 author: ResetWell Plus Editorial Team
+cover: /blog/3-most-common-menopause-symptoms/brain-fog-1.png
 publishedAt: 2026-03-31
+keywords: "menopause symptoms, perimenopause symptoms India, brain fog menopause, hot flashes and night sweats, menopause sleep problems, early signs of perimenopause"
 ---
 
 It started on a Tuesday.

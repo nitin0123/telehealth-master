@@ -4,10 +4,11 @@ subtitle: "Brain fog is a biological speed bump, not a career dead end"
 synopsis: "Word-retrieval blanks in a high-stakes meeting? You aren't losing your edge. Practical strategies to bypass the fog, protect your productivity, and keep your confidence rock-solid."
 author: ResetWell Plus Editorial Team
 publishedAt: 2026-06-04
-cover: /blog/manage-menopause-brain-fog-at-work/cover.png
+cover: /blog/manage-menopause-brain-fog-at-work/cover.jpg
+keywords: "menopause brain fog, brain fog at work, menopause memory lapses, cognitive symptoms of menopause, how to manage brain fog, menopause and concentration"
 ---
 
-<img src="/blog/manage-menopause-brain-fog-at-work/cover.png" alt="Clear Mind, Confident You: professional woman focused at her laptop" width="1066" height="600" loading="lazy" />
+<img src="/blog/manage-menopause-brain-fog-at-work/cover.jpg" alt="Clear Mind, Confident You: professional woman focused at her laptop" width="900" height="506" loading="lazy" />
 
 You're in the middle of a high-stakes meeting, leading a presentation you've prepared for all week. Suddenly, you look at your slide, and the key word you need completely vanishes from your mind. Your heart rate spikes. You stammer, substitute a clunky phrase, and push through, but inside, you feel completely shaken.
 
@@ -17,7 +18,7 @@ Brain fog is one of the most frustrating, unsettling, and silent symptoms of the
 
 It isn't. With the right strategies, you can manage menopause brain fog at work, protect your productivity, and keep your professional confidence rock-solid.
 
-<img src="/blog/manage-menopause-brain-fog-at-work/inline-1.png" alt="Your mind may pause, but you don't: woman at her desk with a mug reading Focused, Capable, Confident" width="1000" height="1000" loading="lazy" />
+<img src="/blog/manage-menopause-brain-fog-at-work/inline-1.jpg" alt="Your mind may pause, but you don't: woman at her desk with a mug reading Focused, Capable, Confident" width="900" height="900" loading="lazy" />
 
 ## What Exactly is Menopause Brain Fog?
 
@@ -74,7 +75,7 @@ Brain fog is exacerbated by two classic menopausal disruptors: poor sleep (often
 - **The Afternoon Slump:** avoid heavy, carb-laden lunches that cause insulin spikes. A blood sugar crash on top of menopause brain fog will completely tank your afternoon focus. Opt for high-protein, healthy-fat meals (like salmon, avocado, and leafy greens).
 - **Sleep Hygiene:** even if night sweats wake you up, keeping your room at a cool 18°C (65°F) and using layered, breathable bedding can help you get back to sleep faster, preserving critical REM cycles where memory consolidation happens.
 
-<img src="/blog/manage-menopause-brain-fog-at-work/inline-2.png" alt="Focus. Adapt. Thrive. You've got this: desk scene with a purple mug reading Stay focused, Stay strong" width="1000" height="1000" loading="lazy" />
+<img src="/blog/manage-menopause-brain-fog-at-work/inline-2.jpg" alt="Focus. Adapt. Thrive. You've got this: desk scene with a purple mug reading Stay focused, Stay strong" width="900" height="900" loading="lazy" />
 
 ## How to Protect and Rebuild Your Professional Confidence
 
@@ -103,7 +104,7 @@ While brain fog is a normal part of the menopausal transition, you don't have to
 
 If cognitive difficulties are severely impacting your quality of life, talk to a healthcare professional or a certified menopause specialist. They can discuss evidence-based treatments, such as Hormone Replacement Therapy (HRT), which can stabilize estrogen levels and significantly improve cognitive clarity, sleep quality, and overall well-being.
 
-<img src="/blog/manage-menopause-brain-fog-at-work/inline-3.png" alt="Clear Mind, Confident You: smart strategies for menopause brain fog at work, focus better, stay organized, own your confidence" width="1000" height="1000" loading="lazy" />
+<img src="/blog/manage-menopause-brain-fog-at-work/inline-3.jpg" alt="Clear Mind, Confident You: smart strategies for menopause brain fog at work, focus better, stay organized, own your confidence" width="900" height="900" loading="lazy" />
 
 ## Take Control of Your Clarity with ResetWell Plus
 
