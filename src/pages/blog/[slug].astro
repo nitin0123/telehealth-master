@@ -1,0 +1,153 @@
+---
+// Blog post template. Every post in src/content/blog/*.md renders through
+// this page; add a new markdown file and it gets a route automatically.
+import { getCollection, type CollectionEntry } from 'astro:content';
+import PageLayout from '../../layouts/PageLayout.astro';
+import { SITE, BRAND } from '../../data/seo';
+import { BOOK_HREF } from '../../data/nav';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  return posts.map((post) => ({ params: { slug: post.slug }, props: { post } }));
+}
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+}
+const { post } = Astro.props;
+const { Content } = await post.render();
+const { title, subtitle, synopsis, author, publishedAt, cover } = post.data;
+
+// timeZone UTC: frontmatter dates are date-only, so formatting must not shift
+// with the build machine's timezone.
+const dateLabel = publishedAt.toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
+const readMins = Math.max(1, Math.round(post.body.split(/\s+/).length / 220));
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: title,
+  description: synopsis,
+  datePublished: publishedAt.toISOString(),
+  author: { '@type': 'Organization', name: author },
+  publisher: { '@type': 'Organization', name: BRAND, url: SITE.url },
+  mainEntityOfPage: new URL(Astro.url.pathname, SITE.url).href,
+  ...(cover ? { image: new URL(cover, SITE.url).href } : {}),
+};
+---
+
+<PageLayout
+  title={title}
+  lede={subtitle}
+  section="Blog"
+  sectionHref="/blog"
+  description={synopsis}
+  image={cover}
+  ogType="article"
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+  </Fragment>
+
+  <p class="-mt-6 mb-8 text-sm text-stone reveal" style="--reveal-delay:120ms">
+    {author} · {dateLabel} · {readMins} min read
+  </p>
+
+  <article class="post-body max-w-3xl reveal" style="--reveal-delay:160ms">
+    <Content />
+  </article>
+
+  <!-- Post CTA: mirrors the site-wide "check your symptoms / book" pathways -->
+  <aside class="max-w-3xl mt-10 rounded-4xl bg-white border border-sand shadow-sm p-6 sm:p-8 reveal">
+    <h2 class="font-serif text-2xl text-ever">Wondering if this is perimenopause?</h2>
+    <p class="mt-2 text-stone">
+      Take our 2-minute symptom self-assessment, or talk to a menopause specialist who will actually listen.
+    </p>
+    <div class="mt-5 flex flex-wrap gap-3">
+      <a href="/understand-your-symptoms/symptom-checker" class="inline-flex items-center rounded-full bg-clay hover:bg-claydk transition text-white text-sm font-semibold px-5 py-2.5">Check Your Symptoms</a>
+      <a href={BOOK_HREF} class="inline-flex items-center rounded-full border border-clay/40 text-clay hover:bg-peach/40 transition text-sm font-semibold px-5 py-2.5">Book a Consultation</a>
+    </div>
+  </aside>
+
+  <p class="max-w-3xl mt-8 reveal">
+    <a href="/blog" class="text-sm font-medium text-clay hover:text-claydk transition">&larr; Back to all posts</a>
+  </p>
+</PageLayout>
+
+<style is:global>
+  /* Article typography for markdown-rendered posts, matched to site tokens */
+  .post-body {
+    color: theme('colors.ink' / 85%);
+    line-height: 1.7;
+  }
+  .post-body > * + * {
+    margin-top: 1rem;
+  }
+  .post-body h2 {
+    font-size: 1.5rem;
+    line-height: 1.2;
+    color: theme('colors.ever');
+    font-weight: 600;
+    margin-top: 2.25rem;
+  }
+  @media (min-width: 1024px) {
+    .post-body h2 {
+      font-size: 1.75rem;
+    }
+  }
+  .post-body h3 {
+    font-size: 1.2rem;
+    color: theme('colors.ever');
+    font-weight: 600;
+    margin-top: 1.75rem;
+  }
+  .post-body strong {
+    color: theme('colors.ink');
+    font-weight: 600;
+  }
+  .post-body a {
+    color: theme('colors.clay');
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .post-body a:hover {
+    color: theme('colors.claydk');
+  }
+  .post-body ul {
+    list-style: disc;
+    padding-left: 1.4rem;
+  }
+  .post-body ul li {
+    margin-top: 0.35rem;
+  }
+  .post-body ul li::marker {
+    color: theme('colors.clay');
+  }
+  .post-body hr {
+    border: 0;
+    border-top: 1px solid theme('colors.sand');
+    margin: 2rem 0;
+  }
+  .post-body blockquote {
+    border-left: 3px solid theme('colors.sage');
+    padding-left: 1rem;
+    color: theme('colors.stone');
+  }
+  .post-body img {
+    border-radius: 1rem;
+    border: 1px solid theme('colors.sand');
+  }
+  /* Side-by-side illustration pairs used inside posts */
+  .post-body .img-pair {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.875rem;
+    margin-top: 1.25rem;
+  }
+  .post-body .img-pair img {
+    flex: 1 1 200px;
+    max-width: 285px;
+    height: auto;
+    object-fit: cover;
+  }
+</style>
