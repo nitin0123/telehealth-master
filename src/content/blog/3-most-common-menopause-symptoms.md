@@ -6,6 +6,13 @@ author: ResetWell Plus Editorial Team
 cover: /blog/3-most-common-menopause-symptoms/brain-fog-1.png
 publishedAt: 2026-03-31
 keywords: "menopause symptoms, perimenopause symptoms India, brain fog menopause, hot flashes and night sweats, menopause sleep problems, early signs of perimenopause"
+faq:
+  - q: "What are the most common symptoms of perimenopause?"
+    a: "The three that show up most often are brain fog and memory lapses, hot flashes and night sweats, and sleep disruptions. They are driven by fluctuating estrogen levels, and they are biological, not a sign that you are losing it."
+  - q: "At what age does perimenopause usually start?"
+    a: "Many women enter perimenopause in their late 30s or 40s, often without knowing it, because early symptoms like forgetfulness and disturbed sleep are easy to blame on stress or a busy life."
+  - q: "Can menopause symptoms be treated?"
+    a: "Yes. Evidence-based options include lifestyle and nutrition changes, stress and sleep support, and medical options such as Hormone Replacement Therapy (HRT) when appropriate. The first step is understanding what is happening in your body."
 ---
 
 It started on a Tuesday.

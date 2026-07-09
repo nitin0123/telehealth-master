@@ -6,6 +6,13 @@ author: ResetWell Plus Editorial Team
 publishedAt: 2026-05-19
 cover: /blog/why-are-we-losing-top-tier-female-talent-at-the-peak-of-their-careers/img-1.jpg
 keywords: "menopause and career, women in leadership menopause, menopause productivity at work, retaining female talent, menopause support for employees"
+faq:
+  - q: "Why do women leave the workforce during menopause?"
+    a: "Rarely because ambition fades. These decisions are usually driven by exhaustion, lack of awareness, inadequate healthcare support, and workplace cultures that hesitate to discuss menopause openly."
+  - q: "How common are menopause symptoms at work?"
+    a: "CIPD research found 79% of women were less able to concentrate, 68% experienced increased stress, and around one in six considered leaving work because of a lack of support."
+  - q: "What can organizations do to retain women through menopause?"
+    a: "Encourage open conversations, train managers and HR to respond sensitively, offer flexible work arrangements, provide access to wellness and healthcare support, and create policies that treat menopause as a workplace well-being issue."
 ---
 
 <img src="/blog/why-are-we-losing-top-tier-female-talent-at-the-peak-of-their-careers/img-1.jpg" alt="Illustration of a professional woman in a boardroom, career growth charts on one side and menopause symptom icons swirling on the other" width="712" height="343" srcset="/blog/why-are-we-losing-top-tier-female-talent-at-the-peak-of-their-careers/img-1-480.jpg 480w, /blog/why-are-we-losing-top-tier-female-talent-at-the-peak-of-their-careers/img-1.jpg 712w" sizes="(max-width: 640px) 92vw, 680px" loading="lazy" />

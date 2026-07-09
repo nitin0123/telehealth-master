@@ -17,6 +17,8 @@ const blog = defineCollection({
     cover: z.string().optional(),
     /** Comma-separated SEO/AEO keyword phrases for the meta tag + JSON-LD */
     keywords: z.string().optional(),
+    /** Q&As rendered at the end of the post + emitted as FAQPage JSON-LD */
+    faq: z.array(z.object({ q: z.string(), a: z.string() })).optional(),
     /** Set true to keep a post out of the index and sitemap while drafting */
     draft: z.boolean().default(false),
   }),

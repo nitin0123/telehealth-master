@@ -6,6 +6,13 @@ author: ResetWell Plus Editorial Team
 publishedAt: 2026-05-08
 cover: /blog/why-menopause-awareness-matters-in-the-workplace/img-1.jpg
 keywords: "menopause awareness in the workplace, menopause at work, supporting employees through menopause, menopause workplace policy, women's health at work"
+faq:
+  - q: "What is menopause?"
+    a: "Menopause is confirmed when a woman has had no periods for 12 consecutive months, usually between ages 45 and 55, as the ovaries stop releasing eggs and produce less estrogen and progesterone."
+  - q: "How does menopause affect women at work?"
+    a: "Symptoms like fatigue, poor concentration, hot flashes, and disturbed sleep can lead to absenteeism, presenteeism, and lost confidence. Nearly 17% of women have considered leaving work due to lack of support."
+  - q: "How can employers support women going through menopause?"
+    a: "Flexible hours and remote options, relaxed dress codes, fair sickness policies, quiet rest areas, easy access to cold water, manager training, open discussion forums, and peer groups such as menopause cafes."
 ---
 
 <img src="/blog/why-menopause-awareness-matters-in-the-workplace/img-1.jpg" alt="Woman in a green blazer standing in a modern office, surrounded by icons for flexible work, rest areas, and hydration" width="727" height="331" srcset="/blog/why-menopause-awareness-matters-in-the-workplace/img-1-480.jpg 480w, /blog/why-menopause-awareness-matters-in-the-workplace/img-1.jpg 727w" sizes="(max-width: 640px) 92vw, 680px" loading="lazy" />

@@ -6,6 +6,13 @@ author: ResetWell Plus Editorial Team
 publishedAt: 2026-06-26
 cover: /blog/frozen-shoulder-and-menopause/cover.jpg
 keywords: "frozen shoulder menopause, adhesive capsulitis women, oestrogen loss joint pain, menopause shoulder pain, frozen shoulder stages, menopause joint stiffness"
+faq:
+  - q: "What is a frozen shoulder?"
+    a: "Medically called adhesive capsulitis, it happens when the connective tissue capsule around the shoulder joint becomes inflamed, thickens, and tightens, creating scar tissue that drastically restricts range of motion."
+  - q: "Is frozen shoulder linked to menopause?"
+    a: "Yes. Frozen shoulder peaks between ages 40 and 60, aligning with perimenopause and menopause. Falling oestrogen reduces collagen production, increases inflammation, and reduces joint lubrication."
+  - q: "How long does a frozen shoulder last?"
+    a: "It typically moves through three stages: freezing (6 weeks to 9 months), frozen (4 to 12 months), and thawing (6 months to 2 years). A proactive approach, including HRT discussion, gentle physical therapy, and anti-inflammatory nutrition, can shorten the timeline."
 ---
 
 <img src="/blog/frozen-shoulder-and-menopause/cover.jpg" alt="Frozen Shoulder and Menopause: woman holding her inflamed shoulder" width="847" height="506" srcset="/blog/frozen-shoulder-and-menopause/cover-480.jpg 480w, /blog/frozen-shoulder-and-menopause/cover.jpg 847w" sizes="(max-width: 640px) 92vw, 680px" loading="lazy" />

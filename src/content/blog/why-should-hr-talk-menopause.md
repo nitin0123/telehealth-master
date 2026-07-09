@@ -6,6 +6,13 @@ author: ResetWell Plus Editorial Team
 publishedAt: 2026-05-29
 cover: /blog/why-should-hr-talk-menopause/cover.jpg
 keywords: "HR menopause policy, menopause in the workplace, menopause employee support, DEI menopause inclusion, talent retention menopause, menopause friendly workplace"
+faq:
+  - q: "Why should HR care about menopause?"
+    a: "It is a talent retention, productivity, and compliance issue. Replacing a senior executive costs far more than reasonable adjustments, and menopause-related discrimination claims are rising globally."
+  - q: "What is the menopause penalty?"
+    a: "Institute for Fiscal Studies research found an average 7.4% decline in earnings within four years of a formal menopause diagnosis, with losses reaching up to 20% by the fourth year."
+  - q: "What does a menopause-friendly workplace look like?"
+    a: "Open dialogue without stigma, flexible hours, low-cost adjustments like desk fans and breathable uniforms, trained and supportive managers, and formal policies so support does not depend on luck."
 ---
 
 <img src="/blog/why-should-hr-talk-menopause/cover.jpg" alt="Why Should HR Talk About Menopause? Because when we talk about menopause, we support talent, retention and inclusion" width="891" height="506" srcset="/blog/why-should-hr-talk-menopause/cover-480.jpg 480w, /blog/why-should-hr-talk-menopause/cover.jpg 891w" sizes="(max-width: 640px) 92vw, 680px" loading="lazy" />
