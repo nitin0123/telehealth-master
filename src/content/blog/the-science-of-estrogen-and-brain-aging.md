@@ -8,7 +8,7 @@ cover: /blog/the-science-of-estrogen-and-brain-aging/cover.jpg
 keywords: "estrogen and brain health, menopause brain aging, estrogen cognitive function, brain fog perimenopause, hormones and memory, neuroprotective effects of estrogen"
 ---
 
-<img src="/blog/the-science-of-estrogen-and-brain-aging/cover.jpg" alt="The Science of Estrogen and Brain Aging: profile of a woman with an illuminated brain illustration" width="853" height="480" loading="lazy" />
+<img src="/blog/the-science-of-estrogen-and-brain-aging/cover.jpg" alt="The Science of Estrogen and Brain Aging: profile of a woman with an illuminated brain illustration" width="833" height="480" loading="lazy" />
 
 What if one of the key factors impacting brain health is not related to any dietary supplements or regular exercise programs, but rather exists in the hormonal balance of your body?
 

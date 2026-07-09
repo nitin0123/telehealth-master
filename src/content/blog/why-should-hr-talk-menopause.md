@@ -8,13 +8,13 @@ cover: /blog/why-should-hr-talk-menopause/cover.jpg
 keywords: "HR menopause policy, menopause in the workplace, menopause employee support, DEI menopause inclusion, talent retention menopause, menopause friendly workplace"
 ---
 
-<img src="/blog/why-should-hr-talk-menopause/cover.jpg" alt="Why Should HR Talk About Menopause? Because when we talk about menopause, we support talent, retention and inclusion" width="900" height="506" loading="lazy" />
+<img src="/blog/why-should-hr-talk-menopause/cover.jpg" alt="Why Should HR Talk About Menopause? Because when we talk about menopause, we support talent, retention and inclusion" width="891" height="506" loading="lazy" />
 
 In a world where equality is the key concern of discussion, many prevalent concerns take the back seat as they are considered private issues. For years workplaces were designed with very specific employee models, side-lining the human touch and considering them merely a workforce that works endlessly and biologically unchanged for decades. Surprisingly, the global gender equality discussion has confined its focus to hiring women, equal pay representation at the entry level, and maternity support. However, some organizations started noticing that most of the women in the workforce in their late 40s and 50s suddenly disappeared from leadership roles. According to the World Economic Forum report, women remain underrepresented in senior leadership globally despite decades of diversity efforts. The main reason for this gap is none other than menopause.
 
 According to the Chartered Institute of Personnel and Development (CIPD) research survey report, 84% of women said that menopause has a mostly negative effect on them at the workplace as the organization remains unsupported during their menopause time. 19% of women reported that menopause symptoms have had a quite negative impact, and 8% said the impact has been very negative for their career progression. Only 26% of women said that their organizations offer flexible working and 25% confirm that organizations allow them to control temperature as a most helpful measure.
 
-<img src="/blog/why-should-hr-talk-menopause/inline-1.jpg" alt="Menopause-friendly workplaces build stronger futures: four colleagues collaborating around a laptop, with steps HR can take" width="900" height="900" loading="lazy" />
+<img src="/blog/why-should-hr-talk-menopause/inline-1.jpg" alt="Menopause-friendly workplaces build stronger futures: four colleagues collaborating around a laptop, with steps HR can take" width="900" height="897" loading="lazy" />
 
 ## The Big Impact
 

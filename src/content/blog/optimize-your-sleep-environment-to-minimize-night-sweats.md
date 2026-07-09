@@ -8,7 +8,7 @@ cover: /blog/optimize-your-sleep-environment-to-minimize-night-sweats/cover.jpg
 keywords: "menopause night sweats, night sweats relief, cooling bedding for night sweats, sleep environment menopause, hot flashes at night, moisture-wicking sleepwear"
 ---
 
-<img src="/blog/optimize-your-sleep-environment-to-minimize-night-sweats/cover.jpg" alt="Optimize Your Sleep Environment to Minimize Night Sweats: calm lavender-toned bedroom at night" width="900" height="506" loading="lazy" />
+<img src="/blog/optimize-your-sleep-environment-to-minimize-night-sweats/cover.jpg" alt="Optimize Your Sleep Environment to Minimize Night Sweats: calm lavender-toned bedroom at night" width="892" height="506" loading="lazy" />
 
 Imagine waking up in the middle of the night soaked with sweat. It is not just frustrating; it completely disrupts your sleep cycle. Your immediate reaction is probably to crank the AC temperature down into the arctic zone. But turning your bedroom into a deep freezer isn't a wise solution at all, and the reason may surprise you.
 
@@ -50,7 +50,7 @@ Wear loose garments made from moisture-wicking fabrics like lightweight pajamas 
 
 Optimizing your sheets and fans handles the external environment, but sustainable relief from menopausal night sweats happens when you support your body from within.
 
-<img src="/blog/optimize-your-sleep-environment-to-minimize-night-sweats/inline-4.jpg" alt="Quick-reference table: what to avoid and what to choose instead for sheets, blankets, sleepwear, and air setup" width="600" height="400" loading="lazy" />
+<img src="/blog/optimize-your-sleep-environment-to-minimize-night-sweats/inline-4.jpg" alt="Quick-reference table: what to avoid and what to choose instead for sheets, blankets, sleepwear, and air setup" width="587" height="378" loading="lazy" />
 
 If you are ready to wake up feeling rested, dry, and balanced, pair these bedroom changes with ResetWell Plus, your daily partner in cooling down hot flashes and reclaiming your deep sleep cycle.
 

@@ -8,7 +8,7 @@ cover: /blog/manage-menopause-brain-fog-at-work/cover.jpg
 keywords: "menopause brain fog, brain fog at work, menopause memory lapses, cognitive symptoms of menopause, how to manage brain fog, menopause and concentration"
 ---
 
-<img src="/blog/manage-menopause-brain-fog-at-work/cover.jpg" alt="Clear Mind, Confident You: professional woman focused at her laptop" width="900" height="506" loading="lazy" />
+<img src="/blog/manage-menopause-brain-fog-at-work/cover.jpg" alt="Clear Mind, Confident You: professional woman focused at her laptop" width="889" height="506" loading="lazy" />
 
 You're in the middle of a high-stakes meeting, leading a presentation you've prepared for all week. Suddenly, you look at your slide, and the key word you need completely vanishes from your mind. Your heart rate spikes. You stammer, substitute a clunky phrase, and push through, but inside, you feel completely shaken.
 

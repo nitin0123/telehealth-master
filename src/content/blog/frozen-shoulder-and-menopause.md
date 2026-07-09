@@ -8,7 +8,7 @@ cover: /blog/frozen-shoulder-and-menopause/cover.jpg
 keywords: "frozen shoulder menopause, adhesive capsulitis women, oestrogen loss joint pain, menopause shoulder pain, frozen shoulder stages, menopause joint stiffness"
 ---
 
-<img src="/blog/frozen-shoulder-and-menopause/cover.jpg" alt="Frozen Shoulder and Menopause: woman holding her inflamed shoulder" width="900" height="506" loading="lazy" />
+<img src="/blog/frozen-shoulder-and-menopause/cover.jpg" alt="Frozen Shoulder and Menopause: woman holding her inflamed shoulder" width="847" height="506" loading="lazy" />
 
 When we talk about menopause, the conversation usually centres around hot flashes, night sweats, and mood swings. But there is a painful, deeply frustrating symptom flying under the radar that blindsides thousands of women in midlife: frozen shoulder.
 
@@ -18,7 +18,7 @@ If you have suddenly found it agonizing to reach for a seatbelt, fasten your bra
 
 Medical professionals call it adhesive capsulitis. It occurs when the flexible connective tissue capsule surrounding your shoulder joint becomes severely inflamed, thickens, and tightens. This creates tight bands of scar tissue called adhesions, drastically restricting your range of motion.
 
-<img src="/blog/frozen-shoulder-and-menopause/inline-1.png" alt="Anatomy comparison of a normal shoulder joint and a frozen shoulder with an inflamed, thickened capsule" width="455" height="222" loading="lazy" />
+<img src="/blog/frozen-shoulder-and-menopause/inline-1.png" alt="Anatomy comparison of a normal shoulder joint and a frozen shoulder with an inflamed, thickened capsule" width="439" height="216" loading="lazy" />
 
 What many women do not realize is that frozen shoulder peaks significantly between the ages of 40 and 60, aligning perfectly with perimenopause and menopause.
 
@@ -42,7 +42,7 @@ Your joints rely on synovial fluid to stay lubricated and move smoothly. Oestrog
 
 A menopausal frozen shoulder typically progresses through three distinct, grueling phases:
 
-<img src="/blog/frozen-shoulder-and-menopause/inline-2.jpg" alt="Table of the three frozen shoulder stages: freezing (6 weeks to 9 months, severe pain that worsens at night), frozen (4 to 12 months, locked and stiff), and thawing (6 months to 2 years, motion slowly returns)" width="600" height="400" loading="lazy" />
+<img src="/blog/frozen-shoulder-and-menopause/inline-2.jpg" alt="Table of the three frozen shoulder stages: freezing (6 weeks to 9 months, severe pain that worsens at night), frozen (4 to 12 months, locked and stiff), and thawing (6 months to 2 years, motion slowly returns)" width="575" height="370" loading="lazy" />
 
 ## Actionable Steps: How to Defrost Your Shoulder
 
