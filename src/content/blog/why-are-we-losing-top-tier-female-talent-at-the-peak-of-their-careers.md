@@ -8,7 +8,7 @@ cover: /blog/why-are-we-losing-top-tier-female-talent-at-the-peak-of-their-caree
 keywords: "menopause and career, women in leadership menopause, menopause productivity at work, retaining female talent, menopause support for employees"
 ---
 
-<img src="/blog/why-are-we-losing-top-tier-female-talent-at-the-peak-of-their-careers/img-1.jpg" alt="Illustration of a professional woman in a boardroom, career growth charts on one side and menopause symptom icons swirling on the other" width="712" height="343" loading="lazy" />
+<img src="/blog/why-are-we-losing-top-tier-female-talent-at-the-peak-of-their-careers/img-1.jpg" alt="Illustration of a professional woman in a boardroom, career growth charts on one side and menopause symptom icons swirling on the other" width="712" height="343" srcset="/blog/why-are-we-losing-top-tier-female-talent-at-the-peak-of-their-careers/img-1-480.jpg 480w, /blog/why-are-we-losing-top-tier-female-talent-at-the-peak-of-their-careers/img-1.jpg 712w" sizes="(max-width: 640px) 92vw, 680px" loading="lazy" />
 
 It takes years to reach the top of the professional ladder, and suddenly, it all seems fragile. Why is there still an unspoken choice between career and biology for women during menopause? And should organizations allow one of their most experienced and productive workforces to quietly disappear simply because of a natural biological transition?
 

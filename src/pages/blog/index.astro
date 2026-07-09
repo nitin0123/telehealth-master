@@ -1,5 +1,6 @@
 ---
 // Blog index: lists every published post in src/content/blog, newest first.
+import fs from 'node:fs';
 import { getCollection } from 'astro:content';
 import PageLayout from '../../layouts/PageLayout.astro';
 
@@ -9,6 +10,12 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
 
 const fmt = (d: Date) => d.toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
 const readMins = (body: string) => Math.max(1, Math.round(body.split(/\s+/).length / 220));
+// 480px-wide variants generated alongside the originals (see public/blog)
+const smallVariant = (cover?: string) => {
+  if (!cover) return null;
+  const small = cover.replace(/\.(jpe?g|png)$/, '-480.$1');
+  return small !== cover && fs.existsSync('public' + small) ? small : null;
+};
 ---
 
 <PageLayout
@@ -31,6 +38,10 @@ const readMins = (body: string) => Math.max(1, Math.round(body.split(/\s+/).leng
           <div class="relative overflow-hidden">
             <img
               src={post.data.cover}
+              srcset={smallVariant(post.data.cover)
+                ? `${smallVariant(post.data.cover)} 480w, ${post.data.cover} 900w`
+                : undefined}
+              sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 440px"
               alt=""
               loading={i < 2 ? 'eager' : 'lazy'}
               decoding="async"

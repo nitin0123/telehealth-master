@@ -8,7 +8,7 @@ cover: /blog/the-science-of-estrogen-and-brain-aging/cover.jpg
 keywords: "estrogen and brain health, menopause brain aging, estrogen cognitive function, brain fog perimenopause, hormones and memory, neuroprotective effects of estrogen"
 ---
 
-<img src="/blog/the-science-of-estrogen-and-brain-aging/cover.jpg" alt="The Science of Estrogen and Brain Aging: profile of a woman with an illuminated brain illustration" width="833" height="480" loading="lazy" />
+<img src="/blog/the-science-of-estrogen-and-brain-aging/cover.jpg" alt="The Science of Estrogen and Brain Aging: profile of a woman with an illuminated brain illustration" width="833" height="480" srcset="/blog/the-science-of-estrogen-and-brain-aging/cover-480.jpg 480w, /blog/the-science-of-estrogen-and-brain-aging/cover.jpg 833w" sizes="(max-width: 640px) 92vw, 680px" loading="lazy" />
 
 What if one of the key factors impacting brain health is not related to any dietary supplements or regular exercise programs, but rather exists in the hormonal balance of your body?
 
@@ -22,7 +22,7 @@ There are many estrogen receptors in specific areas of the brain like the hippoc
 
 It is believed that the hormone affects mood and connectivity of neurons, and plays an important part in general functioning of the brain. One of the reasons why some women feel that their ability to concentrate decreases in perimenopause or menopause is due to changes in hormone levels.
 
-<img src="/blog/the-science-of-estrogen-and-brain-aging/inline-1.jpg" alt="Infographic: how estrogen supports brain health through memory, blood flow, neural connections, and brain protection" width="600" height="400" loading="lazy" />
+<img src="/blog/the-science-of-estrogen-and-brain-aging/inline-1.jpg" alt="Infographic: how estrogen supports brain health through memory, blood flow, neural connections, and brain protection" width="600" height="400" srcset="/blog/the-science-of-estrogen-and-brain-aging/inline-1-480.jpg 480w, /blog/the-science-of-estrogen-and-brain-aging/inline-1.jpg 600w" sizes="(max-width: 640px) 92vw, 680px" loading="lazy" />
 
 ## 2. The Science of Estrogen and Brain Aging
 
@@ -42,7 +42,7 @@ At the same time, scientists note that the process of brain aging is determined 
 
 ## 4. Strategies for Maintaining Cognitive Functioning During Midlife
 
-<img src="/blog/the-science-of-estrogen-and-brain-aging/inline-2.jpg" alt="Infographic: 5 ways to support brain health during midlife, including physical activity, brain-friendly diet, quality sleep, stress management, and expert menopause care" width="900" height="720" loading="lazy" />
+<img src="/blog/the-science-of-estrogen-and-brain-aging/inline-2.jpg" alt="Infographic: 5 ways to support brain health during midlife, including physical activity, brain-friendly diet, quality sleep, stress management, and expert menopause care" width="900" height="720" srcset="/blog/the-science-of-estrogen-and-brain-aging/inline-2-480.jpg 480w, /blog/the-science-of-estrogen-and-brain-aging/inline-2.jpg 900w" sizes="(max-width: 640px) 92vw, 680px" loading="lazy" />
 
 Although hormonal changes are inevitable and expected during this period, there are a number of measures that could be implemented in order to ensure strong brain health of women during their middle age years and beyond. Physical exercise is one of the best options in this situation, as it promotes better blood flow to the brain.
 

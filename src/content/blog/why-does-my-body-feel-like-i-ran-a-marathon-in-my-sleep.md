@@ -8,7 +8,7 @@ cover: /blog/why-does-my-body-feel-like-i-ran-a-marathon-in-my-sleep/img-1.jpg
 keywords: "menopause joint pain, perimenopause body aches, morning stiffness in women, estrogen and joint pain, menopause muscle aches, strength training menopause"
 ---
 
-<img src="/blog/why-does-my-body-feel-like-i-ran-a-marathon-in-my-sleep/img-1.jpg" alt="Silhouette of a woman easing into a yoga stretch outdoors at sunrise" width="900" height="386" loading="lazy" />
+<img src="/blog/why-does-my-body-feel-like-i-ran-a-marathon-in-my-sleep/img-1.jpg" alt="Silhouette of a woman easing into a yoga stretch outdoors at sunrise" width="900" height="386" srcset="/blog/why-does-my-body-feel-like-i-ran-a-marathon-in-my-sleep/img-1-480.jpg 480w, /blog/why-does-my-body-feel-like-i-ran-a-marathon-in-my-sleep/img-1.jpg 900w" sizes="(max-width: 640px) 92vw, 680px" loading="lazy" />
 
 You wake up. You try to stretch a little. And your body goes: absolutely not.
 
@@ -30,7 +30,7 @@ Here's what's actually happening: according to the Cleveland Clinic, the gradual
 
 ## What Actually Helps
 
-<img src="/blog/why-does-my-body-feel-like-i-ran-a-marathon-in-my-sleep/img-2.jpg" alt="Three women doing strength and mobility exercises on mats in a gym" width="844" height="372" loading="lazy" />
+<img src="/blog/why-does-my-body-feel-like-i-ran-a-marathon-in-my-sleep/img-2.jpg" alt="Three women doing strength and mobility exercises on mats in a gym" width="844" height="372" srcset="/blog/why-does-my-body-feel-like-i-ran-a-marathon-in-my-sleep/img-2-480.jpg 480w, /blog/why-does-my-body-feel-like-i-ran-a-marathon-in-my-sleep/img-2.jpg 844w" sizes="(max-width: 640px) 92vw, 680px" loading="lazy" />
 
 ### 🏋️‍♀️ Strength Training
 
