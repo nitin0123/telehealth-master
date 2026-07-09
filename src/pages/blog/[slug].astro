@@ -49,6 +49,11 @@ const articleSchema = {
     <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
   </Fragment>
 
+  <!-- Reading progress: fills left to right as the reader scrolls the post -->
+  <div class="fixed top-0 inset-x-0 h-1 z-[55] pointer-events-none" aria-hidden="true">
+    <div id="readProgress" class="h-full w-full origin-left bg-gradient-to-r from-ever via-clay to-sage" style="transform:scaleX(0)"></div>
+  </div>
+
   <p class="-mt-6 mb-8 text-sm text-stone reveal" style="--reveal-delay:120ms">
     {author} · {dateLabel} · {readMins} min read
   </p>
@@ -73,6 +78,25 @@ const articleSchema = {
     <a href="/blog" class="text-sm font-medium text-clay hover:text-claydk transition">&larr; Back to all posts</a>
   </p>
 </PageLayout>
+
+<script>
+  const bar = document.getElementById('readProgress');
+  let ticking = false;
+  const update = () => {
+    ticking = false;
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    const p = max > 0 ? Math.min(1, window.scrollY / max) : 1;
+    if (bar) bar.style.transform = `scaleX(${p})`;
+  };
+  const onScroll = () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(update);
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll, { passive: true });
+  update();
+</script>
 
 <style is:global>
   /* Article typography for markdown-rendered posts, matched to site tokens */
