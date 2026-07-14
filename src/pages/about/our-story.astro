@@ -14,7 +14,17 @@ import { BOOK_HREF } from '../../data/nav';
   <div class="bg-white border border-sand rounded-5xl p-8 lg:p-12 reveal space-y-10">
     <!-- Intro -->
     <div>
-      {/* IMAGE: small founding team in a candid moment (whiteboard or discussion, warm light), awaiting real photo from client */}
+      <img
+        src="/about/founding-team.jpg"
+        srcset="/about/founding-team-480.jpg 480w, /about/founding-team.jpg 1200w"
+        sizes="(max-width: 640px) 92vw, (max-width: 1024px) 90vw, 880px"
+        alt="The ResetWell Plus founding team discussing the telehealth platform at a whiteboard in a warmly lit office"
+        width="1200"
+        height="800"
+        loading="eager"
+        decoding="async"
+        class="w-full rounded-4xl border border-sand mb-8"
+      />
       <div class="space-y-5 text-stone text-lg leading-relaxed">
         <p class="font-serif text-2xl text-ever">In India, menopause is still whispered about, if it's discussed at all.</p>
         <p>
