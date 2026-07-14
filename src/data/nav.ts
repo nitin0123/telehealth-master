@@ -57,7 +57,7 @@ export const nav: NavSection[] = [
   {
     label: 'About',
     children: [
-      { label: 'About Us', href: '/about' },
+      { label: 'Meet the Founders', href: '/about' },
       { label: 'Our Story', href: '/about/our-story' },
       { label: 'Our Team', href: '/about/our-team' },
       { label: 'In The Press', href: '/about/in-the-press' },
