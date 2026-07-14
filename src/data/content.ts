@@ -360,6 +360,18 @@ export interface PressFeature {
 // Ordered newest first; keep it that way when adding entries.
 export const pressFeatures: PressFeature[] = [
   {
+    publication: 'Press Trust of India',
+    title: 'Platform launches initiative to boost menopause awareness, workplace support',
+    href: 'https://www.ptinews.com/story/NATIONAL/platform-launches-initiative-to-boost-menopause-awareness-workplace-support/3828389',
+    date: 'Jul 2026',
+  },
+  {
+    publication: 'News18',
+    title: 'Platform launches initiative to boost menopause awareness, workplace support',
+    href: 'https://www.news18.com/agency-feeds/platform-launches-initiative-to-boost-menopause-awareness-workplace-support-10190132.html',
+    date: 'Jul 2026',
+  },
+  {
     publication: 'Ahmedabad Mirror',
     title: 'Swati Singh & Reshma Tiwari: Why so many women feel angry during menopause',
     href: 'https://www.ahmedabadmirror.com/swati-singh--reshma-tiwari-why-so-many-women-feel-angry-during-menopause/81916930.html',
