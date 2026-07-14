@@ -35,7 +35,7 @@ const fbIcon = '<svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><pa
           {section.children.slice(0, 3).map((child) => (
             <li><a href={child.href} class="inline-block py-1 hover:text-clay transition">{child.label.replace(' (₹)', '')}</a></li>
           ))}
-          {section.label === 'About' && <li><a href="/contact" class="inline-block py-1 hover:text-clay transition">Contact us</a></li>}
+          {section.label === 'About' && <li><a href="/contact/" class="inline-block py-1 hover:text-clay transition">Contact us</a></li>}
         </ul>
       </div>
     ))}
@@ -55,11 +55,11 @@ const fbIcon = '<svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><pa
         <span class="text-stone/40">·</span>
         <span>ResetWell Plus Pvt. Ltd.</span>
         <span class="text-stone/40">·</span>
-        <a href="/privacy-policy" class="hover:text-clay transition">Privacy Policy</a>
+        <a href="/privacy-policy/" class="hover:text-clay transition">Privacy Policy</a>
         <span class="text-stone/40">·</span>
-        <a href="/terms" class="hover:text-clay transition">Terms of Use</a>
+        <a href="/terms/" class="hover:text-clay transition">Terms of Use</a>
         <span class="text-stone/40">·</span>
-        <a href="/disclaimer" class="hover:text-clay transition">Medical Disclaimer</a>
+        <a href="/disclaimer/" class="hover:text-clay transition">Medical Disclaimer</a>
         <!-- Unhidden by Analytics.astro when tracking is configured -->
         <span data-cookie-prefs-wrap class="hidden">
           <span class="text-stone/40">·</span>
