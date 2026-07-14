@@ -49,8 +49,9 @@ db/migrate.sh "<postgres-url>"   # low-level: apply db/*.sql to an explicit URL
 - **Spacing is intentionally compact.** Section vertical padding is stepped down site-wide (sections
   are `~py-10 lg:py-12`, not `py-16`). Match that scale for new sections; don't reintroduce large
   gaps. Buttons/inputs/card interiors keep their smaller padding.
-- **Images: use only assets the user provides** (in `public/`). Never generate, substitute, or
-  invent images. If a needed image is missing, ask.
+- **Images: use only assets the user provides** (in `public/`). Don't generate, substitute, or
+  invent images *unless the user explicitly asks you to create one*. If a needed image is missing
+  and they haven't asked you to make it, ask.
 - **Hover treatment** for cards/images: lift (`hover:-translate-y-*`) + shadow, plus a shine-sweep
   overlay and a gentle image zoom — see `CareGrid.astro` for the canonical pattern; reuse it.
 - **Styling** is Tailwind utilities; brand colours in `tailwind.config.mjs`, global/reveal/carousel
