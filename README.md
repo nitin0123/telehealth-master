@@ -81,6 +81,19 @@ dev, in `.env.local`. See `.env.example`.
 | `PUBLIC_META_PIXEL_ID` | Optional. Meta Pixel id; loads only after cookie consent |
 | `PUBLIC_META_DOMAIN_VERIFICATION` | Optional. Meta domain-verification meta-tag token |
 | `PUBLIC_GSC_VERIFICATION` | Optional. Google Search Console meta-tag verification token |
+| `PUBLIC_AHREFS_KEY` | Optional. Ahrefs Web Analytics site key (`data-key`). Cookieless, so it loads without the cookie-consent gate |
+
+### Analytics notes
+
+- **GTM / GA4 / Meta Pixel** are cookie-based: they load **only after** the visitor accepts the
+  cookie banner (see `src/components/Analytics.astro`).
+- **Ahrefs Web Analytics** is cookieless, so it loads for every visitor without consent. The tag
+  lives in `BaseLayout.astro`'s `<head>`:
+  ```html
+  <script src="https://analytics.ahrefs.com/analytics.js" data-key="…" async></script>
+  ```
+- Any new third-party tag must have its domain added to the **CSP** in `vercel.json`
+  (`script-src`, and `connect-src` if it sends data), or the browser will silently block it.
 
 ## Database
 

@@ -12,6 +12,10 @@ const gscToken = import.meta.env.PUBLIC_GSC_VERIFICATION || '';
 // Meta (Facebook) domain verification for ad campaigns (Business Settings →
 // Brand Safety → Domains → Meta-tag method).
 const fbDomainToken = import.meta.env.PUBLIC_META_DOMAIN_VERIFICATION || '';
+// Ahrefs Web Analytics site key. Cookieless and privacy-friendly, so unlike
+// GTM/GA4/Meta Pixel it loads without the cookie-consent gate.
+// NOTE: analytics.ahrefs.com must stay allowlisted in the vercel.json CSP.
+const ahrefsKey = import.meta.env.PUBLIC_AHREFS_KEY || '';
 
 interface Props {
   title?: string;
@@ -80,6 +84,9 @@ const robots = noindex ? 'noindex, nofollow' : 'index, follow';
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
+
+    <!-- Ahrefs Web Analytics (cookieless: no consent gate needed) -->
+    {ahrefsKey && <script is:inline async src="https://analytics.ahrefs.com/analytics.js" data-key={ahrefsKey}></script>}
 
     <!-- Site-wide structured data -->
     <script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
