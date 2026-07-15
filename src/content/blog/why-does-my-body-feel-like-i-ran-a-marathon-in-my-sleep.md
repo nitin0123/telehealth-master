@@ -27,11 +27,11 @@ Shoulders feel like you carried groceries up three flights of stairs overnight.
 
 Sound familiar?
 
-Here's what's actually happening: according to the Cleveland Clinic, the gradual decline of estrogen during perimenopause directly affects your joints, muscles, and inflammation levels. This is real, it's hormonal, and most importantly, you are not just "getting old."
+Here's what's actually happening: according to the Cleveland Clinic, the gradual decline of estrogen during [perimenopause](/understand-your-symptoms/perimenopause-101/) directly affects your joints, muscles, and inflammation levels. This is real, [it's hormonal](/blog/the-science-of-estrogen-and-brain-aging/), and most importantly, you are not just "getting old."
 
 ## What this looks like
 
-- Joint stiffness first thing in the morning
+- [Joint stiffness first thing in the morning](/blog/frozen-shoulder-and-menopause/)
 - Body aches with no obvious cause
 - Slower recovery after any activity
 

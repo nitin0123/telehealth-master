@@ -19,7 +19,7 @@ faq:
 
 What if one of the key factors impacting brain health is not related to any dietary supplements or regular exercise programs, but rather exists in the hormonal balance of your body?
 
-Although estrogen is generally perceived as a reproductive hormone, today's science reveals that it has a profound impact on the brain's operation and aging. The hormone impacts the brain in various ways and affects some crucial processes for brain health and longevity. For example, many women in their post-menopausal age experience symptoms like brain fog, forgetfulness or inability to concentrate, which suggests that there is definitely something going on and there is a connection between estrogen and brain aging.
+Although estrogen is generally perceived as a reproductive hormone, today's science reveals that it has a profound impact on the brain's operation and aging. The hormone impacts the brain in various ways and affects some crucial processes for brain health and longevity. For example, many women in their post-menopausal age experience symptoms like [brain fog, forgetfulness or inability to concentrate](/blog/manage-menopause-brain-fog-at-work/), which suggests that there is definitely something going on and there is a connection between estrogen and brain aging.
 
 ## 1. What is Estrogen and Why Do I Need it for my Brain?
 
@@ -27,7 +27,7 @@ Estrogen is a hormone, usually associated with reproductive functions in females
 
 There are many estrogen receptors in specific areas of the brain like the hippocampus, responsible for the formation of memories and learning process, and the prefrontal cortex, playing an essential part in decision-making and solving problems. With the help of estrogen, the brain is able to keep up with good connections between nerve cells, which is important for brain functioning.
 
-It is believed that the hormone affects mood and connectivity of neurons, and plays an important part in general functioning of the brain. One of the reasons why some women feel that their ability to concentrate decreases in perimenopause or menopause is due to changes in hormone levels.
+It is believed that the hormone affects mood and connectivity of neurons, and plays an important part in general functioning of the brain. One of the reasons why some women feel that their ability to concentrate decreases in [perimenopause or menopause](/understand-your-symptoms/perimenopause-101/) is due to changes in hormone levels.
 
 <img src="/blog/the-science-of-estrogen-and-brain-aging/inline-1.jpg" alt="Infographic: how estrogen supports brain health through memory, blood flow, neural connections, and brain protection" width="600" height="400" srcset="/blog/the-science-of-estrogen-and-brain-aging/inline-1-480.jpg 480w, /blog/the-science-of-estrogen-and-brain-aging/inline-1.jpg 600w" sizes="(max-width: 640px) 92vw, 680px" loading="lazy" />
 
@@ -55,7 +55,7 @@ Although hormonal changes are inevitable and expected during this period, there 
 
 Proper nutrition is also crucial for brain health. A balanced diet that includes fruits, vegetables, complex carbohydrates, healthy fats, and protein is likely to provide enough nutrients for optimal brain functioning. It is equally important to ensure sufficient sleep, as the brain requires rest in order to consolidate memories and learn.
 
-Mental health can be improved by engaging in mindfulness practices or other stress reduction techniques. Women who have difficulties with their hormones during the perimenopausal or menopausal phase can discuss potential solutions to the problem with a healthcare professional.
+Mental health can be improved by engaging in mindfulness practices or other stress reduction techniques. Women who have difficulties with their hormones during the perimenopausal or menopausal phase can discuss potential solutions to the problem with a [healthcare professional](/get-care/our-specialists/).
 
 In order to improve brain health, it is important to implement healthy habits and to stay informed regarding changes happening in the body.
 
@@ -67,4 +67,4 @@ Despite ongoing research on estrogen and its role in the process of brain functi
 
 At ResetWell Plus we are committed to educate women based on evidence about menopause and women's overall health. By promoting discussions about hormonal shifts and brain health in women, we strive to help women approach this phase of their life armed with knowledge.
 
-If you're experiencing symptoms such as brain fog, memory changes, or other menopause-related concerns, seeking timely guidance can make a meaningful difference. Connect with the experts at ResetWell Plus to learn more about personalized menopause care and strategies to support your long-term brain and overall well-being.
+If you're experiencing symptoms such as brain fog, memory changes, or other menopause-related concerns, seeking timely guidance can make a meaningful difference. [Connect with the experts at ResetWell Plus](/get-care/how-it-works/) to learn more about personalized menopause care and strategies to support your long-term brain and overall well-being.

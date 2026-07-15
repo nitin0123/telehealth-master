@@ -29,7 +29,7 @@ It isn't. With the right strategies, you can manage menopause brain fog at work,
 
 ## What Exactly is Menopause Brain Fog?
 
-Menopause brain fog is a collection of cognitive symptoms that often crop up during perimenopause (the transition phase) and menopause. It typically manifests as:
+Menopause brain fog is a collection of cognitive symptoms that often crop up during [perimenopause](/understand-your-symptoms/perimenopause-101/) (the transition phase) and menopause. It typically manifests as:
 
 - **Word-retrieval issues:** forgetting common words or names mid-sentence.
 - **Short-term memory lapses:** walking into a room and forgetting why you're there, or forgetting a task you were assigned an hour ago.
@@ -40,7 +40,7 @@ Menopause brain fog is a collection of cognitive symptoms that often crop up dur
 
 This isn't a permanent cognitive decline. Your brain is reacting to a massive hormonal shift.
 
-During menopause, your ovaries drastically reduce their production of estrogen and progesterone. Estrogen acts like fuel for the brain: it stimulates glucose metabolism, helps grow neural connections, and regulates neurotransmitters that affect mood and memory. When estrogen drops, the brain's energy metabolism temporarily dips, leading to that sluggish, foggy feeling.
+During menopause, your ovaries drastically reduce their production of estrogen and progesterone. [Estrogen acts like fuel for the brain](/blog/the-science-of-estrogen-and-brain-aging/): it stimulates glucose metabolism, helps grow neural connections, and regulates neurotransmitters that affect mood and memory. When estrogen drops, the brain's energy metabolism temporarily dips, leading to that sluggish, foggy feeling.
 
 ## 5 Practical Strategies to Manage Brain Fog at Work
 
@@ -80,7 +80,7 @@ Your physical surroundings heavily influence cognitive function, especially duri
 Brain fog is exacerbated by two classic menopausal disruptors: poor sleep (often caused by night sweats) and blood sugar spikes.
 
 - **The Afternoon Slump:** avoid heavy, carb-laden lunches that cause insulin spikes. A blood sugar crash on top of menopause brain fog will completely tank your afternoon focus. Opt for high-protein, healthy-fat meals (like salmon, avocado, and leafy greens).
-- **Sleep Hygiene:** even if night sweats wake you up, keeping your room at a cool 18°C (65°F) and using layered, breathable bedding can help you get back to sleep faster, preserving critical REM cycles where memory consolidation happens.
+- **Sleep Hygiene:** even if [night sweats](/blog/optimize-your-sleep-environment-to-minimize-night-sweats/) wake you up, keeping your room at a cool 18°C (65°F) and using layered, breathable bedding can help you get back to sleep faster, preserving critical REM cycles where memory consolidation happens.
 
 <img src="/blog/manage-menopause-brain-fog-at-work/inline-2.jpg" alt="Focus. Adapt. Thrive. You've got this: desk scene with a purple mug reading Stay focused, Stay strong" width="900" height="900" srcset="/blog/manage-menopause-brain-fog-at-work/inline-2-480.jpg 480w, /blog/manage-menopause-brain-fog-at-work/inline-2.jpg 900w" sizes="(max-width: 640px) 92vw, 680px" loading="lazy" />
 
@@ -109,7 +109,7 @@ This is a deeply personal choice and depends entirely on your workplace culture.
 
 While brain fog is a normal part of the menopausal transition, you don't have to white-knuckle your way through it alone.
 
-If cognitive difficulties are severely impacting your quality of life, talk to a healthcare professional or a certified menopause specialist. They can discuss evidence-based treatments, such as Hormone Replacement Therapy (HRT), which can stabilize estrogen levels and significantly improve cognitive clarity, sleep quality, and overall well-being.
+If cognitive difficulties are severely impacting your quality of life, talk to a healthcare professional or a [certified menopause specialist](/get-care/our-specialists/). They can discuss evidence-based treatments, such as Hormone Replacement Therapy (HRT), which can stabilize estrogen levels and significantly improve cognitive clarity, sleep quality, and overall well-being.
 
 <img src="/blog/manage-menopause-brain-fog-at-work/inline-3.jpg" alt="Clear Mind, Confident You: smart strategies for menopause brain fog at work, focus better, stay organized, own your confidence" width="900" height="900" srcset="/blog/manage-menopause-brain-fog-at-work/inline-3-480.jpg 480w, /blog/manage-menopause-brain-fog-at-work/inline-3.jpg 900w" sizes="(max-width: 640px) 92vw, 680px" loading="lazy" />
 

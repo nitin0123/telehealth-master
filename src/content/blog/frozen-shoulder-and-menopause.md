@@ -17,7 +17,7 @@ faq:
 
 <img src="/blog/frozen-shoulder-and-menopause/cover.jpg" alt="Frozen Shoulder and Menopause: woman holding her inflamed shoulder" width="847" height="506" srcset="/blog/frozen-shoulder-and-menopause/cover-480.jpg 480w, /blog/frozen-shoulder-and-menopause/cover.jpg 847w" sizes="(max-width: 640px) 92vw, 680px" loading="lazy" />
 
-When we talk about menopause, the conversation usually centres around hot flashes, night sweats, and mood swings. But there is a painful, deeply frustrating symptom flying under the radar that blindsides thousands of women in midlife: frozen shoulder.
+When we talk about menopause, the conversation usually centres around [hot flashes, night sweats, and mood swings](/blog/3-most-common-menopause-symptoms/). But there is a painful, deeply frustrating symptom flying under the radar that blindsides thousands of women in midlife: frozen shoulder.
 
 If you have suddenly found it agonizing to reach for a seatbelt, fasten your bra, or simply sleep on your side, you are not alone. There is a direct, biological link between plunging hormone levels and stiff, locked joints.
 
@@ -27,7 +27,7 @@ Medical professionals call it adhesive capsulitis. It occurs when the flexible c
 
 <img src="/blog/frozen-shoulder-and-menopause/inline-1.png" alt="Anatomy comparison of a normal shoulder joint and a frozen shoulder with an inflamed, thickened capsule" width="439" height="216" loading="lazy" />
 
-What many women do not realize is that frozen shoulder peaks significantly between the ages of 40 and 60, aligning perfectly with perimenopause and menopause.
+What many women do not realize is that frozen shoulder peaks significantly between the ages of 40 and 60, aligning perfectly with [perimenopause and menopause](/understand-your-symptoms/perimenopause-101/).
 
 ## The Oestrogen Connection: How Hormone Loss Attacks the Joints
 
@@ -53,9 +53,9 @@ A menopausal frozen shoulder typically progresses through three distinct, grueli
 
 ## Actionable Steps: How to Defrost Your Shoulder
 
-If you are battling menopausal joint pain, a proactive approach can significantly shorten the recovery timeline:
+If you are battling [menopausal joint pain](/blog/why-does-my-body-feel-like-i-ran-a-marathon-in-my-sleep/), a proactive approach can significantly shorten the recovery timeline:
 
-- **Consult a Specialist:** speak with an informed healthcare professional about Hormone Replacement Therapy (HRT). Replacing missing oestrogen can target the root cause of systemic inflammation and tissue dryness.
+- **Consult a Specialist:** speak with an [informed healthcare professional](/get-care/our-specialists/) about Hormone Replacement Therapy (HRT). Replacing missing oestrogen can target the root cause of systemic inflammation and tissue dryness.
 - **Targeted Physical Therapy:** avoid aggressive forcing, which worsens inflammation. Focus instead on gentle, passive range-of-motion exercises like pendulum swings and wall slides to prevent further tightening.
 - **Anti-Inflammatory Nutrition:** load up on omega-3 fatty acids (found in salmon, walnuts, and flaxseeds) and antioxidants like turmeric and ginger to combat systemic joint inflammation from the inside out.
 - **Heat and Cold Therapy:** use moist heat pads before stretching to relax the joint capsule, and apply ice packs after movement to calm down localized nerve irritation.

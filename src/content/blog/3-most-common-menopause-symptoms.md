@@ -40,7 +40,7 @@ By the end of the week, she was asking herself what so many women silently wonde
 
 What Ava didn't realize is that these weren't random issues.
 
-They were some of the most common symptoms of perimenopause, a phase many women enter in their late 30s or 40s, often without knowing it.
+They were some of the most common symptoms of [perimenopause](/understand-your-symptoms/perimenopause-101/), a phase many women enter in their late 30s or 40s, often without knowing it.
 
 Let's break down the **top 3 symptoms** that show up again and again.
 
@@ -59,7 +59,7 @@ Struggled to focus during a conversation?
 
 You're not alone.
 
-**What's happening:** fluctuating estrogen levels can affect **cognitive function, memory, and focus**.
+**What's happening:** [fluctuating estrogen levels](/blog/the-science-of-estrogen-and-brain-aging/) can affect **cognitive function, memory, and focus**.
 
 **How it feels:**
 
@@ -88,7 +88,7 @@ Sound familiar?
 **How it shows up:**
 
 - Sudden heat waves
-- Night sweats disrupting sleep
+- [Night sweats disrupting sleep](/blog/optimize-your-sleep-environment-to-minimize-night-sweats/)
 - Flushing or sweating unexpectedly
 
 **Why it matters:** it's not just discomfort, it can impact **confidence, sleep, and daily life**.
@@ -126,7 +126,7 @@ There are **evidence-based ways** to manage these symptoms, including:
 
 - Lifestyle and nutrition changes
 - Stress and sleep support
-- Medical options like **Hormone Replacement Therapy (HRT)** when appropriate
+- Medical options like [**Hormone Replacement Therapy (HRT)**](/get-care/how-it-works/) when appropriate
 
 The key is understanding what's happening in your body first.
 

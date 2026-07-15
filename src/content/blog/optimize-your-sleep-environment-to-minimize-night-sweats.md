@@ -21,11 +21,11 @@ Imagine waking up in the middle of the night soaked with sweat. It is not just f
 
 While the room air might seem ice-cold, your bedding can trap body heat, providing absolutely no respite despite a chilled room. You will still sweat underneath the covers while waking up with a freezing nose and toes.
 
-This phenomenon is incredibly common for women going through menopause. Sudden heat surges cause a rush to lower the thermostat as quickly as possible. Normally, our bodies naturally manage temperature through a process called thermoregulation. However, during menopause, hormonal disruptions trigger severe night sweats, leaving you desperate for a drastic temperature drop.
+This phenomenon is incredibly common for [women going through menopause](/understand-your-symptoms/perimenopause-101/). Sudden heat surges cause a rush to lower the thermostat as quickly as possible. Normally, our bodies naturally manage temperature through a process called thermoregulation. However, during menopause, hormonal disruptions trigger severe night sweats, leaving you desperate for a drastic temperature drop.
 
 ## Support Your Body from the Inside Out
 
-While adjusting your external environment is crucial, managing menopausal night sweats works best when you address the internal hormonal shift. ResetWell Plus is expertly formulated to support hormonal balance, helping to reduce the frequency and intensity of hot flashes and night sweats naturally, so you can stop fighting the thermostat and start sleeping through the night.
+While adjusting your external environment is crucial, managing menopausal night sweats works best when you address the internal hormonal shift. ResetWell Plus is expertly formulated to support hormonal balance, helping to reduce the frequency and intensity of [hot flashes and night sweats](/blog/3-most-common-menopause-symptoms/) naturally, so you can stop fighting the thermostat and start sleeping through the night.
 
 Here is how to optimize your bedroom environment without turning your AC into a freezer:
 
@@ -59,7 +59,7 @@ Optimizing your sheets and fans handles the external environment, but sustainabl
 
 <img src="/blog/optimize-your-sleep-environment-to-minimize-night-sweats/inline-4.jpg" alt="Quick-reference table: what to avoid and what to choose instead for sheets, blankets, sleepwear, and air setup" width="587" height="378" srcset="/blog/optimize-your-sleep-environment-to-minimize-night-sweats/inline-4-480.jpg 480w, /blog/optimize-your-sleep-environment-to-minimize-night-sweats/inline-4.jpg 587w" sizes="(max-width: 640px) 92vw, 680px" loading="lazy" />
 
-If you are ready to wake up feeling rested, dry, and balanced, pair these bedroom changes with ResetWell Plus, your daily partner in cooling down hot flashes and reclaiming your deep sleep cycle.
+If you are ready to wake up feeling rested, dry, and balanced, pair these bedroom changes with [ResetWell Plus](/get-care/how-it-works/), your daily partner in cooling down hot flashes and reclaiming your deep sleep cycle.
 
 ## Quick Note on Internal Temperature Management
 

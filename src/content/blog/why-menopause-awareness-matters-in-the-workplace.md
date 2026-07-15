@@ -21,21 +21,21 @@ A wise quote goes, **"Menopause: the only time you can experience four seasons i
 
 ## What is menopause?
 
-It is a common biological phenomenon that usually happens to women in the age group between 45 and 55. Clinical diagnosis confirms that not having periods for 12 consecutive months is considered the end of reproductive years. Which is most commonly known as menopause. During the menopause phase, ovaries stop releasing eggs and a lesser quantity of female sex hormones, estrogen and progesterone.
+It is a [common biological phenomenon](/understand-your-symptoms/perimenopause-101/) that usually happens to women in the age group between 45 and 55. Clinical diagnosis confirms that not having periods for 12 consecutive months is considered the end of reproductive years. Which is most commonly known as menopause. During the menopause phase, ovaries stop releasing eggs and a lesser quantity of female sex hormones, estrogen and progesterone.
 
 These hormones regulate the menstrual cycle, pregnancy and secondary sex characteristics. Estrogen is responsible for thickening the uterine lining (the inner tissue layer of the uterus that thickens in response to these hormones to prepare for potential pregnancy), developing breast tissue, triggering ovulation, and maintaining bone and heart health. Whereas progesterone is responsible for fertilizing egg implantation, reducing uterine contractility and maintaining pregnancy.
 
 ## What happens during menopause
 
-Hormonal imbalance affects menopause. Low estrogen causes hot flashes, night sweats and vaginal dryness, and low progesterone or high estrogen leads to uterine lining overgrowth, heavy periods and an increased chance of cancer. During this phase women experience mood swings, weight gain, fatigue and irregular periods. This phenomenon is not just confined to bodily changes but also affects the cognitive and emotional behavior of women as well. Women often encounter sleep disturbance, night sweats, heart palpitations, hot flashes, memory lapses, difficulty focusing, anxiety, irritability and mood swings along with thinning hair, dry skin and weight gain.
+Hormonal imbalance affects menopause. Low estrogen causes hot flashes, night sweats and vaginal dryness, and low progesterone or high estrogen leads to uterine lining overgrowth, heavy periods and an increased chance of cancer. During this phase women experience mood swings, weight gain, fatigue and irregular periods. This phenomenon is not just confined to bodily changes but also affects the cognitive and emotional behavior of women as well. Women often encounter [sleep disturbance, night sweats, heart palpitations, hot flashes, memory lapses](/blog/3-most-common-menopause-symptoms/), difficulty focusing, anxiety, irritability and mood swings along with thinning hair, dry skin and weight gain.
 
 ## Why does menopause awareness matter?
 
-According to research reports, nearly 17% of women think of leaving work due to lack of support for menopausal symptoms. These symptoms cause fatigue and poor concentration, leading to absenteeism, presenteeism and lost confidence. According to sciencedirect.com, nearly one million women in the UK alone exited the workforce in a single year due to menopause. Many women have to decline promotions, reduce their working hours or retire early to avoid the stress. Besides, in the U.S., the loss of menopause-related productivity and missed workdays is estimated to account for $1.8 billion annually in lost wages and $26.6 billion in total economic impact. According to the gov.uk website, some women also try to hide the symptoms by working extra hours to make up for their lower productivity during menopause.
+According to research reports, [nearly 17% of women think of leaving work](/blog/why-are-we-losing-top-tier-female-talent-at-the-peak-of-their-careers/) due to lack of support for menopausal symptoms. These symptoms cause fatigue and poor concentration, leading to absenteeism, presenteeism and lost confidence. According to sciencedirect.com, nearly one million women in the UK alone exited the workforce in a single year due to menopause. Many women have to decline promotions, reduce their working hours or retire early to avoid the stress. Besides, in the U.S., the loss of menopause-related productivity and missed workdays is estimated to account for $1.8 billion annually in lost wages and $26.6 billion in total economic impact. According to the gov.uk website, some women also try to hide the symptoms by working extra hours to make up for their lower productivity during menopause.
 
 ## How to support women at the workplace during menopause
 
-Menopause is more than just a private medical concern that needs to be understood. Through a proper framework and corporate policies, professional commitment and well-being of females can be ascertained. There are following things that we can do to create a better corporate environment to preserve our productive workforce.
+Menopause is more than just a private medical concern that needs to be understood. Through a proper framework and [corporate policies](/blog/why-should-hr-talk-menopause/), professional commitment and well-being of females can be ascertained. There are following things that we can do to create a better corporate environment to preserve our productive workforce.
 
 ### Corporate policies and structural framework
 
@@ -49,7 +49,7 @@ Menopause is more than just a private medical concern that needs to be understoo
 
 ### Culture and awareness
 
-- Conducting non-judgmental training sessions for leaders to educate and empathize with behavior patterns.
+- Conducting [non-judgmental training sessions for leaders](/events/for-corporates/) to educate and empathize with behavior patterns.
 - Plan an open discussion forum "Lunch and Learn" to break the stigma through internal circulars.
 - Develop a peer support group such as "Menopause Cafes" for employees to share their experiences.
 - Plan and conduct employee assistance programs which include specialized menopause counselling and resources.

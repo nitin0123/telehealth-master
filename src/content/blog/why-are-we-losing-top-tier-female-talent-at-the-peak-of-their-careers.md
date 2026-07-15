@@ -42,12 +42,12 @@ Menopause is not simply "getting older." It is a significant hormonal transition
 
 Symptoms such as:
 
-- Brain fog
+- [Brain fog](/blog/manage-menopause-brain-fog-at-work/)
 - Anxiety and mood fluctuations
 - Sleep disturbances
 - Fatigue
-- Joint pain
-- Hot flashes
+- [Joint pain](/blog/frozen-shoulder-and-menopause/)
+- [Hot flashes](/blog/3-most-common-menopause-symptoms/)
 
 These can deeply impact workplace performance and confidence.
 
@@ -65,7 +65,7 @@ Organizations can make a meaningful difference by:
 - Training managers and HR teams to respond sensitively
 - Offering flexible work arrangements when needed
 - Providing access to wellness and healthcare support
-- Creating policies that acknowledge menopause as a workplace well-being issue
+- Creating policies that acknowledge [menopause as a workplace well-being issue](/blog/why-should-hr-talk-menopause/)
 
 Small changes can significantly improve retention, morale, and productivity.
 
