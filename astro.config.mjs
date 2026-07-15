@@ -18,6 +18,11 @@ const blogLastmod = Object.fromEntries(
 );
 const BUILD_DATE = new Date().toISOString();
 
+// Pre-launch pages that render `noindex`, so they're kept out of the sitemap.
+// `/get-care/book-a-consultation` is noindex while booking is pre-launch (all
+// CTAs point at `/coming-soon`); drop it from this list when booking opens.
+const NOINDEX_PATHS = ['/coming-soon', '/get-care/book-a-consultation'];
+
 // https://astro.build/config
 export default defineConfig({
   // Production URL — powers canonical links, sitemap and Open Graph URLs.
@@ -35,8 +40,10 @@ export default defineConfig({
   integrations: [
     tailwind(),
     sitemap({
-      // Pre-launch pages shouldn't be indexed or listed in the sitemap.
-      filter: (page) => !page.includes('/coming-soon'),
+      // Pages that render `noindex` must not appear in the sitemap: listing a
+      // noindex URL is contradictory and is flagged by SEO crawlers. Keep this
+      // in sync with any page passing `noindex` to BaseLayout/PageLayout.
+      filter: (page) => !NOINDEX_PATHS.some((p) => page.includes(p)),
       // Add a <lastmod> freshness signal: real publish date for blog posts,
       // build date for everything else.
       serialize(item) {
