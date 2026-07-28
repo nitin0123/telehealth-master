@@ -1,0 +1,9 @@
+---
+import { localePaths } from '../../../i18n';
+export const getStaticPaths = localePaths;
+import PageLayout from '../../../layouts/PageLayout.astro';
+import EventsList from '../../../components/EventsList.astro';
+---
+<PageLayout section="Events" kicker="Events" title="Upcoming events" lede="Live, expert-led sessions you can join from anywhere.">
+  <EventsList filter="Live" />
+</PageLayout>

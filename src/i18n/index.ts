@@ -26,14 +26,19 @@ export const OG_LOCALE: Record<Lang, string> = { en: 'en_IN', hi: 'hi_IN' };
 export const LANG_LABEL: Record<Lang, string> = { en: 'English', hi: 'हिंदी' };
 
 /**
- * English paths that already have a Hindi twin under /hindi/.
+ * Path prefixes that exist in English only.
  *
- * Extend this as Hindi routes are added. `localizePath` only rewrites links whose
- * target is listed here, so a partially translated site never links to a 404, and
- * the language toggle (plus the hreflang tags) only appear on pages that can
- * actually be switched.
+ * Every page under src/pages/[...locale]/ builds a Hindi twin automatically, so
+ * this is the short list of exceptions rather than an inventory of what is
+ * translated. `localizePath` leaves these pointing at the English URL, and the
+ * language toggle and hreflang tags are omitted on them, so a partially
+ * translated site never links to a 404.
+ *
+ * `/blog/` comes off this list when the Hindi posts land. `/404` stays on it:
+ * one 404 page is served for unknown URLs in both languages, so a language
+ * toggle there would point at a page that does not exist.
  */
-export const HI_ROUTES: ReadonlySet<string> = new Set(['/']);
+export const EN_ONLY: readonly string[] = ['/blog/', '/404'];
 
 // ---------------------------------------------------------------------------
 // Paths
@@ -64,18 +69,19 @@ export function stripLang(path: string): string {
 
 /** True when the given path (in either language) has a Hindi version. */
 export function hasHindi(path: string): boolean {
-  return HI_ROUTES.has(stripLang(path));
+  const base = stripLang(path);
+  return !EN_ONLY.some((prefix) => base.startsWith(prefix));
 }
 
 /**
- * Rewrite an internal href for `lang`. Falls back to the English URL when the
- * Hindi page does not exist yet, so links auto-upgrade as routes are added.
+ * Rewrite an internal href for `lang`. Falls back to the English URL for pages
+ * that are English-only, so links auto-upgrade as those pages are translated.
  * External links, anchors and mailto:/tel: hrefs pass through untouched.
  */
 export function localizePath(path: string, lang: Lang): string {
   if (!isInternal(path)) return path;
   const base = stripLang(path);
-  if (lang === 'en' || !HI_ROUTES.has(base)) return base;
+  if (lang === 'en' || !hasHindi(base)) return base;
   return `${HI_PREFIX}${base}`;
 }
 
@@ -88,6 +94,18 @@ export function alternatePath(url: URL | string): string | null {
   if (!hasHindi(path)) return null;
   const base = stripLang(path);
   return langFromUrl(path) === 'hi' ? base : `${HI_PREFIX}${base}`;
+}
+
+/**
+ * `getStaticPaths` for every page under src/pages/[...locale]/.
+ *
+ * The rest parameter collapses when undefined, so one page file builds both
+ * URLs: `/terms/` for English and `/hindi/terms/` for Hindi. That keeps the two
+ * languages on a single source file instead of a mirrored tree that would have
+ * to be kept structurally in sync by hand.
+ */
+export function localePaths() {
+  return [{ params: { locale: undefined } }, { params: { locale: HI_PREFIX.slice(1) } }];
 }
 
 // ---------------------------------------------------------------------------

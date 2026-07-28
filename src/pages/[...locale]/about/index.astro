@@ -1,0 +1,57 @@
+---
+import { langFromUrl, localePaths, localizePath } from '../../../i18n';
+export const getStaticPaths = localePaths;
+const lang = langFromUrl(Astro.url);
+const to = (href: string) => localizePath(href, lang);
+import PageLayout from '../../../layouts/PageLayout.astro';
+
+const founders = [
+  { name: 'Swati Singh', role: 'Author, menopause educator, speaker & women\'s wellness advocate', creds: 'Masters in English', img: '/swati.jpeg', bio: '/about/swati-singh/' },
+  { name: 'Reshma Tiwari', role: 'Certified menopause coach, speaker & women\'s wellness advocate', creds: 'Masters in Business Administration', img: '/reshma.jpeg', bio: '/about/reshma-tiwari/' },
+];
+---
+<PageLayout
+  section="About"
+  sectionHref="/about/our-story/"
+  kicker="About"
+  title="Meet the Founders"
+  metaTitle="About ResetWell Plus | Women's Midlife & Menopause Wellness"
+  description="ResetWell Plus is a women's wellness platform for menopause and midlife, created by Swati Singh and Reshma Tiwari to bring clarity, compassion and community to women everywhere."
+  keywords="about ResetWell Plus, menopause wellness India, women's midlife community"
+  lede="A space created by women who have walked the journey themselves, determined to make sure no one else walks it alone."
+>
+  <!-- Founders -->
+  <div class="grid sm:grid-cols-2 gap-5 mb-10">
+    {founders.map((f) => (
+      <article class="bg-white border border-sand rounded-4xl p-8 text-center reveal">
+        <img src={f.img} alt={f.name} loading="lazy" class="w-40 h-40 mx-auto rounded-full object-cover object-center border-4 border-sand shadow-sm" />
+        <h2 class="mt-5 font-serif text-2xl text-ever">{f.name}</h2>
+        <p class="text-stone mt-1">{f.role}</p>
+        <p class="text-sm font-medium text-clay mt-1.5">{f.creds}</p>
+        <a href={to(f.bio)} class="mt-4 inline-flex items-center gap-1 font-semibold text-clay hover:gap-2 transition-all">Read full bio <span aria-hidden="true">→</span></a>
+      </article>
+    ))}
+  </div>
+
+  <!-- How it all began -->
+  <div class="bg-white border border-sand rounded-5xl p-8 lg:p-12 reveal">
+    <div class="space-y-5 text-stone text-lg leading-relaxed">
+      <p class="font-serif text-2xl text-ever">How it all began</p>
+      <p>
+        We are Swati and Reshma, menopause educators, motivational speakers and women's wellness advocates.
+        After experiencing firsthand how confusing, isolating, and overlooked this stage of life can be, we made it our
+        mission to bring clarity, compassion, and community to women everywhere.
+      </p>
+      <p>
+        At ResetWell Plus, we break the silence. We replace fear with knowledge. We replace confusion with confidence.
+        And we replace isolation with a supportive sisterhood.
+      </p>
+      <p>
+        That mission lives first in our telehealth platform: real access to expert doctors, personalized hormonal care,
+        and holistic specialists, whenever a woman needs them. We back that up with empowering events, honest
+        conversations, and practical guidance, so every woman can understand her body and rediscover the strength and
+        brilliance she already possesses.
+      </p>
+    </div>
+  </div>
+</PageLayout>

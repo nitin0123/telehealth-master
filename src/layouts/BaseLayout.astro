@@ -11,7 +11,7 @@ import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import Analytics from '../components/Analytics.astro';
 import { SITE, organizationSchema } from '../data/seo';
-import { alternatePath, langFromUrl, LOCALE, OG_LOCALE, useTranslations } from '../i18n';
+import { alternatePath, langFromUrl, localizePath, LOCALE, OG_LOCALE, useTranslations } from '../i18n';
 
 // Google Search Console ownership verification (meta-tag method).
 const gscToken = import.meta.env.PUBLIC_GSC_VERIFICATION || '';
@@ -147,7 +147,7 @@ const altLocales = lang === 'en' ? [...SITE.altLocales, ...(twin ? [OG_LOCALE.hi
     <a
       data-wa-float
       data-wa-text={t.common.whatsappPrefill}
-      href="/contact/"
+      href={localizePath('/contact/', lang)}
       target="_blank"
       rel="noopener"
       aria-label={t.common.whatsappAria}

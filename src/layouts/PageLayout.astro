@@ -28,7 +28,9 @@ const seoTitle = metaTitle ?? `${title} | ResetWell Plus`;
 const lang = langFromUrl(Astro.url);
 const t = useTranslations(lang);
 const crumbs = [{ name: t.nav.home, url: new URL(localizePath('/', lang), SITE.url).href }];
-if (section) crumbs.push({ name: section, url: new URL(sectionHref ?? Astro.url.pathname, SITE.url).href });
+// `sectionHref` is written as an English path at the call sites; localise it
+// here so every page gets a breadcrumb in its own language for free.
+if (section) crumbs.push({ name: section, url: new URL(localizePath(sectionHref ?? Astro.url.pathname, lang), SITE.url).href });
 crumbs.push({ name: title, url: new URL(Astro.url.pathname, SITE.url).href });
 const breadcrumbSchema = {
   '@context': 'https://schema.org',
