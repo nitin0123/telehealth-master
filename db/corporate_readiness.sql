@@ -8,9 +8,10 @@
 -- The /api/corporate-readiness endpoint inserts one row per submission, emails
 -- the lead the report PDF, and sends an internal notification via Resend.
 --
--- Deliberately NOT unique on work_email: two people from the same company are
--- two data points, and a repeat assessment after a policy change is a signal
--- worth keeping rather than overwriting.
+-- One row per work email: a repeat assessment updates the existing row instead
+-- of adding another, and the report is emailed only on the first submission so
+-- nobody receives it twice. Two people from the same company still get a row
+-- each, since the key is the email and not the company.
 --
 -- The six q_* columns map 1:1 to `readinessQuestions` in src/data/content.ts.
 -- Adding or reordering a question there means adding a column here with an
@@ -31,8 +32,16 @@ CREATE TABLE IF NOT EXISTS corporate_readiness (
   q_leadership_voice    BOOLEAN,                            -- leadership has spoken publicly
   source                TEXT,                               -- e.g. 'hr-summit' | 'website'
   ip_address            TEXT,                               -- captured server-side
-  created_at            TIMESTAMPTZ NOT NULL DEFAULT now()
+  created_at            TIMESTAMPTZ NOT NULL DEFAULT now(), -- first assessment
+  updated_at            TIMESTAMPTZ NOT NULL DEFAULT now()  -- most recent retake
 );
 
 CREATE INDEX IF NOT EXISTS idx_corporate_readiness_created_at ON corporate_readiness (created_at DESC);
 CREATE INDEX IF NOT EXISTS idx_corporate_readiness_company ON corporate_readiness (company);
+
+-- Added after the table first shipped. push.sh creates missing tables but never
+-- alters existing ones, so these run as idempotent statements to bring an
+-- already-created table up to date. The unique index is what makes the
+-- endpoint's ON CONFLICT (work_email) upsert work.
+ALTER TABLE corporate_readiness ADD COLUMN IF NOT EXISTS updated_at TIMESTAMPTZ NOT NULL DEFAULT now();
+CREATE UNIQUE INDEX IF NOT EXISTS idx_corporate_readiness_work_email ON corporate_readiness (work_email);

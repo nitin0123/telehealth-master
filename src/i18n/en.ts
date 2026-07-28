@@ -1143,6 +1143,9 @@ export const en = {
       successHeading: "You're on the list.",
       /** {name}, {company} and {email} are filled in from the form. */
       successBody: 'Thanks, {name}. The benchmark report for {company} is on its way to {email}.',
+      /** Shown when this address has already been sent the report once. */
+      successBodyRepeat:
+        'Thanks, {name}. We have updated the score for {company}. The report has already been sent to {email}, so check your inbox rather than waiting for a new one.',
       talkToUs: 'Talk to us about a pilot',
     },
 

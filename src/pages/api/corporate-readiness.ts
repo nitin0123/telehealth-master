@@ -61,6 +61,11 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
 
   // 1) Persist to the database (source of truth). The column list is built from
   // `readinessQuestions` so the six answers always land in the right columns.
+  //
+  // One row per work email: a retake overwrites the previous answers rather
+  // than adding a second row. `xmax = 0` is true only for a genuine INSERT, so
+  // it tells us whether this address has been through the assessment before.
+  let isFirstSubmission = true;
   try {
     const columns = [
       'name', 'company', 'work_email', 'score', 'tier',
@@ -68,13 +73,22 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
       'source', 'ip_address',
     ];
     const values = [name, company, email, score, tier, ...answers, source, ip];
-    // Placeholders are generated from the column list, so adding a question to
-    // `readinessQuestions` (plus its column) needs no change here.
+    // Placeholders and the update list are generated from the column list, so
+    // adding a question to `readinessQuestions` (plus its column) needs no
+    // change here.
     const placeholders = values.map((_, i) => `$${i + 1}`).join(', ');
-    await db().query(
-      `INSERT INTO corporate_readiness (${columns.join(', ')}) VALUES (${placeholders})`,
+    const updates = columns
+      .filter((c) => c !== 'work_email')
+      .map((c) => `${c} = EXCLUDED.${c}`)
+      .concat('updated_at = now()')
+      .join(', ');
+    const result = await db().query(
+      `INSERT INTO corporate_readiness (${columns.join(', ')}) VALUES (${placeholders})
+       ON CONFLICT (work_email) DO UPDATE SET ${updates}
+       RETURNING (xmax = 0) AS is_new`,
       values
     );
+    isFirstSubmission = result.rows[0]?.is_new === true;
   } catch (err) {
     console.error('[corporate-readiness] DB insert failed:', err);
     return json({ error: 'Sorry, something went wrong saving your answers. Please try again.' }, 500);
@@ -95,36 +109,43 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
   if (apiKey) {
     const resend = new Resend(apiKey);
 
-    try {
-      await resend.emails.send({
-        from,
-        to: email,
-        ...(to ? { replyTo: to } : {}),
-        subject: `Your menopause workplace readiness score: ${score}/${readinessQuestions.length} (${tierLabel})`,
-        text: [
-          `Hi ${name.split(' ')[0]},`,
-          '',
-          `Here is where ${company} landed on the ResetWell Plus menopause workplace readiness assessment.`,
-          '',
-          `Score: ${score} out of ${readinessQuestions.length}`,
-          `Tier:  ${tierLabel}`,
-          '',
-          copy.tiers[tier].copy,
-          '',
-          'Your answers:',
-          ...answerLines,
-          '',
-          'The full State of Menopause report is attached.',
-          '',
-          'If you would like to talk through what a pilot looks like for your teams, just reply to this email.',
-          '',
-          'ResetWell Plus',
-          SITE.url,
-        ].join('\n'),
-        attachments: [{ filename: REPORT_FILENAME, content: Buffer.from(reportBase64, 'base64') }],
-      });
-    } catch (err) {
-      console.error('[corporate-readiness] Report email to lead failed (answers were still saved):', err);
+    // The report goes out once per address. A retake updates the stored row and
+    // is still reported internally, but the lead is not sent the PDF again.
+    if (isFirstSubmission) {
+      try {
+        await resend.emails.send({
+          from,
+          to: email,
+          ...(to ? { replyTo: to } : {}),
+          subject: `Your menopause workplace readiness score: ${score}/${readinessQuestions.length} (${tierLabel})`,
+          text: [
+            `Hi ${name.split(' ')[0]},`,
+            '',
+            `Here is where ${company} landed on the ResetWell Plus menopause workplace readiness assessment.`,
+            '',
+            `Score: ${score} out of ${readinessQuestions.length}`,
+            `Tier:  ${tierLabel}`,
+            '',
+            copy.tiers[tier].copy,
+            '',
+            'Your answers:',
+            ...answerLines,
+            '',
+            'The full State of Menopause report is attached.',
+            '',
+            'If you would like to talk through what a pilot looks like for your teams, just reply to this email.',
+            '',
+            'ResetWell Plus',
+            SITE.url,
+          ].join('\n'),
+          // Base64 string, not a Buffer: the SDK puts `content` through
+          // JSON.stringify, and a Buffer serialises to {"type":"Buffer",...}
+          // rather than the base64 the API expects.
+          attachments: [{ filename: REPORT_FILENAME, content: reportBase64 }],
+        });
+      } catch (err) {
+        console.error('[corporate-readiness] Report email to lead failed (answers were still saved):', err);
+      }
     }
 
     if (to) {
@@ -133,13 +154,16 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
           from,
           to,
           replyTo: email,
-          subject: `Readiness assessment: ${company} scored ${score}/${readinessQuestions.length} (${tierLabel})`,
+          subject: `${isFirstSubmission ? 'Readiness assessment' : 'Readiness retake'}: ${company} scored ${score}/${readinessQuestions.length} (${tierLabel})`,
           text: [
             `Name:    ${name}`,
             `Company: ${company}`,
             `Email:   ${email}`,
             `Score:   ${score}/${readinessQuestions.length} (${tierLabel})`,
             `Source:  ${source}`,
+            isFirstSubmission
+              ? 'Report:  sent to the lead'
+              : 'Report:  not resent, this address already received it',
             '',
             'Answers:',
             ...answerLines,
@@ -153,7 +177,9 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
     console.warn('[corporate-readiness] RESEND_API_KEY not set, skipping emails.');
   }
 
-  return json({ ok: true });
+  // `reportSent` lets the page tell the visitor the report is already in their
+  // inbox, rather than promising a second one that will never arrive.
+  return json({ ok: true, reportSent: isFirstSubmission });
 };
 
 // Any non-POST method.

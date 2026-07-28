@@ -48,6 +48,7 @@ const inputClass =
     data-generic-error={t.common.genericError}
     data-sending={page.sending}
     data-success-body={page.successBody}
+    data-success-body-repeat={page.successBodyRepeat}
     class="max-w-2xl mx-auto"
   >
     <!-- INTRO -->
@@ -244,6 +245,7 @@ const inputClass =
       const genericError = root.dataset.genericError ?? 'Something went wrong. Please try again.';
       const sendingLabel = root.dataset.sending ?? 'Sending…';
       const successTpl = root.dataset.successBody ?? '';
+      const successRepeatTpl = root.dataset.successBodyRepeat ?? successTpl;
 
       const panels = {
         intro: root.querySelector<HTMLElement>('[data-rw-panel="intro"]')!,
@@ -381,11 +383,11 @@ const inputClass =
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ ...payload, website: String(fd.get('website') ?? '') }),
           });
-          if (!res.ok) {
-            const info = await res.json().catch(() => ({}));
-            throw new Error(info.error || genericError);
-          }
-          root!.querySelector<HTMLElement>('[data-rw-thanks-body]')!.textContent = fill(successTpl, {
+          const info = await res.json().catch(() => ({}) as Record<string, unknown>);
+          if (!res.ok) throw new Error((info.error as string) || genericError);
+          // The report is only emailed the first time an address is submitted.
+          const tpl = info.reportSent === false ? successRepeatTpl : successTpl;
+          root!.querySelector<HTMLElement>('[data-rw-thanks-body]')!.textContent = fill(tpl, {
             name: payload.name.split(' ')[0],
             company: payload.company,
             email: payload.email,
