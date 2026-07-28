@@ -12,6 +12,9 @@ import { readinessTier } from '../../lib/readiness';
 import { readinessQuestions } from '../../data/content';
 import { en } from '../../i18n/en';
 import { SITE } from '../../data/seo';
+// Inlined at build time (see `base64Asset` in astro.config.mjs), so the
+// attachment never depends on the deployment being publicly fetchable.
+import reportBase64 from '../../../public/reports/resetwellplus-state-of-menopause-report.pdf?base64';
 
 const json = (body: unknown, status = 200) =>
   new Response(JSON.stringify(body), { status, headers: { 'Content-Type': 'application/json' } });
@@ -20,12 +23,12 @@ const str = (v: unknown) => (typeof v === 'string' ? v.trim() : '');
 
 const copy = en.pages.workplaceReadiness;
 
-// The lead magnet. Swap this file in public/ to change what gets sent; the
-// filename the recipient sees is set separately below.
-const REPORT_PATH = '/reports/resetwellplus-state-of-menopause-report.pdf';
+// The lead magnet. Swap the file at public/reports/ to change what gets sent
+// (the import above picks it up at build time); the filename the recipient sees
+// is set here.
 const REPORT_FILENAME = 'ResetWell Plus - State of Menopause Report.pdf';
 
-export const POST: APIRoute = async ({ request, clientAddress, url }) => {
+export const POST: APIRoute = async ({ request, clientAddress }) => {
   let body: Record<string, unknown>;
   try {
     body = await request.json();
@@ -91,9 +94,6 @@ export const POST: APIRoute = async ({ request, clientAddress, url }) => {
 
   if (apiKey) {
     const resend = new Resend(apiKey);
-    // Absolute URL so Resend can fetch the attachment. Uses the request origin
-    // in preview deploys and the canonical site URL in production.
-    const reportUrl = new URL(REPORT_PATH, url.origin || SITE.url).href;
 
     try {
       await resend.emails.send({
@@ -121,7 +121,7 @@ export const POST: APIRoute = async ({ request, clientAddress, url }) => {
           'ResetWell Plus',
           SITE.url,
         ].join('\n'),
-        attachments: [{ filename: REPORT_FILENAME, path: reportUrl }],
+        attachments: [{ filename: REPORT_FILENAME, content: Buffer.from(reportBase64, 'base64') }],
       });
     } catch (err) {
       console.error('[corporate-readiness] Report email to lead failed (answers were still saved):', err);

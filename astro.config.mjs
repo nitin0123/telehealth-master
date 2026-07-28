@@ -1,5 +1,6 @@
+import { readFile } from 'node:fs/promises';
 import { readFileSync, readdirSync } from 'node:fs';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
 import sitemap from '@astrojs/sitemap';
@@ -29,8 +30,36 @@ const BUILD_DATE = new Date().toISOString();
 // CTAs point at `/coming-soon`); drop it from this list when booking opens.
 const NOINDEX_PATHS = ['/coming-soon', '/get-care/book-a-consultation'];
 
+// Inline a binary file as a base64 string at build time:
+//
+//   import report from '../../../public/reports/some.pdf?base64';
+//
+// Used by /api/corporate-readiness so the report email carries the PDF's real
+// bytes. The obvious alternative, handing Resend a URL to fetch, breaks on
+// every environment that isn't public: preview deploys sit behind Vercel
+// deployment protection and 302 to an SSO login, so the recipient receives the
+// login page saved as a .pdf. Bundling the bytes removes the network entirely.
+function base64Asset() {
+  const SUFFIX = '?base64';
+  return {
+    name: 'base64-asset',
+    enforce: 'pre',
+    resolveId(source, importer) {
+      if (!source.endsWith(SUFFIX) || !importer) return null;
+      const target = fileURLToPath(new URL(source.slice(0, -SUFFIX.length), pathToFileURL(importer)));
+      return `${target}${SUFFIX}`;
+    },
+    async load(id) {
+      if (!id.endsWith(SUFFIX)) return null;
+      const data = await readFile(id.slice(0, -SUFFIX.length));
+      return `export default ${JSON.stringify(data.toString('base64'))};`;
+    },
+  };
+}
+
 // https://astro.build/config
 export default defineConfig({
+  vite: { plugins: [base64Asset()] },
   // Production URL — powers canonical links, sitemap and Open Graph URLs.
   site: 'https://www.resetwellplus.com',
   // Hybrid: every page is prerendered to static HTML by default; only routes
