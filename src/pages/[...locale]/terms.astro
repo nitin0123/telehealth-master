@@ -4,6 +4,7 @@ export const getStaticPaths = localePaths;
 const lang = langFromUrl(Astro.url);
 const to = (href: string) => localizePath(href, lang);
 import PageLayout from '../../layouts/PageLayout.astro';
+import LegalLangNote from '../../components/LegalLangNote.astro';
 // Content mirrors resetwellplus.com/terms-of-use. Have legal counsel review
 // before any material change.
 ---
@@ -17,6 +18,7 @@ import PageLayout from '../../layouts/PageLayout.astro';
   lede="The terms that govern your use of the ResetWell Plus platform and services."
 >
   <div class="bg-white border border-sand rounded-5xl p-8 lg:p-12 reveal">
+    <LegalLangNote />
     <div class="space-y-4 text-stone leading-relaxed max-w-3xl">
       <p class="text-sm text-stone/70">Last updated: 1 July 2026</p>
 

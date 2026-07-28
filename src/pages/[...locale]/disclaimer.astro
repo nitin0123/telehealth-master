@@ -1,5 +1,6 @@
 ---
 import PageLayout from '../../layouts/PageLayout.astro';
+import LegalLangNote from '../../components/LegalLangNote.astro';
 import { BOOK_HREF } from '../../data/nav';
 import { langFromUrl, localePaths, localizePath } from '../../i18n';
 export const getStaticPaths = localePaths;
@@ -15,6 +16,7 @@ const to = (href: string) => localizePath(href, lang);
   description="The content on the ResetWell Plus website is for informational and educational purposes only and is not a substitute for professional medical advice."
 >
   <div class="bg-white border border-sand rounded-5xl p-8 lg:p-12 reveal">
+    <LegalLangNote />
     <div class="space-y-5 text-stone text-lg leading-relaxed max-w-2xl">
       <p>
         The content on this website is for informational and educational purposes only. It is not intended as a

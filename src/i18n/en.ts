@@ -117,6 +117,8 @@ export const en = {
     quizCta: 'Take the Free Symptom Quiz',
     bookCta: 'Book a Consultation',
     imageAlt: 'A woman smiling and gazing toward bright window light, hair flowing, in a calm modern interior',
+    /** Rating badge, currently hidden in the markup */
+    ratingCaption: 'from 12,000+ women',
   },
 
   problemStrip: {
@@ -390,6 +392,13 @@ export const en = {
   announcement: {
     text: 'Specialist-led care · Same-week appointments · Transparent pricing ·',
     cta: 'Book a visit →',
+  },
+
+  legal: {
+    /** Shown on the Hindi legal pages only (see LegalLangNote.astro). */
+    translationNote:
+      'This page is a Hindi translation provided for convenience. If anything in it differs from the English version, the English version applies.',
+    readEnglish: 'Read the English version',
   },
 
   consent: {

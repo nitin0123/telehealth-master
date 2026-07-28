@@ -4,6 +4,7 @@ export const getStaticPaths = localePaths;
 const lang = langFromUrl(Astro.url);
 const to = (href: string) => localizePath(href, lang);
 import PageLayout from '../../layouts/PageLayout.astro';
+import LegalLangNote from '../../components/LegalLangNote.astro';
 // Text mirrors resetwellplus.com/sms-consent. Capture follows the same
 // client-side pattern as the contact form: the payload is logged with a TODO
 // to POST it to a backend endpoint (e.g. /api/sms-consent) + your database.
@@ -18,6 +19,7 @@ import PageLayout from '../../layouts/PageLayout.astro';
   lede="ResetWell Plus: Proof of Consent (Opt-In) for SMS Messaging."
 >
   <div class="bg-white border border-sand rounded-5xl p-6 lg:p-10 shadow-sm reveal max-w-3xl mx-auto">
+    <LegalLangNote />
     <!-- Terms -->
     <div class="space-y-5 text-stone text-sm leading-relaxed">
       <div>

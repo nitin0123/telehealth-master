@@ -31,7 +31,11 @@ House style carries over from English: **no em-dashes**. Use commas, colons or p
 ## Never translate
 
 - **Brand:** ResetWell Plus (always Latin script, never transliterated)
-- **People:** founder, specialist, author and testimonial names
+- **Named people:** founders, specialists, article bylines. These identify real,
+  findable people, so they stay in Latin script and only their *role* is translated
+  ("Dr. Ananya Rao, मेनोपॉज़ विशेषज्ञ"). First-name-only testimonials are the
+  exception: they are transliterated (Meera → मीरा), since nothing depends on
+  matching the spelling and Latin names read as half-translated in Devanagari copy.
 - **Prices and numbers:** ₹1,599 and 30 min stay as-is, in Latin digits
 - **In-the-press headlines:** they are citations of real published articles
 - **URLs, slugs, social handles, email addresses**

@@ -1,0 +1,23 @@
+---
+// Shown at the top of the legal pages on the Hindi site only.
+//
+// A translated privacy policy or terms page can create real ambiguity about
+// which version binds. This states plainly that the English text prevails and
+// links straight to it. Renders nothing on the English pages.
+import { alternatePath, langFromUrl, useTranslations } from '../i18n';
+
+const lang = langFromUrl(Astro.url);
+const t = useTranslations(lang);
+const englishHref = alternatePath(Astro.url);
+---
+
+{
+  lang === 'hi' && englishHref && (
+    <p class="mb-5 rounded-3xl border border-sand bg-peach/30 px-5 py-4 text-sm text-ink/80">
+      {t.legal.translationNote}{' '}
+      <a href={englishHref} hreflang="en-IN" lang="en-IN" class="text-clay underline underline-offset-2 hover:text-claydk">
+        {t.legal.readEnglish}
+      </a>
+    </p>
+  )
+}
