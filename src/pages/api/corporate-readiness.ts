@@ -12,7 +12,10 @@ import { readinessTier } from '../../lib/readiness';
 import { readinessQuestions } from '../../data/content';
 import { en } from '../../i18n/en';
 import { SITE } from '../../data/seo';
-import { readinessReportHtml, readinessReportText } from '../../lib/emails/readinessReport';
+import { LOGO_CID, readinessReportHtml, readinessReportText } from '../../lib/emails/readinessReport';
+// Embedded in the email body via cid:, so the header renders without the client
+// fetching anything from the deployment.
+import logoBase64 from '../../../public/logo.png?base64';
 // Inlined at build time (see `base64Asset` in astro.config.mjs), so the
 // attachment never depends on the deployment being publicly fetchable.
 import reportBase64 from '../../../public/reports/resetwellplus-state-of-menopause-report.pdf?base64';
@@ -137,10 +140,20 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
           // Sent alongside the HTML so text-only clients get a readable body
           // rather than a blank message.
           text: readinessReportText(report),
-          // Base64 string, not a Buffer: the SDK puts `content` through
+          // Base64 strings, not Buffers: the SDK puts `content` through
           // JSON.stringify, and a Buffer serialises to {"type":"Buffer",...}
           // rather than the base64 the API expects.
-          attachments: [{ filename: REPORT_FILENAME, content: reportBase64 }],
+          attachments: [
+            { filename: REPORT_FILENAME, content: reportBase64 },
+            // contentId makes this an inline part referenced by the <img> in the
+            // header rather than a file the recipient is asked to download.
+            {
+              filename: 'resetwell-plus-logo.png',
+              content: logoBase64,
+              contentType: 'image/png',
+              contentId: LOGO_CID,
+            },
+          ],
         });
       } catch (err) {
         console.error('[corporate-readiness] Report email to lead failed (answers were still saved):', err);

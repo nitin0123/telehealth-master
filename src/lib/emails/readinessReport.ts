@@ -1,16 +1,26 @@
 // HTML (and plain-text) body for the readiness assessment report email.
 //
 // Written to email-client constraints rather than the site's: table layout, all
-// styles inline, no flexbox/grid, no web fonts and no images. Images are
-// deliberately avoided because a remote logo would have to be fetched from the
+// styles inline, no flexbox/grid and no web fonts.
+//
+// The logo travels with the message as an inline attachment referenced by
+// `cid:` rather than as a URL. A remote image would have to be fetched from the
 // deployment, and preview deploys sit behind Vercel's auth wall (the same trap
-// that broke the PDF attachment), so the wordmark is set in type instead.
+// that broke the PDF attachment); embedding it also means it renders in clients
+// that block remote images by default. The wordmark is still set in type beside
+// it, so the header reads correctly even if the image is stripped.
 //
 // Brand colours are hard-coded here because email clients cannot read Tailwind:
 // ever #6D28D9, clay #9333EA, sand #EADCF8, cream #FCFAFF, ink #2E2440,
 // stone #6B6280.
 
 import { WORDMARK, SITE } from '../../data/seo';
+
+/**
+ * Content-ID for the embedded logo. The endpoint attaches the image under this
+ * id; the markup below references it as `cid:<LOGO_CID>`.
+ */
+export const LOGO_CID = 'resetwell-logo';
 
 export interface ReadinessEmailInput {
   name: string;
@@ -87,12 +97,27 @@ export function readinessReportHtml(input: ReadinessEmailInput): string {
       <td align="center" style="padding:28px 16px;">
         <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="600" style="border-collapse:collapse;width:100%;max-width:600px;background:#FCFAFF;border-radius:16px;overflow:hidden;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;">
 
-          <!-- Header -->
+          <!-- Header. The logo sits on a light background because the source
+               image is a square with a white field; on the brand purple it
+               would read as a white tile. A purple rule underneath carries the
+               brand colour instead. -->
           <tr>
-            <td style="padding:22px 32px;background:#6D28D9;">
-              <span style="font-size:17px;font-weight:700;color:#FCFAFF;letter-spacing:-0.01em;">${esc(WORDMARK)}</span>
-              <span style="font-size:12px;color:#D9C9F7;padding-left:10px;">Workplace Readiness</span>
+            <td style="padding:20px 32px 18px;background:#FFFFFF;">
+              <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
+                <tr>
+                  <td style="padding-right:12px;vertical-align:middle;line-height:0;">
+                    <img src="cid:${LOGO_CID}" alt="${esc(WORDMARK)}" width="46" height="46" style="display:block;width:46px;height:46px;border:0;outline:none;text-decoration:none;border-radius:23px;">
+                  </td>
+                  <td style="vertical-align:middle;">
+                    <div style="font-size:17px;font-weight:700;color:#6D28D9;letter-spacing:-0.01em;line-height:1.2;">${esc(WORDMARK)}</div>
+                    <div style="font-size:12px;color:#8A7BA3;padding-top:2px;">Workplace Readiness</div>
+                  </td>
+                </tr>
+              </table>
             </td>
+          </tr>
+          <tr>
+            <td style="height:4px;background:#6D28D9;line-height:4px;font-size:0;">&nbsp;</td>
           </tr>
 
           <!-- Greeting -->
