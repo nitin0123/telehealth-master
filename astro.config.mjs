@@ -7,13 +7,19 @@ import vercel from '@astrojs/vercel/serverless';
 
 // Map each blog slug to its publishedAt date so the sitemap can carry an
 // accurate <lastmod> for posts; other pages fall back to the build date.
+// Recursive: Hindi posts live in src/content/blog/hi/ and share their English
+// twin's slug, so both languages of a post get the same real <lastmod>.
 const blogDir = fileURLToPath(new URL('./src/content/blog', import.meta.url));
 const blogLastmod = Object.fromEntries(
-  readdirSync(blogDir)
+  readdirSync(blogDir, { recursive: true })
+    .map(String)
     .filter((f) => f.endsWith('.md'))
     .map((f) => {
       const m = readFileSync(`${blogDir}/${f}`, 'utf8').match(/^publishedAt:\s*([0-9-]+)/m);
-      return [f.replace(/\.md$/, ''), m ? new Date(m[1]).toISOString() : undefined];
+      // 'hi/foo.md' and 'foo.md' both key on 'foo'; the sitemap looks the slug
+      // up without its locale prefix.
+      const slug = f.replace(/\.md$/, '').replace(/^hi\//, '');
+      return [slug, m ? new Date(m[1]).toISOString() : undefined];
     })
 );
 const BUILD_DATE = new Date().toISOString();

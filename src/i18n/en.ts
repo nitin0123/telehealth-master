@@ -949,6 +949,22 @@ export const en = {
       closing2: 'Stop suffering in silence. Reclaim your energy, your sleep, your spark, your self.',
     },
 
+    blog: {
+      title: 'Our Blog',
+      lede: "From the ResetWell Plus Editorial team: Straight talk on perimenopause, menopause, and midlife health - what's happening in your body, and what you can actually do about it.",
+      description:
+        'Articles on perimenopause and menopause symptoms, treatment options, and midlife wellness from the ResetWell Plus team.',
+      keywords: 'menopause blog India, perimenopause symptoms, menopause articles',
+      /** {n} is the estimated reading time in minutes. */
+      readTime: '{n} min read',
+      readPost: 'Read the post',
+      faqHeading: 'Frequently asked questions',
+      ctaHeading: 'Wondering if this is perimenopause?',
+      ctaChecker: 'Check Your Symptoms',
+      ctaBook: 'Book a Consultation',
+      backToAll: 'Back to all posts',
+    },
+
     about: {
       kicker: 'About',
       title: 'Meet the Founders',

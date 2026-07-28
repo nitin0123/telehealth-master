@@ -2,25 +2,40 @@
 // Blog post template. Every post in src/content/blog/*.md renders through
 // this page; add a new markdown file and it gets a route automatically.
 import { getCollection, type CollectionEntry } from 'astro:content';
-import PageLayout from '../../layouts/PageLayout.astro';
-import { SITE, BRAND } from '../../data/seo';
-import { BOOK_HREF } from '../../data/nav';
+import PageLayout from '../../../layouts/PageLayout.astro';
+import { SITE, BRAND } from '../../../data/seo';
+import { BOOK_HREF } from '../../../data/nav';
+import { HI_PREFIX, langFromUrl, localizePath, LOCALE, useTranslations } from '../../../i18n';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog', ({ data }) => !data.draft);
-  return posts.map((post) => ({ params: { slug: post.slug }, props: { post } }));
+  // A Hindi post lives at src/content/blog/hi/<slug>.md, so it keeps the same
+  // URL slug as its English twin and only the locale segment differs.
+  return posts.map((post) => {
+    const isHindi = post.slug.startsWith('hi/');
+    return {
+      params: {
+        locale: isHindi ? HI_PREFIX.slice(1) : undefined,
+        slug: isHindi ? post.slug.slice(3) : post.slug,
+      },
+      props: { post },
+    };
+  });
 }
 
 interface Props {
   post: CollectionEntry<'blog'>;
 }
 const { post } = Astro.props;
+const lang = langFromUrl(Astro.url);
+const t = useTranslations(lang);
+const to = (href: string) => localizePath(href, lang);
 const { Content } = await post.render();
 const { title, subtitle, synopsis, author, publishedAt, cover, keywords, metaTitle, faq } = post.data;
 
 // timeZone UTC: frontmatter dates are date-only, so formatting must not shift
 // with the build machine's timezone.
-const dateLabel = publishedAt.toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
+const dateLabel = publishedAt.toLocaleDateString(LOCALE[lang], { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
 const readMins = Math.max(1, Math.round(post.body.split(/\s+/).length / 220));
 
 const articleSchema = {
@@ -73,7 +88,7 @@ const faqSchema = faq?.length
   </div>
 
   <p class="-mt-6 mb-8 text-sm text-stone reveal" style="--reveal-delay:120ms">
-    {author} · {dateLabel} · {readMins} min read
+    {author} · {dateLabel} · {t.pages.blog.readTime.replace('{n}', String(readMins))}
   </p>
 
   <article class="post-body reveal" style="--reveal-delay:160ms">
@@ -82,7 +97,7 @@ const faqSchema = faq?.length
 
   {faq && faq.length > 0 && (
     <section class="mt-10 reveal">
-      <h2 class="font-serif text-2xl text-ever mb-4">Frequently asked questions</h2>
+      <h2 class="font-serif text-2xl text-ever mb-4">{t.pages.blog.faqHeading}</h2>
       <div class="space-y-3">
         {faq.map((f) => (
           <details class="bg-white border border-sand rounded-3xl px-5 py-4 group">
@@ -99,18 +114,18 @@ const faqSchema = faq?.length
 
   <!-- Post CTA: mirrors the site-wide "check your symptoms / book" pathways -->
   <aside class="mt-10 rounded-4xl bg-white border border-sand shadow-sm p-6 sm:p-8 reveal">
-    <h2 class="font-serif text-2xl text-ever">Wondering if this is perimenopause?</h2>
+    <h2 class="font-serif text-2xl text-ever">{t.pages.blog.ctaHeading}</h2>
     <p class="mt-2 text-stone">
       Take our 2-minute symptom self-assessment, or talk to a menopause specialist who will actually listen.
     </p>
     <div class="mt-5 flex flex-wrap gap-3">
-      <a href="/understand-your-symptoms/symptom-checker/" class="inline-flex items-center rounded-full bg-clay hover:bg-claydk transition text-white text-sm font-semibold px-5 py-2.5">Check Your Symptoms</a>
-      <a href={BOOK_HREF} class="inline-flex items-center rounded-full border border-clay/40 text-clay hover:bg-peach/40 transition text-sm font-semibold px-5 py-2.5">Book a Consultation</a>
+      <a href={to('/understand-your-symptoms/symptom-checker/')} class="inline-flex items-center rounded-full bg-clay hover:bg-claydk transition text-white text-sm font-semibold px-5 py-2.5">{t.pages.blog.ctaChecker}</a>
+      <a href={to(BOOK_HREF)} class="inline-flex items-center rounded-full border border-clay/40 text-clay hover:bg-peach/40 transition text-sm font-semibold px-5 py-2.5">{t.pages.blog.ctaBook}</a>
     </div>
   </aside>
 
   <p class="mt-8 reveal">
-    <a href="/blog/" class="text-sm font-medium text-clay hover:text-claydk transition">&larr; Back to all posts</a>
+    <a href={to('/blog/')} class="text-sm font-medium text-clay hover:text-claydk transition">&larr; {t.pages.blog.backToAll}</a>
   </p>
 </PageLayout>
 
