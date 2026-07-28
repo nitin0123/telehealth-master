@@ -77,7 +77,7 @@ Your physical surroundings heavily influence cognitive function, especially duri
 
 ### 5. Control the Controllables: Sleep and Diet
 
-Brain fog is exacerbated by two classic menopausal disruptors: poor sleep (often caused by night sweats) and blood sugar spikes.
+Brain fog is exacerbated by two classic menopausal disruptors: [poor sleep](/blog/why-sleep-tracking-may-be-misleading-during-menopause/) (often caused by night sweats) and blood sugar spikes.
 
 - **The Afternoon Slump:** avoid heavy, carb-laden lunches that cause insulin spikes. A blood sugar crash on top of menopause brain fog will completely tank your afternoon focus. Opt for high-protein, healthy-fat meals (like salmon, avocado, and leafy greens).
 - **Sleep Hygiene:** even if [night sweats](/blog/optimize-your-sleep-environment-to-minimize-night-sweats/) wake you up, keeping your room at a cool 18°C (65°F) and using layered, breathable bedding can help you get back to sleep faster, preserving critical REM cycles where memory consolidation happens.

@@ -136,7 +136,7 @@ The key is understanding what's happening in your body first.
 If you've ever found yourself:
 
 - Forgetting things more often
-- Feeling unlike yourself
+- [Feeling unlike yourself](/blog/loneliness-during-menopause/)
 - Wondering if it's "just stress"
 
 …it might not be.

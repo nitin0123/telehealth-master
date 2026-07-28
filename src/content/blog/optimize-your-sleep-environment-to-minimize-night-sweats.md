@@ -55,7 +55,7 @@ Wear loose garments made from moisture-wicking fabrics like lightweight pajamas 
 
 ## Take Control of Your Sleep Journey
 
-Optimizing your sheets and fans handles the external environment, but sustainable relief from menopausal night sweats happens when you support your body from within.
+Optimizing your sheets and fans handles the external environment (and remember that [a sleep tracker only tells part of the story](/blog/why-sleep-tracking-may-be-misleading-during-menopause/)), but sustainable relief from menopausal night sweats happens when you support your body from within.
 
 <img src="/blog/optimize-your-sleep-environment-to-minimize-night-sweats/inline-4.jpg" alt="Quick-reference table: what to avoid and what to choose instead for sheets, blankets, sleepwear, and air setup" width="587" height="378" srcset="/blog/optimize-your-sleep-environment-to-minimize-night-sweats/inline-4-480.jpg 480w, /blog/optimize-your-sleep-environment-to-minimize-night-sweats/inline-4.jpg 587w" sizes="(max-width: 640px) 92vw, 680px" loading="lazy" />
 
