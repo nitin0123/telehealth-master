@@ -38,6 +38,10 @@ House style carries over from English: **no em-dashes**. Use commas, colons or p
   matching the spelling and Latin names read as half-translated in Devanagari copy.
 - **Prices and numbers:** ₹1,599 and 30 min stay as-is, in Latin digits
 - **In-the-press headlines:** they are citations of real published articles
+- **YouTube video titles** (`onDemandVideos` in src/data/content.ts): these are the
+  actual titles of English-language videos, so a translated title would not match
+  what opens on YouTube. Confirmed by the client. Only the surrounding UI is
+  translated, e.g. "Watch on YouTube" becomes "YouTube पर देखें".
 - **URLs, slugs, social handles, email addresses**
 - **Form input values:** users type in English. See below.
 
