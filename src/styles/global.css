@@ -18,6 +18,13 @@
   .eyebrow {
     letter-spacing: 0.18em;
   }
+  /* Devanagari is a connected script: letter-spacing separates conjuncts and
+     matras from their base characters and makes the text harder to read. The
+     eyebrow keeps its tracking in English and loses it in Hindi. */
+  [lang='hi-IN'] .eyebrow,
+  [lang='hi'] .eyebrow {
+    letter-spacing: normal;
+  }
   /* Primary pill button */
   .btn-primary {
     @apply inline-flex justify-center items-center rounded-full bg-clay text-white font-semibold px-7 py-3.5 transition-colors duration-200 hover:bg-ever;
