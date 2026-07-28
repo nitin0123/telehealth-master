@@ -1006,7 +1006,7 @@ export const en = {
 
     inThePress: {
       kicker: 'About',
-      title: 'In the press',
+      title: 'In The Press',
       metaTitle: 'In The Press | ResetWell Plus',
       description:
         "Press coverage and media features for ResetWell Plus, India's expert-led platform for perimenopause and menopause care.",
