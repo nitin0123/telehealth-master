@@ -56,10 +56,13 @@ const inputClass =
       <h2 class="font-serif text-2xl lg:text-3xl text-ever">{page.introHeading}</h2>
       <p class="mt-3 text-stone">{page.introBody}</p>
 
-      <div class="mt-6 grid grid-cols-3 gap-3">
+      <!-- Tight horizontal padding and a smaller value on narrow screens: at
+           375px these cards are only ~87px wide, and "60 sec" wrapped to two
+           lines, which stretched all three and left the other two half empty. -->
+      <div class="mt-6 grid grid-cols-3 gap-2 sm:gap-3">
         {page.stats.map((s) => (
-          <div class="rounded-4xl bg-sand/50 px-4 py-4 text-center">
-            <p class="font-serif text-xl lg:text-2xl text-ever leading-none">{s.value}</p>
+          <div class="rounded-4xl bg-sand/50 px-2 py-4 sm:px-4 text-center">
+            <p class="font-serif text-base sm:text-xl lg:text-2xl text-ever leading-none whitespace-nowrap">{s.value}</p>
             <p class="mt-1.5 text-xs text-stone leading-snug">{s.label}</p>
           </div>
         ))}
@@ -112,7 +115,9 @@ const inputClass =
         </button>
       </div>
 
-      <button type="button" data-rw-back class="mt-5 text-sm text-stone hover:text-clay transition">
+      <!-- Padded out to a ~44px tap target: as bare text it was 20px tall,
+           well under the minimum for a comfortable thumb press. -->
+      <button type="button" data-rw-back class="mt-3 -ml-2 inline-flex items-center gap-1 px-2 py-3 text-sm text-stone hover:text-clay transition">
         &larr; {page.back}
       </button>
     </section>
@@ -269,8 +274,20 @@ const inputClass =
       let current = 0;
       let answers: boolean[] = [];
 
+      // The site header is `sticky top-0`, so a panel swapped in while the
+      // visitor is scrolled down starts underneath it and its first line is
+      // hidden. Nudge the page only when that has actually happened, so a panel
+      // that is already in view never jumps.
+      const header = document.querySelector('header');
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
       const show = (name: keyof typeof panels) => {
         Object.entries(panels).forEach(([key, el]) => el.classList.toggle('hidden', key !== name));
+        const offset = (header?.getBoundingClientRect().height ?? 0) + 12;
+        const top = panels[name].getBoundingClientRect().top;
+        if (top < offset) {
+          window.scrollBy({ top: top - offset, behavior: reduceMotion ? 'auto' : 'smooth' });
+        }
       };
 
       const fill = (tpl: string, vars: Record<string, string | number>) =>
