@@ -623,6 +623,170 @@ export const en = {
       cta: 'Take the Free Symptom Quiz',
     },
 
+    about: {
+      kicker: 'About',
+      title: 'Meet the Founders',
+      metaTitle: "About ResetWell Plus | Women's Midlife & Menopause Wellness",
+      description:
+        "ResetWell Plus is a women's wellness platform for menopause and midlife, created by Swati Singh and Reshma Tiwari to bring clarity, compassion and community to women everywhere.",
+      keywords: "about ResetWell Plus, menopause wellness India, women's midlife community",
+      lede: 'A space created by women who have walked the journey themselves, determined to make sure no one else walks it alone.',
+      readBio: 'Read full bio',
+      /** Keys match the founder ids in the page; names and images stay there. */
+      founders: {
+        swati: {
+          role: "Author, menopause educator, speaker & women's wellness advocate",
+          creds: 'Masters in English',
+        },
+        reshma: {
+          role: "Certified menopause coach, speaker & women's wellness advocate",
+          creds: 'Masters in Business Administration',
+        },
+      } as Record<string, { role: string; creds: string }>,
+      beganHeading: 'How it all began',
+      beganParas: [
+        "We are Swati and Reshma, menopause educators, motivational speakers and women's wellness advocates. After experiencing firsthand how confusing, isolating, and overlooked this stage of life can be, we made it our mission to bring clarity, compassion, and community to women everywhere.",
+        'At ResetWell Plus, we break the silence. We replace fear with knowledge. We replace confusion with confidence. And we replace isolation with a supportive sisterhood.',
+        'That mission lives first in our telehealth platform: real access to expert doctors, personalized hormonal care, and holistic specialists, whenever a woman needs them. We back that up with empowering events, honest conversations, and practical guidance, so every woman can understand her body and rediscover the strength and brilliance she already possesses.',
+      ],
+    },
+
+    ourTeam: {
+      kicker: 'About',
+      title: 'Our team',
+      metaTitle: 'Our Team | ResetWell Plus',
+      description:
+        "Meet the clinicians and builders behind ResetWell Plus, India's expert-led platform for perimenopause and menopause care.",
+      lede: 'The clinicians and builders behind ResetWell Plus.',
+    },
+
+    inThePress: {
+      kicker: 'About',
+      title: 'In the press',
+      metaTitle: 'In The Press | ResetWell Plus',
+      description:
+        "Press coverage and media features for ResetWell Plus, India's expert-led platform for perimenopause and menopause care.",
+      lede: "Coverage and recognition for our work in women's midlife health.",
+      readArticle: 'Read article',
+      /** {link} is replaced with the linked `getInTouch` text. */
+      enquiries: 'For press enquiries, {link}.',
+      getInTouch: 'get in touch',
+    },
+
+    workplaceWellness: {
+      kicker: 'About',
+      title: 'Partner with ResetWell Plus',
+      metaTitle: 'Workplace Menopause Wellness in India | ResetWell Plus',
+      description:
+        'Bring expert menopause and midlife care to your organisation in India. Reduce attrition, boost wellbeing and build a menopause-confident culture.',
+      keywords: 'workplace wellness India, menopause at work India, employee benefits menopause',
+      lede: 'Bring expert menopause and midlife care to your organisation.',
+      points: [
+        {
+          h: 'Reduce attrition',
+          p: 'Support women through midlife and keep experienced talent in your organisation.',
+        },
+        { h: 'Boost wellbeing', p: 'Expert care and education that improves day-to-day quality of life.' },
+        {
+          h: 'Build a better culture',
+          p: 'Make menopause a topic teams can talk about openly and supportively.',
+        },
+      ] as { h: string; p: string }[],
+      cta: 'Talk to our team',
+    },
+
+    ourStory: {
+      kicker: 'About',
+      title: 'Our Story',
+      metaTitle: 'Our Story | ResetWell Plus',
+      description:
+        'Why we built ResetWell Plus: expert-led, culturally honest menopause and hormonal health care for the 103 million Indian women the system overlooks.',
+      keywords: 'ResetWell Plus story, menopause care India, hormonal health platform India, menopause mission',
+      lede: 'Why we built the midlife care women deserve.',
+      imageAlt:
+        'The ResetWell Plus founding team discussing the telehealth platform at a whiteboard in a warmly lit office',
+      introLead: "In India, menopause is still whispered about, if it's discussed at all.",
+      introPara:
+        "Millions of women are navigating hormonal transitions in their late 30s and 40s with symptoms their doctors dismiss, their families don't understand, and their own bodies can barely explain. ResetWell Plus was built in response to that silence. And to the 103 million Indian women who deserve better than it.",
+      missionLabel: 'Mission',
+      missionText:
+        'Our mission: to make expert menopause and hormonal health care accessible, culturally honest, and warmly supported, for every woman, wherever she is.',
+      purposeHeading: 'Our Founding Purpose',
+      purposeParas: [
+        "ResetWell Plus began with a question that had no good answer: why is menopause the only major biological transition in a woman's life that our healthcare system treats as invisible?",
+        'Our founders Reshma Tiwari and Swati Singh came together not for a market opportunity but a personal recognition: that the women around them, mothers, colleagues, patients, friends, were suffering silently through a transition that had real medical causes and real medical solutions, and they had no access to either.',
+        'ResetWell Plus was built to be the platform they wished had existed. Not a supplement brand. Not a general telehealth service. A dedicated, expert-led, culturally grounded ecosystem for Indian women navigating hormonal health transitions.',
+      ],
+      diffHeading: 'How ResetWell Plus Is Different',
+      diffItems: [
+        'We combine what no other platform offers together: expert-led events, specialist virtual consultations, and a facilitated community, in one place, in India, for Indian women.',
+        'Our specialists are specifically trained in perimenopause and menopause. This is not a sideline of their general practice, it is their focus.',
+        "We acknowledge India's cultural context. The symptoms differ. The stigma differs. The family dynamics differ. Our care reflects that.",
+        'We serve all of India, not just metros. Virtual-first means a woman in Patna has the same access as a woman in Mumbai.',
+      ],
+      pillarsHeading: 'Our Approach: Three Pillars',
+      pillars: [
+        {
+          h: 'Evidence-Based Care',
+          p: 'Every treatment we recommend is grounded in current clinical evidence, reviewed regularly by our medical advisors. We do not speculate or use wellness language to avoid clinical responsibility.',
+        },
+        {
+          h: 'Cultural Integration',
+          p: 'We understand that menopause in India arrives inside a web of family expectations, traditional beliefs, and institutional silence. Our care acknowledges all of this, and helps women navigate it on their own terms.',
+        },
+        {
+          h: 'Individual Plans',
+          p: "Every woman's perimenopause is different. Her symptoms, health history, family, cultural context, and preferences, all of it shapes her care plan. There is no standard protocol.",
+        },
+      ] as { h: string; p: string }[],
+      commitmentHeading: 'Our Commitment',
+      commitmentPara:
+        'We commit to being honest when answers are complicated. We will not pretend that menopause care is simple, that HRT is right for everyone, or that a single event or supplement will solve everything. What we will do is give every woman who comes to ResetWell Plus the clearest, most honest picture of her options, and stand beside her as she navigates them.',
+      commitmentQuoteIntro:
+        'We measure our success not by the number of appointments booked, but by how many Indian women reach us saying:',
+      commitmentQuote: '"This was the first place where someone actually heard me."',
+      cta: 'Book a Consultation',
+    },
+
+    swatiSingh: {
+      kicker: 'About',
+      title: 'Swati Singh',
+      metaTitle: 'Swati Singh | ResetWell Plus',
+      description:
+        "Swati Singh, co-founder of ResetWell Plus: author, menopause educator, speaker and women's wellness advocate.",
+      lede: "Author, menopause educator, speaker & women's wellness advocate.",
+      jobTitle: 'Co-founder',
+      schemaDescription:
+        "Author of Menopause & Me, menopause educator, speaker and women's wellness advocate.",
+      /** {book} in the third paragraph becomes a link to /book/. */
+      paras: [
+        "Swati Singh is an author, women's health and wellness advocate, and the co-founder of ResetWell Plus, a platform on a mission to change the face of menopause care in India.",
+        "Her journey began the way it does for so many women: suddenly, and without warning. A lifelong health and fitness enthusiast, Swati's life was turned upside down when menopause struck, leaving her on temporary disability, navigating a confusing US medical system that had few real answers. With determination and self-advocacy, she charted her own path to menopause care and wellness. And today, she is thriving, with a body and mind that feel decades younger than her years.",
+        "That experience became her calling. She wrote {book} to give women what she didn't have: a clear, honest guide that reminds them they don't need to be doctors to take charge of their own bodies: they need to reclaim their lives and thrive in their second innings.",
+        'That same conviction is the foundation of ResetWell Plus, the platform she co-founded to bring accessible menopause care to women across India, while building awareness in the South Asian community in the US through podcasts, webinars, talks, panels, and in-person events on women\'s midlife wellness. A sought-after voice on midlife and menopause, Swati along with Reshma, through ResetWell Plus, is inspiring women to challenge the status quo, break the silence around menopause, and step boldly into the most powerful chapter of their lives.',
+      ],
+      bookTitle: 'Menopause & Me',
+    },
+
+    reshmaTiwari: {
+      kicker: 'About',
+      title: 'Reshma Tiwari',
+      metaTitle: 'Reshma Tiwari | ResetWell Plus',
+      description:
+        "Reshma Tiwari, co-founder of ResetWell Plus: certified menopause coach, speaker and women's wellness advocate.",
+      lede: "Certified menopause coach, speaker & women's wellness advocate.",
+      jobTitle: 'Co-founder',
+      schemaDescription: "Certified menopause coach, speaker and women's wellness advocate.",
+      /** {swati} in the fourth paragraph becomes a link to her page. */
+      paras: [
+        "Reshma Tiwari is co-founder of ResetWell Plus, a platform built to revolutionize women's wellness in India, starting with menopause care. By day, she's a senior corporate finance executive, where she's spent 20 plus years commanding leadership meetings and boardrooms with confidence and precision.",
+        'Then perimenopause arrived, unannounced. Brain fog, sudden acne, hair loss, incontinence and joint pain that threatened her active lifestyle. For a high-performing executive, the quiet erosion of confidence was the hardest symptom of all.',
+        'The experience hit close to home. Reshma grew up in a household shaped by medicine: her father, a devoted physician, instilled in her a deep reverence for health and humanity. Yet right beside him, her mother endured her own menopause journey silently, with no language for what she was going through. When Reshma later co-founded ResetWell Plus, her mother\'s reaction was immediate: "I wish you had started this ten years earlier." Those words became fuel for everything that followed.',
+        'Having found her own way back to vitality through targeted hormonal solutions, Reshma partnered with another passionate wellness advocate {swati} to turn that experience into something larger. Together, the duo have founded ResetWell Plus to break the cultural silence around menopause. "Women deserve to navigate midlife health with clarity, compassion, and science," says Reshma Tiwari. "ResetWell Plus is building an ecosystem where women can reclaim their confidence and understand their bodies on their own terms."',
+        'Reshma is a wife to a deeply supportive husband, a mother of two teenage sons (her "gems"), and a competitive pickleball player off the clock, and a living example of what happens when women refuse to just "live with" their symptoms. ResetWell Plus offers a personalized, holistic mix of hormonal and non-hormonal solutions, so every woman has a tailored path into the most powerful chapter of her life.',
+      ],
+    },
+
     eventsUpcoming: {
       kicker: 'Events',
       title: 'Upcoming events',

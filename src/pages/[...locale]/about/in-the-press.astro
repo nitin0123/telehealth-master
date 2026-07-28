@@ -1,18 +1,25 @@
 ---
-import { langFromUrl, localePaths, localizePath } from '../../../i18n';
+import { fmt, langFromUrl, localePaths, localizePath, useTranslations } from '../../../i18n';
 export const getStaticPaths = localePaths;
 const lang = langFromUrl(Astro.url);
+const t = useTranslations(lang);
 const to = (href: string) => localizePath(href, lang);
+const page = t.pages.inThePress;
+// The enquiry line wraps a link, so it is assembled from the dictionary
+// rather than split across markup.
+const enquiryHtml = fmt(page.enquiries, {
+  link: `<a href="${to('/contact/')}" class="font-semibold text-ever underline decoration-clay/40 underline-offset-4 hover:decoration-clay transition">${page.getInTouch}</a>`,
+});
 import PageLayout from '../../../layouts/PageLayout.astro';
 import { pressFeatures } from '../../../data/content';
 ---
 <PageLayout
-  section="About"
-  kicker="About"
-  title="In the press"
-  metaTitle="In The Press | ResetWell Plus"
-  description="Press coverage and media features for ResetWell Plus, India's expert-led platform for perimenopause and menopause care."
-  lede="Coverage and recognition for our work in women's midlife health."
+  section={t.nav.sections.about.label}
+  kicker={page.kicker}
+  title={page.title}
+  metaTitle={page.metaTitle}
+  description={page.description}
+  lede={page.lede}
 >
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5">
     {pressFeatures.map((p, i) => (
@@ -42,7 +49,7 @@ import { pressFeatures } from '../../../data/content';
           <p class="eyebrow uppercase text-xs font-semibold text-clay">{p.publication}{p.date ? ` · ${p.date}` : ''}</p>
           <h3 class="mt-2 font-serif text-base text-ever line-clamp-2 group-hover:text-clay transition-colors duration-200">{p.title}</h3>
           <span class="mt-auto pt-4 inline-flex items-center gap-1 text-sm font-semibold text-clay">
-            Read article
+            {page.readArticle}
             <span class="transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true">→</span>
           </span>
         </div>
@@ -50,7 +57,5 @@ import { pressFeatures } from '../../../data/content';
     ))}
   </div>
 
-  <p class="mt-10 text-center text-stone reveal">
-    For press enquiries, <a href={to('/contact/')} class="font-semibold text-ever underline decoration-clay/40 underline-offset-4 hover:decoration-clay transition">get in touch</a>.
-  </p>
+  <p class="mt-10 text-center text-stone reveal" set:html={enquiryHtml} />
 </PageLayout>
