@@ -12,6 +12,7 @@ import { readinessTier } from '../../lib/readiness';
 import { readinessQuestions } from '../../data/content';
 import { en } from '../../i18n/en';
 import { SITE } from '../../data/seo';
+import { readinessReportHtml, readinessReportText } from '../../lib/emails/readinessReport';
 // Inlined at build time (see `base64Asset` in astro.config.mjs), so the
 // attachment never depends on the deployment being publicly fetchable.
 import reportBase64 from '../../../public/reports/resetwellplus-state-of-menopause-report.pdf?base64';
@@ -100,11 +101,25 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
   const to = process.env.CONTACT_EMAIL_TO;
   const from = process.env.CONTACT_EMAIL_FROM || 'ResetWell Plus <onboarding@resend.dev>';
 
-  // Answers spelled out, used in both the notification and the lead's email.
+  // Answers spelled out for the internal notification.
   const answerLines = readinessQuestions.map((q, i) => {
     const label = answers[i] ? copy.inPlace : copy.gap;
-    return `${label.toUpperCase().padEnd(8)} ${copy.questions[q.id].text}`;
+    return `  [${label}] ${copy.questions[q.id].text}`;
   });
+
+  // Shared by the HTML and plain-text parts of the lead's report email.
+  const report = {
+    name,
+    company,
+    score,
+    total: readinessQuestions.length,
+    tierLabel,
+    tierCopy: copy.tiers[tier].copy,
+    answers: readinessQuestions.map((q, i) => ({ text: copy.questions[q.id].text, yes: !!answers[i] })),
+    inPlaceLabel: copy.inPlace,
+    gapLabel: copy.gap,
+    contactUrl: new URL('/contact/', SITE.url).href,
+  };
 
   if (apiKey) {
     const resend = new Resend(apiKey);
@@ -118,26 +133,10 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
           to: email,
           ...(to ? { replyTo: to } : {}),
           subject: `Your menopause workplace readiness score: ${score}/${readinessQuestions.length} (${tierLabel})`,
-          text: [
-            `Hi ${name.split(' ')[0]},`,
-            '',
-            `Here is where ${company} landed on the ResetWell Plus menopause workplace readiness assessment.`,
-            '',
-            `Score: ${score} out of ${readinessQuestions.length}`,
-            `Tier:  ${tierLabel}`,
-            '',
-            copy.tiers[tier].copy,
-            '',
-            'Your answers:',
-            ...answerLines,
-            '',
-            'The full State of Menopause report is attached.',
-            '',
-            'If you would like to talk through what a pilot looks like for your teams, just reply to this email.',
-            '',
-            'ResetWell Plus',
-            SITE.url,
-          ].join('\n'),
+          html: readinessReportHtml(report),
+          // Sent alongside the HTML so text-only clients get a readable body
+          // rather than a blank message.
+          text: readinessReportText(report),
           // Base64 string, not a Buffer: the SDK puts `content` through
           // JSON.stringify, and a Buffer serialises to {"type":"Buffer",...}
           // rather than the base64 the API expects.
