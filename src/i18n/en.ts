@@ -623,6 +623,82 @@ export const en = {
       cta: 'Take the Free Symptom Quiz',
     },
 
+    contact: {
+      kicker: 'Contact',
+      title: 'Contact us',
+      metaTitle: 'Contact ResetWell Plus | Menopause Care in India',
+      description:
+        'Get in touch with ResetWell Plus. Questions about perimenopause and menopause care, consultations, events or partnerships, our team is here to help.',
+      keywords: 'contact ResetWell Plus, menopause care India contact',
+      lede: 'Questions about your symptoms, consultations, events or partnerships? Send us a message and our care team will get back to you.',
+      formHeading: 'Send us a message',
+      nameLabel: 'Name',
+      namePlaceholder: 'Your full name',
+      emailLabel: 'Email',
+      /** A literal format example: stays in English in every language. */
+      emailPlaceholder: 'your@email.com',
+      phoneLabel: 'Phone',
+      phonePlaceholder: '10-digit mobile number',
+      messageLabel: 'Message',
+      messagePlaceholder: "Tell us about yourself and what you're looking for...",
+      securityCheck: 'Security Check',
+      /** {q} is the generated sum, e.g. "6 + 8". */
+      captchaQuestion: 'What is {q}?',
+      captchaPlaceholder: 'Your answer',
+      captchaError: "That answer isn't right, please try again.",
+      submit: 'Send Message',
+      sending: 'Sending\u2026',
+      successHeading: 'Message sent \u2713',
+      successBody: 'Thank you for reaching out. Our care team will get back to you within one working day.',
+      reachUs: 'Reach us directly',
+      showDetails: 'Show contact details',
+      connect: 'Connect',
+      emailShort: 'Email',
+      phoneShort: 'Phone',
+    },
+
+    smsConsent: {
+      kicker: 'SMS Messaging',
+      title: 'SMS Communication Opt-In',
+      metaTitle: 'SMS Consent | ResetWell Plus',
+      description:
+        'Opt in to receive promotional and informational SMS text messages from ResetWell Plus. Message and data rates may apply. Reply STOP to opt out.',
+      lede: 'ResetWell Plus: Proof of Consent (Opt-In) for SMS Messaging.',
+      termsHeading: 'Terms of Service',
+      termsBody:
+        'By providing your phone number below, you can choose to receive promotional (marketing) and/or informational SMS text messages from ResetWell Plus or ResetWell Plus LLC. Each type of message can be opted in to separately.',
+      typesHeading: 'Message Types',
+      promotionalHeading: 'Promotional (Marketing)',
+      promotionalItems: ['Exclusive offers and promotional deals', 'Wellness retreat announcements'],
+      informationalHeading: 'Informational',
+      informationalItems: [
+        'Event updates and reminders',
+        'Booking confirmations and changes',
+        'Transactional messages related to your reservations',
+      ],
+      frequencyHeading: 'Message Frequency',
+      frequencyBody: 'Message frequency varies. Standard message and data rates may apply.',
+      cancellationHeading: 'Cancellation',
+      cancellationBody:
+        'To stop receiving messages, text STOP to the number sending the message. Reply HELP for more information.',
+      proofLabel: 'Proof of Consent:',
+      proofBody:
+        'By submitting this form, you are providing documented proof of opt-in consent to receive SMS messages from ResetWell Plus or ResetWell Plus LLC.',
+      phoneLabel: 'Phone Number',
+      consentMarketing:
+        'I agree to receive promotional SMS text messages from ResetWell Plus or ResetWell Plus LLC, including offers and exclusive deals. I understand that message and data rates may apply and I can opt out by texting STOP at any time.',
+      consentInformational:
+        'I agree to receive informational SMS text messages from ResetWell Plus or ResetWell Plus LLC, including event updates, booking confirmations, and transactional information. I understand that message and data rates may apply and I can opt out by texting STOP at any time.',
+      submit: 'I Agree and Opt In',
+      submitting: 'Submitting\u2026',
+      formNote: 'This opt-in is recorded as proof of consent for SMS communication verification purposes.',
+      successHeading: 'Consent recorded \u2713',
+      successBody: 'Your SMS consent has been recorded. Thank you for opting in!',
+      /** {link} becomes a link reading `contactPage`. */
+      questions: 'Questions? Reach us through the {link}.',
+      contactPage: 'contact page',
+    },
+
     disclaimer: {
       kicker: 'Legal',
       title: 'Medical Disclaimer',
