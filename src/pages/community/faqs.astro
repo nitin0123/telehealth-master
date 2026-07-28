@@ -1,6 +1,10 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { faqSections, faqSourcesNote } from '../../data/content';
+import { useTranslations } from '../../i18n';
+
+const t = useTranslations(Astro.url);
+const faqSections = t.faqLibrary.sections;
+const faqSourcesNote = t.faqLibrary.sourcesNote;
 
 // FAQPage structured data built from every question across all buckets.
 const faqSchema = {

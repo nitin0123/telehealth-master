@@ -1,5 +1,7 @@
 ---
 import { onDemandVideos } from '../data/content';
+import { useTranslations } from '../i18n';
+const t = useTranslations(Astro.url);
 ---
 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5">
   {onDemandVideos.map((v, i) => (
@@ -28,7 +30,7 @@ import { onDemandVideos } from '../data/content';
         <p class="eyebrow uppercase text-xs font-semibold text-clay">{v.date}</p>
         <h3 class="mt-2 font-serif text-base text-ever line-clamp-2 group-hover:text-clay transition-colors duration-200">{v.title}</h3>
         <span class="mt-auto pt-4 inline-flex items-center gap-1 text-sm font-semibold text-clay">
-          Watch on YouTube
+          {t.onDemandVideos.watch}
           <span class="transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true">→</span>
         </span>
       </div>

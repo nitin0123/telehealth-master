@@ -1,31 +1,35 @@
 ---
 import { BOOK_HREF } from '../data/nav';
+import { langFromUrl, localizePath, useTranslations } from '../i18n';
 // HERO IMAGE: South Asian woman, mid-40s, thoughtful by a window, natural morning light.
 // Drop the real photo into /public and replace the placeholder div below.
+const lang = langFromUrl(Astro.url);
+const t = useTranslations(lang);
+const to = (href: string) => localizePath(href, lang);
 ---
 <section class="max-w-7xl mx-auto px-5 lg:px-8 pt-8 pb-8 lg:pt-10 lg:pb-10">
   <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
     <div>
-      <p class="eyebrow uppercase text-xs font-semibold text-clay mb-5 reveal">Perimenopause &middot; Menopause &middot; Midlife hormonal health</p>
+      <p class="eyebrow uppercase text-xs font-semibold text-clay mb-5 reveal">{t.hero.eyebrow}</p>
       <h1 class="font-serif text-[2rem] sm:text-5xl lg:text-[3.75rem] leading-[1.08] text-ever reveal" style="--reveal-delay:60ms">
-        Online Menopause and Perimenopause Care for Women in India
+        {t.hero.title}
       </h1>
       <p class="mt-5 font-serif text-xl sm:text-2xl leading-snug text-ink/80 reveal" style="--reveal-delay:120ms">
-        Your body isn't failing you. It's asking for care you haven't been given yet.
+        {t.hero.subtitle}
       </p>
       <p class="mt-5 text-lg text-stone max-w-xl reveal" style="--reveal-delay:180ms">
-        ResetWell Plus is India's expert-led women's midlife health platform for perimenopause, menopause, and every hormonal transition in between, with virtual consultations, events, and a community of women who truly get it.
+        {t.hero.body}
       </p>
       <div class="mt-8 flex flex-col sm:flex-row gap-3 reveal" style="--reveal-delay:220ms">
-        <a href="/understand-your-symptoms/symptom-checker/" class="btn-primary px-7 py-4">Take the Free Symptom Quiz</a>
-        <a href={BOOK_HREF} class="btn-ghost px-7 py-4">Book a Consultation</a>
+        <a href={to('/understand-your-symptoms/symptom-checker/')} class="btn-primary px-7 py-4">{t.hero.quizCta}</a>
+        <a href={to(BOOK_HREF)} class="btn-ghost px-7 py-4">{t.hero.bookCta}</a>
       </div>
     </div>
     <div class="relative reveal" style="--reveal-delay:120ms">
       <div class="group aspect-square rounded-5xl overflow-hidden bg-gradient-to-br from-peach via-sand to-sage/60 relative transition-all duration-300 ease-out will-change-transform hover:-translate-y-1 hover:shadow-2xl hover:shadow-ever/20">
         <img
           src="/hero-photo.jpeg"
-          alt="A woman smiling and gazing toward bright window light, hair flowing, in a calm modern interior"
+          alt={t.hero.imageAlt}
           class="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-500 ease-out group-hover:scale-105"
           width="1200"
           height="1200"

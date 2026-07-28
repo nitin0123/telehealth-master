@@ -1,26 +1,32 @@
 ---
 // A direct-pay booking form. Wire `data-booking-form` up to your backend
 // (see the submit handler's TODO) to create real appointments.
+//
+// Inputs carry lang="en": the labels follow the page language, but people type
+// their details in English, so the fields keep the Latin typeface and English
+// autofill/spellcheck. See src/i18n/GLOSSARY.md.
+import { useTranslations } from '../i18n';
+const t = useTranslations(Astro.url);
 ---
 <div class="max-w-xl mx-auto bg-white border border-sand rounded-5xl p-6 lg:p-10 shadow-sm reveal">
   <form data-booking-form>
-    <label class="block text-sm text-stone mb-1">Visit type</label>
+    <label class="block text-sm text-stone mb-1">{t.bookingForm.visitType}</label>
     <div class="grid grid-cols-2 gap-3 mb-4">
-      <label class="rounded-2xl border border-sand px-4 py-3 cursor-pointer hover:border-clay"><input type="radio" name="type" value="virtual" class="mr-2" checked />Virtual</label>
-      <label class="rounded-2xl border border-sand px-4 py-3 cursor-pointer hover:border-clay"><input type="radio" name="type" value="clinic" class="mr-2" />In clinic</label>
+      <label class="rounded-2xl border border-sand px-4 py-3 cursor-pointer hover:border-clay"><input type="radio" name="type" value="virtual" class="mr-2" checked />{t.bookingForm.virtual}</label>
+      <label class="rounded-2xl border border-sand px-4 py-3 cursor-pointer hover:border-clay"><input type="radio" name="type" value="clinic" class="mr-2" />{t.bookingForm.inClinic}</label>
     </div>
-    <label class="block text-sm text-stone mb-1" for="bf-name">Full name</label>
-    <input id="bf-name" name="name" required class="w-full rounded-2xl border border-sand bg-cream px-4 py-3 mb-4 focus:outline-none focus:ring-2 focus:ring-clay/40" />
-    <label class="block text-sm text-stone mb-1" for="bf-email">Email</label>
-    <input id="bf-email" name="email" type="email" required class="w-full rounded-2xl border border-sand bg-cream px-4 py-3 mb-4 focus:outline-none focus:ring-2 focus:ring-clay/40" />
-    <label class="block text-sm text-stone mb-1" for="bf-date">Preferred date</label>
-    <input id="bf-date" name="date" type="date" required class="w-full rounded-2xl border border-sand bg-cream px-4 py-3 mb-6 focus:outline-none focus:ring-2 focus:ring-clay/40" />
-    <button class="w-full rounded-full bg-clay hover:bg-claydk text-white font-semibold py-4">Confirm Booking</button>
-    <p class="text-xs text-stone mt-3 text-center">No referral needed · Reschedule anytime</p>
+    <label class="block text-sm text-stone mb-1" for="bf-name">{t.bookingForm.name}</label>
+    <input id="bf-name" name="name" lang="en" dir="ltr" required class="w-full rounded-2xl border border-sand bg-cream px-4 py-3 mb-4 focus:outline-none focus:ring-2 focus:ring-clay/40" />
+    <label class="block text-sm text-stone mb-1" for="bf-email">{t.bookingForm.email}</label>
+    <input id="bf-email" name="email" type="email" lang="en" dir="ltr" required class="w-full rounded-2xl border border-sand bg-cream px-4 py-3 mb-4 focus:outline-none focus:ring-2 focus:ring-clay/40" />
+    <label class="block text-sm text-stone mb-1" for="bf-date">{t.bookingForm.date}</label>
+    <input id="bf-date" name="date" type="date" lang="en" dir="ltr" required class="w-full rounded-2xl border border-sand bg-cream px-4 py-3 mb-6 focus:outline-none focus:ring-2 focus:ring-clay/40" />
+    <button class="w-full rounded-full bg-clay hover:bg-claydk text-white font-semibold py-4">{t.bookingForm.submit}</button>
+    <p class="text-xs text-stone mt-3 text-center">{t.bookingForm.note}</p>
   </form>
   <div data-booking-success class="hidden text-center py-8">
-    <h2 class="font-serif text-3xl text-ever mb-2">You're booked ✓</h2>
-    <p class="text-stone">Check your inbox for confirmation and a short intake form.</p>
+    <h2 class="font-serif text-3xl text-ever mb-2">{t.bookingForm.successHeading}</h2>
+    <p class="text-stone">{t.bookingForm.successBody}</p>
   </div>
 </div>
 

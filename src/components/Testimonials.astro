@@ -1,34 +1,37 @@
 ---
-import { testimonials } from '../data/content';
+import { langFromUrl, localizePath, useTranslations } from '../i18n';
+const lang = langFromUrl(Astro.url);
+const t = useTranslations(lang);
+const testimonials = t.content.testimonials;
 ---
 <section class="max-w-7xl mx-auto px-5 lg:px-8 py-10 lg:py-12">
   <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8">
     <div class="reveal">
-      <p class="eyebrow uppercase text-xs font-semibold text-clay mb-3">Don't just take our word for it</p>
-      <h2 class="font-serif text-3xl lg:text-5xl text-ever">True stories of transformation</h2>
+      <p class="eyebrow uppercase text-xs font-semibold text-clay mb-3">{t.testimonials.eyebrow}</p>
+      <h2 class="font-serif text-3xl lg:text-5xl text-ever">{t.testimonials.heading}</h2>
     </div>
     <div class="flex gap-2" aria-hidden="true">
-      <button data-carousel-prev class="w-11 h-11 rounded-full border border-sand bg-white text-ever grid place-items-center hover:bg-cream transition" aria-label="Previous">
+      <button data-carousel-prev class="w-11 h-11 rounded-full border border-sand bg-white text-ever grid place-items-center hover:bg-cream transition" aria-label={t.common.prev}>
         <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none"><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
-      <button data-carousel-next class="w-11 h-11 rounded-full border border-sand bg-white text-ever grid place-items-center hover:bg-cream transition" aria-label="Next">
+      <button data-carousel-next class="w-11 h-11 rounded-full border border-sand bg-white text-ever grid place-items-center hover:bg-cream transition" aria-label={t.common.next}>
         <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
     </div>
   </div>
 
   <div data-carousel class="snap-row flex gap-5 overflow-x-auto pb-2 -mx-5 px-5 lg:mx-0 lg:px-0 reveal">
-    {testimonials.map((t) => (
-      <figure class={`shrink-0 w-[80%] sm:w-[46%] lg:w-[31%] rounded-3xl p-7 transition-all duration-300 ease-out will-change-transform hover:-translate-y-1.5 hover:shadow-xl hover:shadow-ever/15 ${t.feature ? 'bg-ever text-cream' : 'bg-white border border-sand'}`}>
-        {!t.feature && <div class="text-clay mb-2">★★★★★</div>}
-        <blockquote class={t.feature ? 'font-serif text-xl leading-snug' : 'text-ink/90'}>{t.quote}</blockquote>
-        <figcaption class={`mt-4 text-sm ${t.feature ? 'text-cream/70' : 'text-stone'}`}>{t.name}</figcaption>
+    {testimonials.map((item) => (
+      <figure class={`shrink-0 w-[80%] sm:w-[46%] lg:w-[31%] rounded-3xl p-7 transition-all duration-300 ease-out will-change-transform hover:-translate-y-1.5 hover:shadow-xl hover:shadow-ever/15 ${item.feature ? 'bg-ever text-cream' : 'bg-white border border-sand'}`}>
+        {!item.feature && <div class="text-clay mb-2">★★★★★</div>}
+        <blockquote class={item.feature ? 'font-serif text-xl leading-snug' : 'text-ink/90'}>{item.quote}</blockquote>
+        <figcaption class={`mt-4 text-sm ${item.feature ? 'text-cream/70' : 'text-stone'}`}>{item.name}</figcaption>
       </figure>
     ))}
   </div>
 
   <div class="text-center mt-8">
-    <a href="/community/stories-of-reset/" class="inline-flex items-center text-clay font-semibold hover:underline">See more patient stories →</a>
+    <a href={localizePath('/community/stories-of-reset/', lang)} class="inline-flex items-center text-clay font-semibold hover:underline">{t.testimonials.more}</a>
   </div>
 </section>
 

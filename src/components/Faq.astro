@@ -1,13 +1,15 @@
 ---
-import { faqs as defaultFaqs, type Faq } from '../data/content';
+import { useTranslations } from '../i18n';
+import type { FaqItem } from '../i18n/types';
 
 interface Props {
-  items?: Faq[];
+  items?: FaqItem[];
   heading?: string;
   /** wrapper background: 'band' adds the soft sand section background */
   variant?: 'band' | 'plain';
 }
-const { items = defaultFaqs, heading = 'Questions, answered', variant = 'band' } = Astro.props;
+const t = useTranslations(Astro.url);
+const { items = t.content.faqs, heading = t.faq.heading, variant = 'band' } = Astro.props;
 ---
 <section class={variant === 'band' ? 'bg-sand/50' : ''}>
   <div class="max-w-3xl mx-auto px-5 lg:px-8 py-10 lg:py-12">

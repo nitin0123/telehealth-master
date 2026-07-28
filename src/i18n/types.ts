@@ -32,3 +32,82 @@ export interface LinkCopy {
   /** Shorter label for the footer columns */
   short?: string;
 }
+
+// ---------------------------------------------------------------------------
+// Shared datasets
+//
+// These are explicitly typed rather than inferred so the Hindi arrays have a
+// stable shape to match: an inferred literal would give optional fields (like a
+// testimonial's `feature`) a union type that is awkward to satisfy.
+// ---------------------------------------------------------------------------
+
+export interface StatItem {
+  value: string;
+  label: string;
+}
+
+/** Care-need card copy. Keys match the `id`s in src/data/content.ts. */
+export interface CareNeedCopy {
+  title: string;
+  blurb: string;
+}
+
+export interface StepItem {
+  n: string;
+  title: string;
+  body: string;
+}
+
+export interface SpecialistItem {
+  name: string;
+  role: string;
+}
+
+export interface TestimonialItem {
+  quote: string;
+  name: string;
+  /** Renders on the dark brand card in the carousel */
+  feature?: boolean;
+}
+
+export interface FaqItem {
+  q: string;
+  a: string;
+}
+
+export interface FaqSectionCopy {
+  title: string;
+  items: FaqItem[];
+}
+
+/** Event card copy. Keys match the `id`s in src/data/content.ts. */
+export interface EventCopy {
+  title: string;
+  meta: string;
+  /** Display label for the tag. The filter value stays in content.ts. */
+  tag: string;
+}
+
+export interface PathwayCopy {
+  title: string;
+  body: string;
+  cta: string;
+}
+
+export interface FigureCopy {
+  stat: string;
+  body: string;
+}
+
+/** One symptom-checker question. `points` scores each option in order. */
+export interface QuizQuestion {
+  q: string;
+  options: { label: string; points: number }[];
+}
+
+export interface QuizResult {
+  kicker: string;
+  title: string;
+  body: string;
+  cta: string;
+}

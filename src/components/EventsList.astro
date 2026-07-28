@@ -1,26 +1,33 @@
 ---
 import { events, type EventItem } from '../data/content';
+import { langFromUrl, localizePath, useTranslations } from '../i18n';
+
 interface Props { filter?: string; }
 const { filter } = Astro.props;
+const lang = langFromUrl(Astro.url);
+const t = useTranslations(lang);
+const to = (href: string) => localizePath(href, lang);
+// Filtering runs on the language-independent tag in src/data/content.ts; the
+// tag shown on the card comes from the dictionary.
 const list: EventItem[] = filter ? events.filter((e) => e.tag.includes(filter)) : events;
 ---
 {list.length === 0 ? (
   <div class="bg-white border border-sand rounded-4xl p-8 lg:p-10 text-center reveal">
-    <span class="eyebrow uppercase text-xs font-semibold text-clay">Coming soon</span>
-    <h2 class="font-serif text-2xl text-ever mt-2">New events are on the way</h2>
-    <p class="text-sm text-stone mt-2 max-w-md mx-auto">We're lining up our next live sessions. Join the community to hear about dates first, or browse our on-demand library in the meantime.</p>
+    <span class="eyebrow uppercase text-xs font-semibold text-clay">{t.eventsList.emptyKicker}</span>
+    <h2 class="font-serif text-2xl text-ever mt-2">{t.eventsList.emptyHeading}</h2>
+    <p class="text-sm text-stone mt-2 max-w-md mx-auto">{t.eventsList.emptyBody}</p>
     <div class="mt-6 flex flex-col sm:flex-row justify-center gap-3">
-      <a href="/community/join/" class="btn-primary px-7 py-3.5">Get notified</a>
-      <a href="/events/on-demand/" class="btn-ghost px-7 py-3.5">Watch on demand</a>
+      <a href={to('/community/join/')} class="btn-primary px-7 py-3.5">{t.eventsList.emptyNotify}</a>
+      <a href={to('/events/on-demand/')} class="btn-ghost px-7 py-3.5">{t.eventsList.emptyWatch}</a>
     </div>
   </div>
 ) : (
   <div class="grid md:grid-cols-2 gap-6">
     {list.map((e) => (
       <article class="bg-white border border-sand rounded-4xl p-6 reveal">
-        <span class="eyebrow uppercase text-xs font-semibold text-clay">{e.tag}</span>
-        <h2 class="font-serif text-2xl text-ever mt-2">{e.title}</h2>
-        <p class="text-sm text-stone mt-1">{e.meta}</p>
+        <span class="eyebrow uppercase text-xs font-semibold text-clay">{t.content.events[e.id].tag}</span>
+        <h2 class="font-serif text-2xl text-ever mt-2">{t.content.events[e.id].title}</h2>
+        <p class="text-sm text-stone mt-1">{t.content.events[e.id].meta}</p>
       </article>
     ))}
   </div>

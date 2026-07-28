@@ -1,17 +1,25 @@
 ---
 // Community join form. Persists the email via /api/subscribe (DB + Resend email).
+//
+// The input carries lang="en": the label follows the page language, but people
+// type their email in English. See src/i18n/GLOSSARY.md.
+//
+// Button and error strings are passed to the script below as data attributes so
+// the bundled module stays language-agnostic.
+import { useTranslations } from '../i18n';
+const t = useTranslations(Astro.url);
 ---
 <div class="max-w-md mx-auto bg-white border border-sand rounded-5xl p-8 reveal">
-  <form data-join-form>
-    <label class="block text-sm text-stone mb-1" for="join-email">Email address</label>
-    <input id="join-email" name="email" type="email" required autocomplete="email" class="w-full rounded-2xl border border-sand bg-cream px-4 py-3 mb-4 focus:outline-none focus:ring-2 focus:ring-clay/40" />
+  <form data-join-form data-submitting={t.joinForm.submitting} data-generic-error={t.common.genericError}>
+    <label class="block text-sm text-stone mb-1" for="join-email">{t.joinForm.email}</label>
+    <input id="join-email" name="email" type="email" lang="en" dir="ltr" required autocomplete="email" class="w-full rounded-2xl border border-sand bg-cream px-4 py-3 mb-4 focus:outline-none focus:ring-2 focus:ring-clay/40" />
     <!-- Honeypot: hidden from users, catches bots -->
     <input type="text" name="company" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
-    <button class="w-full rounded-full bg-clay hover:bg-claydk text-white font-semibold py-3.5 disabled:opacity-60">Join the Community</button>
+    <button class="w-full rounded-full bg-clay hover:bg-claydk text-white font-semibold py-3.5 disabled:opacity-60">{t.joinForm.submit}</button>
     <p data-join-err class="hidden text-sm text-red-600 mt-3 text-center"></p>
-    <p class="text-xs text-stone mt-3 text-center">Free · Private · Unsubscribe anytime</p>
+    <p class="text-xs text-stone mt-3 text-center">{t.joinForm.note}</p>
   </form>
-  <p data-join-msg class="hidden text-center text-ever font-serif text-2xl py-6">Welcome in ✓</p>
+  <p data-join-msg class="hidden text-center text-ever font-serif text-2xl py-6">{t.joinForm.success}</p>
 </div>
 
 <script>
@@ -20,6 +28,8 @@
   document.querySelectorAll<HTMLFormElement>('[data-join-form]').forEach((form) => {
     const errEl = form.querySelector('[data-join-err]');
     const btn = form.querySelector('button') as HTMLButtonElement | null;
+    const submittingLabel = form.dataset.submitting || 'Joining…';
+    const genericError = form.dataset.genericError || 'Something went wrong. Please try again.';
     const showErr = (msg: string) => {
       if (!errEl) return;
       errEl.textContent = msg;
@@ -37,8 +47,8 @@
       const check = subscribeSchema.safeParse(data);
       if (!check.success) { showErr(firstError(check.error)); return; }
 
-      const original = btn?.textContent ?? 'Join the Community';
-      if (btn) { btn.disabled = true; btn.textContent = 'Joining…'; }
+      const original = btn?.textContent ?? '';
+      if (btn) { btn.disabled = true; btn.textContent = submittingLabel; }
       try {
         const res = await fetch('/api/subscribe', {
           method: 'POST',
@@ -47,13 +57,13 @@
         });
         if (!res.ok) {
           const info = await res.json().catch(() => ({}));
-          throw new Error(info.error || 'Something went wrong. Please try again.');
+          throw new Error(info.error || genericError);
         }
         form.classList.add('hidden');
         form.parentElement?.querySelector('[data-join-msg]')?.classList.remove('hidden');
       } catch (err) {
         if (errEl) {
-          errEl.textContent = err instanceof Error ? err.message : 'Something went wrong. Please try again.';
+          errEl.textContent = err instanceof Error ? err.message : genericError;
           errEl.classList.remove('hidden');
         }
         if (btn) { btn.disabled = false; btn.textContent = original; }
