@@ -496,7 +496,7 @@ export const en = {
   pages: {
     howItWorks: {
       kicker: 'Get Care',
-      title: 'How It Works',
+      title: 'Your first appointment should feel like a relief, not an ordeal.',
       metaTitle: 'How Online Menopause Consultations Work in India | ResetWell Plus',
       description:
         'How an online gynaecologist consultation in India works at ResetWell Plus: symptom intake, specialist match, a 30-minute virtual appointment, and a written care plan you keep.',
@@ -551,7 +551,7 @@ export const en = {
 
     ourSpecialists: {
       kicker: 'Get Care',
-      title: 'Our Specialists',
+      title: 'Meet Our Specialists',
       metaTitle: 'Menopause Specialists & Experts in India | ResetWell Plus',
       description:
         "ResetWell Plus is building a panel of menopause specialists in India: gynaecologists, endocrinologists and nutritionists who specialise in women's midlife health. Introductions coming soon.",
@@ -564,7 +564,7 @@ export const en = {
     },
 
     pricing: {
-      title: 'Pricing',
+      title: 'Simple, Transparent Pricing',
       metaTitle: 'Menopause Consultation Cost in India | ResetWell Plus Pricing',
       description:
         'Transparent menopause consultation pricing in India. Pay patients directly with no insurance paperwork. Single visits from ₹1,599 and ongoing care plans.',
@@ -950,7 +950,7 @@ export const en = {
     },
 
     blog: {
-      title: 'Blog',
+      title: 'Our Blog',
       lede: "From the ResetWell Plus Editorial team: Straight talk on perimenopause, menopause, and midlife health - what's happening in your body, and what you can actually do about it.",
       description:
         'Articles on perimenopause and menopause symptoms, treatment options, and midlife wellness from the ResetWell Plus team.',
@@ -1019,7 +1019,7 @@ export const en = {
 
     workplaceWellness: {
       kicker: 'About',
-      title: 'Workplace Wellness',
+      title: 'Partner with ResetWell Plus',
       metaTitle: 'Workplace Menopause Wellness in India | ResetWell Plus',
       description:
         'Bring expert menopause and midlife care to your organisation in India. Reduce attrition, boost wellbeing and build a menopause-confident culture.',
@@ -1243,7 +1243,7 @@ export const en = {
 
     eventsUpcoming: {
       kicker: 'Events',
-      title: 'Upcoming',
+      title: 'Upcoming Events',
       lede: 'Live, expert-led sessions you can join from anywhere.',
     },
 
@@ -1255,7 +1255,7 @@ export const en = {
 
     forCorporates: {
       kicker: 'Events',
-      title: 'For Corporates',
+      title: 'ResetWell Plus for Employers',
       metaTitle: 'Menopause at Work: Corporate Wellness in India | ResetWell Plus',
       description:
         'Bring expert menopause and midlife care to your workplace in India: workshops, webinars, subsidised employee consultations and policy support.',
@@ -1279,7 +1279,7 @@ export const en = {
     },
 
     communityJoin: {
-      title: 'Join',
+      title: 'Join the Community',
       metaTitle: 'Menopause Community for Indian Women | ResetWell Plus',
       description:
         'Join a private, expert-facilitated menopause and perimenopause community for Indian women. Peer support in English and Hindi, on WhatsApp, Instagram and more.',
@@ -1312,7 +1312,7 @@ export const en = {
 
     storiesOfReset: {
       kicker: 'Community',
-      title: 'Stories of Reset',
+      title: 'True Stories of Transformation',
       lede: 'Real women on the turning points that changed everything.',
     },
 
@@ -1322,13 +1322,13 @@ export const en = {
         'Straight answers to the questions women actually ask about perimenopause and menopause: symptoms, HRT safety, non-hormonal options, sexual and urinary health, early menopause, and long-term health.',
       keywords:
         'is HRT safe, menopause FAQ, perimenopause questions, menopause age, HRT breast cancer risk, vaginal estrogen safety',
-      heading: 'FAQs',
+      heading: 'Frequently Asked Questions',
       lede: 'Straight answers about the transition, treatment and long-term health, informed by current clinical guidance.',
     },
 
     symptomChecker: {
       kicker: 'Is it perimenopause?',
-      title: 'Symptom Checker',
+      title: "Something has shifted. Let's understand what your body is telling you.",
       metaTitle: 'Free Perimenopause Symptom Checker & Quiz (India) | ResetWell Plus',
       description:
         'Take our free 5-minute perimenopause quiz, adapted for India. Check symptoms like joint pain, sleep, mood and hot flashes, and get a personalised next step. No sign-up.',
