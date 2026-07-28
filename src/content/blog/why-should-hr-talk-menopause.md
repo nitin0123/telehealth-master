@@ -1,7 +1,7 @@
 ---
 title: "Why Should HR Talk About Menopause?"
 subtitle: "It's not just a women's issue. It's a business imperative."
-synopsis: "Organizations are losing top-tier female talent at the peak of their careers, not by choice, but because workplaces fail to support a natural biological transition."
+synopsis: "Organizations are losing top-tier female talent at the peak of their careers, because workplaces fail to support a natural biological transition."
 author: ResetWell Plus Editorial Team
 publishedAt: 2026-05-29
 cover: /blog/why-should-hr-talk-menopause/cover.jpg

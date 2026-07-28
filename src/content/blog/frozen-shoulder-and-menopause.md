@@ -1,10 +1,11 @@
 ---
 title: "Frozen Shoulder and Menopause: How Oestrogen Loss Attacks Your Joints"
 subtitle: "A painful, deeply frustrating symptom flying under the radar that blindsides thousands of women in midlife"
-synopsis: "If reaching for a seatbelt or sleeping on your side has become agonizing, you are not alone. There is a direct biological link between plunging hormones and stiff, locked joints."
+synopsis: "If reaching for a seatbelt has become agonizing, you are not alone. The direct biological link between plunging hormones and stiff, locked joints."
 author: ResetWell Plus Editorial Team
 publishedAt: 2026-06-26
 cover: /blog/frozen-shoulder-and-menopause/cover.jpg
+metaTitle: "Frozen Shoulder and Menopause | ResetWell Plus"
 keywords: "frozen shoulder menopause, adhesive capsulitis women, oestrogen loss joint pain, menopause shoulder pain, frozen shoulder stages, menopause joint stiffness"
 faq:
   - q: "What is a frozen shoulder?"

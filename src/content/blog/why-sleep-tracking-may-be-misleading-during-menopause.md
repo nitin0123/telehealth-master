@@ -5,6 +5,7 @@ synopsis: "Your tracker says you slept well. Your body disagrees. Why sleep scor
 author: ResetWell Plus Editorial Team
 publishedAt: 2026-07-11
 cover: /blog/why-sleep-tracking-may-be-misleading-during-menopause/cover.jpg
+metaTitle: "Sleep Tracking and Menopause | ResetWell Plus"
 keywords: "sleep tracking menopause, menopause sleep score, sleep tracker accuracy, menopause insomnia, perimenopause sleep problems, wearable sleep data"
 faq:
   - q: "Are sleep trackers accurate during menopause?"

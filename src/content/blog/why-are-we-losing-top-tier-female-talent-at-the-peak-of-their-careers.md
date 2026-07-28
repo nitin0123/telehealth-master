@@ -5,6 +5,7 @@ synopsis: "Menopause often arrives when women are at the height of their experti
 author: ResetWell Plus Editorial Team
 publishedAt: 2026-05-19
 cover: /blog/why-are-we-losing-top-tier-female-talent-at-the-peak-of-their-careers/img-1.jpg
+metaTitle: "Menopause and Senior Female Talent | ResetWell Plus"
 keywords: "menopause and career, women in leadership menopause, menopause productivity at work, retaining female talent, menopause support for employees"
 faq:
   - q: "Why do women leave the workforce during menopause?"

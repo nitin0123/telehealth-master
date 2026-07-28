@@ -5,6 +5,7 @@ synopsis: "Knees creak. Back protests. Shoulders ache before you've even gotten 
 author: ResetWell Plus Editorial Team
 publishedAt: 2026-04-03
 cover: /blog/why-does-my-body-feel-like-i-ran-a-marathon-in-my-sleep/img-1.jpg
+metaTitle: "Menopause Joint Pain and Body Aches | ResetWell Plus"
 keywords: "menopause joint pain, perimenopause body aches, morning stiffness in women, estrogen and joint pain, menopause muscle aches, strength training menopause"
 faq:
   - q: "Why does my body ache during perimenopause?"

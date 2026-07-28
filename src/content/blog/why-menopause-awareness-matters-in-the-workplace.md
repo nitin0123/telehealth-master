@@ -5,6 +5,7 @@ synopsis: "What menopause is, how it shows up at work, and the policies and cult
 author: ResetWell Plus Editorial Team
 publishedAt: 2026-05-08
 cover: /blog/why-menopause-awareness-matters-in-the-workplace/img-1.jpg
+metaTitle: "Menopause Awareness in the Workplace | ResetWell Plus"
 keywords: "menopause awareness in the workplace, menopause at work, supporting employees through menopause, menopause workplace policy, women's health at work"
 faq:
   - q: "What is menopause?"

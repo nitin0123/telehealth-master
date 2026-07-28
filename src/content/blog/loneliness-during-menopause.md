@@ -5,6 +5,7 @@ synopsis: "Menopause is not only physical. Many women feel emotionally disconnec
 author: ResetWell Plus Editorial Team
 publishedAt: 2026-07-17
 cover: /blog/loneliness-during-menopause/cover.jpg
+metaTitle: "Loneliness During Menopause | ResetWell Plus"
 keywords: "loneliness during menopause, menopause emotional health, menopause anxiety and depression, menopause mental health, emotional isolation midlife, menopause support community"
 faq:
   - q: "Why do women feel lonely during menopause?"

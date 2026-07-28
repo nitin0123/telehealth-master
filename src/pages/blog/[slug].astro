@@ -16,7 +16,7 @@ interface Props {
 }
 const { post } = Astro.props;
 const { Content } = await post.render();
-const { title, subtitle, synopsis, author, publishedAt, cover, keywords, faq } = post.data;
+const { title, subtitle, synopsis, author, publishedAt, cover, keywords, metaTitle, faq } = post.data;
 
 // timeZone UTC: frontmatter dates are date-only, so formatting must not shift
 // with the build machine's timezone.
@@ -56,6 +56,7 @@ const faqSchema = faq?.length
   lede={subtitle}
   section="Blog"
   sectionHref="/blog/"
+  metaTitle={metaTitle}
   description={synopsis}
   keywords={keywords}
   image={cover}
