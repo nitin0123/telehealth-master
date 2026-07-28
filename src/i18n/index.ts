@@ -40,11 +40,15 @@ export const LANG_SHORT: Record<Lang, string> = { en: 'EN', hi: 'हिं' };
  * language toggle and hreflang tags are omitted on them, so a partially
  * translated site never links to a 404.
  *
- * `/404` is the only entry: one 404 page is served for unknown URLs in both
- * languages, so a language toggle there would point at a page that does not
- * exist. Every blog post now has a Hindi twin, so /blog/ came off this list.
+ * `/404`: one 404 page is served for unknown URLs in both languages, so a
+ * language toggle there would point at a page that does not exist. Every blog
+ * post now has a Hindi twin, so /blog/ came off this list.
+ *
+ * `/about/workplace-wellness/readiness-score`: the corporate assessment is an
+ * English-only tool for HR and CXO audiences, and its page file lives outside
+ * src/pages/[...locale]/ so no Hindi twin is built.
  */
-export const EN_ONLY: readonly string[] = ['/404'];
+export const EN_ONLY: readonly string[] = ['/404', '/about/workplace-wellness/readiness-score'];
 
 // ---------------------------------------------------------------------------
 // Paths

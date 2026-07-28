@@ -1,0 +1,412 @@
+---
+// Corporate menopause-readiness assessment.
+//
+// Deliberately OUTSIDE src/pages/[...locale]/, so no Hindi twin is generated.
+// The path is listed in EN_ONLY (src/i18n/index.ts) so the language toggle and
+// hreflang tags skip it rather than pointing at a URL that isn't built.
+//
+// All four panels (intro, questions, results, thank-you) are rendered
+// server-side and toggled with `hidden`. That keeps every string in the i18n
+// dictionary instead of duplicating copy inside the client script.
+import PageLayout from '../../../layouts/PageLayout.astro';
+import { fmt, useTranslations } from '../../../i18n';
+import { readinessQuestions } from '../../../data/content';
+
+const t = useTranslations('en');
+const page = t.pages.workplaceReadiness;
+const total = readinessQuestions.length;
+const tierKeys = ['reactive', 'developing', 'leading'] as const;
+
+// Tier styling stays inside the brand's purple family: the badge deepens and
+// the gauge fills with a stronger token as readiness improves.
+const TIER_BADGE: Record<string, string> = {
+  reactive: 'bg-sand text-everdk',
+  developing: 'bg-peach text-claydk',
+  leading: 'bg-ever text-cream',
+};
+// The gauge stroke deepens the same way, set from the client script once the
+// score is known (see TIER_STROKE there).
+
+const inputClass =
+  'w-full rounded-2xl border border-sand bg-cream px-4 py-3 focus:outline-none focus:ring-2 focus:ring-clay/40';
+---
+
+<PageLayout
+  section={t.nav.sections.about.label}
+  sectionHref="/about/workplace-wellness/"
+  kicker={page.kicker}
+  title={page.title}
+  metaTitle={page.metaTitle}
+  description={page.description}
+  keywords={page.keywords}
+  lede={page.lede}
+>
+  <div
+    data-readiness
+    data-total={total}
+    data-question-counter={page.questionCounter}
+    data-generic-error={t.common.genericError}
+    data-sending={page.sending}
+    data-success-body={page.successBody}
+    class="max-w-2xl mx-auto"
+  >
+    <!-- INTRO -->
+    <section data-rw-panel="intro" class="bg-white border border-sand rounded-5xl p-6 lg:p-10 shadow-sm reveal">
+      <h2 class="font-serif text-2xl lg:text-3xl text-ever">{page.introHeading}</h2>
+      <p class="mt-3 text-stone">{page.introBody}</p>
+
+      <div class="mt-6 grid grid-cols-3 gap-3">
+        {page.stats.map((s) => (
+          <div class="rounded-4xl bg-sand/50 px-4 py-4 text-center">
+            <p class="font-serif text-xl lg:text-2xl text-ever leading-none">{s.value}</p>
+            <p class="mt-1.5 text-xs text-stone leading-snug">{s.label}</p>
+          </div>
+        ))}
+      </div>
+
+      <button
+        type="button"
+        data-rw-start
+        class="mt-7 w-full rounded-full bg-clay hover:bg-claydk text-white font-semibold px-8 py-3.5 transition"
+      >
+        {page.start}
+      </button>
+      <p class="mt-3 text-center text-xs text-stone">{page.introFineprint}</p>
+    </section>
+
+    <!-- QUESTIONS -->
+    <section data-rw-panel="questions" class="hidden bg-white border border-sand rounded-5xl p-6 lg:p-10 shadow-sm">
+      <div class="flex gap-1.5" aria-hidden="true">
+        {readinessQuestions.map((_, i) => (
+          <span data-rw-dot={i} class="h-1 flex-1 rounded-full bg-sand transition-colors duration-300"></span>
+        ))}
+      </div>
+
+      <p data-rw-counter class="mt-6 eyebrow uppercase text-xs font-semibold text-clay"></p>
+
+      {readinessQuestions.map((q, i) => (
+        <div data-rw-question={i} class={i === 0 ? '' : 'hidden'}>
+          <h2 class="mt-2 font-serif text-xl lg:text-2xl leading-snug text-ever">{page.questions[q.id].text}</h2>
+          <div class="mt-4 rounded-4xl bg-sand/40 px-5 py-4">
+            <p class="eyebrow uppercase text-[11px] font-semibold text-moss">{page.whyLabel}</p>
+            <p class="mt-1 text-sm text-stone leading-relaxed">{page.questions[q.id].why}</p>
+          </div>
+        </div>
+      ))}
+
+      <div class="mt-6 grid grid-cols-2 gap-3">
+        <button
+          type="button"
+          data-rw-answer="yes"
+          class="rounded-2xl border-2 border-sand bg-cream px-4 py-4 font-semibold text-ever transition hover:border-clay hover:bg-white hover:-translate-y-0.5"
+        >
+          {page.yes}
+        </button>
+        <button
+          type="button"
+          data-rw-answer="no"
+          class="rounded-2xl border-2 border-sand bg-cream px-4 py-4 font-semibold text-ever transition hover:border-clay hover:bg-white hover:-translate-y-0.5"
+        >
+          {page.no}
+        </button>
+      </div>
+
+      <button type="button" data-rw-back class="mt-5 text-sm text-stone hover:text-clay transition">
+        &larr; {page.back}
+      </button>
+    </section>
+
+    <!-- RESULTS -->
+    <section data-rw-panel="results" class="hidden bg-white border border-sand rounded-5xl p-6 lg:p-10 shadow-sm">
+      <p class="eyebrow uppercase text-xs font-semibold text-clay text-center">{page.resultsHeading}</p>
+
+      <div class="mt-4 flex flex-col items-center">
+        <svg viewBox="0 0 200 120" class="w-48 h-28 overflow-visible" aria-hidden="true">
+          <path d="M14,110 A86,86 0 0 1 186,110" fill="none" stroke="#EADCF8" stroke-width="14" stroke-linecap="round" />
+          <path
+            data-rw-gauge
+            d="M14,110 A86,86 0 0 1 186,110"
+            fill="none"
+            stroke="#C4B5FD"
+            stroke-width="14"
+            stroke-linecap="round"
+            style="transition: stroke-dashoffset .7s cubic-bezier(.4,0,.2,1), stroke .3s ease"
+          />
+        </svg>
+        <div class="-mt-11 text-center">
+          <p data-rw-score class="font-serif text-4xl text-ever leading-none">0</p>
+          <p class="mt-1 text-xs text-stone">{fmt(page.outOf, { total })}</p>
+        </div>
+      </div>
+
+      <div class="mt-4 text-center">
+        {tierKeys.map((key) => (
+          <span
+            data-rw-tier-badge={key}
+            class={`hidden items-center rounded-full px-4 py-1.5 text-xs font-semibold uppercase tracking-wide ${TIER_BADGE[key]}`}
+          >
+            {page.tiers[key].label}
+          </span>
+        ))}
+      </div>
+
+      {tierKeys.map((key) => (
+        <p data-rw-tier-copy={key} class="hidden mt-4 text-stone leading-relaxed text-center">
+          {page.tiers[key].copy}
+        </p>
+      ))}
+
+      <div class="mt-7 border-t border-sand pt-5">
+        <h3 class="eyebrow uppercase text-xs font-semibold text-clay">{page.breakdownHeading}</h3>
+        <ul class="mt-3 space-y-2.5">
+          {readinessQuestions.map((q, i) => (
+            <li data-rw-row={i} class="flex items-start gap-3">
+              <span
+                data-rw-mark
+                class="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-sand text-[11px] font-bold text-everdk"
+                aria-hidden="true">!</span>
+              <span data-rw-row-text class="text-sm leading-snug text-ink">{page.questions[q.id].text}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Lead capture -->
+      <div class="mt-7 border-t border-sand pt-6">
+        <h3 class="font-serif text-xl text-ever">{page.formHeading}</h3>
+        <p class="mt-1.5 text-sm text-stone">{page.formBody}</p>
+
+        <form data-rw-form novalidate class="mt-5">
+          <!-- Honeypot: "website", not "company" (a real field here). Bots that
+               fill it are silently dropped. -->
+          <div class="hidden" aria-hidden="true">
+            <label>Website<input type="text" name="website" tabindex="-1" autocomplete="off" /></label>
+          </div>
+
+          <div class="mb-4">
+            <label class="block text-sm text-stone mb-1" for="rw-name">
+              {page.nameLabel} <span class="text-clay">*</span>
+            </label>
+            <input id="rw-name" name="name" required autocomplete="name" placeholder={page.namePlaceholder} class={inputClass} />
+          </div>
+          <div class="mb-4">
+            <label class="block text-sm text-stone mb-1" for="rw-company">
+              {page.companyLabel} <span class="text-clay">*</span>
+            </label>
+            <input id="rw-company" name="company" required autocomplete="organization" placeholder={page.companyPlaceholder} class={inputClass} />
+          </div>
+          <div class="mb-5">
+            <label class="block text-sm text-stone mb-1" for="rw-email">
+              {page.emailLabel} <span class="text-clay">*</span>
+            </label>
+            <input id="rw-email" name="email" type="email" required autocomplete="email" placeholder={page.emailPlaceholder} class={inputClass} />
+          </div>
+
+          <button class="w-full rounded-full bg-clay hover:bg-claydk text-white font-semibold px-8 py-3.5 transition disabled:opacity-60 disabled:cursor-not-allowed">
+            {page.submit}
+          </button>
+          <p data-rw-error class="hidden mt-3 text-sm text-clay"></p>
+        </form>
+        <p class="mt-3 text-center text-xs text-stone">{page.formFineprint}</p>
+      </div>
+    </section>
+
+    <!-- THANK YOU -->
+    <section data-rw-panel="thanks" class="hidden bg-white border border-sand rounded-5xl p-6 lg:p-10 shadow-sm text-center">
+      <div class="mx-auto grid h-14 w-14 place-items-center rounded-full bg-sand">
+        <svg class="h-7 w-7 text-ever" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M20 6L9 17l-5-5" />
+        </svg>
+      </div>
+      <h2 class="mt-5 font-serif text-2xl lg:text-3xl text-ever">{page.successHeading}</h2>
+      <p data-rw-thanks-body class="mt-3 text-stone"></p>
+
+      <a
+        href="/contact/"
+        class="mt-6 inline-block rounded-full bg-clay hover:bg-claydk text-white font-semibold px-8 py-3.5 transition"
+      >
+        {page.talkToUs}
+      </a>
+      <button type="button" data-rw-retake class="mt-4 block w-full text-sm text-stone hover:text-clay transition">
+        {page.retake}
+      </button>
+    </section>
+  </div>
+
+  <script>
+    import { corporateReadinessSchema, firstError } from '../../../lib/schemas';
+    import { readinessTier } from '../../../lib/readiness';
+
+    const root = document.querySelector<HTMLElement>('[data-readiness]');
+    if (root) {
+      const total = Number(root.dataset.total ?? 6);
+      const counterTpl = root.dataset.questionCounter ?? 'Question {n} of {total}';
+      const genericError = root.dataset.genericError ?? 'Something went wrong. Please try again.';
+      const sendingLabel = root.dataset.sending ?? 'Sending…';
+      const successTpl = root.dataset.successBody ?? '';
+
+      const panels = {
+        intro: root.querySelector<HTMLElement>('[data-rw-panel="intro"]')!,
+        questions: root.querySelector<HTMLElement>('[data-rw-panel="questions"]')!,
+        results: root.querySelector<HTMLElement>('[data-rw-panel="results"]')!,
+        thanks: root.querySelector<HTMLElement>('[data-rw-panel="thanks"]')!,
+      };
+      const counter = root.querySelector<HTMLElement>('[data-rw-counter]')!;
+      const backBtn = root.querySelector<HTMLElement>('[data-rw-back]')!;
+      const gauge = root.querySelector<SVGPathElement>('[data-rw-gauge]')!;
+      const scoreEl = root.querySelector<HTMLElement>('[data-rw-score]')!;
+      const form = root.querySelector<HTMLFormElement>('[data-rw-form]')!;
+      const errEl = root.querySelector<HTMLElement>('[data-rw-error]')!;
+
+      const TIER_STROKE: Record<string, string> = {
+        reactive: '#C4B5FD',
+        developing: '#9333EA',
+        leading: '#6D28D9',
+      };
+
+      let current = 0;
+      let answers: boolean[] = [];
+
+      const show = (name: keyof typeof panels) => {
+        Object.entries(panels).forEach(([key, el]) => el.classList.toggle('hidden', key !== name));
+      };
+
+      const fill = (tpl: string, vars: Record<string, string | number>) =>
+        tpl.replace(/\{(\w+)\}/g, (m, k) => String(vars[k] ?? m));
+
+      function renderQuestion() {
+        root!.querySelectorAll<HTMLElement>('[data-rw-question]').forEach((el) => {
+          el.classList.toggle('hidden', Number(el.dataset.rwQuestion) !== current);
+        });
+        root!.querySelectorAll<HTMLElement>('[data-rw-dot]').forEach((el) => {
+          const done = Number(el.dataset.rwDot) < current;
+          el.classList.toggle('bg-clay', done);
+          el.classList.toggle('bg-sand', !done);
+        });
+        counter.textContent = fill(counterTpl, { n: current + 1, total });
+        backBtn.style.visibility = current === 0 ? 'hidden' : 'visible';
+      }
+
+      function showResults() {
+        const score = answers.filter(Boolean).length;
+        const tier = readinessTier(score);
+
+        scoreEl.textContent = String(score);
+        root!.querySelectorAll<HTMLElement>('[data-rw-tier-badge]').forEach((el) => {
+          const match = el.dataset.rwTierBadge === tier;
+          el.classList.toggle('hidden', !match);
+          el.classList.toggle('inline-flex', match);
+        });
+        root!.querySelectorAll<HTMLElement>('[data-rw-tier-copy]').forEach((el) => {
+          el.classList.toggle('hidden', el.dataset.rwTierCopy !== tier);
+        });
+
+        // Breakdown: a filled mark for what is already in place, an alert for gaps.
+        root!.querySelectorAll<HTMLElement>('[data-rw-row]').forEach((row) => {
+          const yes = !!answers[Number(row.dataset.rwRow)];
+          const mark = row.querySelector<HTMLElement>('[data-rw-mark]')!;
+          const text = row.querySelector<HTMLElement>('[data-rw-row-text]')!;
+          mark.textContent = yes ? '✓' : '!';
+          mark.classList.toggle('bg-ever', yes);
+          mark.classList.toggle('text-cream', yes);
+          mark.classList.toggle('bg-sand', !yes);
+          mark.classList.toggle('text-everdk', !yes);
+          text.classList.toggle('text-stone', yes);
+          text.classList.toggle('text-ink', !yes);
+          text.classList.toggle('font-medium', !yes);
+        });
+
+        const len = gauge.getTotalLength();
+        gauge.style.stroke = TIER_STROKE[tier];
+        gauge.style.strokeDasharray = String(len);
+        gauge.style.strokeDashoffset = String(len);
+        requestAnimationFrame(() => {
+          gauge.style.strokeDashoffset = String(len - len * (score / total));
+        });
+
+        show('results');
+      }
+
+      root.querySelector('[data-rw-start]')!.addEventListener('click', () => {
+        current = 0;
+        answers = [];
+        show('questions');
+        renderQuestion();
+      });
+
+      root.querySelectorAll<HTMLElement>('[data-rw-answer]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          answers[current] = btn.dataset.rwAnswer === 'yes';
+          current++;
+          if (current >= total) showResults();
+          else renderQuestion();
+        });
+      });
+
+      backBtn.addEventListener('click', () => {
+        if (current === 0) return;
+        current--;
+        renderQuestion();
+      });
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        if (!form.reportValidity()) return;
+        errEl.classList.add('hidden');
+
+        const fd = new FormData(form);
+        const payload = {
+          name: String(fd.get('name') ?? ''),
+          company: String(fd.get('company') ?? ''),
+          email: String(fd.get('email') ?? ''),
+          answers,
+          source: 'website',
+        };
+
+        const check = corporateReadinessSchema.safeParse(payload);
+        if (!check.success) {
+          errEl.textContent = firstError(check.error);
+          errEl.classList.remove('hidden');
+          return;
+        }
+
+        const btn = form.querySelector('button')!;
+        const original = btn.textContent ?? '';
+        btn.disabled = true;
+        btn.textContent = sendingLabel;
+
+        try {
+          const res = await fetch('/api/corporate-readiness', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ ...payload, website: String(fd.get('website') ?? '') }),
+          });
+          if (!res.ok) {
+            const info = await res.json().catch(() => ({}));
+            throw new Error(info.error || genericError);
+          }
+          root!.querySelector<HTMLElement>('[data-rw-thanks-body]')!.textContent = fill(successTpl, {
+            name: payload.name.split(' ')[0],
+            company: payload.company,
+            email: payload.email,
+          });
+          show('thanks');
+        } catch (err) {
+          errEl.textContent = err instanceof Error ? err.message : genericError;
+          errEl.classList.remove('hidden');
+        } finally {
+          btn.disabled = false;
+          btn.textContent = original;
+        }
+      });
+
+      root.querySelector('[data-rw-retake]')!.addEventListener('click', () => {
+        form.reset();
+        errEl.classList.add('hidden');
+        current = 0;
+        answers = [];
+        show('intro');
+      });
+    }
+  </script>
+</PageLayout>

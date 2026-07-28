@@ -108,6 +108,26 @@ export const onDemandVideos: OnDemandVideo[] = [
   },
 ];
 
+export interface ReadinessQuestion {
+  /** Key into `pages.workplaceReadiness.questions` in the i18n dictionaries */
+  id: string;
+  /** Matching BOOLEAN column in the `corporate_readiness` table */
+  column: string;
+}
+// The six questions behind the workplace readiness score, in the order they are
+// asked. This list is the contract between three places: the page renders from
+// it, the API endpoint writes each answer to the named column, and
+// db/corporate_readiness.sql declares those columns. Adding a question means
+// touching all three.
+export const readinessQuestions: ReadinessQuestion[] = [
+  { id: 'policy', column: 'q_policy' },
+  { id: 'hrtCoverage', column: 'q_hrt_coverage' },
+  { id: 'attritionTracked', column: 'q_attrition_tracked' },
+  { id: 'managerTraining', column: 'q_manager_training' },
+  { id: 'flexibility', column: 'q_flexibility' },
+  { id: 'leadershipVoice', column: 'q_leadership_voice' },
+];
+
 export interface PressFeature {
   /** Publication name, e.g. 'Dainik Jagran' */
   publication: string;

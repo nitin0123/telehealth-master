@@ -1037,6 +1037,113 @@ export const en = {
         },
       ] as { h: string; p: string }[],
       cta: 'Talk to our team',
+      // Promo for the readiness assessment. Rendered on the English page only,
+      // since the assessment itself is English-only.
+      readinessHeading: 'Not sure where to start?',
+      readinessBody:
+        'Take the six-question readiness assessment and see how your organisation compares, plus get our State of Menopause report by email.',
+      readinessCta: 'Check your readiness score',
+    },
+
+    // Copy for the corporate readiness assessment. English only: the page lives
+    // outside src/pages/[...locale]/ and is listed in EN_ONLY, so no Hindi twin
+    // is built and the language toggle is hidden on it.
+    workplaceReadiness: {
+      kicker: 'About',
+      title: 'Menopause Workplace Readiness Score',
+      metaTitle: 'Menopause Workplace Readiness Score | ResetWell Plus',
+      description:
+        'A free six-question assessment for HR and CXO leaders in India. See where your organisation stands on supporting women 45+, and where the attrition risk is hiding.',
+      keywords:
+        'menopause workplace policy India, HR menopause assessment, employee retention women 45+, workplace readiness score',
+      lede: 'Six questions. See where your organisation stands on supporting women 45+, and where the attrition risk is hiding.',
+
+      // Intro panel
+      introHeading: 'Before you start',
+      introBody:
+        'Answer six yes/no questions about your organisation. You will get an instant readiness score, a breakdown of where the gaps are, and the full benchmark report by email.',
+      stats: [
+        { value: '60 sec', label: 'to complete' },
+        { value: '6', label: 'questions' },
+        { value: 'Instant', label: 'benchmark' },
+      ] as { value: string; label: string }[],
+      start: 'Start the assessment',
+      introFineprint:
+        'Built for HR and CXO leaders. Your answers benchmark your organisation, not any individual.',
+
+      // Question flow
+      questionCounter: 'Question {n} of {total}',
+      whyLabel: 'Why this matters',
+      yes: 'Yes',
+      no: 'No',
+      back: 'Back',
+      questions: {
+        policy: {
+          text: 'Do you have a written policy addressing menopause or midlife health?',
+          why: 'Written policy signals the topic is safe to raise. Without it, most employees stay silent.',
+        },
+        hrtCoverage: {
+          text: 'Do your health benefits cover HRT consultations?',
+          why: 'Hormone therapy is the clinical front line of care. Coverage gaps push women to suffer through symptoms untreated.',
+        },
+        attritionTracked: {
+          text: 'Have you tracked attrition among women 45+ in the last 2 years?',
+          why: "You can't fix a leak you haven't measured. This is usually the first blind spot.",
+        },
+        managerTraining: {
+          text: 'Are managers trained to recognise and support menopause-related needs?',
+          why: 'Frontline managers make or break retention. Untrained managers misread symptoms as performance issues.',
+        },
+        flexibility: {
+          text: 'Do you offer flexible or remote options tied to health needs?',
+          why: "Flexibility is the lowest-cost, highest-impact lever most companies already have, but don't formally connect to this.",
+        },
+        leadershipVoice: {
+          text: 'Has leadership ever publicly discussed menopause as a workplace issue?',
+          why: 'Visibility from the top is what actually changes whether employees feel safe asking for support.',
+        },
+      } as Record<string, { text: string; why: string }>,
+
+      // Results
+      resultsHeading: 'Your readiness score',
+      outOf: 'out of {total}',
+      tiers: {
+        reactive: {
+          label: 'Reactive',
+          copy: "Menopause isn't yet on your workplace agenda. That's true for most of India Inc. right now, which means there's a real first-mover advantage in fixing it early.",
+        },
+        developing: {
+          label: 'Developing',
+          copy: "You've made a start. A few structural gaps in policy, training or measurement could still be quietly costing you senior women leaders.",
+        },
+        leading: {
+          label: 'Leading',
+          copy: "You're ahead of most companies. Formalising what you're already doing turns it into a retention story you can put in front of your board.",
+        },
+      } as Record<string, { label: string; copy: string }>,
+      breakdownHeading: 'Where the gaps are',
+      inPlace: 'In place',
+      gap: 'Gap',
+      retake: 'Retake the assessment',
+
+      // Lead form
+      formHeading: 'Get the full benchmark report',
+      formBody: 'We will email you the ResetWell Plus State of Menopause report along with your score.',
+      nameLabel: 'Your name',
+      namePlaceholder: 'Priya Sharma',
+      companyLabel: 'Company',
+      companyPlaceholder: 'Your organisation',
+      emailLabel: 'Work email',
+      emailPlaceholder: 'you@company.com',
+      submit: 'Email me the benchmark report',
+      sending: 'Sending…',
+      formFineprint: "We follow up within 48 hours with pilot options. No spam, ever.",
+
+      // Thank-you panel
+      successHeading: "You're on the list.",
+      /** {name}, {company} and {email} are filled in from the form. */
+      successBody: 'Thanks, {name}. The benchmark report for {company} is on its way to {email}.',
+      talkToUs: 'Talk to us about a pilot',
     },
 
     ourStory: {
