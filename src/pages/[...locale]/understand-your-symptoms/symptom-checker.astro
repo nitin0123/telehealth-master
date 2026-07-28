@@ -1,30 +1,33 @@
 ---
-import { localePaths } from '../../../i18n';
+import { langFromUrl, localePaths, localizePath, LOCALE, useTranslations } from '../../../i18n';
 export const getStaticPaths = localePaths;
 import PageLayout from '../../../layouts/PageLayout.astro';
 import SymptomChecker from '../../../components/SymptomChecker.astro';
 import { SITE } from '../../../data/seo';
 
+const lang = langFromUrl(Astro.url);
+const t = useTranslations(lang);
+const p = t.pages.symptomChecker;
+
 const medicalSchema = {
   '@context': 'https://schema.org',
   '@type': 'MedicalWebPage',
-  name: 'Perimenopause Symptom Checker',
-  url: `${SITE.url}/understand-your-symptoms/symptom-checker`,
-  description:
-    'A free 5-minute perimenopause self-assessment adapted for women in India. Not a diagnosis; a starting point for a specialist conversation.',
+  name: p.schemaName,
+  url: new URL(localizePath('/understand-your-symptoms/symptom-checker/', lang), SITE.url).href,
+  description: p.schemaDescription,
   about: { '@type': 'MedicalCondition', name: 'Perimenopause' },
   audience: 'https://schema.org/Patient',
-  inLanguage: 'en-IN',
+  inLanguage: LOCALE[lang],
 };
 ---
 <PageLayout
-  section="Understand Your Symptoms"
-  kicker="Is it perimenopause?"
-  title="Something has shifted. Let's understand what your body is telling you."
-  metaTitle="Free Perimenopause Symptom Checker & Quiz (India) | ResetWell Plus"
-  description="Take our free 5-minute perimenopause quiz, adapted for India. Check symptoms like joint pain, sleep, mood and hot flashes, and get a personalised next step. No sign-up."
-  keywords="perimenopause quiz India, menopause symptom checker, perimenopause symptoms quiz, menopause joint pain India"
-  lede="This is not a medical diagnosis, only a specialist can provide that. But this 5-minute assessment will help you make sense of what you've been experiencing, understand whether your symptoms align with perimenopause, and know exactly what to discuss at your first consultation. It is free, private, and takes 5 minutes."
+  section={t.nav.sections.symptoms.label}
+  kicker={p.kicker}
+  title={p.title}
+  metaTitle={p.metaTitle}
+  description={p.description}
+  keywords={p.keywords}
+  lede={p.lede}
 >
   <script type="application/ld+json" slot="head" set:html={JSON.stringify(medicalSchema)} />
   <SymptomChecker />

@@ -484,6 +484,160 @@ export const en = {
     } as Record<string, EventCopy>,
   },
 
+  // -------------------------------------------------------------------------
+  // Page copy
+  //
+  // Each key holds one page's own strings, including its SEO meta. The
+  // breadcrumb `section` is not repeated here: pages pass the matching
+  // `nav.sections.*.label` so a section is named the same everywhere.
+  // -------------------------------------------------------------------------
+
+  pages: {
+    howItWorks: {
+      kicker: 'Get Care',
+      title: 'Your first appointment should feel like a relief, not an ordeal.',
+      metaTitle: 'How Online Menopause Consultations Work in India | ResetWell Plus',
+      description:
+        'How an online gynaecologist consultation in India works at ResetWell Plus: symptom intake, specialist match, a 30-minute virtual appointment, and a written care plan you keep.',
+      keywords:
+        'online gynaecologist consultation India, menopause treatment India, online menopause doctor India, virtual menopause consultation',
+      lede: 'For many Indian women, a medical appointment about menopause brings two feelings: nervousness about being dismissed again, and uncertainty about what to say. This page removes both. Here is exactly what happens from the moment you click Book to the moment you have a care plan.',
+      steps: [
+        {
+          n: 'Step 1',
+          title: 'The Symptom Intake, a few minutes',
+          body: "Before your appointment, you'll complete a brief digital questionnaire. It covers your current symptoms, cycle history, any relevant medical background, and what you most want to address. This means your specialist arrives already understanding your situation, not asking basic questions and running out of time.",
+        },
+        {
+          n: 'Step 2',
+          title: 'Your Specialist Match',
+          body: "Based on your intake, we match you with a specialist whose expertise aligns with your stage and symptoms. You'll see their photo, full credentials (MBBS, DGO, IMS membership, etc.), and a short personal bio before you confirm. If you'd prefer a different specialist, you can always choose again.",
+        },
+        {
+          n: 'Step 3',
+          title: 'Your Virtual Appointment, 30 minutes',
+          body: 'Your consultation happens over secure video. You can join from your phone, tablet, or laptop, from home, from work, or anywhere private. The specialist reviews your intake, asks follow-up questions, explains their interpretation of your symptoms, and discusses your options with you. This is a conversation, not a prescription relay.',
+        },
+        {
+          n: 'Step 4',
+          title: 'Your Written Care Plan',
+          body: "After your appointment, you'll receive a written care plan. This typically includes a summary of what your specialist identified, recommended treatment or management options, any relevant lifestyle guidance, and a scheduled follow-up if needed. You keep this document forever.",
+        },
+      ] as StepItem[],
+      preQsHeading: 'Questions Indian women ask before their first appointment',
+      preQs: [
+        { q: 'Will my family know?', a: 'No. Your consultation is completely confidential.' },
+        {
+          q: 'Can you prescribe HRT and other medicines?',
+          a: 'Yes. Our specialists are licensed to prescribe India-approved formulations.',
+        },
+        { q: "What if I'm in a smaller city?", a: 'We serve all of India. Evening and weekend slots are available.' },
+        {
+          q: 'What does it cost?',
+          a: 'First consultation from ₹1,599. Follow-ups are included in the Care Plan. No hidden charges.',
+        },
+        {
+          q: 'Can I continue with my current gynaecologist?',
+          a: 'Yes. We work alongside your existing care, not instead of it.',
+        },
+        {
+          q: 'What if I want to use Ayurvedic remedies too?',
+          a: 'We discuss all options, Ayurvedic and clinical, to find what works for you.',
+        },
+      ] as FaqItem[],
+      cta: 'Book a Consultation',
+    },
+
+    ourSpecialists: {
+      kicker: 'Get Care',
+      title: 'Meet our specialists',
+      metaTitle: 'Menopause Specialists & Experts in India | ResetWell Plus',
+      description:
+        "ResetWell Plus is building a panel of menopause specialists in India: gynaecologists, endocrinologists and nutritionists who specialise in women's midlife health. Introductions coming soon.",
+      keywords: 'menopause expert India, menopause specialist India, gynaecologist menopause India',
+      lede: "Clinicians who specialise in women's midlife health, so you feel heard from your first visit.",
+      heading: 'Our specialist panel is on its way.',
+      body: "We're partnering with leading menopause clinicians across India. Stay tuned, we'll introduce the team here soon. In the meantime, join our community to be the first to know.",
+      joinCta: 'Join the community',
+      contactCta: 'Contact us',
+    },
+
+    pricing: {
+      title: 'Simple, transparent pricing',
+      metaTitle: 'Menopause Consultation Cost in India | ResetWell Plus Pricing',
+      description:
+        'Transparent menopause consultation pricing in India. Pay patients directly with no insurance paperwork. Single visits from ₹1,599 and ongoing care plans.',
+      keywords: 'menopause consultation cost India, menopause treatment India, menopause consultation price',
+      lede: 'We charge patients directly, with no insurance paperwork and no hidden fees. All prices in ₹.',
+      /** Keys match the tier ids in the page. */
+      tiers: {
+        single: {
+          name: 'Single visit',
+          price: '₹1,599',
+          sub: 'per consultation',
+          desc: 'Everything you need for a focused, unhurried first consultation with a menopause specialist.',
+          items: [
+            '30-minute specialist consultation',
+            'Personalised written care plan',
+            'Prescription if clinically needed',
+            'Secure online video visit',
+            'A care summary you keep forever',
+            'Message your clinician after your visit',
+          ],
+          note: 'No hidden charges. No referral needed.',
+          cta: 'Book now',
+        },
+      } as Record<string, { name: string; price: string; sub: string; desc: string; items: string[]; note: string; cta: string }>,
+    },
+
+    perimenopause101: {
+      kicker: 'Understand Your Symptoms',
+      title: 'Perimenopause 101',
+      metaTitle: 'Perimenopause Symptoms in India: Perimenopause 101 | ResetWell Plus',
+      description:
+        'Perimenopause symptoms in India explained: the signs, the average menopause age in India, early menopause, perimenopause at 38, and whether HRT is safe. Reviewed by menopause specialists.',
+      keywords:
+        'perimenopause symptoms in India, menopause age in India, early menopause India women, perimenopause at 38 India, is HRT safe in India',
+      lede: 'The years before your last period can bring forty-plus symptoms. Here is what is happening for women in India, and what helps.',
+      schemaName: 'Perimenopause 101',
+      schemaDescription:
+        'Perimenopause symptoms in India explained: the signs, the average menopause age in India, early menopause, and what helps.',
+      sections: [
+        {
+          h: 'What is perimenopause?',
+          p: 'The transition leading up to menopause, when hormone levels begin to fluctuate. In India it can start in the late 30s or 40s and last several years, sometimes earlier than many women expect.',
+        },
+        {
+          h: 'Common symptoms',
+          p: 'Irregular periods, hot flushes, disrupted sleep, mood changes, brain fog, joint aches, and shifts in energy and weight. Over forty symptoms in total.',
+        },
+        {
+          h: 'Why it happens',
+          p: 'Oestrogen and progesterone rise and fall unpredictably, affecting far more than your cycle, from your brain to your bones.',
+        },
+        {
+          h: 'What can help',
+          p: 'From lifestyle and nutrition to hormone therapy where appropriate, a specialist can build a plan tailored to you. HRT is safe for many women when guided by an expert.',
+        },
+      ] as { h: string; p: string }[],
+      cta: 'Take the Free Symptom Quiz',
+    },
+
+    symptomChecker: {
+      kicker: 'Is it perimenopause?',
+      title: "Something has shifted. Let's understand what your body is telling you.",
+      metaTitle: 'Free Perimenopause Symptom Checker & Quiz (India) | ResetWell Plus',
+      description:
+        'Take our free 5-minute perimenopause quiz, adapted for India. Check symptoms like joint pain, sleep, mood and hot flashes, and get a personalised next step. No sign-up.',
+      keywords:
+        'perimenopause quiz India, menopause symptom checker, perimenopause symptoms quiz, menopause joint pain India',
+      lede: "This is not a medical diagnosis, only a specialist can provide that. But this 5-minute assessment will help you make sense of what you've been experiencing, understand whether your symptoms align with perimenopause, and know exactly what to discuss at your first consultation. It is free, private, and takes 5 minutes.",
+      schemaName: 'Perimenopause Symptom Checker',
+      schemaDescription:
+        'A free 5-minute perimenopause self-assessment adapted for women in India. Not a diagnosis; a starting point for a specialist conversation.',
+    },
+  },
+
   /** Full FAQ library shown on /community/faqs, grouped into themed buckets. */
   faqLibrary: {
     sections: [
