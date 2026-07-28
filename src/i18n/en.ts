@@ -960,6 +960,8 @@ export const en = {
       readPost: 'Read the post',
       faqHeading: 'Frequently asked questions',
       ctaHeading: 'Wondering if this is perimenopause?',
+      ctaBody:
+        'Take our 2-minute symptom self-assessment, or talk to a menopause specialist who will actually listen.',
       ctaChecker: 'Check Your Symptoms',
       ctaBook: 'Book a Consultation',
       backToAll: 'Back to all posts',

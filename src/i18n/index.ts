@@ -34,11 +34,11 @@ export const LANG_LABEL: Record<Lang, string> = { en: 'English', hi: 'हिं�
  * language toggle and hreflang tags are omitted on them, so a partially
  * translated site never links to a 404.
  *
- * `/blog/` comes off this list when the Hindi posts land. `/404` stays on it:
- * one 404 page is served for unknown URLs in both languages, so a language
- * toggle there would point at a page that does not exist.
+ * `/404` is the only entry: one 404 page is served for unknown URLs in both
+ * languages, so a language toggle there would point at a page that does not
+ * exist. Every blog post now has a Hindi twin, so /blog/ came off this list.
  */
-export const EN_ONLY: readonly string[] = ['/blog/', '/404'];
+export const EN_ONLY: readonly string[] = ['/404'];
 
 // ---------------------------------------------------------------------------
 // Paths
