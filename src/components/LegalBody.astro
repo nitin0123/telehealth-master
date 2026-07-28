@@ -1,0 +1,25 @@
+---
+// Renders a legal document from its dictionary node list. Paragraphs and list
+// items go through set:html so they can carry <strong> and inline links that
+// the page has already substituted in.
+import type { LegalNode } from '../i18n/types';
+
+interface Props {
+  nodes: LegalNode[];
+}
+const { nodes } = Astro.props;
+---
+
+{
+  nodes.map((node) =>
+    'h' in node ? (
+      <h2 class="font-serif text-2xl text-ever pt-2">{node.h}</h2>
+    ) : 'ul' in node ? (
+      <ul class="list-disc pl-6 space-y-1">
+        {node.ul.map((item) => <li set:html={item} />)}
+      </ul>
+    ) : (
+      <p set:html={node.p} />
+    )
+  )
+}

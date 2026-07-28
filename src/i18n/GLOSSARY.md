@@ -42,6 +42,10 @@ House style carries over from English: **no em-dashes**. Use commas, colons or p
   actual titles of English-language videos, so a translated title would not match
   what opens on YouTube. Confirmed by the client. Only the surrounding UI is
   translated, e.g. "Watch on YouTube" becomes "YouTube पर देखें".
+- **Statute names** (`Information Technology Act, 2000`, `Consumer Protection Act,
+  2019`, …): these name specific Indian legislation. Their official titles are
+  English, and a translated name would not identify the law. Standard practice in
+  Indian legal Hindi is to keep them as-is inside the Hindi sentence.
 - **URLs, slugs, social handles, email addresses**
 - **Form input values:** users type in English. See below.
 

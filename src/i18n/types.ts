@@ -111,3 +111,12 @@ export interface QuizResult {
   body: string;
   cta: string;
 }
+
+/**
+ * One node of a long legal document (privacy policy, terms).
+ *
+ * Kept as a flat list rather than nested markup so a translator works through
+ * whole sentences in order. `p` and `ul` items are rendered with set:html, so
+ * they may contain <strong> and {placeholder} links resolved by the page.
+ */
+export type LegalNode = { h: string } | { p: string } | { ul: string[] };
