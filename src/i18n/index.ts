@@ -44,11 +44,12 @@ export const LANG_SHORT: Record<Lang, string> = { en: 'EN', hi: 'हिं' };
  * language toggle there would point at a page that does not exist. Every blog
  * post now has a Hindi twin, so /blog/ came off this list.
  *
- * `/about/workplace-wellness/readiness-score`: the corporate assessment is an
- * English-only tool for HR and CXO audiences, and its page file lives outside
- * src/pages/[...locale]/ so no Hindi twin is built.
+ * `/about/workplace-wellness`: the corporate section is English-only, aimed at
+ * HR and CXO audiences. Its page files live outside src/pages/[...locale]/ so
+ * no Hindi twins are built. The prefix match covers the nested readiness-score
+ * and one-pager pages too.
  */
-export const EN_ONLY: readonly string[] = ['/404', '/about/workplace-wellness/readiness-score'];
+export const EN_ONLY: readonly string[] = ['/404', '/about/workplace-wellness'];
 
 // ---------------------------------------------------------------------------
 // Paths

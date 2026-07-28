@@ -25,10 +25,12 @@ import type {
 
 /** Top-level navigation sections. Keys match the `id`s in src/data/nav.ts. */
 const navSections: Record<string, SectionCopy> = {
-  symptoms: { label: 'Understand Your Symptoms', short: 'Understand Symptoms' },
+  // Shortened from "Understand Your Symptoms" to buy horizontal room in the
+  // header, which now carries the longer "Workplace Wellness" item.
+  symptoms: { label: 'Symptoms' },
   care: { label: 'Get Care' },
   events: { label: 'Events' },
-  community: { label: 'Community' },
+  workplaceWellness: { label: 'Workplace Wellness' },
   blog: { label: 'Blog' },
   about: { label: 'About' },
 };
@@ -44,14 +46,15 @@ const navLinks: Record<string, LinkCopy> = {
   eventsUpcoming: { label: 'Upcoming' },
   eventsOnDemand: { label: 'On Demand' },
   eventsForCorporates: { label: 'For Corporates' },
-  communityJoin: { label: 'Join' },
+  communityJoin: { label: 'Join the Community', short: 'Join' },
+  // Still used by the page itself and by the Testimonials link, even though
+  // Stories of Reset has no menu entry.
   storiesOfReset: { label: 'Stories of Reset' },
   faqs: { label: 'FAQs' },
   founders: { label: 'Meet the Founders' },
   ourStory: { label: 'Our Story' },
   ourTeam: { label: 'Our Team' },
   inThePress: { label: 'In The Press' },
-  workplaceWellness: { label: 'Workplace Wellness' },
 };
 
 export const en = {
@@ -1017,32 +1020,169 @@ export const en = {
       getInTouch: 'get in touch',
     },
 
+    // Corporate / B2B page. English only: the page file lives outside
+    // src/pages/[...locale]/ and the path is listed in EN_ONLY, so no Hindi
+    // twin is built. The statistics below are the client's, each tied to a
+    // source in `sources`.
+    // Gated download page for the corporate one-pager. English only, same as
+    // the rest of the workplace-wellness section.
+    corporateOnePager: {
+      kicker: 'Workplace Wellness',
+      title: 'Corporate Wellness One-Pager',
+      metaTitle: 'Corporate Menopause Wellness One-Pager | ResetWell Plus',
+      description:
+        'Get the ResetWell Plus corporate wellness one-pager: the business case for menopause support in Indian workplaces, and how the programme works.',
+      keywords: 'corporate menopause one-pager, workplace menopause India, HR menopause resource',
+      lede: 'The business case and the programme, in a single document you can circulate internally.',
+      formHeading: 'Where should we send it?',
+      formBody: 'We will email the one-pager straight away, so you have it on file to share with your team.',
+      nameLabel: 'Your name',
+      namePlaceholder: 'Priya Sharma',
+      companyLabel: 'Company',
+      companyPlaceholder: 'Your organisation',
+      emailLabel: 'Work email',
+      emailPlaceholder: 'you@company.com',
+      submit: 'Email me the one-pager',
+      sending: 'Sending\u2026',
+      fineprint: 'We follow up within 48 hours with pilot options. No spam, ever.',
+      successHeading: 'On its way.',
+      /** {name}, {company} and {email} are filled in from the form. */
+      successBody: 'Thanks, {name}. The one-pager for {company} is on its way to {email}.',
+      /** Shown when this address has already been sent the one-pager. */
+      successBodyRepeat:
+        'Thanks, {name}. We have already sent the one-pager to {email}, so check your inbox rather than waiting for a new one.',
+      readinessCta: 'Take the readiness assessment',
+      contactCta: 'Talk to us about a pilot',
+    },
+
     workplaceWellness: {
-      kicker: 'About',
+      kicker: 'Workplace Wellness',
       title: 'Partner with ResetWell Plus',
       metaTitle: 'Workplace Menopause Wellness in India | ResetWell Plus',
       description:
-        'Bring expert menopause and midlife care to your organisation in India. Reduce attrition, boost wellbeing and build a menopause-confident culture.',
-      keywords: 'workplace wellness India, menopause at work India, employee benefits menopause',
+        'Bring expert menopause and midlife care to your organisation in India. Reduce attrition, protect productivity and build a menopause-confident culture.',
+      keywords:
+        'workplace wellness India, menopause at work India, employee benefits menopause, corporate menopause policy India, menopause HR India',
       lede: 'Bring expert menopause and midlife care to your organisation.',
-      points: [
-        {
-          h: 'Reduce attrition',
-          p: 'Support women through midlife and keep experienced talent in your organisation.',
-        },
-        { h: 'Boost wellbeing', p: 'Expert care and education that improves day-to-day quality of life.' },
-        {
-          h: 'Build a better culture',
-          p: 'Make menopause a topic teams can talk about openly and supportively.',
-        },
-      ] as { h: string; p: string }[],
-      cta: 'Talk to our team',
-      // Promo for the readiness assessment. Rendered on the English page only,
-      // since the assessment itself is English-only.
-      readinessHeading: 'Not sure where to start?',
-      readinessBody:
-        'Take the six-question readiness assessment and see how your organisation compares, plus get our State of Menopause report by email.',
-      readinessCta: 'Check your readiness score',
+      intro:
+        'By 2030, nearly 130 million Indian women will be in the menopausal transition, many of them in your workforce right now. Most organisations have no plan for supporting them.',
+
+      businessCase: {
+        eyebrow: 'The business case',
+        heading: "This isn't a wellness perk. It's a retention and productivity issue.",
+        body: "India's corporate workforce includes a fast-growing number of women aged 35 to 55, often in mid-to-senior roles, managing teams and carrying institutional knowledge. Menopause in India also tends to begin earlier than the global average, around age 46 to 47, which means the impact lands squarely during peak career years. Most of these women are getting no employer support, no HR awareness, and often no clarity themselves on what's causing the symptoms they're managing at work.",
+        statsHeading: 'The numbers',
+        stats: [
+          {
+            figure: '130M',
+            text: 'Indian women are projected to be in the menopausal transition by 2030: a workforce-scale demographic shift, not an individual health issue.',
+          },
+          {
+            figure: '46 to 47',
+            text: 'is the typical age Indian women reach menopause, earlier than the global average, so symptoms overlap with peak leadership and decision-making years.',
+          },
+          {
+            figure: 'Up to 10%',
+            text: 'of women globally leave senior roles specifically due to unmanaged menopause symptoms, a meaningful cost where senior female talent is already scarce.',
+          },
+          {
+            figure: '14 days',
+            text: 'a year are lost to menopause symptoms in reduced productivity per affected woman, close to three working weeks.',
+          },
+          {
+            figure: '84%',
+            text: "of women globally say more menopause support is needed at work, and 72% admit they've hidden their symptoms from colleagues or managers rather than ask for help.",
+          },
+          {
+            figure: '1 in 10',
+            text: 'women have turned down a job offer specifically due to a lack of menopause support, making this a talent-acquisition cost and not only a retention one.',
+          },
+          {
+            figure: 'Higher burden',
+            text: 'is reported by South Asian and East or Southeast Asian women than by the Western populations studied, in a 2025 APAC study across Singapore, Vietnam, Australia, Japan and Indonesia. Fatigue, brain fog and difficulty sustaining focus were the most disruptive at work.',
+          },
+          {
+            figure: 'Only half',
+            text: 'of affected women feel their symptoms have been acknowledged in any formal workplace conversation. The majority manage this silently, without disclosure.',
+          },
+        ] as { figure: string; text: string }[],
+      },
+
+      whyNow: {
+        eyebrow: 'Why now',
+        heading: "India's workforce is changing faster than its policies are.",
+        points: [
+          "Women's workforce participation in India has been rising, and with it the number of women navigating perimenopause while holding senior, high-visibility roles.",
+          'India currently has no national workplace menopause policy, unlike the UK, where large employers will soon be legally required to publish menopause action plans. Organisations that act now build a genuine differentiator rather than a compliance response to a future mandate.',
+          'For sectors already competing hard for senior female talent, including BFSI, IT and ITES, consulting and healthcare, menopause support is becoming a visible signal in employer-of-choice conversations, the way parental leave and flexible work already are.',
+        ],
+      },
+
+      programme: {
+        eyebrow: 'The programme',
+        heading: 'The ResetWell Plus Corporate Wellness Programme',
+        tiers: [
+          {
+            tier: 'Tier 1',
+            h: 'Awareness and Education',
+            p: 'Expert-led sessions for the whole organisation, covering what perimenopause is, how it shows up at work, and how colleagues and managers can support it. Delivered separately for employees, managers and HR, in English and Hindi.',
+          },
+          {
+            tier: 'Tier 2',
+            h: 'Telehealth Access Benefit',
+            p: 'Subsidised or fully covered virtual consultations with ResetWell Plus specialists for eligible employees. Confidential intake, appointments outside working hours, and a written care plan within 24 hours.',
+          },
+          {
+            tier: 'Tier 3',
+            h: 'Community and Ongoing Support',
+            p: 'Monthly expert Q&A, a private peer community facilitated by certified coaches, quarterly wellbeing check-ins, and a manager toolkit for inclusive, low-friction conversations.',
+          },
+        ] as { tier: string; h: string; p: string }[],
+        note: 'Most organisations begin with a Tier 1 awareness session as a low-commitment pilot, then expand into Tier 2 telehealth access once employee interest is confirmed.',
+      },
+
+      management: {
+        eyebrow: 'For management',
+        heading: 'What management needs to know',
+        items: [
+          {
+            h: 'Engagement model',
+            p: 'Per-employee-per-month or a flat annual licence. Pricing is available on request, scaled to organisation size.',
+          },
+          {
+            h: 'Implementation timeline',
+            p: 'Typically live within 2 to 3 weeks of a signed agreement. No integration is required with existing insurance or benefits platforms, and it can be run bespoke.',
+          },
+          {
+            h: 'Confidentiality',
+            p: 'All consultations are confidential. HR receives only aggregate, anonymised engagement data, never individual health information.',
+          },
+          {
+            h: "Who's eligible",
+            p: 'Female employees aged 35+, or opt-in by self-identification, flexible to your existing benefits structure.',
+          },
+        ] as { h: string; p: string }[],
+      },
+
+      talkToUs: {
+        eyebrow: 'Next step',
+        heading: 'Talk to us',
+        body: 'Start with a conversation, or take something to circulate internally first.',
+        primaryCta: 'Talk to us',
+        secondaryCta: 'Download the Corporate Wellness one-pager',
+        secondaryNote: 'For HR leaders who want to circulate internally before committing to a call.',
+        tertiaryCta: 'Take the Menopause Workplace Readiness Score',
+        tertiaryNote: 'Six questions, an instant benchmark, and the full report by email.',
+      },
+
+      sourcesHeading: 'Sources',
+      sources: [
+        'British Menopause Society, senior role attrition (10%).',
+        'Nuffield Health, UK, productivity loss (14 working days a year).',
+        'Catalyst, 2024 global survey: 84% want more support, 72% have hidden symptoms, 1 in 10 declined a job offer.',
+        'BJOG (Kaushik et al.), 2026, India-specific: 130M women by 2030, earlier onset age (46 to 47), no national menopause policy.',
+        'NUS Medicine and HeyVenus, 2025 APAC white paper: South, East and Southeast Asian symptom burden higher than Western comparators.',
+      ],
     },
 
     // Copy for the corporate readiness assessment. English only: the page lives

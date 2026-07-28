@@ -1,0 +1,135 @@
+---
+// Corporate / B2B workplace wellness page.
+//
+// Deliberately OUTSIDE src/pages/[...locale]/, so no Hindi twin is generated.
+// The path is listed in EN_ONLY (src/i18n/index.ts), which also covers the
+// nested readiness-score and one-pager pages, so the language toggle and
+// hreflang tags skip all three rather than pointing at URLs that aren't built.
+import PageLayout from '../../layouts/PageLayout.astro';
+import { useTranslations } from '../../i18n';
+
+const t = useTranslations('en');
+const p = t.pages.workplaceWellness;
+
+const card = 'bg-white border border-sand rounded-4xl p-6 lg:p-8 reveal';
+const eyebrow = 'eyebrow uppercase text-xs font-semibold text-clay';
+---
+
+<PageLayout
+  kicker={p.kicker}
+  title={p.title}
+  metaTitle={p.metaTitle}
+  description={p.description}
+  keywords={p.keywords}
+  lede={p.lede}
+>
+  <p class="-mt-4 mb-10 max-w-3xl text-lg leading-relaxed text-ink reveal">{p.intro}</p>
+
+  <!-- Section 1: the business case -->
+  <section class="reveal">
+    <p class={eyebrow}>{p.businessCase.eyebrow}</p>
+    <h2 class="mt-2 font-serif text-2xl lg:text-3xl leading-snug text-ever">{p.businessCase.heading}</h2>
+    <p class="mt-4 max-w-3xl text-stone leading-relaxed">{p.businessCase.body}</p>
+
+    <p class="mt-8 text-sm font-semibold text-ever">{p.businessCase.statsHeading}</p>
+    <div class="mt-3 grid gap-3 sm:grid-cols-2">
+      {p.businessCase.stats.map((s, i) => (
+        <div class="bg-sand/40 rounded-4xl p-5 reveal" style={`--reveal-delay:${(i % 2) * 70}ms`}>
+          <p class="font-serif text-xl text-ever leading-none">{s.figure}</p>
+          <p class="mt-2 text-sm text-stone leading-relaxed">{s.text}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Section 2: why now -->
+  <section class="mt-12 reveal">
+    <p class={eyebrow}>{p.whyNow.eyebrow}</p>
+    <h2 class="mt-2 font-serif text-2xl lg:text-3xl leading-snug text-ever">{p.whyNow.heading}</h2>
+    <ul class="mt-5 space-y-3">
+      {p.whyNow.points.map((point) => (
+        <li class="flex gap-3">
+          <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-clay" aria-hidden="true"></span>
+          <span class="text-stone leading-relaxed">{point}</span>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <!-- Section 3: the programme -->
+  <section class="mt-12 reveal">
+    <p class={eyebrow}>{p.programme.eyebrow}</p>
+    <h2 class="mt-2 font-serif text-2xl lg:text-3xl leading-snug text-ever">{p.programme.heading}</h2>
+    <div class="mt-5 grid gap-4 lg:grid-cols-3">
+      {p.programme.tiers.map((tier, i) => (
+        <div class={card} style={`--reveal-delay:${i * 70}ms`}>
+          <span class="inline-block rounded-full bg-ever px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-cream">
+            {tier.tier}
+          </span>
+          <h3 class="mt-3 font-serif text-xl text-ever">{tier.h}</h3>
+          <p class="mt-2 text-sm text-stone leading-relaxed">{tier.p}</p>
+        </div>
+      ))}
+    </div>
+    <p class="mt-4 text-sm text-stone leading-relaxed">{p.programme.note}</p>
+  </section>
+
+  <!-- Section 4: what management needs to know -->
+  <section class="mt-12 reveal">
+    <p class={eyebrow}>{p.management.eyebrow}</p>
+    <h2 class="mt-2 font-serif text-2xl lg:text-3xl leading-snug text-ever">{p.management.heading}</h2>
+    <dl class="mt-5 grid gap-4 sm:grid-cols-2">
+      {p.management.items.map((item) => (
+        <div class="bg-sand/40 rounded-4xl p-5">
+          <dt class="font-serif text-lg text-ever">{item.h}</dt>
+          <dd class="mt-1.5 text-sm text-stone leading-relaxed">{item.p}</dd>
+        </div>
+      ))}
+    </dl>
+  </section>
+
+  <!-- Section 5: talk to us -->
+  <section class="mt-12 bg-ever rounded-5xl p-6 lg:p-10 text-center reveal">
+    <p class="eyebrow uppercase text-xs font-semibold text-sage">{p.talkToUs.eyebrow}</p>
+    <h2 class="mt-2 font-serif text-2xl lg:text-3xl text-cream">{p.talkToUs.heading}</h2>
+    <p class="mt-3 mx-auto max-w-xl text-sand leading-relaxed">{p.talkToUs.body}</p>
+
+    <a
+      href="/contact/"
+      class="mt-6 inline-block rounded-full bg-clay hover:bg-claydk text-white font-semibold px-8 py-3.5 transition"
+    >
+      {p.talkToUs.primaryCta}
+    </a>
+
+    <div class="mt-6 grid gap-3 sm:grid-cols-2 text-left">
+      <a
+        href="/about/workplace-wellness/corporate-one-pager/"
+        class="group rounded-4xl bg-everdk/60 border border-cream/15 p-5 transition hover:-translate-y-0.5 hover:border-cream/40"
+      >
+        <p class="font-semibold text-cream group-hover:text-white">
+          {p.talkToUs.secondaryCta}
+          <span class="inline-block transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true">&rarr;</span>
+        </p>
+        <p class="mt-1.5 text-sm text-sand leading-relaxed">{p.talkToUs.secondaryNote}</p>
+      </a>
+      <a
+        href="/about/workplace-wellness/readiness-score/"
+        class="group rounded-4xl bg-everdk/60 border border-cream/15 p-5 transition hover:-translate-y-0.5 hover:border-cream/40"
+      >
+        <p class="font-semibold text-cream group-hover:text-white">
+          {p.talkToUs.tertiaryCta}
+          <span class="inline-block transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true">&rarr;</span>
+        </p>
+        <p class="mt-1.5 text-sm text-sand leading-relaxed">{p.talkToUs.tertiaryNote}</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- Sources for the statistics in section 1 -->
+  <section class="mt-10 border-t border-sand pt-5 reveal">
+    <h2 class="text-xs font-semibold uppercase tracking-wide text-stone">{p.sourcesHeading}</h2>
+    <ol class="mt-3 space-y-1.5 text-xs leading-relaxed text-stone">
+      {p.sources.map((s) => <li>{s}</li>)}
+    </ol>
+  </section>
+</PageLayout>

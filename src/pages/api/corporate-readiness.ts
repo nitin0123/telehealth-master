@@ -18,7 +18,9 @@ import { LOGO_CID, readinessReportHtml, readinessReportText } from '../../lib/em
 import logoBase64 from '../../../public/logo.png?base64';
 // Inlined at build time (see `base64Asset` in astro.config.mjs), so the
 // attachment never depends on the deployment being publicly fetchable.
-import reportBase64 from '../../../public/reports/resetwellplus-state-of-menopause-report.pdf?base64';
+// Deliberately NOT in public/: these reports are gated behind the form, and
+// anything under public/ is served as a static file at a guessable URL.
+import reportBase64 from '../../assets/reports/resetwellplus-state-of-menopause-report.pdf?base64';
 
 const json = (body: unknown, status = 200) =>
   new Response(JSON.stringify(body), { status, headers: { 'Content-Type': 'application/json' } });
@@ -27,7 +29,7 @@ const str = (v: unknown) => (typeof v === 'string' ? v.trim() : '');
 
 const copy = en.pages.workplaceReadiness;
 
-// The lead magnet. Swap the file at public/reports/ to change what gets sent
+// The lead magnet. Swap the file at src/assets/reports/ to change what gets sent
 // (the import above picks it up at build time); the filename the recipient sees
 // is set here.
 const REPORT_FILENAME = 'ResetWell Plus - State of Menopause Report.pdf';

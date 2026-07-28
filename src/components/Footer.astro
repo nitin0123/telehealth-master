@@ -20,7 +20,9 @@ const fbIcon = '<svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><pa
 
 <footer class="bg-sand text-ink/80">
   <!-- Link columns: accordion on mobile, static columns on sm+ -->
-  <div class="max-w-7xl mx-auto px-5 lg:px-8 py-6 lg:py-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 sm:gap-8 text-sm">
+  <!-- Three columns since the Community section was retired; a 4-column grid
+       would leave a phantom empty cell on the right. -->
+  <div class="max-w-7xl mx-auto px-5 lg:px-8 py-6 lg:py-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 sm:gap-8 text-sm">
     {cols.map((section, i) => (
       <div class="border-b border-ink/10 sm:border-0">
         <input type="checkbox" id={`foot-${i}`} class="peer sr-only" />

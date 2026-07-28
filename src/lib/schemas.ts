@@ -52,6 +52,17 @@ export const corporateReadinessSchema = z.object({
 });
 export type CorporateReadinessInput = z.infer<typeof corporateReadinessSchema>;
 
+// Gated corporate resource download (/about/workplace-wellness/…).
+// Same honeypot note as above: "website", not "company".
+export const corporateLeadSchema = z.object({
+  name: z.string().trim().min(1, 'Please enter your name.').max(200, 'That name is too long.'),
+  company: z.string().trim().min(1, 'Please enter your company name.').max(200, 'That company name is too long.'),
+  email,
+  resource: z.enum(['one-pager']).default('one-pager'),
+  source: z.string().trim().max(60).optional(),
+});
+export type CorporateLeadInput = z.infer<typeof corporateLeadSchema>;
+
 export const smsConsentSchema = z
   .object({
     phoneNumber: z.string().trim().min(1, 'Please enter a phone number.').max(30, 'That phone number is too long.'),

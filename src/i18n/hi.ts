@@ -20,10 +20,10 @@ export const hi: DeepPartial<Dict> = {
 
   nav: {
     sections: {
-      symptoms: { label: 'अपने लक्षण समझें', short: 'लक्षण समझें' },
+      symptoms: { label: 'लक्षण' },
       care: { label: 'देखभाल पाएँ' },
       events: { label: 'इवेंट्स' },
-      community: { label: 'कम्युनिटी' },
+      workplaceWellness: { label: 'वर्कप्लेस वेलनेस' },
       blog: { label: 'ब्लॉग' },
       about: { label: 'हमारे बारे में' },
     },
@@ -37,14 +37,13 @@ export const hi: DeepPartial<Dict> = {
       eventsUpcoming: { label: 'आगामी' },
       eventsOnDemand: { label: 'ऑन डिमांड' },
       eventsForCorporates: { label: 'कॉर्पोरेट्स के लिए' },
-      communityJoin: { label: 'जुड़ें' },
+      communityJoin: { label: 'कम्युनिटी से जुड़ें', short: 'जुड़ें' },
       storiesOfReset: { label: 'रीसेट की कहानियाँ' },
       faqs: { label: 'अक्सर पूछे सवाल' },
       founders: { label: 'संस्थापकों से मिलें' },
       ourStory: { label: 'हमारी कहानी' },
       ourTeam: { label: 'हमारी टीम' },
       inThePress: { label: 'मीडिया में' },
-      workplaceWellness: { label: 'वर्कप्लेस वेलनेस' },
     },
     home: 'होम',
     theBook: 'किताब',
@@ -1083,27 +1082,6 @@ export const hi: DeepPartial<Dict> = {
       getInTouch: 'हमसे संपर्क करें',
     },
 
-    workplaceWellness: {
-      kicker: 'हमारे बारे में',
-      title: 'ResetWell Plus के साथ साझेदारी करें',
-      metaTitle: 'कार्यस्थल पर मेनोपॉज़ वेलनेस | ResetWell Plus',
-      description:
-        'अपने संगठन में विशेषज्ञ मेनोपॉज़ और मिडलाइफ़ देखभाल लाएँ। कर्मचारियों का जाना कम करें, सेहत बेहतर बनाएँ, और मेनोपॉज़ के प्रति सजग संस्कृति बनाएँ।',
-      keywords: 'वर्कप्लेस वेलनेस भारत, कार्यस्थल पर मेनोपॉज़ भारत, कर्मचारी बेनिफ़िट मेनोपॉज़',
-      lede: 'अपने संगठन में विशेषज्ञ मेनोपॉज़ और मिडलाइफ़ देखभाल लाएँ।',
-      points: [
-        {
-          h: 'कर्मचारियों का जाना कम करें',
-          p: 'महिलाओं को मिडलाइफ़ में सहारा दें और अनुभवी प्रतिभा को अपने संगठन में बनाए रखें।',
-        },
-        { h: 'सेहत बेहतर बनाएँ', p: 'विशेषज्ञ देखभाल और जानकारी, जो रोज़मर्रा की ज़िंदगी बेहतर बनाती है।' },
-        {
-          h: 'बेहतर संस्कृति बनाएँ',
-          p: 'मेनोपॉज़ को ऐसा विषय बनाएँ जिस पर टीमें खुलकर और सहयोग से बात कर सकें।',
-        },
-      ],
-      cta: 'हमारी टीम से बात करें',
-    },
 
     ourStory: {
       kicker: 'हमारे बारे में',

@@ -45,25 +45,26 @@ export const nav: NavSection[] = [
     ],
   },
   {
-    id: 'community', // Community
-    children: [
-      { id: 'communityJoin', href: '/community/join/' },
-      { id: 'storiesOfReset', href: '/community/stories-of-reset/' },
-      { id: 'faqs', href: '/community/faqs/' },
-    ],
+    id: 'workplaceWellness', // Workplace Wellness
+    href: '/about/workplace-wellness/',
   },
   {
     id: 'blog', // Blog
     href: '/blog/',
   },
   {
+    // The Community dropdown was retired; its pages keep their /community/ URLs
+    // (they are indexed and linked from cards, blog posts and other components)
+    // and are reached from here instead. Stories of Reset has no menu entry on
+    // purpose, but the page is still live at /community/stories-of-reset/.
     id: 'about', // About
     children: [
       { id: 'founders', href: '/about/' },
       { id: 'ourStory', href: '/about/our-story/' },
       { id: 'ourTeam', href: '/about/our-team/' },
       { id: 'inThePress', href: '/about/in-the-press/' },
-      { id: 'workplaceWellness', href: '/about/workplace-wellness/' },
+      { id: 'communityJoin', href: '/community/join/' },
+      { id: 'faqs', href: '/community/faqs/' },
     ],
   },
 ];
@@ -73,4 +74,4 @@ export const nav: NavSection[] = [
 export const BOOK_HREF = '/coming-soon/';
 
 /** Footer link columns, in order. Keys are section ids from `nav` above. */
-export const FOOTER_COLS = ['symptoms', 'care', 'community', 'about'];
+export const FOOTER_COLS = ['symptoms', 'care', 'about'];
