@@ -11,6 +11,14 @@ import { fmt, langFromUrl, useTranslations } from '../i18n';
 
 const lang = langFromUrl(Astro.url);
 const t = useTranslations(lang);
+// The quote is picked by day index, so the two lists must stay the same length
+// or a given date would show unrelated quotes in each language. Fail the build
+// rather than let them drift.
+if (quotesHi.length && quotesHi.length !== quotesEn.length) {
+  throw new Error(
+    `quotes.hi.ts has ${quotesHi.length} quotes but quotes.ts has ${quotesEn.length}; they must match.`
+  );
+}
 // Falls back to English while the Hindi list is still empty.
 const quotes = lang === 'hi' && quotesHi.length ? quotesHi : quotesEn;
 
