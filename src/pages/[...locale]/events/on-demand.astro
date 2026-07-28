@@ -1,9 +1,12 @@
 ---
-import { localePaths } from '../../../i18n';
+import { localePaths, useTranslations } from '../../../i18n';
 export const getStaticPaths = localePaths;
 import PageLayout from '../../../layouts/PageLayout.astro';
 import OnDemandVideos from '../../../components/OnDemandVideos.astro';
+
+const t = useTranslations(Astro.url);
+const p = t.pages.eventsOnDemand;
 ---
-<PageLayout section="Events" kicker="Events" title="On demand" lede="Watch past sessions anytime, at your own pace.">
+<PageLayout section={t.nav.sections.events.label} kicker={p.kicker} title={p.title} lede={p.lede}>
   <OnDemandVideos />
 </PageLayout>

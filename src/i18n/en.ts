@@ -623,6 +623,91 @@ export const en = {
       cta: 'Take the Free Symptom Quiz',
     },
 
+    eventsUpcoming: {
+      kicker: 'Events',
+      title: 'Upcoming events',
+      lede: 'Live, expert-led sessions you can join from anywhere.',
+    },
+
+    eventsOnDemand: {
+      kicker: 'Events',
+      title: 'On demand',
+      lede: 'Watch past sessions anytime, at your own pace.',
+    },
+
+    forCorporates: {
+      kicker: 'Events',
+      title: 'ResetWell Plus for employers',
+      metaTitle: 'Menopause at Work: Corporate Wellness in India | ResetWell Plus',
+      description:
+        'Bring expert menopause and midlife care to your workplace in India: workshops, webinars, subsidised employee consultations and policy support.',
+      keywords: 'menopause at work India, workplace wellness India, corporate menopause programme',
+      lede: 'Offer expert midlife care as part of your benefits package.',
+      blocks: [
+        {
+          h: 'Workshops & webinars',
+          p: 'Live, expert-led sessions tailored to your teams, from perimenopause basics to manager training.',
+        },
+        {
+          h: 'Subsidised employee visits',
+          p: 'Offer your people direct access to specialist consultations as part of their benefits.',
+        },
+        {
+          h: 'Policy & culture support',
+          p: 'Practical guidance to make your workplace genuinely menopause-confident.',
+        },
+      ] as { h: string; p: string }[],
+      cta: 'Talk to our team',
+    },
+
+    communityJoin: {
+      title: 'Join the community',
+      metaTitle: 'Menopause Community for Indian Women | ResetWell Plus',
+      description:
+        'Join a private, expert-facilitated menopause and perimenopause community for Indian women. Peer support in English and Hindi, on WhatsApp, Instagram and more.',
+      keywords: 'menopause community India women, menopause support group India, perimenopause community',
+      lede: 'A private, moderated, judgement-free space for women who get it. Join free, then connect with us wherever you already are.',
+      /** Keys match the channel ids in the page; the URLs stay in seo.ts. */
+      channels: {
+        whatsapp: {
+          name: 'WhatsApp Community',
+          find: 'Daily wellness tips, event alerts, community questions, and peer support in English and Hindi. Moderated by our care team.',
+          cta: 'Join the WhatsApp Community',
+        },
+        instagram: {
+          name: 'Instagram & Facebook',
+          find: 'Educational reels, specialist Q&A clips, real stories from our community, and event previews. In Hinglish.',
+          cta: 'Follow on Instagram',
+        },
+        linkedin: {
+          name: 'LinkedIn',
+          find: 'Corporate wellness content, research updates, and B2B resources for HR leaders.',
+          cta: 'Follow on LinkedIn',
+        },
+        youtube: {
+          name: 'YouTube',
+          find: 'Full recordings of past events, specialist explainer series, podcasts, and patient story documentaries. Free to watch.',
+          cta: 'Subscribe on YouTube',
+        },
+      } as Record<string, { name: string; find: string; cta: string }>,
+    },
+
+    storiesOfReset: {
+      kicker: 'Community',
+      title: 'True stories of transformation',
+      lede: 'Real women on the turning points that changed everything.',
+    },
+
+    faqs: {
+      metaTitle: 'Menopause & Perimenopause FAQs | ResetWell Plus',
+      description:
+        'Straight answers to the questions women actually ask about perimenopause and menopause: symptoms, HRT safety, non-hormonal options, sexual and urinary health, early menopause, and long-term health.',
+      keywords:
+        'is HRT safe, menopause FAQ, perimenopause questions, menopause age, HRT breast cancer risk, vaginal estrogen safety',
+      heading: 'Frequently asked questions',
+      lede: 'Straight answers about the transition, treatment and long-term health, informed by current clinical guidance.',
+    },
+
     symptomChecker: {
       kicker: 'Is it perimenopause?',
       title: "Something has shifted. Let's understand what your body is telling you.",

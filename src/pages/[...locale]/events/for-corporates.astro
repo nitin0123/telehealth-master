@@ -1,33 +1,31 @@
 ---
-import { langFromUrl, localePaths, localizePath } from '../../../i18n';
+import { langFromUrl, localePaths, localizePath, useTranslations } from '../../../i18n';
 export const getStaticPaths = localePaths;
-const lang = langFromUrl(Astro.url);
-const to = (href: string) => localizePath(href, lang);
 import PageLayout from '../../../layouts/PageLayout.astro';
-const blocks = [
-  ['Workshops & webinars', 'Live, expert-led sessions tailored to your teams, from perimenopause basics to manager training.'],
-  ['Subsidised employee visits', 'Offer your people direct access to specialist consultations as part of their benefits.'],
-  ['Policy & culture support', 'Practical guidance to make your workplace genuinely menopause-confident.'],
-];
+
+const lang = langFromUrl(Astro.url);
+const t = useTranslations(lang);
+const to = (href: string) => localizePath(href, lang);
+const p = t.pages.forCorporates;
 ---
 <PageLayout
-  section="Events"
-  kicker="Events"
-  title="ResetWell Plus for employers"
-  metaTitle="Menopause at Work: Corporate Wellness in India | ResetWell Plus"
-  description="Bring expert menopause and midlife care to your workplace in India: workshops, webinars, subsidised employee consultations and policy support."
-  keywords="menopause at work India, workplace wellness India, corporate menopause programme"
-  lede="Offer expert midlife care as part of your benefits package."
+  section={t.nav.sections.events.label}
+  kicker={p.kicker}
+  title={p.title}
+  metaTitle={p.metaTitle}
+  description={p.description}
+  keywords={p.keywords}
+  lede={p.lede}
 >
   <div class="grid sm:grid-cols-3 gap-4">
-    {blocks.map(([h, p]) => (
+    {p.blocks.map((b) => (
       <div class="bg-white border border-sand rounded-4xl p-6 reveal">
-        <h2 class="font-serif text-2xl text-ever">{h}</h2>
-        <p class="mt-2 text-stone text-base leading-relaxed">{p}</p>
+        <h2 class="font-serif text-2xl text-ever">{b.h}</h2>
+        <p class="mt-2 text-stone text-base leading-relaxed">{b.p}</p>
       </div>
     ))}
   </div>
   <div class="mt-8 text-center">
-    <a href={to('/contact/')} class="btn-primary">Talk to our team</a>
+    <a href={to('/contact/')} class="btn-primary">{p.cta}</a>
   </div>
 </PageLayout>

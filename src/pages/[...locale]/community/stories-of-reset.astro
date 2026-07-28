@@ -1,12 +1,12 @@
 ---
-import { localePaths } from '../../../i18n';
+import { localePaths, useTranslations } from '../../../i18n';
 export const getStaticPaths = localePaths;
 import PageLayout from '../../../layouts/PageLayout.astro';
-import { useTranslations } from '../../../i18n';
 
 const t = useTranslations(Astro.url);
+const p = t.pages.storiesOfReset;
 ---
-<PageLayout section="Community" kicker="Community" title="True stories of transformation" lede="Real women on the turning points that changed everything.">
+<PageLayout section={t.nav.sections.community.label} kicker={p.kicker} title={p.title} lede={p.lede}>
   <div class="columns-1 sm:columns-2 lg:columns-3 gap-5 [&>*]:mb-5">
     {t.content.testimonials.map((item) => (
       <figure class="break-inside-avoid bg-white border border-sand rounded-3xl p-6 reveal">
