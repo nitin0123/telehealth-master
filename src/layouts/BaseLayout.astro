@@ -1,11 +1,17 @@
 ---
 // Self-hosted fonts (bundled into the build, no external requests):
 import '@fontsource-variable/geist'; // single typeface — body, UI and headings
+// Devanagari companion for the Hindi site. Geist has no Devanagari glyphs, so
+// it sits after Geist in the Tailwind font stacks and the browser falls through
+// to it per-character: Latin text stays Geist, Hindi text renders in Noto. The
+// font file is only fetched by pages that actually render Devanagari.
+import '@fontsource-variable/noto-sans-devanagari';
 import '../styles/global.css';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import Analytics from '../components/Analytics.astro';
 import { SITE, organizationSchema } from '../data/seo';
+import { alternatePath, langFromUrl, LOCALE, OG_LOCALE, useTranslations } from '../i18n';
 
 // Google Search Console ownership verification (meta-tag method).
 const gscToken = import.meta.env.PUBLIC_GSC_VERIFICATION || '';
@@ -29,9 +35,12 @@ interface Props {
   /** og:type, e.g. "website" or "article" */
   ogType?: string;
 }
+const lang = langFromUrl(Astro.url);
+const t = useTranslations(lang);
+
 const {
-  title = SITE.defaultTitle,
-  description = SITE.defaultDescription,
+  title = t.seo.defaultTitle,
+  description = t.seo.defaultDescription,
   keywords,
   image = SITE.ogImage,
   noindex = false,
@@ -41,10 +50,19 @@ const {
 const canonical = new URL(Astro.url.pathname, SITE.url).href;
 const ogImage = new URL(image, SITE.url).href;
 const robots = noindex ? 'noindex, nofollow' : 'index, follow';
+
+// hreflang: emitted only for pages that exist in both languages, so search
+// engines are never pointed at a URL that isn't built yet.
+const twin = alternatePath(Astro.url);
+const enHref = twin ? new URL(lang === 'en' ? Astro.url.pathname : twin, SITE.url).href : null;
+const hiHref = twin ? new URL(lang === 'hi' ? Astro.url.pathname : twin, SITE.url).href : null;
+
+// og:locale:alternate lists the other locales this page is available in.
+const altLocales = lang === 'en' ? [...SITE.altLocales, ...(twin ? [OG_LOCALE.hi] : [])] : [OG_LOCALE.en];
 ---
 
 <!doctype html>
-<html lang="en-IN" class="no-js">
+<html lang={LOCALE[lang]} class="no-js">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -59,6 +77,11 @@ const robots = noindex ? 'noindex, nofollow' : 'index, follow';
     {fbDomainToken && <meta name="facebook-domain-verification" content={fbDomainToken} />}
     <link rel="canonical" href={canonical} />
 
+    <!-- Language alternates (English <-> Hindi) -->
+    {enHref && <link rel="alternate" hreflang="en-IN" href={enHref} />}
+    {hiHref && <link rel="alternate" hreflang="hi-IN" href={hiHref} />}
+    {enHref && <link rel="alternate" hreflang="x-default" href={enHref} />}
+
     <!-- Open Graph -->
     <meta property="og:site_name" content={SITE.name} />
     <meta property="og:title" content={title} />
@@ -72,11 +95,11 @@ const robots = noindex ? 'noindex, nofollow' : 'index, follow';
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta property="og:image:type" content="image/jpeg" />
-        <meta property="og:image:alt" content="ResetWell Plus: India's expert-led Menopause and Perimenopause care" />
+        <meta property="og:image:alt" content={t.seo.ogImageAlt} />
       </>
     )}
-    <meta property="og:locale" content={SITE.locale} />
-    {SITE.altLocales.map((l) => <meta property="og:locale:alternate" content={l} />)}
+    <meta property="og:locale" content={OG_LOCALE[lang]} />
+    {altLocales.map((l) => <meta property="og:locale:alternate" content={l} />)}
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -89,7 +112,10 @@ const robots = noindex ? 'noindex, nofollow' : 'index, follow';
     {ahrefsKey && <script is:inline async src="https://analytics.ahrefs.com/analytics.js" data-key={ahrefsKey}></script>}
 
     <!-- Site-wide structured data -->
-    <script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({ ...organizationSchema, inLanguage: LOCALE[lang] })}
+    />
 
     <!-- Page-specific structured data (breadcrumbs, FAQ, etc.) -->
     <slot name="head" />
@@ -120,16 +146,17 @@ const robots = noindex ? 'noindex, nofollow' : 'index, follow';
          don't harvest it. -->
     <a
       data-wa-float
+      data-wa-text={t.common.whatsappPrefill}
       href="/contact/"
       target="_blank"
       rel="noopener"
-      aria-label="Chat with us on WhatsApp"
+      aria-label={t.common.whatsappAria}
       class="fixed bottom-5 right-5 z-40 inline-flex items-center gap-2 rounded-full bg-[#25D366] hover:bg-[#1da851] text-white font-semibold shadow-lg shadow-ever/25 px-4 py-3.5 sm:px-5 transition-all duration-200 hover:-translate-y-0.5"
     >
       <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
         <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
       </svg>
-      <span class="hidden sm:inline">WhatsApp</span>
+      <span class="hidden sm:inline">{t.common.whatsappLabel}</span>
     </a>
     <script is:inline>
       (function () {
@@ -143,8 +170,9 @@ const robots = noindex ? 'noindex, nofollow' : 'index, follow';
           try { localStorage.setItem(KEY, idx); } catch (e) {}
         }
         var number = atob(encoded[Number(idx)]);
-        var text = encodeURIComponent("Hi, I'd like to know more about ResetWell Plus.");
         document.querySelectorAll('[data-wa-float]').forEach(function (a) {
+          // Prefill text comes from the i18n dictionary, so it follows the page language.
+          var text = encodeURIComponent(a.getAttribute('data-wa-text') || '');
           a.setAttribute('href', 'https://wa.me/' + number + '?text=' + text);
         });
       })();

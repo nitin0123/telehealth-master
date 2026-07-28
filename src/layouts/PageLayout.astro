@@ -1,6 +1,7 @@
 ---
 import BaseLayout from './BaseLayout.astro';
 import { SITE } from '../data/seo';
+import { langFromUrl, localizePath, useTranslations } from '../i18n';
 
 interface Props {
   title: string;
@@ -22,8 +23,11 @@ const { title, lede, kicker, section, sectionHref, metaTitle, description, keywo
 // SEO title falls back to the brand template
 const seoTitle = metaTitle ?? `${title} | ResetWell Plus`;
 
-// Breadcrumb structured data
-const crumbs = [{ name: 'Home', url: SITE.url + '/' }];
+// Breadcrumb structured data. The Home crumb points at the homepage in the
+// page's own language.
+const lang = langFromUrl(Astro.url);
+const t = useTranslations(lang);
+const crumbs = [{ name: t.nav.home, url: new URL(localizePath('/', lang), SITE.url).href }];
 if (section) crumbs.push({ name: section, url: new URL(sectionHref ?? Astro.url.pathname, SITE.url).href });
 crumbs.push({ name: title, url: new URL(Astro.url.pathname, SITE.url).href });
 const breadcrumbSchema = {

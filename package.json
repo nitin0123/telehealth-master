@@ -18,6 +18,7 @@
   "dependencies": {
     "@astrojs/vercel": "^7.8.2",
     "@fontsource-variable/geist": "^5.1.0",
+    "@fontsource-variable/noto-sans-devanagari": "^5.3.0",
     "@vercel/postgres": "^0.10.0",
     "astro": "^4.16.18",
     "resend": "^6.16.0",

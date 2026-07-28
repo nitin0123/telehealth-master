@@ -1,13 +1,15 @@
 ---
-import { nav } from '../data/nav';
+import { FOOTER_COLS, nav } from '../data/nav';
 import { CONTACT } from '../data/seo';
-const cols = nav.filter((s) => ['Understand Your Symptoms', 'Get Care', 'Community', 'About'].includes(s.label));
-const labelMap: Record<string, string> = {
-  'Understand Your Symptoms': 'Symptoms',
-  'Get Care': 'Care',
-  'Community': 'Community',
-  'About': 'About',
-};
+import { langFromUrl, linkCopy, localizePath, useTranslations } from '../i18n';
+
+const lang = langFromUrl(Astro.url);
+const t = useTranslations(lang);
+const to = (href: string) => localizePath(href, lang);
+
+const cols = FOOTER_COLS.map((id) => nav.find((s) => s.id === id)).filter(
+  (s): s is NonNullable<typeof s> => Boolean(s?.children)
+);
 const year = new Date().getFullYear();
 
 const igIcon = '<svg class="w-5 h-5" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.6"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>';
@@ -28,14 +30,14 @@ const fbIcon = '<svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><pa
                  sm:cursor-default sm:pointer-events-none sm:justify-center sm:py-0 sm:mb-3
                  peer-checked:[&_svg]:rotate-180"
         >
-          <span class="text-clay eyebrow uppercase text-sm">{labelMap[section.label]}</span>
+          <span class="text-clay eyebrow uppercase text-sm">{t.footer.cols[section.id]}</span>
           <svg class="w-4 h-4 shrink-0 text-clay transition-transform duration-200 sm:hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
         </label>
         <ul class="hidden peer-checked:block sm:block pb-3 sm:pb-0 text-center">
-          {section.children.slice(0, 3).map((child) => (
-            <li><a href={child.href} class="inline-block py-1 hover:text-clay transition">{child.label.replace(' (₹)', '')}</a></li>
+          {section.children!.slice(0, 3).map((child) => (
+            <li><a href={to(child.href)} class="inline-block py-1 hover:text-clay transition">{linkCopy(t, child.id).short ?? linkCopy(t, child.id).label}</a></li>
           ))}
-          {section.label === 'About' && <li><a href="/contact/" class="inline-block py-1 hover:text-clay transition">Contact us</a></li>}
+          {section.id === 'about' && <li><a href={to('/contact/')} class="inline-block py-1 hover:text-clay transition">{t.footer.contact}</a></li>}
         </ul>
       </div>
     ))}
@@ -55,15 +57,15 @@ const fbIcon = '<svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><pa
         <span class="text-stone/40">·</span>
         <span>ResetWell Plus Pvt. Ltd.</span>
         <span class="text-stone/40">·</span>
-        <a href="/privacy-policy/" class="hover:text-clay transition">Privacy Policy</a>
+        <a href={to('/privacy-policy/')} class="hover:text-clay transition">{t.footer.privacy}</a>
         <span class="text-stone/40">·</span>
-        <a href="/terms/" class="hover:text-clay transition">Terms of Use</a>
+        <a href={to('/terms/')} class="hover:text-clay transition">{t.footer.terms}</a>
         <span class="text-stone/40">·</span>
-        <a href="/disclaimer/" class="hover:text-clay transition">Medical Disclaimer</a>
+        <a href={to('/disclaimer/')} class="hover:text-clay transition">{t.footer.disclaimer}</a>
         <!-- Unhidden by Analytics.astro when tracking is configured -->
         <span data-cookie-prefs-wrap class="hidden">
           <span class="text-stone/40">·</span>
-          <a href="#" data-cookie-prefs class="hover:text-clay transition">Cookie Preferences</a>
+          <a href="#" data-cookie-prefs class="hover:text-clay transition">{t.footer.cookiePrefs}</a>
         </span>
       </div>
     </div>

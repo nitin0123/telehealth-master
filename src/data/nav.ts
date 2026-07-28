@@ -1,16 +1,19 @@
 // Single source of truth for the site's navigation architecture.
 // Used by both the desktop dropdowns and the mobile drawer.
+//
+// Structure only: labels and blurbs live in src/i18n/en.ts (and hi.ts), keyed by
+// the `id`s below, so the same tree renders in either language. The comments name
+// the English label for readability.
 
 export interface NavChild {
-  label: string;
+  /** Key into `nav.links` in the i18n dictionaries */
+  id: string;
   href: string;
-  blurb?: string;
 }
 
 export interface NavSection {
-  label: string;
-  /** Shorter label used in the desktop bar where space is tight */
-  shortLabel?: string;
+  /** Key into `nav.sections` in the i18n dictionaries */
+  id: string;
   /** When set, the item renders as a plain link instead of a dropdown */
   href?: string;
   children?: NavChild[];
@@ -18,50 +21,49 @@ export interface NavSection {
 
 export const nav: NavSection[] = [
   {
-    label: 'Understand Your Symptoms',
-    shortLabel: 'Understand Symptoms',
+    id: 'symptoms', // Understand Your Symptoms
     children: [
-      { label: 'Perimenopause 101', href: '/understand-your-symptoms/perimenopause-101/', blurb: 'Start here: the basics' },
-      { label: 'Symptom Checker', href: '/understand-your-symptoms/symptom-checker/', blurb: '2-min self-assessment' },
+      { id: 'perimenopause101', href: '/understand-your-symptoms/perimenopause-101/' },
+      { id: 'symptomChecker', href: '/understand-your-symptoms/symptom-checker/' },
     ],
   },
   {
-    label: 'Get Care',
+    id: 'care', // Get Care
     children: [
-      { label: 'How It Works', href: '/get-care/how-it-works/' },
-      { label: 'Our Specialists', href: '/get-care/our-specialists/' },
-      { label: 'Book a Consultation', href: '/coming-soon/' },
-      { label: 'Pricing (₹)', href: '/get-care/pricing/' },
+      { id: 'howItWorks', href: '/get-care/how-it-works/' },
+      { id: 'ourSpecialists', href: '/get-care/our-specialists/' },
+      { id: 'bookConsultation', href: '/coming-soon/' },
+      { id: 'pricing', href: '/get-care/pricing/' },
     ],
   },
   {
-    label: 'Events',
+    id: 'events', // Events
     children: [
-      { label: 'Upcoming', href: '/events/upcoming/' },
-      { label: 'On Demand', href: '/events/on-demand/' },
-      { label: 'For Corporates', href: '/events/for-corporates/' },
+      { id: 'eventsUpcoming', href: '/events/upcoming/' },
+      { id: 'eventsOnDemand', href: '/events/on-demand/' },
+      { id: 'eventsForCorporates', href: '/events/for-corporates/' },
     ],
   },
   {
-    label: 'Community',
+    id: 'community', // Community
     children: [
-      { label: 'Join', href: '/community/join/' },
-      { label: 'Stories of Reset', href: '/community/stories-of-reset/' },
-      { label: 'FAQs', href: '/community/faqs/' },
+      { id: 'communityJoin', href: '/community/join/' },
+      { id: 'storiesOfReset', href: '/community/stories-of-reset/' },
+      { id: 'faqs', href: '/community/faqs/' },
     ],
   },
   {
-    label: 'Blog',
+    id: 'blog', // Blog
     href: '/blog/',
   },
   {
-    label: 'About',
+    id: 'about', // About
     children: [
-      { label: 'Meet the Founders', href: '/about/' },
-      { label: 'Our Story', href: '/about/our-story/' },
-      { label: 'Our Team', href: '/about/our-team/' },
-      { label: 'In The Press', href: '/about/in-the-press/' },
-      { label: 'Workplace Wellness', href: '/about/workplace-wellness/' },
+      { id: 'founders', href: '/about/' },
+      { id: 'ourStory', href: '/about/our-story/' },
+      { id: 'ourTeam', href: '/about/our-team/' },
+      { id: 'inThePress', href: '/about/in-the-press/' },
+      { id: 'workplaceWellness', href: '/about/workplace-wellness/' },
     ],
   },
 ];
@@ -69,3 +71,6 @@ export const nav: NavSection[] = [
 // Booking is pre-launch. All "Book a Consultation" CTAs point to the Coming Soon page.
 // When ready, switch this back to '/get-care/book-a-consultation/'.
 export const BOOK_HREF = '/coming-soon/';
+
+/** Footer link columns, in order. Keys are section ids from `nav` above. */
+export const FOOTER_COLS = ['symptoms', 'care', 'community', 'about'];

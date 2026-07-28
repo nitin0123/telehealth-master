@@ -1,0 +1,40 @@
+---
+// English/Hindi switch. Renders a plain link to the same page in the other
+// language, so it works without JS and stays crawlable. Nothing is rendered when
+// the current page has no counterpart yet (see HI_ROUTES in src/i18n/index.ts),
+// which keeps the toggle from ever pointing at a 404.
+import { alternatePath, langFromUrl, LANG_LABEL, LOCALE, useTranslations } from '../i18n';
+
+interface Props {
+  /** Full-width pill for the mobile drawer */
+  block?: boolean;
+}
+const { block = false } = Astro.props;
+
+const lang = langFromUrl(Astro.url);
+const target = lang === 'en' ? 'hi' : 'en';
+const href = alternatePath(Astro.url);
+const t = useTranslations(lang);
+const label = target === 'hi' ? t.nav.viewInHindi : t.nav.viewInEnglish;
+
+const base =
+  'inline-flex items-center justify-center gap-1.5 rounded-full border border-sand bg-white/70 font-medium text-ever hover:border-clay hover:text-clay transition';
+const size = block ? 'w-full px-4 py-3 text-base' : 'px-3 py-1.5 text-sm';
+---
+
+{
+  href && (
+    <a href={href} hreflang={LOCALE[target]} lang={LOCALE[target]} aria-label={label} class={`${base} ${size}`}>
+      <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6" />
+        <path
+          d="M3.6 9h16.8M3.6 15h16.8M12 3a15 15 0 0 1 0 18a15 15 0 0 1 0-18z"
+          stroke="currentColor"
+          stroke-width="1.6"
+          stroke-linecap="round"
+        />
+      </svg>
+      {LANG_LABEL[target]}
+    </a>
+  )
+}

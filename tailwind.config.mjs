@@ -20,9 +20,12 @@ export default {
         // `font-serif` (used on headings) now points at Geist so the whole site
         // uses one consistent typeface. Set this to a serif family to switch
         // headings back to a serif look.
-        serif: ['Geist Variable', 'Geist', 'Inter', 'system-ui', 'sans-serif'],
+        serif: ['Geist Variable', 'Geist', 'Noto Sans Devanagari Variable', 'Inter', 'system-ui', 'sans-serif'],
         // `font-sans` = body & UI, matching Ideogram exactly with Geist
-        sans: ['Geist Variable', 'Geist', 'Inter', 'system-ui', 'sans-serif'],
+        sans: ['Geist Variable', 'Geist', 'Noto Sans Devanagari Variable', 'Inter', 'system-ui', 'sans-serif'],
+        // Geist carries no Devanagari glyphs, so Noto sits behind it in both
+        // stacks: the browser falls through per-character, keeping Latin text in
+        // Geist and rendering Hindi text in Noto. Still one typeface in English.
       },
       borderRadius: {
         '4xl': '2rem',
