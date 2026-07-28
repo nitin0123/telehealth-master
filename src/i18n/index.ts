@@ -26,6 +26,12 @@ export const OG_LOCALE: Record<Lang, string> = { en: 'en_IN', hi: 'hi_IN' };
 export const LANG_LABEL: Record<Lang, string> = { en: 'English', hi: 'हिंदी' };
 
 /**
+ * Compact form used in the header bar, where every pixel competes with the
+ * nav items. The drawer uses the full LANG_LABEL.
+ */
+export const LANG_SHORT: Record<Lang, string> = { en: 'EN', hi: 'हिं' };
+
+/**
  * Path prefixes that exist in English only.
  *
  * Every page under src/pages/[...locale]/ builds a Hindi twin automatically, so

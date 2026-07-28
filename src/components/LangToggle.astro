@@ -1,9 +1,9 @@
 ---
 // English/Hindi switch. Renders a plain link to the same page in the other
 // language, so it works without JS and stays crawlable. Nothing is rendered when
-// the current page has no counterpart yet (see HI_ROUTES in src/i18n/index.ts),
+// the current page has no counterpart (see EN_ONLY in src/i18n/index.ts),
 // which keeps the toggle from ever pointing at a 404.
-import { alternatePath, langFromUrl, LANG_LABEL, LOCALE, useTranslations } from '../i18n';
+import { alternatePath, langFromUrl, LANG_LABEL, LANG_SHORT, LOCALE, useTranslations } from '../i18n';
 
 interface Props {
   /** Full-width pill for the mobile drawer */
@@ -19,7 +19,10 @@ const label = target === 'hi' ? t.nav.viewInHindi : t.nav.viewInEnglish;
 
 const base =
   'inline-flex items-center justify-center gap-1.5 rounded-full border border-sand bg-white/70 font-medium text-ever hover:border-clay hover:text-clay transition';
-const size = block ? 'w-full px-4 py-3 text-base' : 'px-3 py-1.5 text-sm';
+const size = block ? 'w-full px-4 py-3 text-base' : 'px-2.5 py-1.5 text-sm';
+// The bar shows a short code so it does not squeeze the nav items; the
+// drawer has room for the full language name.
+const pillLabel = block ? LANG_LABEL[target] : LANG_SHORT[target];
 ---
 
 {
@@ -34,7 +37,7 @@ const size = block ? 'w-full px-4 py-3 text-base' : 'px-3 py-1.5 text-sm';
           stroke-linecap="round"
         />
       </svg>
-      {LANG_LABEL[target]}
+      {pillLabel}
     </a>
   )
 }

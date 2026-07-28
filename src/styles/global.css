@@ -42,7 +42,8 @@
   transform-origin: top center;
   transition: opacity 0.2s ease, transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), visibility 0.28s;
 }
-@media (min-width: 1024px) {
+/* Matches the xl breakpoint where the desktop nav appears (see Nav.astro). */
+@media (min-width: 1280px) {
   .nav-item:hover .nav-panel,
   .nav-item:focus-within .nav-panel {
     opacity: 1;
