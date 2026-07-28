@@ -623,6 +623,66 @@ export const en = {
       cta: 'Take the Free Symptom Quiz',
     },
 
+    disclaimer: {
+      kicker: 'Legal',
+      title: 'Medical Disclaimer',
+      metaTitle: 'Medical Disclaimer | ResetWell Plus',
+      description:
+        'The content on the ResetWell Plus website is for informational and educational purposes only and is not a substitute for professional medical advice.',
+      paras: [
+        'The content on this website is for informational and educational purposes only. It is not intended as a substitute for professional medical advice, diagnosis, or treatment.',
+        'Always seek the advice of a qualified healthcare provider with any questions you may have regarding a medical condition. Never disregard professional medical advice or delay seeking it because of something you have read on this website.',
+        'Hormone therapy and other treatments discussed on this site may not be appropriate for every individual. A personalised consultation with a ResetWell Plus specialist is required before any treatment is initiated.',
+      ],
+      cta: 'Book a Consultation',
+    },
+
+    comingSoon: {
+      metaTitle: 'Booking opens soon | ResetWell Plus',
+      description:
+        "Online booking for ResetWell Plus midlife and menopause consultations is launching soon. Leave your email and we'll let you know the moment it's live.",
+      badge: 'Booking opens soon',
+      heading: "We're getting the clinic ready.",
+      body: "Online consultations with our menopause specialists are launching shortly. Leave your email and you'll be first to know the moment booking goes live.",
+      submit: 'Notify me',
+      submitting: 'Submitting\u2026',
+      success: "Thank you \u2713 We'll be in touch soon.",
+      tryChecker: 'Try the Symptom Checker',
+    },
+
+    book: {
+      kicker: 'The Book',
+      /** The book's own title, never translated. */
+      title: 'Menopause & Me',
+      metaTitle: 'Menopause & Me by Swati Singh | ResetWell Plus',
+      description:
+        "Menopause & Me: It's Time to Reclaim Your Life. An honest, science-backed guide by Swati Singh, co-founder of ResetWell Plus. Available on Amazon.",
+      lede: "It's Time to Reclaim Your Life. An honest, science-backed guide by Swati Singh, co-founder of ResetWell Plus.",
+      coverAlt: "3D cover of Menopause & Me: It's Time to Reclaim Your Life by Swati Singh",
+      buyIndia: 'Buy on Amazon India',
+      buyIntl: 'Buy on Amazon',
+      buyIntlRegions: 'US/Canada/UK',
+      kindle: 'Kindle edition',
+      lead: "The honest, science-backed guide every woman wishes she'd had sooner.",
+      /** {title} in the third paragraph becomes the italicised book title. */
+      paras: [
+        "It's 3 a.m. Your heart is pounding. Sleep won't come. Your mood feels foreign, your body feels borrowed, and your doctor just told you your labs are \"normal.\" Sound familiar?",
+        'For generations, women have been told to grit their teeth through perimenopause and menopause. Anxiety, brain fog, joint pain, stubborn weight, vanishing libido: all waved away as "just stress" or "just aging." Meanwhile, you\'re left wondering if you\'re losing your mind. You\'re not. And you\'re not alone.',
+        "{title} is the conversation you should have had a decade ago. Written by Swati Singh, co-founder of ResetWell Plus, this clear, compassionate guide pairs lived experience with the latest evidence so you can finally understand what's happening inside your body, and exactly what to do about it.",
+      ],
+      discoverIntro: "Inside, you'll discover:",
+      discover: [
+        "The early whispers of perimenopause most women miss until they're roaring",
+        'The real story on HRT, stripped of outdated fear and Hollywood headlines',
+        'How menopause rewires your brain, mood, sleep, bones, and sex life',
+        'The nutrition and movement strategies that actually move the needle',
+        'How to advocate for yourself when your doctor brushes you off',
+      ],
+      closing1:
+        "Menopause isn't the end of your vitality. It's a transition, and you deserve to walk through it with clarity, confidence, and a plan.",
+      closing2: 'Stop suffering in silence. Reclaim your energy, your sleep, your spark, your self.',
+    },
+
     about: {
       kicker: 'About',
       title: 'Meet the Founders',

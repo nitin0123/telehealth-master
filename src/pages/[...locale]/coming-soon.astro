@@ -1,13 +1,15 @@
 ---
-import { langFromUrl, localePaths, localizePath } from '../../i18n';
+import { langFromUrl, localePaths, localizePath, useTranslations } from '../../i18n';
 export const getStaticPaths = localePaths;
 const lang = langFromUrl(Astro.url);
+const t = useTranslations(lang);
 const to = (href: string) => localizePath(href, lang);
+const page = t.pages.comingSoon;
 import BaseLayout from '../../layouts/BaseLayout.astro';
 ---
 <BaseLayout
-  title="Booking opens soon | ResetWell Plus"
-  description="Online booking for ResetWell Plus midlife and menopause consultations is launching soon. Leave your email and we'll let you know the moment it's live."
+  title={page.metaTitle}
+  description={page.description}
   noindex={true}
 >
   <section class="relative overflow-hidden">
@@ -19,28 +21,28 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
     <div class="max-w-3xl mx-auto px-5 lg:px-8 py-10 sm:py-14 lg:py-20 text-center">
       <span class="inline-flex items-center gap-2 rounded-full bg-sand text-ever px-4 py-1.5 text-xs font-semibold reveal">
-        <span class="w-2 h-2 rounded-full bg-clay animate-pulse"></span> Booking opens soon
+        <span class="w-2 h-2 rounded-full bg-clay animate-pulse"></span> {page.badge}
       </span>
 
       <h1 class="mt-6 font-serif text-4xl sm:text-6xl leading-[1.03] text-ever reveal" style="--reveal-delay:60ms">
-        We're getting the clinic ready.
+        {page.heading}
       </h1>
       <p class="mt-5 text-lg text-stone max-w-xl mx-auto reveal" style="--reveal-delay:120ms">
-        Online consultations with our menopause specialists are launching shortly. Leave your email and you'll be first to know the moment booking goes live.
+        {page.body}
       </p>
 
-      <form data-notify-form class="mt-8 max-w-md mx-auto flex flex-col sm:flex-row gap-3 reveal" style="--reveal-delay:180ms">
-        <input type="email" name="email" required placeholder="you@example.com" autocomplete="email"
+      <form data-notify-form data-submitting={page.submitting} data-generic-error={t.common.genericError} class="mt-8 max-w-md mx-auto flex flex-col sm:flex-row gap-3 reveal" style="--reveal-delay:180ms">
+        <input type="email" name="email" lang="en" dir="ltr" required placeholder="you@example.com" autocomplete="email"
           class="flex-1 rounded-full border border-sand bg-white px-5 py-3.5 focus:outline-none focus:ring-2 focus:ring-clay/40" />
         <!-- Honeypot: hidden from users, catches bots -->
         <input type="text" name="company" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
-        <button class="rounded-full bg-clay hover:bg-claydk transition text-white font-semibold px-7 py-3.5 whitespace-nowrap disabled:opacity-60">Notify me</button>
+        <button class="rounded-full bg-clay hover:bg-claydk transition text-white font-semibold px-7 py-3.5 whitespace-nowrap disabled:opacity-60">{page.submit}</button>
       </form>
-      <p data-notify-err class="hidden mt-4 text-sm text-red-600">Something went wrong. Please try again.</p>
-      <p data-notify-msg class="hidden mt-4 text-ever font-serif text-xl">Thank you ✓ We'll be in touch soon.</p>
+      <p data-notify-err class="hidden mt-4 text-sm text-red-600">{t.common.genericError}</p>
+      <p data-notify-msg class="hidden mt-4 text-ever font-serif text-xl">{page.success}</p>
 
       <div class="mt-8 flex justify-center reveal" style="--reveal-delay:240ms">
-        <a href={to('/understand-your-symptoms/symptom-checker/')} class="btn-ghost">Try the Symptom Checker</a>
+        <a href={to('/understand-your-symptoms/symptom-checker/')} class="btn-ghost">{page.tryChecker}</a>
       </div>
     </div>
   </section>
@@ -51,6 +53,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     document.querySelectorAll<HTMLFormElement>('[data-notify-form]').forEach((form) => {
       const errEl = form.parentElement?.querySelector('[data-notify-err]');
       const btn = form.querySelector('button') as HTMLButtonElement | null;
+      const submittingLabel = form.dataset.submitting || 'Submitting…';
+      const genericError = form.dataset.genericError || 'Something went wrong. Please try again.';
       const showErr = (msg: string) => {
         if (!errEl) return;
         errEl.textContent = msg;
@@ -78,13 +82,13 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
           });
           if (!res.ok) {
             const info = await res.json().catch(() => ({}));
-            throw new Error(info.error || 'Something went wrong. Please try again.');
+            throw new Error(info.error || genericError);
           }
           form.classList.add('hidden');
           form.parentElement?.querySelector('[data-notify-msg]')?.classList.remove('hidden');
         } catch (err) {
           if (errEl) {
-            errEl.textContent = err instanceof Error ? err.message : 'Something went wrong. Please try again.';
+            errEl.textContent = err instanceof Error ? err.message : genericError;
             errEl.classList.remove('hidden');
           }
           if (btn) { btn.disabled = false; btn.textContent = original; }
