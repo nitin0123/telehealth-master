@@ -36,6 +36,12 @@ interface Props {
   image?: string;
   /** Set true for pre-launch / utility pages that should not be indexed */
   noindex?: boolean;
+  /**
+   * Keep links on a noindex page crawlable. Tag archives are too thin to be
+   * search landing pages, but their links to the real articles should still
+   * be followed. Ignored unless `noindex` is set.
+   */
+  followLinks?: boolean;
   /** og:type, e.g. "website" or "article" */
   ogType?: string;
 }
@@ -48,12 +54,13 @@ const {
   keywords,
   image = SITE.ogImage,
   noindex = false,
+  followLinks = false,
   ogType = 'website',
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, SITE.url).href;
 const ogImage = new URL(image, SITE.url).href;
-const robots = noindex ? 'noindex, nofollow' : 'index, follow';
+const robots = noindex ? (followLinks ? 'noindex, follow' : 'noindex, nofollow') : 'index, follow';
 
 // hreflang: emitted only for pages that exist in both languages, so search
 // engines are never pointed at a URL that isn't built yet.

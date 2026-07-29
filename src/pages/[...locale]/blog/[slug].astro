@@ -5,6 +5,7 @@ import { getCollection, type CollectionEntry } from 'astro:content';
 import PageLayout from '../../../layouts/PageLayout.astro';
 import { SITE, BRAND } from '../../../data/seo';
 import { authorNode, authorBylines, bylineSeparator } from '../../../data/authors';
+import { tagHref } from '../../../data/tags';
 import { BOOK_HREF } from '../../../data/nav';
 import { HI_PREFIX, langFromUrl, localizePath, LOCALE, useTranslations } from '../../../i18n';
 
@@ -123,15 +124,21 @@ const faqSchema = faq?.length
     <Content />
   </article>
 
-  {/* Topic tags. Plain chips, not links: there is no tag archive to point at,
-      and a hashtag that navigates nowhere is worse than one that never looked
-      clickable. */}
+  {/* Topic tags, each linking to its listing page. tagHref() localises the
+      URL, so a Hindi post's tags lead to the Hindi listing. */}
   {hashtags && hashtags.length > 0 && (
-    <ul class="mt-8 flex flex-wrap gap-2 reveal">
-      {hashtags.map((tag) => (
-        <li class="rounded-full bg-white border border-sand text-stone text-xs font-medium px-3 py-1.5">#{tag}</li>
-      ))}
-    </ul>
+    <nav class="mt-8 reveal" aria-label={t.pages.blog.tagsHeading}>
+      <ul class="flex flex-wrap gap-2">
+        {hashtags.map((tag) => (
+          <li>
+            <a
+              href={tagHref(tag, lang)}
+              class="inline-block rounded-full bg-white border border-sand text-stone hover:text-clay hover:border-clay/40 transition text-xs font-medium px-3 py-1.5"
+            >#{tag}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
   )}
 
   {/* Visible counterpart to the `sameAs` above: the on-page link corroborates

@@ -15,10 +15,12 @@ interface Props {
   keywords?: string;
   image?: string;
   noindex?: boolean;
+  /** Keep links crawlable on a noindex page. See BaseLayout. */
+  followLinks?: boolean;
   /** og:type, e.g. "website" or "article" */
   ogType?: string;
 }
-const { title, lede, kicker, section, sectionHref, metaTitle, description, keywords, image, noindex, ogType } = Astro.props;
+const { title, lede, kicker, section, sectionHref, metaTitle, description, keywords, image, noindex, followLinks, ogType } = Astro.props;
 
 // SEO title falls back to the brand template
 const seoTitle = metaTitle ?? `${title} | ResetWell Plus`;
@@ -39,7 +41,7 @@ const breadcrumbSchema = {
 };
 ---
 
-<BaseLayout title={seoTitle} description={description ?? lede} keywords={keywords} image={image} noindex={noindex} ogType={ogType}>
+<BaseLayout title={seoTitle} description={description ?? lede} keywords={keywords} image={image} noindex={noindex} followLinks={followLinks} ogType={ogType}>
   <Fragment slot="head">
     <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
     <!-- Page-specific structured data from pages using this layout -->

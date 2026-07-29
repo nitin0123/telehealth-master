@@ -1042,6 +1042,15 @@ export const hi: DeepPartial<Dict> = {
       ctaChecker: 'अपने लक्षण जाँचें',
       ctaBook: 'कंसल्टेशन बुक करें',
       backToAll: 'सभी लेखों पर वापस',
+      tagsHeading: 'विषय',
+    },
+
+    blogTag: {
+      count: 'इस विषय पर {n} लेख।',
+      countOne: 'इस विषय पर {n} लेख।',
+      metaTitle: '{tag} | ResetWell Plus ब्लॉग',
+      description: 'ResetWell Plus की ओर से {tag} पर लेख: पेरिमेनोपॉज़, मेनोपॉज़ और मिडलाइफ़ हेल्थ, भारत की महिलाओं के लिए।',
+      relatedHeading: 'मिलते-जुलते विषय',
     },
 
     about: {

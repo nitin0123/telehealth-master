@@ -1,0 +1,77 @@
+---
+// Tag listing: every post carrying one topic tag, in one language.
+//
+// Built per locale, so /blog/tag/frozen-shoulder/ lists the English posts and
+// /hindi/blog/tag/frozen-shoulder/ lists the Hindi ones. The tag itself stays
+// in English in both, but a reader on a Hindi post only ever reaches Hindi
+// articles from it.
+import { getCollection, type CollectionEntry } from 'astro:content';
+import PageLayout from '../../../../layouts/PageLayout.astro';
+import PostCard from '../../../../components/PostCard.astro';
+import { collectTags, tagHref } from '../../../../data/tags';
+import { fmt, HI_PREFIX, langFromUrl, localizePath, useTranslations, type Lang } from '../../../../i18n';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+
+  // One set of tag pages per language, each built from that language's posts.
+  return (['en', 'hi'] as const).flatMap((lang) => {
+    const inLang = posts.filter((p) => (lang === 'hi' ? p.slug.startsWith('hi/') : !p.slug.startsWith('hi/')));
+    return collectTags(inLang).map((tag) => ({
+      params: { locale: lang === 'hi' ? HI_PREFIX.slice(1) : undefined, tag: tag.slug },
+      props: { label: tag.label, posts: tag.posts },
+    }));
+  });
+}
+
+interface Props {
+  label: string;
+  posts: CollectionEntry<'blog'>[];
+}
+const { label, posts } = Astro.props;
+const lang: Lang = langFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const sorted = [...posts].sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
+const copy = t.pages.blogTag;
+const count = fmt(sorted.length === 1 ? copy.countOne : copy.count, { n: sorted.length });
+
+// Sibling tags, so a reader who lands here has somewhere else to go. Built
+// from this language's posts only, for the same reason the listing is.
+const siblings = collectTags(sorted).filter((s) => s.label !== label).slice(0, 12);
+---
+
+<PageLayout
+  title={`#${label}`}
+  lede={count}
+  section={t.pages.blog.title}
+  sectionHref="/blog/"
+  metaTitle={fmt(copy.metaTitle, { tag: label })}
+  description={fmt(copy.description, { tag: label, n: sorted.length })}
+  noindex
+  followLinks
+>
+  <div class="grid gap-4 lg:gap-5 sm:grid-cols-2">
+    {sorted.map((post, i) => <PostCard post={post} lang={lang} index={i} />)}
+  </div>
+
+  {siblings.length > 0 && (
+    <section class="mt-10 reveal">
+      <h2 class="font-serif text-xl text-ever">{copy.relatedHeading}</h2>
+      <ul class="mt-4 flex flex-wrap gap-2">
+        {siblings.map((s) => (
+          <li>
+            <a
+              href={tagHref(s.label, lang)}
+              class="inline-block rounded-full bg-white border border-sand text-stone hover:text-clay hover:border-clay/40 transition text-xs font-medium px-3 py-1.5"
+            >#{s.label}</a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
+
+  <p class="mt-8 reveal">
+    <a href={localizePath('/blog/', lang)} class="text-sm font-medium text-clay hover:text-claydk transition">&larr; {t.pages.blog.backToAll}</a>
+  </p>
+</PageLayout>

@@ -28,7 +28,12 @@ const BUILD_DATE = new Date().toISOString();
 // Pre-launch pages that render `noindex`, so they're kept out of the sitemap.
 // `/get-care/book-a-consultation` is noindex while booking is pre-launch (all
 // CTAs point at `/coming-soon`); drop it from this list when booking opens.
-const NOINDEX_PATHS = ['/coming-soon', '/get-care/book-a-consultation'];
+// `/blog/tag/` archives render `noindex, follow`: with a dozen posts across
+// forty-odd tags most listings hold one or two articles, which is too thin to
+// stand as a search landing page. They exist to make the archive browsable and
+// to pass link equity on to the articles, so they stay out of the sitemap.
+// Drop the entry once the tags carry enough posts each to be worth indexing.
+const NOINDEX_PATHS = ['/coming-soon', '/get-care/book-a-consultation', '/blog/tag/'];
 
 // Inline a binary file as a base64 string at build time:
 //

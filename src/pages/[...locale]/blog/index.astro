@@ -1,12 +1,13 @@
 ---
 // Blog index: lists every published post in src/content/blog, newest first.
-import fs from 'node:fs';
 import { getCollection } from 'astro:content';
 import { langFromUrl, localePaths, localizePath, LOCALE, useTranslations } from '../../../i18n';
 export const getStaticPaths = localePaths;
 import PageLayout from '../../../layouts/PageLayout.astro';
+import PostCard from '../../../components/PostCard.astro';
 import { SITE, BRAND } from '../../../data/seo';
 import { authorNode } from '../../../data/authors';
+import { collectTags, tagHref } from '../../../data/tags';
 
 const lang = langFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -22,17 +23,10 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
   (a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf()
 );
 
-const fmt = (d: Date) => d.toLocaleDateString(LOCALE[lang], { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
-const fmt2 = (n: number) => t.pages.blog.readTime.replace('{n}', String(n));
-const readMins = (body: string) => Math.max(1, Math.round(body.split(/\s+/).length / 220));
-// 480px-wide variants generated alongside the originals (see public/blog)
-const smallVariant = (cover?: string) => {
-  if (!cover) return null;
-  const small = cover.replace(/\.(jpe?g|png)$/, '-480.$1');
-  return small !== cover && fs.existsSync('public' + small) ? small : null;
-};
-
 const postHref = (slug: string) => to(`/blog/${slug.replace(/^hi\//, '')}/`);
+
+// Topics used by this language's posts, most-used first.
+const tags = collectTags(posts);
 
 // Blog + BlogPosting listing. The index previously shipped no structured data
 // at all, so crawlers had to infer the archive from markup alone. Naming each
@@ -68,50 +62,24 @@ const blogSchema = {
   <script type="application/ld+json" slot="head" set:html={JSON.stringify(blogSchema)} />
 
   <div class="grid gap-4 lg:gap-5 sm:grid-cols-2">
-    {posts.map((post, i) => (
-      <a
-        href={postHref(post.slug)}
-        class="group relative flex flex-col rounded-4xl overflow-hidden bg-white border border-sand shadow-sm reveal
-               transition-all duration-300 ease-out will-change-transform
-               hover:-translate-y-2 hover:shadow-2xl hover:shadow-ever/20 hover:border-clay/40"
-        style={`--reveal-delay:${(i % 2) * 70}ms`}
-      >
-        <!-- cover with zoom + shine sweep (canonical card hover); gradient band fallback -->
-        {post.data.cover ? (
-          <div class="relative overflow-hidden">
-            <img
-              src={post.data.cover}
-              srcset={smallVariant(post.data.cover)
-                ? `${smallVariant(post.data.cover)} 480w, ${post.data.cover} 900w`
-                : undefined}
-              sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 440px"
-              alt=""
-              loading={i < 2 ? 'eager' : 'lazy'}
-              decoding="async"
-              width="900"
-              height="506"
-              class="aspect-[16/9] w-full object-cover transition-transform duration-500 ease-out group-hover:scale-110"
-            />
-            <div class="pointer-events-none absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out bg-gradient-to-r from-transparent via-white/40 to-transparent"></div>
-          </div>
-        ) : (
-          <div class="relative overflow-hidden h-2.5 bg-gradient-to-r from-ever via-clay to-sage">
-            <div class="pointer-events-none absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out bg-gradient-to-r from-transparent via-white/40 to-transparent"></div>
-          </div>
-        )}
-
-        <div class="flex flex-col flex-1 p-4 sm:p-5">
-          <p class="text-xs text-stone">{fmt(post.data.publishedAt)} · {fmt2(readMins(post.body))}</p>
-          <h2 class="mt-1.5 font-serif text-lg lg:text-xl leading-snug text-ever group-hover:text-clay transition-colors duration-200">
-            {post.data.title}
-          </h2>
-          <p class="mt-1 text-sm text-stone flex-1">{post.data.subtitle ?? post.data.synopsis}</p>
-          <span class="mt-3 inline-flex items-center gap-1 text-sm font-medium text-clay">
-            {t.pages.blog.readPost}
-            <span class="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" aria-hidden="true">→</span>
-          </span>
-        </div>
-      </a>
-    ))}
+    {posts.map((post, i) => <PostCard post={post} lang={lang} index={i} />)}
   </div>
+
+  {/* Every topic in this language, so the archive is browsable by subject and
+      each tag page has an inbound link from an indexable page. */}
+  {tags.length > 0 && (
+    <section class="mt-10 reveal">
+      <h2 class="font-serif text-xl text-ever">{t.pages.blog.tagsHeading}</h2>
+      <ul class="mt-4 flex flex-wrap gap-2">
+        {tags.map((tag) => (
+          <li>
+            <a
+              href={tagHref(tag.label, lang)}
+              class="inline-block rounded-full bg-white border border-sand text-stone hover:text-clay hover:border-clay/40 transition text-xs font-medium px-3 py-1.5"
+            >#{tag.label}</a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
 </PageLayout>

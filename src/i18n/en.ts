@@ -981,9 +981,21 @@ export const en = {
       ctaHeading: 'Wondering if this is perimenopause?',
       ctaBody:
         'Take our 2-minute symptom self-assessment, or talk to a menopause specialist who will actually listen.',
+      tagsHeading: 'Topics',
       ctaChecker: 'Check Your Symptoms',
       ctaBook: 'Book a Consultation',
       backToAll: 'Back to all posts',
+    },
+
+    /** Tag listing pages: /blog/tag/<slug>/ and its Hindi twin. */
+    blogTag: {
+      /** {n} is the number of posts carrying the tag. */
+      count: '{n} articles on this topic.',
+      countOne: '{n} article on this topic.',
+      /** {tag} is the tag in its display form, without the #. */
+      metaTitle: '{tag} | ResetWell Plus Blog',
+      description: 'Articles on {tag} from ResetWell Plus: perimenopause, menopause and midlife health, written for women in India.',
+      relatedHeading: 'Related topics',
     },
 
     about: {
