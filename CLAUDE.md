@@ -57,7 +57,7 @@ db/migrate.sh "<postgres-url>"   # low-level: apply db/*.sql to an explicit URL
 - **Styling** is Tailwind utilities; brand colours in `tailwind.config.mjs`, global/reveal/carousel
   CSS in `src/styles/global.css`. Reuse existing color tokens (`ever`, `clay`, `sand`, `sage`, …).
 - **Commits**: scoped, imperative subject (`feat:`/`style:`/`fix:`/`chore:`), and end the message
-  with `Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>`.
+  with `Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>`.
 
 ## Deploy workflow
 
