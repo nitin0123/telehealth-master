@@ -1106,6 +1106,10 @@ export const en = {
             text: 'of affected women feel their symptoms have been acknowledged in any formal workplace conversation. The majority manage this silently, without disclosure.',
           },
         ] as { figure: string; text: string }[],
+        reading: [
+          { label: 'Why are we losing top-tier female talent at the peak of their careers?', href: '/blog/why-are-we-losing-top-tier-female-talent-at-the-peak-of-their-careers/' },
+          { label: 'How to manage menopause brain fog at work', href: '/blog/manage-menopause-brain-fog-at-work/' },
+        ] as { label: string; href: string }[],
       },
 
       whyNow: {
@@ -1116,6 +1120,9 @@ export const en = {
           'India currently has no national workplace menopause policy, unlike the UK, where large employers will soon be legally required to publish menopause action plans. Organisations that act now build a genuine differentiator rather than a compliance response to a future mandate.',
           'For sectors already competing hard for senior female talent, including BFSI, IT and ITES, consulting and healthcare, menopause support is becoming a visible signal in employer-of-choice conversations, the way parental leave and flexible work already are.',
         ],
+        reading: [
+          { label: 'Why menopause awareness matters in the workplace', href: '/blog/why-menopause-awareness-matters-in-the-workplace/' },
+        ] as { label: string; href: string }[],
       },
 
       programme: {
@@ -1162,6 +1169,9 @@ export const en = {
             p: 'Female employees aged 35+, or opt-in by self-identification, flexible to your existing benefits structure.',
           },
         ] as { h: string; p: string }[],
+        reading: [
+          { label: 'Why should HR talk about menopause?', href: '/blog/why-should-hr-talk-menopause/' },
+        ] as { label: string; href: string }[],
       },
 
       talkToUs: {
@@ -1175,14 +1185,26 @@ export const en = {
         tertiaryNote: 'Six questions, an instant benchmark, and the full report by email.',
       },
 
+      readingHeading: 'Further reading',
       sourcesHeading: 'Sources',
+      // `href` is omitted where the citation could not be traced to a primary
+      // source. See the note in the two entries below.
       sources: [
-        'British Menopause Society, senior role attrition (10%).',
-        'Nuffield Health, UK, productivity loss (14 working days a year).',
-        'Catalyst, 2024 global survey: 84% want more support, 72% have hidden symptoms, 1 in 10 declined a job offer.',
-        'BJOG (Kaushik et al.), 2026, India-specific: 130M women by 2030, earlier onset age (46 to 47), no national menopause policy.',
-        'NUS Medicine and HeyVenus, 2025 APAC white paper: South, East and Southeast Asian symptom burden higher than Western comparators.',
-      ],
+        { text: 'British Menopause Society, senior role attrition (10%).' },
+        { text: 'Nuffield Health, UK, productivity loss (14 working days a year).' },
+        {
+          text: 'Catalyst, 2024 global survey: 84% want more support, 72% have hidden symptoms, 1 in 10 declined a job offer.',
+          href: 'https://www.catalyst.org/en-us/about/newsroom/2024/menopause-workplace-support-global',
+        },
+        {
+          text: 'BJOG (Kaushik et al.), 2026, India-specific: 130M women by 2030, earlier onset age (46 to 47), no national menopause policy.',
+          href: 'https://obgyn.onlinelibrary.wiley.com/doi/10.1111/1471-0528.70272',
+        },
+        {
+          text: 'NUS Medicine and HeyVenus, 2025 APAC white paper: South, East and Southeast Asian symptom burden higher than Western comparators.',
+          href: 'https://medicine.nus.edu.sg/wp-content/uploads/2025/04/2025-04-17-NUS-Medicine-and-HeyVenus-study-Menopause-is-a-Critical-Workplace-Challenge-for-APAC-Business-Leaders.pdf',
+        },
+      ] as { text: string; href?: string }[],
     },
 
     // Copy for the corporate readiness assessment. English only: the page lives

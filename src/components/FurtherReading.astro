@@ -1,0 +1,23 @@
+---
+// Small "further reading" row that points from a marketing section into the
+// related blog posts. Rendered inline under a section rather than as a block at
+// the end of the page, so each link sits next to the argument it supports.
+interface Props {
+  heading: string;
+  items: { label: string; href: string }[];
+}
+const { heading, items } = Astro.props;
+---
+{items?.length > 0 && (
+  <div class="mt-5 flex flex-wrap items-center gap-x-3 gap-y-2 reveal">
+    <span class="text-xs font-semibold uppercase tracking-wide text-stone">{heading}</span>
+    {items.map((item) => (
+      <a
+        href={item.href}
+        class="inline-flex items-center rounded-full border border-sand bg-white px-3.5 py-1.5 text-sm text-ever transition hover:border-clay hover:text-clay"
+      >
+        {item.label}
+      </a>
+    ))}
+  </div>
+)}
