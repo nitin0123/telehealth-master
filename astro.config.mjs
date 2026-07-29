@@ -5,6 +5,9 @@ import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
 import sitemap from '@astrojs/sitemap';
 import vercel from '@astrojs/vercel/serverless';
+// Plain ESM so this config and the site share one definition of the tag
+// indexing rule; see the module for why it is not TypeScript.
+import { isTagIndexable, tagSlug } from './src/data/tagRules.mjs';
 
 // Map each blog slug to its publishedAt date so the sitemap can carry an
 // accurate <lastmod> for posts; other pages fall back to the build date.
@@ -31,20 +34,6 @@ const blogPosts = readdirSync(blogDir, { recursive: true })
 const blogLastmod = Object.fromEntries(blogPosts.map((p) => [p.slug, p.lastmod]));
 const BUILD_DATE = new Date().toISOString();
 
-// Tag archives are indexable only once they list this many posts; below it they
-// render `noindex, follow` and are dropped from the sitemap. Mirrors
-// TAG_INDEX_MIN_POSTS in src/data/tags.ts, which documents the reasoning and is
-// the value the pages themselves read. Kept as a literal here because this file
-// is plain ESM loaded before the TypeScript sources resolve: change both.
-const TAG_INDEX_MIN_POSTS = 2;
-
-/** Mirror of tagSlug() in src/data/tags.ts, for the same reason. */
-const tagSlug = (tag) =>
-  tag
-    .replace(/([A-Z]+)([A-Z][a-z])/g, '$1-$2')
-    .replace(/([a-z0-9])([A-Z])/g, '$1-$2')
-    .toLowerCase();
-
 // Count each tag per language, since the two editions are listed separately.
 const tagCounts = new Map();
 for (const post of blogPosts) {
@@ -54,7 +43,7 @@ for (const post of blogPosts) {
   }
 }
 const THIN_TAG_PATHS = [...tagCounts]
-  .filter(([, count]) => count < TAG_INDEX_MIN_POSTS)
+  .filter(([, count]) => !isTagIndexable(count))
   .map(([path]) => path);
 
 // Pre-launch pages that render `noindex`, so they're kept out of the sitemap.

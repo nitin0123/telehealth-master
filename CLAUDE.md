@@ -61,8 +61,8 @@ db/migrate.sh "<postgres-url>"   # low-level: apply db/*.sql to an explicit URL
   `noindex, follow` and is dropped from the sitemap, because a one-post listing just repeats that
   post and would compete with it in search. `follow` keeps link equity flowing to the articles,
   and tags cross the threshold on their own as posts are published. The threshold lives in
-  `TAG_INDEX_MIN_POSTS` (`src/data/tags.ts`) and is mirrored in `astro.config.mjs` for the sitemap
-  filter, which is plain ESM and can't import it: **change both.**
+  `TAG_INDEX_MIN_POSTS` (`src/data/tagRules.mjs`), which is plain ESM precisely so the page code
+  and `astro.config.mjs`'s sitemap filter share one definition. Change it there only.
 - **Commits**: scoped, imperative subject (`feat:`/`style:`/`fix:`/`chore:`), and end the message
   with `Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>`.
 

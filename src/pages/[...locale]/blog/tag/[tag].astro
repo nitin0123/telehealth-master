@@ -41,8 +41,9 @@ const count = fmt(sorted.length === 1 ? copy.countOne : copy.count, { n: sorted.
 const siblings = collectTags(sorted).filter((s) => s.label !== label).slice(0, 12);
 
 // A one-post listing is a near-copy of that post, so it stays out of the index
-// but keeps its links crawlable. See TAG_INDEX_MIN_POSTS; the sitemap filter in
-// astro.config.mjs applies the same rule.
+// but keeps its links crawlable. The threshold and its reasoning live in
+// src/data/tagRules.mjs, which astro.config.mjs imports for the sitemap filter,
+// so the page and the sitemap cannot disagree.
 const thin = !isTagIndexable(sorted.length);
 ---
 
