@@ -1,15 +1,11 @@
 ---
-import { FOOTER_COLS, nav } from '../data/nav';
 import { CONTACT } from '../data/seo';
-import { langFromUrl, linkCopy, localizePath, useTranslations } from '../i18n';
+import { langFromUrl, localizePath, useTranslations } from '../i18n';
 
 const lang = langFromUrl(Astro.url);
 const t = useTranslations(lang);
 const to = (href: string) => localizePath(href, lang);
 
-const cols = FOOTER_COLS.map((id) => nav.find((s) => s.id === id)).filter(
-  (s): s is NonNullable<typeof s> => Boolean(s?.children)
-);
 const year = new Date().getFullYear();
 
 const igIcon = '<svg class="w-5 h-5" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.6"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>';
@@ -19,33 +15,6 @@ const fbIcon = '<svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><pa
 ---
 
 <footer class="bg-sand text-ink/80">
-  <!-- Link columns: a collapsed accordion at every width, so the footer costs
-       three headings of vertical space until a visitor opens one. Three columns
-       since the Community section was retired; a 4-column grid would leave a
-       phantom empty cell on the right. -->
-  <div class="max-w-7xl mx-auto px-5 lg:px-8 py-3 grid grid-cols-1 sm:grid-cols-3 sm:gap-8 text-sm">
-    {cols.map((section, i) => (
-      <div class="border-b border-ink/10 sm:border-0">
-        <input type="checkbox" id={`foot-${i}`} class="peer sr-only" />
-        <label
-          for={`foot-${i}`}
-          class="flex items-center justify-between gap-2 py-2.5 cursor-pointer select-none
-                 sm:justify-center sm:gap-1.5
-                 peer-checked:[&_svg]:rotate-180"
-        >
-          <span class="text-clay eyebrow uppercase text-sm">{t.footer.cols[section.id]}</span>
-          <svg class="w-4 h-4 shrink-0 text-clay transition-transform duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
-        </label>
-        <ul class="hidden peer-checked:block pb-2 text-center">
-          {section.children!.slice(0, 3).map((child) => (
-            <li><a href={to(child.href)} class="inline-block py-1 hover:text-clay transition">{linkCopy(t, child.id).short ?? linkCopy(t, child.id).label}</a></li>
-          ))}
-          {section.id === 'about' && <li><a href={to('/contact/')} class="inline-block py-1 hover:text-clay transition">{t.footer.contact}</a></li>}
-        </ul>
-      </div>
-    ))}
-  </div>
-
   <!-- Bottom bar: socials + legal on as few lines as possible -->
   <div class="border-t border-ink/10">
     <div class="max-w-7xl mx-auto px-5 lg:px-8 py-4 flex flex-col gap-3 items-center text-sm text-stone">

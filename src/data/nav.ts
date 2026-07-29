@@ -76,5 +76,3 @@ export const nav: NavSection[] = [
 // When ready, switch this back to '/get-care/book-a-consultation/'.
 export const BOOK_HREF = '/coming-soon/';
 
-/** Footer link columns, in order. Keys are section ids from `nav` above. */
-export const FOOTER_COLS = ['symptoms', 'care', 'about'];

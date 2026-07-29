@@ -85,13 +85,6 @@ export const en = {
   },
 
   footer: {
-    /** Short column headings. Keys match the section `id`s in src/data/nav.ts. */
-    cols: {
-      symptoms: 'Symptoms',
-      care: 'Care',
-      community: 'Community',
-      about: 'About',
-    } as Record<string, string>,
     contact: 'Contact us',
     privacy: 'Privacy Policy',
     terms: 'Terms of Use',
@@ -1083,12 +1076,12 @@ export const en = {
             text: 'is the typical age Indian women reach menopause, earlier than the global average, so symptoms overlap with peak leadership and decision-making years.',
           },
           {
-            figure: 'Up to 10%',
-            text: 'of women globally leave senior roles specifically due to unmanaged menopause symptoms, a meaningful cost where senior female talent is already scarce.',
+            figure: '333,000',
+            text: 'women aged 45 to 55 left their jobs in the UK in a single year because of menopause symptoms and a lack of support, around 1 in 10 of that age group, at the point in a career when experience is hardest to replace.',
           },
           {
-            figure: '14 days',
-            text: 'a year are lost to menopause symptoms in reduced productivity per affected woman, close to three working weeks.',
+            figure: '14 million',
+            text: 'working days a year are lost to menopause symptoms across the UK economy, in time spent managing symptoms rather than working.',
           },
           {
             figure: '84%',
@@ -1188,11 +1181,15 @@ export const en = {
 
       readingHeading: 'Further reading',
       sourcesHeading: 'Sources',
-      // `href` is omitted where the citation could not be traced to a primary
-      // source. See the note in the two entries below.
       sources: [
-        { text: 'British Menopause Society, senior role attrition (10%).' },
-        { text: 'Nuffield Health, UK, productivity loss (14 working days a year).' },
+        {
+          text: 'Fawcett Society research, cited by the UK Women and Equalities Committee: around 1 in 10 women aged 45 to 55 left their job because of menopause symptoms, about 333,000 women.',
+          href: 'https://publications.parliament.uk/pa/cm5803/cmselect/cmwomeq/91/report.html',
+        },
+        {
+          text: 'Health and Her, cited by the UK Women and Equalities Committee: 14 million working days a year lost to menopause symptoms.',
+          href: 'https://publications.parliament.uk/pa/cm5803/cmselect/cmwomeq/91/report.html',
+        },
         {
           text: 'Catalyst, 2024 global survey: 84% want more support, 72% have hidden symptoms, 1 in 10 declined a job offer.',
           href: 'https://www.catalyst.org/en-us/about/newsroom/2024/menopause-workplace-support-global',

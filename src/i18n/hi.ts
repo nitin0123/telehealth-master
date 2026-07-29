@@ -57,12 +57,6 @@ export const hi: DeepPartial<Dict> = {
   },
 
   footer: {
-    cols: {
-      symptoms: 'लक्षण',
-      care: 'देखभाल',
-      community: 'कम्युनिटी',
-      about: 'हमारे बारे में',
-    },
     contact: 'संपर्क करें',
     privacy: 'प्राइवेसी पॉलिसी',
     terms: 'उपयोग की शर्तें',
