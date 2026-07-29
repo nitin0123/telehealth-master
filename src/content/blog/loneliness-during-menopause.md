@@ -7,6 +7,7 @@ publishedAt: 2026-07-17
 cover: /blog/loneliness-during-menopause/cover.jpg
 metaTitle: "Loneliness During Menopause | ResetWell Plus"
 keywords: "loneliness during menopause, menopause emotional health, menopause anxiety and depression, menopause mental health, emotional isolation midlife, menopause support community"
+linkedin: https://www.linkedin.com/pulse/loneliness-during-menopause-psychological-impact-one-discusses-c8xoc
 faq:
   - q: "Why do women feel lonely during menopause?"
     a: "Falling estrogen affects mood and emotional regulation, while most symptoms are invisible to others. Many women also stay silent for fear of being judged, so they can feel alone even when surrounded by people."

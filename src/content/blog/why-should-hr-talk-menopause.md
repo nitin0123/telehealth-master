@@ -6,6 +6,7 @@ author: [Reshma Tiwari, Swati Singh]
 publishedAt: 2026-05-29
 cover: /blog/why-should-hr-talk-menopause/cover.jpg
 keywords: "HR menopause policy, menopause in the workplace, menopause employee support, DEI menopause inclusion, talent retention menopause, menopause friendly workplace"
+linkedin: https://www.linkedin.com/pulse/why-should-hr-talk-menopause-resetwellplus-cf3mc
 faq:
   - q: "Why should HR care about menopause?"
     a: "It is a talent retention, productivity, and compliance issue. Replacing a senior executive costs far more than reasonable adjustments, and menopause-related discrimination claims are rising globally."

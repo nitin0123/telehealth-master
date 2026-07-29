@@ -7,6 +7,7 @@ publishedAt: 2026-07-28
 cover: /blog/how-to-age-healthy-after-menopause/cover.jpg
 metaTitle: "How to Age Healthy After Menopause | ResetWell Plus"
 keywords: "healthy aging after menopause, postmenopausal health, bone density menopause, muscle mass menopause, heart health after menopause, menopause sleep, brain fog menopause"
+linkedin: https://www.linkedin.com/pulse/how-age-healthy-after-menopause-practical-guide-thriving-c5cac
 faq:
   - q: "What is the most important thing to focus on after menopause?"
     a: "Muscle, rather than weight. Muscle mass falls after menopause, which lowers metabolic rate and raises the risk of falls. Two to three strength sessions a week protect independence, balance and long-term health more than any change on the scale."

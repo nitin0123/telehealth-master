@@ -7,6 +7,7 @@ publishedAt: 2026-05-08
 cover: /blog/why-menopause-awareness-matters-in-the-workplace/img-1.jpg
 metaTitle: "Menopause Awareness in the Workplace | ResetWell Plus"
 keywords: "menopause awareness in the workplace, menopause at work, supporting employees through menopause, menopause workplace policy, women's health at work"
+linkedin: https://www.linkedin.com/pulse/why-menopause-awareness-matters-workplace-resetwellplus-91ovc
 faq:
   - q: "What is menopause?"
     a: "Menopause is confirmed when a woman has had no periods for 12 consecutive months, usually between ages 45 and 55, as the ovaries stop releasing eggs and produce less estrogen and progesterone."

@@ -34,7 +34,7 @@ const to = (href: string) => localizePath(href, lang);
 // Absolute, locale-correct URL for a site path; used by the JSON-LD below.
 const toAbs = (href: string) => new URL(to(href), SITE.url).href;
 const { Content } = await post.render();
-const { title, subtitle, synopsis, author, publishedAt, cover, keywords, metaTitle, faq } = post.data;
+const { title, subtitle, synopsis, author, publishedAt, cover, keywords, metaTitle, faq, linkedin } = post.data;
 
 // timeZone UTC: frontmatter dates are date-only, so formatting must not shift
 // with the build machine's timezone.
@@ -65,6 +65,9 @@ const articleSchema = {
   },
   ...(cover ? { image: new URL(cover, SITE.url).href } : {}),
   ...(keywords ? { keywords } : {}),
+  // The same article republished on LinkedIn. `sameAs` marks the two as one
+  // work so neither is read as duplicate content; the canonical stays here.
+  ...(linkedin ? { sameAs: [linkedin] } : {}),
 };
 
 // FAQPage structured data; the same Q&As are rendered visibly below the post,
@@ -119,6 +122,17 @@ const faqSchema = faq?.length
   <article class="post-body reveal" style="--reveal-delay:160ms">
     <Content />
   </article>
+
+  {/* Visible counterpart to the `sameAs` above: the on-page link corroborates
+      the structured data instead of leaving the claim only in the markup. */}
+  {linkedin && (
+    <p class="mt-8 text-sm text-stone reveal">
+      {t.pages.blog.alsoOnLinkedIn}{' '}
+      <a href={linkedin} target="_blank" rel="noopener" class="font-medium text-clay hover:text-claydk transition">
+        {t.pages.blog.readPost}
+      </a>
+    </p>
+  )}
 
   {faq && faq.length > 0 && (
     <section class="mt-10 reveal">

@@ -7,6 +7,7 @@ publishedAt: 2026-05-19
 cover: /blog/why-are-we-losing-top-tier-female-talent-at-the-peak-of-their-careers/img-1.jpg
 metaTitle: "Menopause and Senior Female Talent | ResetWell Plus"
 keywords: "menopause and career, women in leadership menopause, menopause productivity at work, retaining female talent, menopause support for employees"
+linkedin: https://www.linkedin.com/pulse/why-we-losing-top-tier-female-talent-peak-careers-resetwellplus-qpfrc
 faq:
   - q: "Why do women leave the workforce during menopause?"
     a: "Rarely because ambition fades. These decisions are usually driven by exhaustion, lack of awareness, inadequate healthcare support, and workplace cultures that hesitate to discuss menopause openly."

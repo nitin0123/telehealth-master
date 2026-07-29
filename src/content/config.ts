@@ -33,6 +33,14 @@ const blog = defineCollection({
     metaTitle: z.string().optional(),
     /** Q&As rendered at the end of the post + emitted as FAQPage JSON-LD */
     faq: z.array(z.object({ q: z.string(), a: z.string() })).optional(),
+    /**
+     * URL of the LinkedIn article this post was also published as. Emitted as
+     * `sameAs` on the BlogPosting so search engines treat the two as one work
+     * with this site as the canonical home, rather than as duplicate content.
+     * English posts only: a Hindi translation is a different work, not the
+     * same article at another URL.
+     */
+    linkedin: z.string().url().optional(),
     /** Set true to keep a post out of the index and sitemap while drafting */
     draft: z.boolean().default(false),
   }),

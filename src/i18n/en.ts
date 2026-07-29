@@ -976,6 +976,8 @@ export const en = {
       readTime: '{n} min read',
       readPost: 'Read the post',
       faqHeading: 'Frequently asked questions',
+      /** Shown only on posts with a `linkedin:` URL in their frontmatter. */
+      alsoOnLinkedIn: 'This article was also published on LinkedIn.',
       ctaHeading: 'Wondering if this is perimenopause?',
       ctaBody:
         'Take our 2-minute symptom self-assessment, or talk to a menopause specialist who will actually listen.',

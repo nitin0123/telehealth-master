@@ -7,6 +7,7 @@ publishedAt: 2026-06-26
 cover: /blog/frozen-shoulder-and-menopause/cover.jpg
 metaTitle: "Frozen Shoulder and Menopause | ResetWell Plus"
 keywords: "frozen shoulder menopause, adhesive capsulitis women, oestrogen loss joint pain, menopause shoulder pain, frozen shoulder stages, menopause joint stiffness"
+linkedin: https://www.linkedin.com/pulse/frozen-shoulder-menopause-how-oestrogen-loss-attacks-your-jsdgc
 faq:
   - q: "What is a frozen shoulder?"
     a: "Medically called adhesive capsulitis, it happens when the connective tissue capsule around the shoulder joint becomes inflamed, thickens, and tightens, creating scar tissue that drastically restricts range of motion."

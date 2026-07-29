@@ -7,6 +7,7 @@ publishedAt: 2026-06-16
 cover: /blog/optimize-your-sleep-environment-to-minimize-night-sweats/cover.jpg
 metaTitle: "Sleep Environment Tips for Night Sweats | ResetWell Plus"
 keywords: "menopause night sweats, night sweats relief, cooling bedding for night sweats, sleep environment menopause, hot flashes at night, moisture-wicking sleepwear"
+linkedin: https://www.linkedin.com/pulse/how-optimize-your-sleep-environment-minimize-night-sweats-xyste
 faq:
   - q: "How do I stop night sweats without freezing the bedroom?"
     a: "Fix the microclimate, not just the thermostat: breathable bedding such as Tencel, bamboo, or cotton percale, moving air from a fan, and loose moisture-wicking sleepwear work better than an arctic AC setting."

@@ -7,6 +7,7 @@ publishedAt: 2026-07-11
 cover: /blog/why-sleep-tracking-may-be-misleading-during-menopause/cover.jpg
 metaTitle: "Sleep Tracking and Menopause | ResetWell Plus"
 keywords: "sleep tracking menopause, menopause sleep score, sleep tracker accuracy, menopause insomnia, perimenopause sleep problems, wearable sleep data"
+linkedin: https://www.linkedin.com/pulse/why-sleep-tracking-may-misleading-during-menopause-resetwellplus-zcstc
 faq:
   - q: "Are sleep trackers accurate during menopause?"
     a: "Only partly. Wearables estimate sleep from movement, heart rate and breathing, not brain waves, and their algorithms are trained on the general population rather than women in perimenopause or menopause."
