@@ -41,7 +41,10 @@ const pathways = [
           {p.soon ? (
             <span class="mt-5 inline-flex items-center gap-1 font-semibold text-stone/50">{t.common.comingSoon}</span>
           ) : (
-            <a href={to(p.href)} class="mt-5 inline-flex items-center gap-1 font-semibold text-clay hover:gap-2 transition-all">{t.threePathways.items[p.id].cta} <span aria-hidden="true">→</span></a>
+            <!-- min-height rather than padding: the card is a fixed-height flex
+                 column, so a flex item with padding just shrinks back to its
+                 content height and the tap target never grows. -->
+            <a href={to(p.href)} class="mt-3 inline-flex items-center gap-1 min-h-[44px] font-semibold text-clay hover:gap-2 transition-all">{t.threePathways.items[p.id].cta} <span aria-hidden="true">→</span></a>
           )}
         </div>
       </div>
