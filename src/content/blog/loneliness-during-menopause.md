@@ -2,11 +2,12 @@
 title: "Loneliness During Menopause: The Psychological Impact That No One Discusses"
 subtitle: "The emotional impact no one talks about"
 synopsis: "Menopause is not only physical. Many women feel emotionally disconnected, even surrounded by people. Why it happens, and what genuinely helps."
-author: [Reshma Tiwari, Swati Singh]
+author: [Swati Singh, Reshma Tiwari]
 publishedAt: 2026-07-17
 cover: /blog/loneliness-during-menopause/cover.jpg
 metaTitle: "Loneliness During Menopause | ResetWell Plus"
 keywords: "loneliness during menopause, menopause emotional health, menopause anxiety and depression, menopause mental health, emotional isolation midlife, menopause support community"
+hashtags: [Loneliness, EmotionalWellbeing, MenopauseAndMentalHealth, Menopause, WomensHealth, ResetWellPlus]
 linkedin: https://www.linkedin.com/pulse/loneliness-during-menopause-psychological-impact-one-discusses-c8xoc
 faq:
   - q: "Why do women feel lonely during menopause?"

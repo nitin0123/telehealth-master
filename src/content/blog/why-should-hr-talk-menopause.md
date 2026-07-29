@@ -2,10 +2,11 @@
 title: "Why Should HR Talk About Menopause?"
 subtitle: "It's not just a women's issue. It's a business imperative."
 synopsis: "Organizations are losing top-tier female talent at the peak of their careers, because workplaces fail to support a natural biological transition."
-author: [Reshma Tiwari, Swati Singh]
+author: [Swati Singh, Reshma Tiwari]
 publishedAt: 2026-05-29
 cover: /blog/why-should-hr-talk-menopause/cover.jpg
 keywords: "HR menopause policy, menopause in the workplace, menopause employee support, DEI menopause inclusion, talent retention menopause, menopause friendly workplace"
+hashtags: [MenopauseAtWork, HRLeadership, EmployeeWellbeing, WorkplaceWellbeing, Menopause, ResetWellPlus]
 linkedin: https://www.linkedin.com/pulse/why-should-hr-talk-menopause-resetwellplus-cf3mc
 faq:
   - q: "Why should HR care about menopause?"

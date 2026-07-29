@@ -7,6 +7,7 @@ publishedAt: 2026-05-19
 cover: /blog/why-are-we-losing-top-tier-female-talent-at-the-peak-of-their-careers/img-1.jpg
 metaTitle: "मेनोपॉज़ और वरिष्ठ महिला प्रतिभा | ResetWell Plus"
 keywords: "मेनोपॉज़ और करियर, नेतृत्व में महिलाएँ मेनोपॉज़, कार्यस्थल पर मेनोपॉज़ उत्पादकता, महिला प्रतिभा को बनाए रखना, कर्मचारियों के लिए मेनोपॉज़ सहायता"
+hashtags: [TalentRetention, MenopauseAtWork, WomenInLeadership, WorkplaceWellbeing, Menopause, ResetWellPlus]
 faq:
   - q: "मेनोपॉज़ के दौरान महिलाएँ नौकरी क्यों छोड़ देती हैं?"
     a: "महत्वाकांक्षा घटने की वजह से बहुत कम। ये फ़ैसले आमतौर पर थकान, जागरूकता की कमी, अपर्याप्त स्वास्थ्य सहायता, और ऐसे कार्यस्थलों से जुड़े होते हैं जहाँ मेनोपॉज़ पर खुलकर बात करने में झिझक होती है।"

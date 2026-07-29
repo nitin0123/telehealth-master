@@ -34,7 +34,7 @@ const to = (href: string) => localizePath(href, lang);
 // Absolute, locale-correct URL for a site path; used by the JSON-LD below.
 const toAbs = (href: string) => new URL(to(href), SITE.url).href;
 const { Content } = await post.render();
-const { title, subtitle, synopsis, author, publishedAt, cover, keywords, metaTitle, faq, linkedin } = post.data;
+const { title, subtitle, synopsis, author, publishedAt, cover, keywords, metaTitle, faq, linkedin, hashtags } = post.data;
 
 // timeZone UTC: frontmatter dates are date-only, so formatting must not shift
 // with the build machine's timezone.
@@ -122,6 +122,17 @@ const faqSchema = faq?.length
   <article class="post-body reveal" style="--reveal-delay:160ms">
     <Content />
   </article>
+
+  {/* Topic tags. Plain chips, not links: there is no tag archive to point at,
+      and a hashtag that navigates nowhere is worse than one that never looked
+      clickable. */}
+  {hashtags && hashtags.length > 0 && (
+    <ul class="mt-8 flex flex-wrap gap-2 reveal">
+      {hashtags.map((tag) => (
+        <li class="rounded-full bg-white border border-sand text-stone text-xs font-medium px-3 py-1.5">#{tag}</li>
+      ))}
+    </ul>
+  )}
 
   {/* Visible counterpart to the `sameAs` above: the on-page link corroborates
       the structured data instead of leaving the claim only in the markup. */}

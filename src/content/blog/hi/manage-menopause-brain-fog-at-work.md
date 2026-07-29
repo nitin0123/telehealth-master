@@ -7,6 +7,7 @@ publishedAt: 2026-06-04
 cover: /blog/manage-menopause-brain-fog-at-work/cover.jpg
 metaTitle: "काम पर मेनोपॉज़ का ब्रेन फ़ॉग | ResetWell Plus"
 keywords: "मेनोपॉज़ ब्रेन फ़ॉग, काम पर ब्रेन फ़ॉग, मेनोपॉज़ याददाश्त की चूक, मेनोपॉज़ के संज्ञानात्मक लक्षण, ब्रेन फ़ॉग कैसे संभालें, मेनोपॉज़ और ध्यान"
+hashtags: [BrainFog, MenopauseAtWork, WomenInLeadership, WorkplaceWellbeing, Perimenopause, ResetWellPlus]
 faq:
   - q: "मेनोपॉज़ का ब्रेन फ़ॉग क्या है?"
     a: "पेरिमेनोपॉज़ और मेनोपॉज़ के दौरान दिखने वाले लक्षणों का समूह: शब्द याद न आना, हाल की बातें भूल जाना, ध्यान न लगना, और दिमाग़ी थकान। यह अस्थायी है, स्थायी संज्ञानात्मक गिरावट नहीं।"

@@ -2,11 +2,12 @@
 title: "कार्यस्थल पर मेनोपॉज़ की जागरूकता क्यों ज़रूरी है?"
 subtitle: "जैविक बदलाव और पेशेवर स्थिरता का वह अहम मोड़"
 synopsis: "मेनोपॉज़ है क्या, यह काम पर कैसे दिखता है, और वे नीतियाँ तथा सांस्कृतिक बदलाव जिनसे ऐसा कार्यस्थल बनता है जहाँ महिलाएँ खिल सकें।"
-author: [Reshma Tiwari, Swati Singh]
+author: [Swati Singh, Reshma Tiwari]
 publishedAt: 2026-05-08
 cover: /blog/why-menopause-awareness-matters-in-the-workplace/img-1.jpg
 metaTitle: "कार्यस्थल पर मेनोपॉज़ की जागरूकता | ResetWell Plus"
 keywords: "कार्यस्थल पर मेनोपॉज़ जागरूकता, काम पर मेनोपॉज़, मेनोपॉज़ में कर्मचारियों का सहयोग, मेनोपॉज़ कार्यस्थल नीति, कार्यस्थल पर महिला स्वास्थ्य"
+hashtags: [MenopauseAwareness, MenopauseAtWork, WorkplaceWellbeing, EmployeeWellbeing, WomensHealth, ResetWellPlus]
 faq:
   - q: "मेनोपॉज़ क्या है?"
     a: "मेनोपॉज़ की पुष्टि तब होती है जब किसी महिला को लगातार 12 महीने तक पीरियड न आए हों, आमतौर पर 45 से 55 साल की उम्र के बीच, जब अंडाशय अंडे छोड़ना बंद कर देते हैं और एस्ट्रोजन तथा प्रोजेस्टेरोन कम बनाते हैं।"

@@ -41,6 +41,13 @@ const blog = defineCollection({
      * same article at another URL.
      */
     linkedin: z.string().url().optional(),
+    /**
+     * Topic tags shown as a chip row under the post, written without the `#`
+     * (the template adds it). Kept in English on both language editions, the
+     * way the LinkedIn originals tag them: a hashtag reads as a token rather
+     * than prose, and splitting them per language would fragment the topic.
+     */
+    hashtags: z.array(z.string()).optional(),
     /** Set true to keep a post out of the index and sitemap while drafting */
     draft: z.boolean().default(false),
   }),

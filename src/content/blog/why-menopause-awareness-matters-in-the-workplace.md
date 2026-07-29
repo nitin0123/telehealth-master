@@ -2,11 +2,12 @@
 title: "Why Menopause Awareness Matters in the Workplace?"
 subtitle: "The critical intersection of biological transition and professional stability"
 synopsis: "What menopause is, how it shows up at work, and the policies and culture shifts that build a workplace where women can thrive."
-author: [Reshma Tiwari, Swati Singh]
+author: [Swati Singh, Reshma Tiwari]
 publishedAt: 2026-05-08
 cover: /blog/why-menopause-awareness-matters-in-the-workplace/img-1.jpg
 metaTitle: "Menopause Awareness in the Workplace | ResetWell Plus"
 keywords: "menopause awareness in the workplace, menopause at work, supporting employees through menopause, menopause workplace policy, women's health at work"
+hashtags: [MenopauseAwareness, MenopauseAtWork, WorkplaceWellbeing, EmployeeWellbeing, WomensHealth, ResetWellPlus]
 linkedin: https://www.linkedin.com/pulse/why-menopause-awareness-matters-workplace-resetwellplus-91ovc
 faq:
   - q: "What is menopause?"
