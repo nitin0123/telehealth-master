@@ -2,6 +2,7 @@
 import { langFromUrl, localePaths, localizePath, useTranslations } from '../../../i18n';
 export const getStaticPaths = localePaths;
 import PageLayout from '../../../layouts/PageLayout.astro';
+import PageFaq from '../../../components/PageFaq.astro';
 
 const lang = langFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -10,6 +11,20 @@ const p = t.pages.pricing;
 
 // Structure only: each tier's copy lives in `pages.pricing.tiers`, keyed by id.
 const tiers = [{ id: 'single', href: '/coming-soon/', featured: false }];
+
+// FAQPage structured data. The same array renders visibly below, which is what
+// Google and answer engines require: markup must mirror on-page content.
+const faqSchema = p.faqs?.length
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: p.faqs.map((f) => ({
+        '@type': 'Question',
+        name: f.q,
+        acceptedAnswer: { '@type': 'Answer', text: f.a },
+      })),
+    }
+  : null;
 ---
 <PageLayout
   section={t.nav.sections.care.label}
@@ -46,4 +61,10 @@ const tiers = [{ id: 'single', href: '/coming-soon/', featured: false }];
       </div>
     ))}
   </div>
+
+  <Fragment slot="head">
+    {faqSchema && <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />}
+  </Fragment>
+
+  <PageFaq heading={p.faqHeading} items={p.faqs} />
 </PageLayout>

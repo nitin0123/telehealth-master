@@ -545,6 +545,13 @@ export const en = {
         },
       ] as FaqItem[],
       cta: 'Book a Consultation',
+      faqHeading: 'Common questions about consultations',
+      faqs: [
+        { q: 'How does an online menopause consultation work?', a: 'You book a time, complete a short intake about your symptoms and history, and meet your specialist by video. You receive a written care plan afterwards, which you keep.' },
+        { q: 'Do I need to travel to a clinic?', a: 'No. Consultations are virtual, so a woman in Patna has the same access as a woman in Mumbai. You need a phone or laptop and a private few minutes.' },
+        { q: 'Will I be prescribed HRT?', a: 'Only if it is clinically appropriate for you and you want it. Hormone therapy is one option among several, and your specialist will talk through the alternatives and the evidence.' },
+        { q: 'Can I consult in Hindi?', a: 'Yes. Our specialists consult in English and Hindi, and our educational sessions run in both languages.' },
+      ] as { q: string; a: string }[],
     },
 
     ourSpecialists: {
@@ -587,6 +594,13 @@ export const en = {
           cta: 'Book now',
         },
       } as Record<string, { name: string; price: string; sub: string; desc: string; items: string[]; note: string; cta: string }>,
+      faqHeading: 'Common questions about cost',
+      faqs: [
+        { q: 'How much does a menopause consultation cost in India?', a: 'A ResetWell Plus consultation starts at Rs 1,599. You pay us directly, so there is no insurance paperwork and no hidden fees. All prices are in Indian rupees.' },
+        { q: 'Do I need insurance to book a consultation?', a: 'No. We charge patients directly rather than billing insurers, which is why the price is the same for everyone and is known before you book.' },
+        { q: 'Is the first consultation longer than a follow-up?', a: 'Yes. The first appointment is a full assessment of your symptoms, history and goals, so it is scheduled for longer than a follow-up visit.' },
+        { q: 'What is included in the fee?', a: 'The consultation with a menopause specialist and a written care plan you keep. Any medication or laboratory tests your clinician recommends are billed separately by the pharmacy or lab.' },
+      ] as { q: string; a: string }[],
     },
 
     perimenopause101: {

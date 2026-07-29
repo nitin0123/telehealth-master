@@ -55,6 +55,10 @@ Note: online booking is not open yet. Enquiries go through the contact form at h
 - The site is published in English and Hindi. Hindi pages live under /hindi/, for example https://www.resetwellplus.com/hindi/community/faqs
 - The workplace wellness section is English only.
 
+## Full text
+
+- [llms-full.txt](https://www.resetwellplus.com/llms-full.txt): the complete text of the FAQs, the workplace wellness case and every article, in one file, generated from the site's own content.
+
 ## Important notes
 
 - Content on the site is educational and not a substitute for medical advice; consultations with qualified specialists are the clinical service.

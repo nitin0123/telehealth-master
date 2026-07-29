@@ -1,0 +1,27 @@
+---
+// A short FAQ block for service pages, plus the matching FAQPage structured
+// data. Answer engines and rich results both need the markup to mirror visible
+// text, so the same array drives both, and the schema is emitted through the
+// layout's `head` slot by the calling page.
+//
+// Questions are phrased the way people actually ask them, which is what makes
+// a page quotable in an AI answer rather than merely relevant to it.
+interface Props {
+  heading: string;
+  items: { q: string; a: string }[];
+}
+const { heading, items } = Astro.props;
+---
+{items?.length > 0 && (
+  <section class="mt-12 reveal">
+    <h2 class="font-serif text-2xl lg:text-3xl text-ever">{heading}</h2>
+    <dl class="mt-5 space-y-4">
+      {items.map((item) => (
+        <div class="bg-white border border-sand rounded-4xl p-5 lg:p-6">
+          <dt class="font-semibold text-ink">{item.q}</dt>
+          <dd class="mt-2 text-stone leading-relaxed">{item.a}</dd>
+        </div>
+      ))}
+    </dl>
+  </section>
+)}

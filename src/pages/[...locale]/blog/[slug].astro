@@ -50,6 +50,12 @@ const articleSchema = {
   author: { '@type': 'Organization', name: author },
   publisher: { '@type': 'Organization', name: BRAND, url: SITE.url },
   mainEntityOfPage: new URL(Astro.url.pathname, SITE.url).href,
+  // Names the parts worth reading aloud in a voice result: the headline and
+  // the synopsis, rather than the whole article body.
+  speakable: {
+    '@type': 'SpeakableSpecification',
+    cssSelector: ['h1', '[data-page-lede]'],
+  },
   ...(cover ? { image: new URL(cover, SITE.url).href } : {}),
   ...(keywords ? { keywords } : {}),
 };
