@@ -968,9 +968,9 @@ export const en = {
 
     blog: {
       title: 'Our Blog',
-      lede: "From the ResetWell Plus Editorial team: Straight talk on perimenopause, menopause, and midlife health - what's happening in your body, and what you can actually do about it.",
+      lede: "From Reshma Tiwari and Swati Singh: Straight talk on perimenopause, menopause, and midlife health - what's happening in your body, and what you can actually do about it.",
       description:
-        'Articles on perimenopause and menopause symptoms, treatment options, and midlife wellness from the ResetWell Plus team.',
+        'Articles on perimenopause and menopause symptoms, treatment options, and midlife wellness from ResetWell Plus co-founders Reshma Tiwari and Swati Singh.',
       keywords: 'menopause blog India, perimenopause symptoms, menopause articles',
       /** {n} is the estimated reading time in minutes. */
       readTime: '{n} min read',

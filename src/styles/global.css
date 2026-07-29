@@ -12,6 +12,17 @@
   body {
     @apply bg-cream text-ink font-sans antialiased;
   }
+  /* Tailwind's preflight sets `display: block` on media elements, and that
+     catches <source> too. Normally harmless, because <source> sits inside a
+     <picture> that establishes its own box. But Picture.astro gives <picture>
+     `display: contents` so the <img> behaves as a direct child of the layout
+     around it, and that promotes the <source> tags to siblings as well: in a
+     grid or flex parent each one silently claims a cell, pushing the real
+     image into the next track and squashing it. A <source> carries no visual
+     content, so it should never generate a box. */
+  picture > source {
+    display: none;
+  }
 }
 
 @layer components {
