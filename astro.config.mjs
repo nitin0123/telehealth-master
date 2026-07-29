@@ -49,7 +49,9 @@ const THIN_TAG_PATHS = [...tagCounts]
 // Pre-launch pages that render `noindex`, so they're kept out of the sitemap.
 // `/get-care/book-a-consultation` is noindex while booking is pre-launch (all
 // CTAs point at `/coming-soon`); drop it from this list when booking opens.
-const NOINDEX_PATHS = ['/coming-soon', '/get-care/book-a-consultation', ...THIN_TAG_PATHS];
+// `/thank-you` is a post-submission confirmation: nothing to rank, and it only
+// makes sense arrived at from a form, so it renders noindex in both languages.
+const NOINDEX_PATHS = ['/coming-soon', '/get-care/book-a-consultation', '/thank-you', ...THIN_TAG_PATHS];
 
 // Inline a binary file as a base64 string at build time:
 //
