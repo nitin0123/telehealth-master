@@ -48,7 +48,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   </section>
 
   <script>
-    import { subscribeSchema, firstError } from '../../lib/schemas';
+    import { validateSubscribe } from '../../lib/validate';
 
     document.querySelectorAll<HTMLFormElement>('[data-notify-form]').forEach((form) => {
       const errEl = form.parentElement?.querySelector('[data-notify-err]');
@@ -69,8 +69,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         const data = Object.fromEntries(new FormData(form).entries()) as Record<string, string>;
         data.source = 'coming-soon';
 
-        const check = subscribeSchema.safeParse(data);
-        if (!check.success) { showErr(firstError(check.error)); return; }
+        const problem = validateSubscribe(data as { email: string });
+        if (problem) { showErr(problem); return; }
 
         const original = btn?.textContent ?? 'Notify me';
         if (btn) { btn.disabled = true; btn.textContent = 'Submitting…'; }

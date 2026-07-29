@@ -108,7 +108,7 @@ const ytIcon = '<svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><pa
   </div>
 
   <script>
-    import { contactSchema, firstError } from '../../lib/schemas';
+    import { validateContact } from '../../lib/validate';
 
     document.querySelectorAll<HTMLFormElement>('[data-contact-form]').forEach((form) => {
       // Generate a fresh maths captcha each load
@@ -139,10 +139,10 @@ const ytIcon = '<svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><pa
         const data = Object.fromEntries(new FormData(form).entries()) as Record<string, string>;
         delete data.captcha;
 
-        const check = contactSchema.safeParse(data);
-        if (!check.success) {
+        const problem = validateContact(data as { name: string; email: string; phone: string; message: string });
+        if (problem) {
           if (submitErr) {
-            submitErr.textContent = firstError(check.error);
+            submitErr.textContent = problem;
             submitErr.classList.remove('hidden');
           }
           return;

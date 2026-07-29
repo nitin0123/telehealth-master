@@ -86,7 +86,7 @@ const inputClass =
   </div>
 
   <script>
-    import { corporateLeadSchema, firstError } from '../../../lib/schemas';
+    import { validateCorporateLead } from '../../../lib/validate';
 
     const root = document.querySelector<HTMLElement>('[data-one-pager]');
     if (root) {
@@ -114,9 +114,9 @@ const inputClass =
           source: 'workplace-wellness',
         };
 
-        const check = corporateLeadSchema.safeParse(payload);
-        if (!check.success) {
-          errEl.textContent = firstError(check.error);
+        const problem = validateCorporateLead(payload);
+        if (problem) {
+          errEl.textContent = problem;
           errEl.classList.remove('hidden');
           return;
         }

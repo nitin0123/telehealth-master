@@ -23,7 +23,7 @@ const t = useTranslations(Astro.url);
 </div>
 
 <script>
-  import { subscribeSchema, firstError } from '../lib/schemas';
+  import { validateSubscribe } from '../lib/validate';
 
   document.querySelectorAll<HTMLFormElement>('[data-join-form]').forEach((form) => {
     const errEl = form.querySelector('[data-join-err]');
@@ -44,8 +44,8 @@ const t = useTranslations(Astro.url);
       const data = Object.fromEntries(new FormData(form).entries()) as Record<string, string>;
       data.source = 'community-join';
 
-      const check = subscribeSchema.safeParse(data);
-      if (!check.success) { showErr(firstError(check.error)); return; }
+      const problem = validateSubscribe(data as { email: string });
+      if (problem) { showErr(problem); return; }
 
       const original = btn?.textContent ?? '';
       if (btn) { btn.disabled = true; btn.textContent = submittingLabel; }

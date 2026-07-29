@@ -96,7 +96,7 @@ import LegalLangNote from '../../components/LegalLangNote.astro';
   </div>
 
   <script>
-    import { smsConsentSchema, firstError } from '../../lib/schemas';
+    import { validateSmsConsent } from '../../lib/validate';
 
     document.querySelectorAll<HTMLFormElement>('[data-sms-form]').forEach((form) => {
       const errEl = form.querySelector('[data-sms-err]');
@@ -123,9 +123,9 @@ import LegalLangNote from '../../components/LegalLangNote.astro';
           // Honeypot passthrough; the endpoint silently drops bot submissions.
           company: (form.elements.namedItem('company') as HTMLInputElement)?.value ?? '',
         };
-        const check = smsConsentSchema.safeParse(payload);
-        if (!check.success) {
-          showErr(firstError(check.error));
+        const problem = validateSmsConsent(payload);
+        if (problem) {
+          showErr(problem);
           return;
         }
         errEl?.classList.add('hidden');

@@ -240,7 +240,7 @@ const inputClass =
   </div>
 
   <script>
-    import { corporateReadinessSchema, firstError } from '../../../lib/schemas';
+    import { validateCorporateReadiness } from '../../../lib/validate';
     import { readinessTier } from '../../../lib/readiness';
 
     const root = document.querySelector<HTMLElement>('[data-readiness]');
@@ -387,9 +387,9 @@ const inputClass =
           source: 'website',
         };
 
-        const check = corporateReadinessSchema.safeParse(payload);
-        if (!check.success) {
-          errEl.textContent = firstError(check.error);
+        const problem = validateCorporateReadiness(payload, total);
+        if (problem) {
+          errEl.textContent = problem;
           errEl.classList.remove('hidden');
           return;
         }

@@ -1,6 +1,10 @@
 ---
 // Self-hosted fonts (bundled into the build, no external requests):
 import '@fontsource-variable/geist'; // single typeface — body, UI and headings
+// The latin subset is on the critical path for every page, so preload it (see
+// the <link> in <head>). The other subsets shipped by the package carry
+// unicode-range, so browsers never fetch them for English or Hindi text.
+import geistLatin from '@fontsource-variable/geist/files/geist-latin-wght-normal.woff2?url';
 // Devanagari companion for the Hindi site. Geist has no Devanagari glyphs, so
 // it sits after Geist in the Tailwind font stacks and the browser falls through
 // to it per-character: Latin text stays Geist, Hindi text renders in Noto. The
@@ -67,6 +71,7 @@ const altLocales = lang === 'en' ? [...SITE.altLocales, ...(twin ? [OG_LOCALE.hi
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preload" href={geistLatin} as="font" type="font/woff2" crossorigin />
 
     <!-- Primary meta -->
     <title>{title}</title>
