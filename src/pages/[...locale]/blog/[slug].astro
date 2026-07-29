@@ -4,7 +4,7 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
 import PageLayout from '../../../layouts/PageLayout.astro';
 import { SITE, BRAND } from '../../../data/seo';
-import { authorNode, authorPath } from '../../../data/authors';
+import { authorNode, authorBylines, bylineSeparator } from '../../../data/authors';
 import { BOOK_HREF } from '../../../data/nav';
 import { HI_PREFIX, langFromUrl, localizePath, LOCALE, useTranslations } from '../../../i18n';
 
@@ -40,8 +40,8 @@ const { title, subtitle, synopsis, author, publishedAt, cover, keywords, metaTit
 // with the build machine's timezone.
 const dateLabel = publishedAt.toLocaleDateString(LOCALE[lang], { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
 const readMins = Math.max(1, Math.round(post.body.split(/\s+/).length / 220));
-const bioPath = authorPath(author);
-const bioHref = bioPath ? to(bioPath) : null;
+// One entry per byline name, with a bio link where the person has a page.
+const bylines = authorBylines(author).map((b) => ({ ...b, href: b.path ? to(b.path) : null }));
 
 const articleSchema = {
   '@context': 'https://schema.org',
@@ -104,10 +104,15 @@ const faqSchema = faq?.length
   </div>
 
   <p class="-mt-6 mb-8 text-sm text-stone reveal" style="--reveal-delay:120ms">
-    {/* A named contributor links to their bio, matching the Person JSON-LD */}
-    {bioHref
-      ? <a href={bioHref} rel="author" class="font-medium text-clay hover:text-claydk transition">{author}</a>
-      : author}
+    {/* Each named contributor links to their bio, matching the Person JSON-LD */}
+    {bylines.map((b, i) => (
+      <>
+        {bylineSeparator(i, bylines.length, lang)}
+        {b.href
+          ? <a href={b.href} rel="author" class="font-medium text-clay hover:text-claydk transition">{b.name}</a>
+          : b.name}
+      </>
+    ))}
     {' · '}{dateLabel} · {t.pages.blog.readTime.replace('{n}', String(readMins))}
   </p>
 

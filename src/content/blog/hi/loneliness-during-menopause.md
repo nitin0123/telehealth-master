@@ -2,7 +2,7 @@
 title: "मेनोपॉज़ में अकेलापन: वह मानसिक असर जिस पर कोई बात नहीं करता"
 subtitle: "वह भावनात्मक असर जिसकी चर्चा कोई नहीं करता"
 synopsis: "मेनोपॉज़ सिर्फ़ शारीरिक नहीं होता। कई महिलाएँ लोगों के बीच रहकर भी भावनात्मक रूप से कटी हुई महसूस करती हैं। ऐसा क्यों होता है, और सचमुच क्या मदद करता है।"
-author: ResetWell Plus संपादकीय टीम
+author: [Reshma Tiwari, Swati Singh]
 publishedAt: 2026-07-17
 cover: /blog/loneliness-during-menopause/cover.jpg
 metaTitle: "मेनोपॉज़ में अकेलापन | ResetWell Plus"

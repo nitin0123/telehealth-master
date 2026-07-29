@@ -2,7 +2,7 @@
 title: "How to Manage Menopause Brain Fog at Work Without Losing Your Confidence"
 subtitle: "Brain fog is a biological speed bump, not a career dead end"
 synopsis: "Word-retrieval blanks in a big meeting? You aren't losing your edge. Practical strategies to bypass the fog and protect your confidence at work."
-author: ResetWell Plus Editorial Team
+author: [Reshma Tiwari, Swati Singh]
 publishedAt: 2026-06-04
 cover: /blog/manage-menopause-brain-fog-at-work/cover.jpg
 metaTitle: "Menopause Brain Fog at Work | ResetWell Plus"

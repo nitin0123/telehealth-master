@@ -2,7 +2,7 @@
 title: "मेरा शरीर ऐसा क्यों लगता है जैसे मैंने नींद में मैराथन दौड़ी हो?"
 subtitle: "आपने अभी कुछ किया ही नहीं, फिर हर चीज़ में दर्द क्यों है? असल में हो क्या रहा है, और सचमुच मदद क्या करता है।"
 synopsis: "घुटने चटकते हैं। कमर विरोध करती है। उठने से पहले ही कंधे दुखते हैं। यह हार्मोनल है, यह सच है, और यह ठीक हो सकता है।"
-author: ResetWell Plus संपादकीय टीम
+author: [Reshma Tiwari, Swati Singh]
 publishedAt: 2026-04-03
 cover: /blog/why-does-my-body-feel-like-i-ran-a-marathon-in-my-sleep/img-1.jpg
 metaTitle: "मेनोपॉज़ में जोड़ों का दर्द और शरीर की अकड़न | ResetWell Plus"

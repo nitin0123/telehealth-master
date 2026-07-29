@@ -2,7 +2,7 @@
 title: "काम पर मेनोपॉज़ के ब्रेन फ़ॉग को आत्मविश्वास खोए बिना कैसे संभालें"
 subtitle: "ब्रेन फ़ॉग एक जैविक स्पीड ब्रेकर है, करियर का अंत नहीं"
 synopsis: "किसी बड़ी मीटिंग में शब्द याद न आना? आपकी धार कम नहीं हो रही। धुंध से पार पाने और काम पर अपना आत्मविश्वास बचाने के व्यावहारिक तरीक़े।"
-author: ResetWell Plus संपादकीय टीम
+author: [Reshma Tiwari, Swati Singh]
 publishedAt: 2026-06-04
 cover: /blog/manage-menopause-brain-fog-at-work/cover.jpg
 metaTitle: "काम पर मेनोपॉज़ का ब्रेन फ़ॉग | ResetWell Plus"

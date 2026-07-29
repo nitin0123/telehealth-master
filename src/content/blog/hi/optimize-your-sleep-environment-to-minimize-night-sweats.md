@@ -2,7 +2,7 @@
 title: "रात के पसीने कम करने के लिए अपने सोने के माहौल को कैसे सुधारें (बिना AC को बर्फ़ बनाए)?"
 subtitle: "पसीने से भीगकर उठना सिर्फ़ झुँझलाहट की बात नहीं; यह आपकी पूरी नींद का चक्र तोड़ देता है। AC को ध्रुवीय ठंड पर कर देना इसका हल नहीं है।"
 synopsis: "रात में पसीने से भीगकर उठती हैं? अपने कमरे को फ़्रीज़र बना देना जवाब नहीं है। बिस्तर, हवा और नाइटवियर में वे बदलाव जो सचमुच काम करते हैं।"
-author: ResetWell Plus संपादकीय टीम
+author: [Reshma Tiwari, Swati Singh]
 publishedAt: 2026-06-16
 cover: /blog/optimize-your-sleep-environment-to-minimize-night-sweats/cover.jpg
 metaTitle: "रात के पसीने के लिए सोने के माहौल के सुझाव | ResetWell Plus"

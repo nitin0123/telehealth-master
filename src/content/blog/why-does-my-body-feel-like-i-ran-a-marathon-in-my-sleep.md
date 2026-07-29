@@ -2,7 +2,7 @@
 title: "Why Does My Body Feel Like I Ran a Marathon… In My Sleep?"
 subtitle: "You haven't done anything yet so why does everything ache? Here's what's really going on, and what actually helps."
 synopsis: "Knees creak. Back protests. Shoulders ache before you've even gotten up. It's hormonal, it's real, and it's fixable."
-author: ResetWell Plus Editorial Team
+author: [Reshma Tiwari, Swati Singh]
 publishedAt: 2026-04-03
 cover: /blog/why-does-my-body-feel-like-i-ran-a-marathon-in-my-sleep/img-1.jpg
 metaTitle: "Menopause Joint Pain and Body Aches | ResetWell Plus"

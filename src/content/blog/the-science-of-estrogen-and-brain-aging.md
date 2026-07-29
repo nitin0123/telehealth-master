@@ -2,7 +2,7 @@
 title: "The Science of Estrogen and Brain Aging"
 subtitle: "Understanding how hormonal changes shape memory, focus, and long-term brain health"
 synopsis: "What if one of the key factors impacting brain health is not diet or exercise, but the hormonal balance of your body?"
-author: ResetWell Plus Editorial Team
+author: [Reshma Tiwari, Swati Singh]
 publishedAt: 2026-07-06
 cover: /blog/the-science-of-estrogen-and-brain-aging/cover.jpg
 keywords: "estrogen and brain health, menopause brain aging, estrogen cognitive function, brain fog perimenopause, hormones and memory, neuroprotective effects of estrogen"

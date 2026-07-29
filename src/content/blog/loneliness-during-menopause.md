@@ -2,7 +2,7 @@
 title: "Loneliness During Menopause: The Psychological Impact That No One Discusses"
 subtitle: "The emotional impact no one talks about"
 synopsis: "Menopause is not only physical. Many women feel emotionally disconnected, even surrounded by people. Why it happens, and what genuinely helps."
-author: ResetWell Plus Editorial Team
+author: [Reshma Tiwari, Swati Singh]
 publishedAt: 2026-07-17
 cover: /blog/loneliness-during-menopause/cover.jpg
 metaTitle: "Loneliness During Menopause | ResetWell Plus"

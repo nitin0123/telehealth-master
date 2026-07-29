@@ -2,7 +2,7 @@
 title: "मेनोपॉज़ के दौरान स्लीप ट्रैकिंग भ्रम में क्यों डाल सकती है"
 subtitle: "जब आपका स्लीप स्कोर \"शानदार\" कहे, पर आप थकी हुई महसूस करें"
 synopsis: "आपका ट्रैकर कहता है कि आप अच्छी सोईं। आपका शरीर मानने को तैयार नहीं। स्लीप स्कोर वह क्यों नहीं पकड़ पाते जो हार्मोनल बदलाव आपके आराम के साथ कर रहा है।"
-author: ResetWell Plus संपादकीय टीम
+author: [Reshma Tiwari, Swati Singh]
 publishedAt: 2026-07-11
 cover: /blog/why-sleep-tracking-may-be-misleading-during-menopause/cover.jpg
 metaTitle: "स्लीप ट्रैकिंग और मेनोपॉज़ | ResetWell Plus"

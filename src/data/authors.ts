@@ -72,24 +72,38 @@ const BY_NAME = new Map<string, AuthorProfile>([
   ['स्वाति सिंह', PROFILES[1]],
 ]);
 
+/** Word joining the last two names in a visible byline. */
+const AND: Record<Lang, string> = { en: 'and', hi: 'और' };
+
+/** `author:` frontmatter is one name or several; normalise to a list. */
+const toList = (author: string | string[]): string[] =>
+  (Array.isArray(author) ? author : [author]).map((a) => a.trim()).filter(Boolean);
+
 /**
- * Bio page path for a named author, or null when the byline is the editorial
- * team. Lets the visible byline link to the same page the JSON-LD points at:
- * Google wants structured data corroborated by on-page content.
+ * Names for the visible byline, each with its bio page path where one exists.
+ * Lets the byline link to the same pages the JSON-LD points at: Google wants
+ * structured data corroborated by on-page content.
  */
-export function authorPath(author: string): string | null {
-  return BY_NAME.get(author.trim())?.path ?? null;
+export function authorBylines(author: string | string[]) {
+  return toList(author).map((name) => {
+    const profile = BY_NAME.get(name);
+    return { name: profile?.name ?? name, path: profile?.path ?? null };
+  });
 }
 
 /**
- * schema.org node for a post's author.
- *
- * @param author  the raw `author:` frontmatter value
- * @param lang    the post's language
- * @param toAbs   maps an unlocalised site path to an absolute, localised URL
+ * Separator to print *before* byline name `i` of `total`, so a list reads
+ * "A", "A and B", "A, B and C". Returns '' before the first name. Kept here
+ * rather than inlined in the template because each name is a link, so the
+ * names can't simply be join()ed into one string.
  */
-export function authorNode(author: string, lang: Lang, toAbs: (path: string) => string) {
-  const profile = BY_NAME.get(author.trim());
+export function bylineSeparator(i: number, total: number, lang: Lang): string {
+  if (i === 0) return '';
+  return i === total - 1 ? ` ${AND[lang]} ` : ', ';
+}
+
+function nodeFor(name: string, lang: Lang, toAbs: (path: string) => string) {
+  const profile = BY_NAME.get(name);
 
   // Unattributed posts (the editorial team) stay an Organization: claiming a
   // named human wrote something they didn't is the one thing worse for trust
@@ -97,7 +111,7 @@ export function authorNode(author: string, lang: Lang, toAbs: (path: string) => 
   if (!profile) {
     return {
       '@type': 'Organization',
-      name: author,
+      name,
       url: toAbs('/about/our-team/'),
       parentOrganization: { '@type': 'Organization', name: BRAND, url: SITE.url },
     };
@@ -114,4 +128,18 @@ export function authorNode(author: string, lang: Lang, toAbs: (path: string) => 
     worksFor: { '@type': 'Organization', name: BRAND, url: SITE.url },
     knowsAbout: KNOWS_ABOUT,
   };
+}
+
+/**
+ * schema.org value for a post's `author` property: a single node for a single
+ * byline, an array for a co-authored post. Both forms are valid schema.org,
+ * and emitting a bare object for one author keeps the common case readable.
+ *
+ * @param author  the raw `author:` frontmatter value
+ * @param lang    the post's language
+ * @param toAbs   maps an unlocalised site path to an absolute, localised URL
+ */
+export function authorNode(author: string | string[], lang: Lang, toAbs: (path: string) => string) {
+  const nodes = toList(author).map((name) => nodeFor(name, lang, toAbs));
+  return nodes.length === 1 ? nodes[0] : nodes;
 }

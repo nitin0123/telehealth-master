@@ -2,7 +2,7 @@
 title: "Why Sleep Tracking May Be Misleading During Menopause"
 subtitle: "When your sleep score says \"great\" but you feel exhausted"
 synopsis: "Your tracker says you slept well. Your body disagrees. Why sleep scores miss what hormonal change is doing to your rest."
-author: ResetWell Plus Editorial Team
+author: [Reshma Tiwari, Swati Singh]
 publishedAt: 2026-07-11
 cover: /blog/why-sleep-tracking-may-be-misleading-during-menopause/cover.jpg
 metaTitle: "Sleep Tracking and Menopause | ResetWell Plus"

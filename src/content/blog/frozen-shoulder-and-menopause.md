@@ -2,7 +2,7 @@
 title: "Frozen Shoulder and Menopause: How Oestrogen Loss Attacks Your Joints"
 subtitle: "A painful, deeply frustrating symptom flying under the radar that blindsides thousands of women in midlife"
 synopsis: "If reaching for a seatbelt has become agonizing, you are not alone. The direct biological link between plunging hormones and stiff, locked joints."
-author: ResetWell Plus Editorial Team
+author: [Reshma Tiwari, Swati Singh]
 publishedAt: 2026-06-26
 cover: /blog/frozen-shoulder-and-menopause/cover.jpg
 metaTitle: "Frozen Shoulder and Menopause | ResetWell Plus"

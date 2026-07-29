@@ -2,7 +2,7 @@
 title: "Why Are We Losing Top-Tier Female Talent at the Peak of Their Careers?"
 subtitle: "Productivity & Hormones: the hidden challenge women face"
 synopsis: "Menopause often arrives when women are at the height of their expertise. Why organizations lose senior female talent, and how the right support changes that."
-author: ResetWell Plus Editorial Team
+author: [Reshma Tiwari, Swati Singh]
 publishedAt: 2026-05-19
 cover: /blog/why-are-we-losing-top-tier-female-talent-at-the-peak-of-their-careers/img-1.jpg
 metaTitle: "Menopause and Senior Female Talent | ResetWell Plus"

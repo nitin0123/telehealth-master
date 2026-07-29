@@ -11,7 +11,13 @@ const blog = defineCollection({
     subtitle: z.string().optional(),
     /** One-liner used on the /blog cards and as the meta description */
     synopsis: z.string(),
-    author: z.string().default('ResetWell Plus Editorial Team'),
+    /**
+     * One name, or several for a co-authored post:
+     *   author: Reshma Tiwari
+     *   author: [Reshma Tiwari, Swati Singh]
+     * Names are resolved against src/data/authors.ts into Person schema.
+     */
+    author: z.union([z.string(), z.array(z.string())]).default('ResetWell Plus Editorial Team'),
     publishedAt: z.coerce.date(),
     /** Optional. Set when a post is materially revised; drives dateModified. */
     updatedAt: z.coerce.date().optional(),

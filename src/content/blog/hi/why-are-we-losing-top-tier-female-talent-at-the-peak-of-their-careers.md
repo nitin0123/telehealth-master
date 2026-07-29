@@ -2,7 +2,7 @@
 title: "हम अपनी सबसे क़ाबिल महिलाओं को उनके करियर के शिखर पर क्यों खो रहे हैं?"
 subtitle: "उत्पादकता और हार्मोन: वह छिपी चुनौती जिससे महिलाएँ जूझती हैं"
 synopsis: "मेनोपॉज़ अक्सर तब आता है जब महिलाएँ अपनी विशेषज्ञता के शिखर पर होती हैं। संगठन वरिष्ठ महिला प्रतिभा क्यों खो देते हैं, और सही सहारा यह कैसे बदल देता है।"
-author: ResetWell Plus संपादकीय टीम
+author: [Reshma Tiwari, Swati Singh]
 publishedAt: 2026-05-19
 cover: /blog/why-are-we-losing-top-tier-female-talent-at-the-peak-of-their-careers/img-1.jpg
 metaTitle: "मेनोपॉज़ और वरिष्ठ महिला प्रतिभा | ResetWell Plus"

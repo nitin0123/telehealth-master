@@ -2,7 +2,7 @@
 title: "कार्यस्थल पर मेनोपॉज़ की जागरूकता क्यों ज़रूरी है?"
 subtitle: "जैविक बदलाव और पेशेवर स्थिरता का वह अहम मोड़"
 synopsis: "मेनोपॉज़ है क्या, यह काम पर कैसे दिखता है, और वे नीतियाँ तथा सांस्कृतिक बदलाव जिनसे ऐसा कार्यस्थल बनता है जहाँ महिलाएँ खिल सकें।"
-author: ResetWell Plus संपादकीय टीम
+author: [Reshma Tiwari, Swati Singh]
 publishedAt: 2026-05-08
 cover: /blog/why-menopause-awareness-matters-in-the-workplace/img-1.jpg
 metaTitle: "कार्यस्थल पर मेनोपॉज़ की जागरूकता | ResetWell Plus"

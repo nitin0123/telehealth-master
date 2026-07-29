@@ -2,7 +2,7 @@
 title: "How to Age Healthy After Menopause: A Practical Guide to Thriving in Your Next Chapter"
 subtitle: "Healthy aging is not about staying young. It is about strength, mobility and clarity."
 synopsis: "Menopause ends your reproductive years, not your vitality. Eight evidence-led habits that protect muscle, bone, heart, sleep and mind in the decades after."
-author: ResetWell Plus Editorial Team
+author: [Reshma Tiwari, Swati Singh]
 publishedAt: 2026-07-28
 cover: /blog/how-to-age-healthy-after-menopause/cover.jpg
 metaTitle: "How to Age Healthy After Menopause | ResetWell Plus"
