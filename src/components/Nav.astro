@@ -20,8 +20,9 @@ const to = (href: string) => localizePath(href, lang);
     </a>
 
     <!-- Desktop nav -->
+    <!-- No Home item: the logo to the left is the link home, and it carries an
+         aria-label saying so for screen readers. -->
     <ul class="hidden xl:flex items-center gap-6 text-[15px] font-medium tracking-wide text-ink/80">
-      <li><a href={to('/')} class="whitespace-nowrap hover:text-clay transition">{t.nav.home}</a></li>
       {nav.map((section) => section.href ? (
         <li><a href={to(section.href)} class="whitespace-nowrap hover:text-clay transition">{sectionCopy(t, section.id).short ?? sectionCopy(t, section.id).label}</a></li>
       ) : (
@@ -69,13 +70,14 @@ const to = (href: string) => localizePath(href, lang);
   <div id="drawerBg" class="absolute inset-0 bg-ink/40 backdrop-blur-sm"></div>
   <aside class="absolute right-0 top-0 h-full w-[88%] max-w-sm bg-cream shadow-2xl flex flex-col translate-x-full transition-transform duration-300 ease-out" id="drawerPanel">
     <div class="flex items-center justify-between px-5 h-16 border-b border-sand">
-      <Brand class="text-2xl" />
+      <!-- Linked, because the drawer covers the header logo: with no Home item
+           in the list this is the only way back to the homepage from here. -->
+      <a href={to('/')} aria-label={fmt(t.nav.brandHome, { brand: WORDMARK })}><Brand class="text-2xl" /></a>
       <button id="closeBtn" class="p-2 text-ever" aria-label={t.nav.closeMenu}>
         <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
       </button>
     </div>
     <nav class="flex-1 overflow-y-auto px-3 py-4">
-      <a href={to('/')} class="block px-3 py-3 font-medium">{t.nav.home}</a>
       {nav.map((section) => section.href ? (
         <a href={to(section.href)} class="block px-3 py-3 font-medium border-b border-sand">{sectionCopy(t, section.id).label}</a>
       ) : (
