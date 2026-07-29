@@ -41,6 +41,21 @@ Note: online booking is not open yet. Enquiries go through the contact form at h
 
 - [Blog](https://www.resetwellplus.com/blog): Articles on perimenopause symptoms, HRT, sleep, brain fog, joint pain, loneliness, and menopause at work. Each article carries a FAQ section answering the questions readers actually ask.
 
+Individual articles, newest first. Every one is also published in Hindi at the same path under /hindi/:
+
+- [How to Age Healthy After Menopause: A Practical Guide to Thriving in Your Next Chapter](https://www.resetwellplus.com/blog/how-to-age-healthy-after-menopause): Menopause ends your reproductive years, not your vitality. Eight evidence-led habits that protect muscle, bone, heart, sleep and mind in the decades after.
+- [Loneliness During Menopause: The Psychological Impact That No One Discusses](https://www.resetwellplus.com/blog/loneliness-during-menopause): Menopause is not only physical. Many women feel emotionally disconnected, even surrounded by people. Why it happens, and what genuinely helps.
+- [Why Sleep Tracking May Be Misleading During Menopause](https://www.resetwellplus.com/blog/why-sleep-tracking-may-be-misleading-during-menopause): Your tracker says you slept well. Your body disagrees. Why sleep scores miss what hormonal change is doing to your rest.
+- [The Science of Estrogen and Brain Aging](https://www.resetwellplus.com/blog/the-science-of-estrogen-and-brain-aging): What if one of the key factors impacting brain health is not diet or exercise, but the hormonal balance of your body?
+- [Frozen Shoulder and Menopause: How Oestrogen Loss Attacks Your Joints](https://www.resetwellplus.com/blog/frozen-shoulder-and-menopause): If reaching for a seatbelt has become agonizing, you are not alone. The direct biological link between plunging hormones and stiff, locked joints.
+- [How to Optimize Your Sleep Environment to Minimize Night Sweats](https://www.resetwellplus.com/blog/optimize-your-sleep-environment-to-minimize-night-sweats): Waking up soaked at night? Turning your bedroom into a freezer is not the answer. Bedding, airflow, and sleepwear changes that actually work.
+- [How to Manage Menopause Brain Fog at Work Without Losing Your Confidence](https://www.resetwellplus.com/blog/manage-menopause-brain-fog-at-work): Word-retrieval blanks in a big meeting? You aren't losing your edge. Practical strategies to bypass the fog and protect your confidence at work.
+- [Why Should HR Talk About Menopause?](https://www.resetwellplus.com/blog/why-should-hr-talk-menopause): Organizations are losing top-tier female talent at the peak of their careers, because workplaces fail to support a natural biological transition.
+- [Why Are We Losing Top-Tier Female Talent at the Peak of Their Careers?](https://www.resetwellplus.com/blog/why-are-we-losing-top-tier-female-talent-at-the-peak-of-their-careers): Menopause often arrives when women are at the height of their expertise. Why organizations lose senior female talent, and how the right support changes that.
+- [Why Menopause Awareness Matters in the Workplace?](https://www.resetwellplus.com/blog/why-menopause-awareness-matters-in-the-workplace): What menopause is, how it shows up at work, and the policies and culture shifts that build a workplace where women can thrive.
+- [Why Does My Body Feel Like I Ran a Marathon In My Sleep?](https://www.resetwellplus.com/blog/why-does-my-body-feel-like-i-ran-a-marathon-in-my-sleep): Menopause joint pain and morning stiffness. Why falling estrogen affects joints, muscles and inflammation, what helps, and the red flags worth a doctor's visit.
+- [3 Most Common Menopause Symptoms](https://www.resetwellplus.com/blog/3-most-common-menopause-symptoms): Brain fog, hot flashes and broken sleep are the three symptoms women report most in perimenopause. What drives each one, and what actually helps.
+
 ## About
 
 - [Our story](https://www.resetwellplus.com/about/our-story): Why ResetWell Plus exists.

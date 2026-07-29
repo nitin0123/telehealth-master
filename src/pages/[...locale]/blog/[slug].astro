@@ -4,6 +4,7 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
 import PageLayout from '../../../layouts/PageLayout.astro';
 import { SITE, BRAND } from '../../../data/seo';
+import { authorNode, authorPath } from '../../../data/authors';
 import { BOOK_HREF } from '../../../data/nav';
 import { HI_PREFIX, langFromUrl, localizePath, LOCALE, useTranslations } from '../../../i18n';
 
@@ -30,6 +31,8 @@ const { post } = Astro.props;
 const lang = langFromUrl(Astro.url);
 const t = useTranslations(lang);
 const to = (href: string) => localizePath(href, lang);
+// Absolute, locale-correct URL for a site path; used by the JSON-LD below.
+const toAbs = (href: string) => new URL(to(href), SITE.url).href;
 const { Content } = await post.render();
 const { title, subtitle, synopsis, author, publishedAt, cover, keywords, metaTitle, faq } = post.data;
 
@@ -37,6 +40,8 @@ const { title, subtitle, synopsis, author, publishedAt, cover, keywords, metaTit
 // with the build machine's timezone.
 const dateLabel = publishedAt.toLocaleDateString(LOCALE[lang], { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
 const readMins = Math.max(1, Math.round(post.body.split(/\s+/).length / 220));
+const bioPath = authorPath(author);
+const bioHref = bioPath ? to(bioPath) : null;
 
 const articleSchema = {
   '@context': 'https://schema.org',
@@ -47,7 +52,9 @@ const articleSchema = {
   // Falls back to the publish date so the field is always present: search
   // engines treat a missing dateModified as unknown rather than unchanged.
   dateModified: (post.data.updatedAt ?? publishedAt).toISOString(),
-  author: { '@type': 'Organization', name: author },
+  // Resolved against src/data/authors.ts: a named contributor becomes a full
+  // Person (job title, bio page, photo), anyone else stays an Organization.
+  author: authorNode(author, lang, toAbs),
   publisher: { '@type': 'Organization', name: BRAND, url: SITE.url },
   mainEntityOfPage: new URL(Astro.url.pathname, SITE.url).href,
   // Names the parts worth reading aloud in a voice result: the headline and
@@ -97,7 +104,11 @@ const faqSchema = faq?.length
   </div>
 
   <p class="-mt-6 mb-8 text-sm text-stone reveal" style="--reveal-delay:120ms">
-    {author} · {dateLabel} · {t.pages.blog.readTime.replace('{n}', String(readMins))}
+    {/* A named contributor links to their bio, matching the Person JSON-LD */}
+    {bioHref
+      ? <a href={bioHref} rel="author" class="font-medium text-clay hover:text-claydk transition">{author}</a>
+      : author}
+    {' · '}{dateLabel} · {t.pages.blog.readTime.replace('{n}', String(readMins))}
   </p>
 
   <article class="post-body reveal" style="--reveal-delay:160ms">
