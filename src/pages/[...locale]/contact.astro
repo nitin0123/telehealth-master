@@ -63,11 +63,11 @@ const ytIcon = '<svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><pa
             <p class="text-sm text-ink mb-2" set:html={fmt(page.captchaQuestion, { q: '<span data-captcha-q>6 + 8</span>' })} />
             <input id="cf-captcha" lang="en" dir="ltr" name="captcha" inputmode="numeric" required placeholder="Your answer"
               class="w-full rounded-2xl border border-sand bg-cream px-4 py-3 focus:outline-none focus:ring-2 focus:ring-clay/40" />
-            <p data-captcha-err class="hidden mt-2 text-sm text-clay">{page.captchaError}</p>
+            <p data-captcha-err role="alert" aria-live="polite" class="hidden mt-2 text-sm text-clay">{page.captchaError}</p>
           </div>
 
           <button class="w-full sm:w-auto rounded-full bg-clay hover:bg-claydk text-white font-semibold px-8 py-3.5 transition disabled:opacity-60 disabled:cursor-not-allowed">{page.submit}</button>
-          <p data-contact-err class="hidden mt-3 text-sm text-clay"></p>
+          <p data-contact-err role="alert" aria-live="polite" class="hidden mt-3 text-sm text-clay"></p>
         </form>
 
         <div data-contact-success class="hidden text-center py-8">

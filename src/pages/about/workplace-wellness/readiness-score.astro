@@ -211,7 +211,7 @@ const inputClass =
           <button class="w-full rounded-full bg-clay hover:bg-claydk text-white font-semibold px-8 py-3.5 transition disabled:opacity-60 disabled:cursor-not-allowed">
             {page.submit}
           </button>
-          <p data-rw-error class="hidden mt-3 text-sm text-clay"></p>
+          <p data-rw-error role="alert" aria-live="polite" class="hidden mt-3 text-sm text-clay"></p>
         </form>
         <p class="mt-3 text-center text-xs text-stone">{page.formFineprint}</p>
       </div>
@@ -288,6 +288,11 @@ const inputClass =
         if (top < offset) {
           window.scrollBy({ top: top - offset, behavior: reduceMotion ? 'auto' : 'smooth' });
         }
+        // Move focus to the panel that just appeared. Without this a keyboard or
+        // screen-reader user stays on the button they pressed, which no longer
+        // exists visually, and never hears the new question or the result.
+        panels[name].setAttribute('tabindex', '-1');
+        panels[name].focus({ preventScroll: true });
       };
 
       const fill = (tpl: string, vars: Record<string, string | number>) =>

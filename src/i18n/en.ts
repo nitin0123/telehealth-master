@@ -101,6 +101,7 @@ export const en = {
     prev: 'Previous',
     next: 'Next',
     genericError: 'Something went wrong. Please try again.',
+    skipToContent: 'Skip to content',
   },
 
   // -------------------------------------------------------------------------

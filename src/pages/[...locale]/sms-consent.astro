@@ -78,7 +78,7 @@ import LegalLangNote from '../../components/LegalLangNote.astro';
         </label>
       </div>
 
-      <p data-sms-err class="hidden text-sm text-clay"></p>
+      <p data-sms-err role="alert" aria-live="polite" class="hidden text-sm text-clay"></p>
 
       <button class="w-full rounded-full bg-clay hover:bg-claydk text-white font-semibold px-8 py-3.5 transition disabled:opacity-60 disabled:cursor-not-allowed">{page.submit}</button>
       <p class="text-xs text-stone/70 text-center">{page.formNote}</p>

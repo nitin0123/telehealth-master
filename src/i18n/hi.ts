@@ -65,6 +65,7 @@ export const hi: DeepPartial<Dict> = {
   },
 
   common: {
+    skipToContent: 'मुख्य सामग्री पर जाएँ',
     whatsappLabel: 'व्हाट्सऐप',
     whatsappAria: 'व्हाट्सऐप पर हमसे बात करें',
     whatsappPrefill: 'नमस्ते, मैं ResetWell Plus के बारे में और जानना चाहती हूँ।',
