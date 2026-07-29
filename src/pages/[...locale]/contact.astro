@@ -174,7 +174,8 @@ const ytIcon = '<svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><pa
   </script>
 
   <!-- Decode the obfuscated contact details on demand -->
-  <script is:inline>
+  <!-- Bundled, not inline: it already reads its data from attributes. -->
+  <script>
     document.querySelectorAll('[data-reveal-contact]').forEach(function (btn) {
       btn.addEventListener('click', function () {
         var out = btn.parentElement.querySelector('[data-reveal-out]');

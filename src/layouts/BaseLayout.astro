@@ -66,7 +66,7 @@ const altLocales = lang === 'en' ? [...SITE.altLocales, ...(twin ? [OG_LOCALE.hi
 ---
 
 <!doctype html>
-<html lang={LOCALE[lang]} class="no-js">
+<html lang={LOCALE[lang]}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -125,10 +125,13 @@ const altLocales = lang === 'en' ? [...SITE.altLocales, ...(twin ? [OG_LOCALE.hi
     <!-- Page-specific structured data (breadcrumbs, FAQ, etc.) -->
     <slot name="head" />
 
-    <script is:inline>
-      // Swap no-js -> js as early as possible so reveal styles can animate.
-      document.documentElement.classList.remove('no-js');
-    </script>
+    <!-- Scroll-reveal starts hidden and is revealed by script. Without JS there
+         is nothing to reveal it, so turn the animation off entirely. Replaces
+         an inline script that stripped a `no-js` class, which is what forced
+         'unsafe-inline' into the script-src CSP. -->
+    <noscript>
+      <style>.reveal { opacity: 1 !important; transform: none !important; }</style>
+    </noscript>
   </head>
   <body>
     <!-- Ambient brand-glow background (soft multi-hue blobs), shown on every page -->
@@ -174,7 +177,8 @@ const altLocales = lang === 'en' ? [...SITE.altLocales, ...(twin ? [OG_LOCALE.hi
       </svg>
       <span class="hidden sm:inline">{t.common.whatsappLabel}</span>
     </a>
-    <script is:inline>
+    <!-- Bundled, not inline, so script-src need not allow inline scripts. -->
+    <script>
       (function () {
         // Founders' WhatsApp numbers (digits only), base64-encoded.
         var encoded = ['MTIwMTI4MjgxNDM=', 'MTczMjc3MTY1NzU='];

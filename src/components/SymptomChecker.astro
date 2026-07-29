@@ -27,7 +27,14 @@ const ROUTES: Record<string, string> = {
   <div data-step></div>
 </div>
 
-<script is:inline define:vars={{ COPY, ROUTES }}>
+<!-- Quiz copy and routes as inert JSON. Not executable, so it needs no CSP
+     allowance, and the bundled script below reads it. Replaces a define:vars
+     inline script. -->
+<script type="application/json" data-symptom-data set:html={JSON.stringify({ COPY, ROUTES })} />
+
+<script>
+  const dataEl = document.querySelector('[data-symptom-data]');
+  const { COPY, ROUTES } = JSON.parse(dataEl?.textContent || '{"COPY":{},"ROUTES":{}}');
   const questions = COPY.questions;
   const results = COPY.results;
 

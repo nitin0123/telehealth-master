@@ -110,11 +110,6 @@
   opacity: 1;
   transform: none;
 }
-/* If JS is disabled, show everything */
-.no-js .reveal {
-  opacity: 1;
-  transform: none;
-}
 
 /* Respect reduced-motion preferences */
 @media (prefers-reduced-motion: reduce) {

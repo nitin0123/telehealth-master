@@ -1153,7 +1153,7 @@ export const en = {
 
       programme: {
         eyebrow: 'The programme',
-        heading: 'The ResetWell Plus Corporate Wellness Programme',
+        heading: 'The ResetWell Plus Workplace Wellness Program',
         tiers: [
           {
             tier: 'Tier 1',
@@ -1478,7 +1478,7 @@ export const en = {
       cta: 'Talk to our team',
       programmeHeading: 'Looking for the full programme?',
       programmeBody:
-        'Workshops are Tier 1 of the ResetWell Plus Corporate Wellness Programme. See the business case, the three tiers and what management needs to know.',
+        'Workshops are Tier 1 of the ResetWell Plus Workplace Wellness Program. See the business case, the three tiers and what management needs to know.',
       programmeCta: 'Workplace Wellness',
     },
 
