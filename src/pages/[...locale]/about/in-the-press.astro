@@ -12,6 +12,7 @@ const enquiryHtml = fmt(page.enquiries, {
 });
 import PageLayout from '../../../layouts/PageLayout.astro';
 import { pressFeatures } from '../../../data/content';
+import Picture from '../../../components/Picture.astro';
 ---
 <PageLayout
   section={t.nav.sections.about.label}
@@ -35,7 +36,7 @@ import { pressFeatures } from '../../../data/content';
         <!-- thumbnail with zoom + shine sweep, or branded fallback -->
         <div class="relative overflow-hidden">
           {p.img ? (
-            <img src={p.img} alt={`${p.publication}: ${p.title}`} loading="lazy" class="aspect-[16/9] w-full object-cover object-top transition-transform duration-500 ease-out group-hover:scale-110" />
+            <Picture src={p.img} alt={`${p.publication}: ${p.title}`} sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" class="aspect-[16/9] w-full object-cover object-top transition-transform duration-500 ease-out group-hover:scale-110" />
           ) : (
             <div class="aspect-[16/9] w-full grid place-items-center bg-ever transition-transform duration-500 ease-out group-hover:scale-110">
               <span class="font-serif text-2xl text-cream/90">{p.publication}</span>

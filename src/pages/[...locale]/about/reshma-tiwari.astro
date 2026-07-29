@@ -3,6 +3,7 @@ import { fmt, langFromUrl, localePaths, localizePath, useTranslations } from '..
 export const getStaticPaths = localePaths;
 import PageLayout from '../../../layouts/PageLayout.astro';
 import { SITE } from '../../../data/seo';
+import Picture from '../../../components/Picture.astro';
 
 const lang = langFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -36,12 +37,10 @@ const personSchema = {
 >
   <script type="application/ld+json" slot="head" set:html={JSON.stringify(personSchema)} />
   <div class="grid md:grid-cols-[auto_1fr] gap-8 lg:gap-10 items-start">
-    <img
+    <Picture
       src="/reshma.jpeg"
       alt="Reshma Tiwari"
-      width="224"
-      height="224"
-      loading="lazy"
+      sizes="224px"
       class="w-44 h-44 md:w-56 md:h-56 rounded-4xl object-cover object-center border-4 border-sand shadow-sm"
     />
     <div class="prose-none text-stone text-lg leading-relaxed space-y-4 reveal">

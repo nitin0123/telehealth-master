@@ -2,6 +2,7 @@
 import { langFromUrl, localePaths, localizePath, useTranslations } from '../../../i18n';
 export const getStaticPaths = localePaths;
 import PageLayout from '../../../layouts/PageLayout.astro';
+import Picture from '../../../components/Picture.astro';
 
 const lang = langFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -28,7 +29,7 @@ const founders = [
   <div class="grid sm:grid-cols-2 gap-5 mb-10">
     {founders.map((f) => (
       <article class="bg-white border border-sand rounded-4xl p-8 text-center reveal">
-        <img src={f.img} alt={f.name} loading="lazy" class="w-40 h-40 mx-auto rounded-full object-cover object-center border-4 border-sand shadow-sm" />
+        <Picture src={f.img} alt={f.name} sizes="160px" class="w-40 h-40 mx-auto rounded-full object-cover object-center border-4 border-sand shadow-sm" />
         <h2 class="mt-5 font-serif text-2xl text-ever">{f.name}</h2>
         <p class="text-stone mt-1">{p.founders[f.id].role}</p>
         <p class="text-sm font-medium text-clay mt-1.5">{p.founders[f.id].creds}</p>

@@ -3,6 +3,7 @@ import { langFromUrl, localePaths, localizePath, useTranslations } from '../../.
 export const getStaticPaths = localePaths;
 import PageLayout from '../../../layouts/PageLayout.astro';
 import { BOOK_HREF } from '../../../data/nav';
+import Picture from '../../../components/Picture.astro';
 
 const lang = langFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -21,15 +22,11 @@ const p = t.pages.ourStory;
   <div class="bg-white border border-sand rounded-5xl p-8 lg:p-12 reveal space-y-10">
     <!-- Intro -->
     <div>
-      <img
+      <Picture
         src="/about/founding-team.jpg"
-        srcset="/about/founding-team-480.jpg 480w, /about/founding-team.jpg 1200w"
-        sizes="(max-width: 640px) 92vw, (max-width: 1024px) 90vw, 880px"
         alt={p.imageAlt}
-        width="1200"
-        height="800"
-        loading="eager"
-        decoding="async"
+        priority
+        sizes="(max-width: 640px) 92vw, (max-width: 1024px) 90vw, 880px"
         class="w-full rounded-4xl border border-sand mb-8"
       />
       <div class="space-y-5 text-stone text-lg leading-relaxed">

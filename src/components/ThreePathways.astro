@@ -1,6 +1,7 @@
 ---
 import { BOOK_HREF } from '../data/nav';
 import { langFromUrl, localizePath, useTranslations } from '../i18n';
+import Picture from './Picture.astro';
 // 3.3 How We Help: Three Pathways.
 // Images: (1) online event in progress, specialist on screen, engaged attendees;
 //         (2) woman relaxed on a laptop video call, home setting, soft light;
@@ -27,7 +28,7 @@ const pathways = [
     {pathways.map((p, i) => (
       <div class="group flex flex-col bg-white border border-sand rounded-4xl overflow-hidden transition-all duration-300 ease-out will-change-transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-ever/20 hover:border-clay/40 reveal" style={`--reveal-delay:${i * 90}ms`}>
         <div class="relative aspect-[16/10] overflow-hidden">
-          <img src={p.img} alt={t.threePathways.alt[p.id]} class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105" loading="lazy" />
+          <Picture src={p.img} alt={t.threePathways.alt[p.id]} sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 380px" class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105" />
           <div class="pointer-events-none absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out bg-gradient-to-r from-transparent via-white/40 to-transparent"></div>
           {p.soon && (
             <span class="absolute top-3 left-3 inline-flex items-center gap-1.5 rounded-full bg-ever/85 text-cream px-3 py-1 text-xs font-semibold backdrop-blur-sm">

@@ -1,6 +1,7 @@
 ---
 import { BOOK_HREF } from '../data/nav';
 import { langFromUrl, localizePath, useTranslations } from '../i18n';
+import Picture from './Picture.astro';
 // HERO IMAGE: South Asian woman, mid-40s, thoughtful by a window, natural morning light.
 // Drop the real photo into /public and replace the placeholder div below.
 const lang = langFromUrl(Astro.url);
@@ -27,15 +28,15 @@ const to = (href: string) => localizePath(href, lang);
     </div>
     <div class="relative reveal" style="--reveal-delay:120ms">
       <div class="group aspect-square rounded-5xl overflow-hidden bg-gradient-to-br from-peach via-sand to-sage/60 relative transition-all duration-300 ease-out will-change-transform hover:-translate-y-1 hover:shadow-2xl hover:shadow-ever/20">
-        <img
+        {/* The LCP image. `priority` marks it eager + fetchpriority=high; the
+            real 1536x1024 dimensions come from the manifest, replacing the
+            1200x1200 that was declared here and did not match the file. */}
+        <Picture
           src="/hero-photo.jpeg"
           alt={t.hero.imageAlt}
+          priority
+          sizes="(max-width: 1024px) 92vw, 560px"
           class="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-500 ease-out group-hover:scale-105"
-          width="1200"
-          height="1200"
-          loading="eager"
-          fetchpriority="high"
-          decoding="async"
         />
         <div class="pointer-events-none absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out bg-gradient-to-r from-transparent via-white/40 to-transparent"></div>
         <div class="hidden absolute bottom-5 left-5 bg-cream/90 backdrop-blur rounded-3xl px-5 py-4 shadow-lg">

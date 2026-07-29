@@ -1,0 +1,58 @@
+---
+// Responsive image: serves WebP with a JPEG/PNG fallback, offers a 480px
+// variant to narrow screens, and always emits intrinsic width/height so the
+// browser reserves space and the page does not shift as images load.
+//
+// Dimensions and variant availability come from src/data/imageMeta.json, which
+// `npm run images` regenerates from the files in public/. An image with no
+// manifest entry still renders: it just falls back to a plain <img>.
+import meta from '../data/imageMeta.json';
+
+interface Props {
+  src: string;
+  alt: string;
+  /** Tailwind classes for the <img> itself. */
+  class?: string;
+  /** `sizes` hint. Defaults to full viewport width, which suits full-bleed cards. */
+  sizes?: string;
+  /** Set on the LCP image only; everything else should stay lazy. */
+  priority?: boolean;
+  loading?: 'lazy' | 'eager';
+}
+
+const { src, alt, class: className = '', sizes = '100vw', priority = false, loading } = Astro.props;
+
+const entry = (meta as Record<string, { w: number; h: number }>)[src];
+const ext = src.slice(src.lastIndexOf('.'));
+const base = src.slice(0, src.lastIndexOf('.'));
+
+// `npm run images` only writes 480px variants when the source is wider.
+const hasSmall = !!entry && entry.w > 480;
+const webp = `${base}.webp`;
+const webpSmall = `${base}-480.webp`;
+const rasterSmall = `${base}-480${ext}`;
+
+const eager = priority || loading === 'eager';
+---
+
+{/* `display: contents` so <picture> adds no box of its own: the <img> keeps
+    behaving as a direct child of whatever laid it out before, which makes this
+    a drop-in replacement for a bare <img> including absolute positioning. */}
+<picture class="contents">
+  <source
+    type="image/webp"
+    srcset={hasSmall ? `${webpSmall} 480w, ${webp} ${entry.w}w` : webp}
+    sizes={hasSmall ? sizes : undefined}
+  />
+  {hasSmall && <source type={ext === '.png' ? 'image/png' : 'image/jpeg'} srcset={`${rasterSmall} 480w, ${src} ${entry.w}w`} sizes={sizes} />}
+  <img
+    src={src}
+    alt={alt}
+    width={entry?.w}
+    height={entry?.h}
+    loading={eager ? 'eager' : 'lazy'}
+    decoding={eager ? 'sync' : 'async'}
+    fetchpriority={eager ? 'high' : undefined}
+    class={className}
+  />
+</picture>
