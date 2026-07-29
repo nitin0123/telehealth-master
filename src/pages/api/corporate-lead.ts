@@ -51,7 +51,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
 
   let ip: string | null = null;
   try { ip = clientAddress ?? null; } catch { ip = null; }
-  if (rateLimited(ip)) {
+  if (await rateLimited(ip, 'corporate-lead')) {
     return fail('Too many submissions from your network. Please try again in a few minutes.', 429);
   }
 

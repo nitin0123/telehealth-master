@@ -15,7 +15,7 @@ const to = (href: string) => localizePath(href, lang);
   <nav class="max-w-7xl mx-auto px-5 lg:px-8 flex items-center justify-between h-16 lg:h-20">
     <a href={to('/')} aria-label={fmt(t.nav.brandHome, { brand: WORDMARK })} class="flex items-center shrink-0">
       <img src="/logo.png" alt={WORDMARK} width="56" height="56" decoding="async" class="h-12 lg:h-14 w-auto rounded-full"
-        onerror="this.style.display='none';document.getElementById('brandFallback')?.style.setProperty('display','inline-block')" />
+        data-logo-img />
       <span id="brandFallback" style="display:none"><Brand class="text-2xl lg:text-[1.7rem]" /></span>
     </a>
 
@@ -120,4 +120,15 @@ const to = (href: string) => localizePath(href, lang);
   document.getElementById('closeBtn')?.addEventListener('click', close);
   document.getElementById('drawerBg')?.addEventListener('click', close);
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+</script>
+
+<script>
+  // Was an inline onerror attribute. Moved into a bundled script so the CSP can
+  // set script-src-attr 'none' and refuse inline event handlers entirely.
+  document.querySelectorAll<HTMLImageElement>('[data-logo-img]').forEach((img) => {
+    img.addEventListener('error', () => {
+      img.style.display = 'none';
+      document.getElementById('brandFallback')?.style.setProperty('display', 'inline-block');
+    });
+  });
 </script>
