@@ -35,7 +35,7 @@ const to = (href: string) => localizePath(href, lang);
 // Absolute, locale-correct URL for a site path; used by the JSON-LD below.
 const toAbs = (href: string) => new URL(to(href), SITE.url).href;
 const { Content } = await post.render();
-const { title, subtitle, synopsis, author, publishedAt, cover, keywords, metaTitle, faq, linkedin, hashtags } = post.data;
+const { title, subtitle, synopsis, author, publishedAt, cover, keywords, metaTitle, faq, linkedin, hashtags, quickAnswer } = post.data;
 
 // timeZone UTC: frontmatter dates are date-only, so formatting must not shift
 // with the build machine's timezone.
@@ -49,6 +49,8 @@ const articleSchema = {
   '@type': 'BlogPosting',
   headline: title,
   description: synopsis,
+  // The liftable answer: what a snippet or AI summary should quote.
+  ...(quickAnswer ? { abstract: quickAnswer } : {}),
   datePublished: publishedAt.toISOString(),
   // Falls back to the publish date so the field is always present: search
   // engines treat a missing dateModified as unknown rather than unchanged.
@@ -58,11 +60,11 @@ const articleSchema = {
   author: authorNode(author, lang, toAbs),
   publisher: { '@type': 'Organization', name: BRAND, url: SITE.url },
   mainEntityOfPage: new URL(Astro.url.pathname, SITE.url).href,
-  // Names the parts worth reading aloud in a voice result: the headline and
-  // the synopsis, rather than the whole article body.
+  // Names the parts worth reading aloud in a voice result: the headline, the
+  // lede, and the quick answer, which is written to be read out whole.
   speakable: {
     '@type': 'SpeakableSpecification',
-    cssSelector: ['h1', '[data-page-lede]'],
+    cssSelector: ['h1', '[data-page-lede]', ...(quickAnswer ? ['[data-quick-answer]'] : [])],
   },
   ...(cover ? { image: new URL(cover, SITE.url).href } : {}),
   ...(keywords ? { keywords } : {}),
@@ -119,6 +121,13 @@ const faqSchema = faq?.length
     ))}
     {' · '}{dateLabel} · {t.pages.blog.readTime.replace('{n}', String(readMins))}
   </p>
+
+  {quickAnswer && (
+    <aside class="mb-8 rounded-4xl bg-sand/40 border border-sand p-5 sm:p-6 reveal" style="--reveal-delay:140ms">
+      <h2 class="text-xs font-semibold uppercase tracking-wide text-clay">{t.pages.blog.quickAnswer}</h2>
+      <p data-quick-answer class="mt-2 text-ink leading-relaxed">{quickAnswer}</p>
+    </aside>
+  )}
 
   <article class="post-body reveal" style="--reveal-delay:160ms">
     <Content />

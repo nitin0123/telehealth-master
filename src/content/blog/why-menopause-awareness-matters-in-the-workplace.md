@@ -6,6 +6,7 @@ author: [Swati Singh, Reshma Tiwari]
 publishedAt: 2026-05-08
 cover: /blog/why-menopause-awareness-matters-in-the-workplace/img-1.jpg
 metaTitle: "Menopause Awareness in the Workplace | ResetWell Plus"
+quickAnswer: "Menopause is confirmed after twelve consecutive months without a period, usually between 45 and 55, when the ovaries produce far less estrogen and progesterone. That lands squarely in most women's peak working years, so awareness, flexible arrangements and open conversation are workplace requirements rather than personal favours."
 keywords: "menopause awareness in the workplace, menopause at work, supporting employees through menopause, menopause workplace policy, women's health at work"
 hashtags: [MenopauseAwareness, MenopauseAtWork, EmployeeWellbeing, WomensHealth]
 linkedin: https://www.linkedin.com/pulse/why-menopause-awareness-matters-workplace-resetwellplus-91ovc

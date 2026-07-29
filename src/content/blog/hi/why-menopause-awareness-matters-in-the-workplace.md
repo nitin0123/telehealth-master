@@ -6,6 +6,7 @@ author: [Swati Singh, Reshma Tiwari]
 publishedAt: 2026-05-08
 cover: /blog/why-menopause-awareness-matters-in-the-workplace/img-1.jpg
 metaTitle: "कार्यस्थल पर मेनोपॉज़ की जागरूकता | ResetWell Plus"
+quickAnswer: "मेनोपॉज़ की पुष्टि लगातार बारह महीने पीरियड न आने पर होती है, आमतौर पर 45 से 55 की उम्र में, जब अंडाशय एस्ट्रोजन और प्रोजेस्टेरोन बहुत कम बनाते हैं। यह ठीक ज़्यादातर महिलाओं के कामकाजी शिखर पर पड़ता है, इसलिए जागरूकता, लचीली व्यवस्था और खुली बातचीत एहसान नहीं, कार्यस्थल की ज़रूरत हैं।"
 keywords: "कार्यस्थल पर मेनोपॉज़ जागरूकता, काम पर मेनोपॉज़, मेनोपॉज़ में कर्मचारियों का सहयोग, मेनोपॉज़ कार्यस्थल नीति, कार्यस्थल पर महिला स्वास्थ्य"
 hashtags: [MenopauseAwareness, MenopauseAtWork, EmployeeWellbeing, WomensHealth]
 faq:

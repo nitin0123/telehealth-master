@@ -108,10 +108,14 @@ interface ServiceInput {
  * to /coming-soon: claiming a reservation endpoint that does not accept
  * bookings would be a false capability.
  */
+/** Stable @id for the Service node described on `url`. */
+export const serviceId = (url: string) => `${url}#service`;
+
 export function serviceSchema({ name, description, url, serviceType, priceFrom, inLanguage }: ServiceInput) {
   return {
     '@context': 'https://schema.org',
     '@type': 'Service',
+    '@id': serviceId(url),
     name,
     description,
     url,

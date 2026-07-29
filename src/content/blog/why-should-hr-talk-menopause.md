@@ -5,6 +5,7 @@ synopsis: "Organizations are losing top-tier female talent at the peak of their 
 author: [Swati Singh, Reshma Tiwari]
 publishedAt: 2026-05-29
 cover: /blog/why-should-hr-talk-menopause/cover.jpg
+quickAnswer: "For HR, menopause is a retention, productivity and compliance issue, not a private health matter. Replacing a senior executive costs far more than reasonable adjustments, and menopause-related discrimination claims are rising globally. Policy, manager training and open conversation are the cheapest interventions available."
 keywords: "HR menopause policy, menopause in the workplace, menopause employee support, DEI menopause inclusion, talent retention menopause, menopause friendly workplace"
 hashtags: [MenopauseAtWork, HRLeadership, EmployeeWellbeing, Menopause]
 linkedin: https://www.linkedin.com/pulse/why-should-hr-talk-menopause-resetwellplus-cf3mc

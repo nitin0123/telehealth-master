@@ -6,6 +6,7 @@ author: [Reshma Tiwari, Swati Singh]
 publishedAt: 2026-06-26
 cover: /blog/frozen-shoulder-and-menopause/cover.jpg
 metaTitle: "फ़्रोज़न शोल्डर और मेनोपॉज़ | ResetWell Plus"
+quickAnswer: "फ़्रोज़न शोल्डर, जिसे चिकित्सा में एडहेसिव कैप्सुलाइटिस कहते हैं, तब होता है जब कंधे के जोड़ के चारों ओर का कैप्सूल सूजकर मोटा और कड़ा हो जाता है और हरकत बहुत सीमित हो जाती है। पेरिमेनोपॉज़ में घटता एस्ट्रोजन इसका ख़तरा तेज़ी से बढ़ाता है, इसीलिए यह 40 से 60 की महिलाओं में सबसे ज़्यादा दिखता है।"
 keywords: "फ़्रोज़न शोल्डर मेनोपॉज़, एडहेसिव कैप्सुलाइटिस महिलाएँ, एस्ट्रोजन कमी जोड़ों का दर्द, मेनोपॉज़ कंधे का दर्द, फ़्रोज़न शोल्डर चरण, मेनोपॉज़ जोड़ों की अकड़न"
 hashtags: [FrozenShoulder, JointPain, MusculoskeletalHealth, Oestrogen, Menopause]
 faq:

@@ -5,6 +5,7 @@ synopsis: "Brain fog, hot flashes and broken sleep are the three symptoms women 
 author: [Swati Singh, Reshma Tiwari]
 cover: /blog/3-most-common-menopause-symptoms/brain-fog-1.png
 publishedAt: 2026-03-31
+quickAnswer: "The three symptoms women report most in perimenopause are brain fog and memory lapses, hot flashes and night sweats, and disrupted sleep. All three are driven by fluctuating estrogen, not by stress or ageing alone. They are biological, they are treatable, and you do not have to simply live with them."
 keywords: "menopause symptoms, perimenopause symptoms India, brain fog menopause, hot flashes and night sweats, menopause sleep problems, early signs of perimenopause"
 hashtags: [MenopauseSymptoms, BrainFog, HotFlashes, SleepProblems, Perimenopause]
 faq:

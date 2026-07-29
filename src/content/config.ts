@@ -23,6 +23,17 @@ const blog = defineCollection({
     updatedAt: z.coerce.date().optional(),
     /** Optional card/OG image path under public/ (user-provided assets only) */
     cover: z.string().optional(),
+    /**
+     * A direct 40 to 60 word answer to the question the article's title asks,
+     * shown as a "Quick answer" box under the byline and emitted as the
+     * BlogPosting's `abstract`.
+     *
+     * The posts open narratively, which reads well but gives an answer engine
+     * nothing to lift. This is the passage a featured snippet or an AI summary
+     * can quote whole. Answer the question outright, no throat-clearing: the
+     * fuller article is directly below it.
+     */
+    quickAnswer: z.string().optional(),
     /** Comma-separated SEO/AEO keyword phrases for the meta tag + JSON-LD */
     keywords: z.string().optional(),
     /**

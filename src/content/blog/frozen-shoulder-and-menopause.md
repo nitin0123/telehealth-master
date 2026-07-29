@@ -6,6 +6,7 @@ author: [Reshma Tiwari, Swati Singh]
 publishedAt: 2026-06-26
 cover: /blog/frozen-shoulder-and-menopause/cover.jpg
 metaTitle: "Frozen Shoulder and Menopause | ResetWell Plus"
+quickAnswer: "Frozen shoulder, medically adhesive capsulitis, is when the capsule around the shoulder joint inflames, thickens and tightens until movement is severely restricted. Falling oestrogen in perimenopause raises the risk sharply, which is why it peaks in women aged 40 to 60. Early movement and medical review shorten recovery considerably."
 keywords: "frozen shoulder menopause, adhesive capsulitis women, oestrogen loss joint pain, menopause shoulder pain, frozen shoulder stages, menopause joint stiffness"
 hashtags: [FrozenShoulder, JointPain, MusculoskeletalHealth, Oestrogen, Menopause]
 linkedin: https://www.linkedin.com/pulse/frozen-shoulder-menopause-how-oestrogen-loss-attacks-your-jsdgc

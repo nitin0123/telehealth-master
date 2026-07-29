@@ -1,13 +1,38 @@
 ---
-import { langFromUrl, localePaths, localizePath, useTranslations } from '../../../i18n';
+import { langFromUrl, localePaths, localizePath, LOCALE, useTranslations } from '../../../i18n';
 export const getStaticPaths = localePaths;
 import PageLayout from '../../../layouts/PageLayout.astro';
 import PageFaq from '../../../components/PageFaq.astro';
+import { ORG_ID, SITE, serviceId } from '../../../data/seo';
 
 const lang = langFromUrl(Astro.url);
 const t = useTranslations(lang);
 const to = (href: string) => localizePath(href, lang);
 const p = t.pages.pricing;
+
+// The commercial offer for the consultation. It lives here, on the page that
+// states the price, while the Service it sells is described on how-it-works;
+// `itemOffered` points at that node by @id so the two are one thing to a
+// crawler rather than a duplicated service.
+//
+// No priceValidUntil: the fee is standing, not a promotion. No seller url to
+// a booking flow while consultations are pre-launch and every CTA routes to
+// /coming-soon.
+const offerSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Offer',
+  name: p.tiers.single.name,
+  description: p.tiers.single.desc,
+  price: 1599,
+  priceCurrency: 'INR',
+  availability: 'https://schema.org/InStock',
+  category: 'Menopause consultation',
+  url: new URL(Astro.url.pathname, SITE.url).href,
+  inLanguage: LOCALE[lang],
+  itemOffered: { '@id': serviceId(new URL(to('/get-care/how-it-works/'), SITE.url).href) },
+  offeredBy: { '@id': ORG_ID },
+  eligibleRegion: { '@type': 'Country', name: 'India' },
+};
 
 
 // Structure only: each tier's copy lives in `pages.pricing.tiers`, keyed by id.
@@ -35,6 +60,8 @@ const faqSchema = p.faqs?.length
   keywords={p.keywords}
   lede={p.lede}
 >
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(offerSchema)} />
+
   <div class="grid gap-6 max-w-md">
     {tiers.map((tier) => (
       <div class={`rounded-5xl p-7 lg:p-9 flex flex-col reveal ${tier.featured ? 'bg-ever text-cream shadow-xl' : 'bg-white border border-sand'}`}>

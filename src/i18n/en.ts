@@ -986,6 +986,8 @@ export const en = {
       ctaBody:
         'Take our 2-minute symptom self-assessment, or talk to a menopause specialist who will actually listen.',
       tagsHeading: 'Topics',
+      /** Heading of the answer-first box at the top of each post. */
+      quickAnswer: 'Quick answer',
       ctaChecker: 'Check Your Symptoms',
       ctaBook: 'Book a Consultation',
       /** Secondary links under the post CTA, to the pages a reader asks about next. */

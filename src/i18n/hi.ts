@@ -1045,6 +1045,7 @@ export const hi: DeepPartial<Dict> = {
       ctaBook: 'कंसल्टेशन बुक करें',
       backToAll: 'सभी लेखों पर वापस',
       tagsHeading: 'विषय',
+      quickAnswer: 'संक्षेप में जवाब',
       ctaMoreHeading: 'यह भी पढ़ें',
       ctaHowItWorks: 'कंसल्टेशन कैसे होता है',
       ctaPricing: 'कीमत: कंसल्टेशन ₹1,599 से',

@@ -6,6 +6,7 @@ author: [Reshma Tiwari, Swati Singh]
 publishedAt: 2026-05-19
 cover: /blog/why-are-we-losing-top-tier-female-talent-at-the-peak-of-their-careers/img-1.jpg
 metaTitle: "Menopause and Senior Female Talent | ResetWell Plus"
+quickAnswer: "Senior women rarely leave because ambition fades. They leave because of exhaustion, unrecognised symptoms, inadequate healthcare support and cultures that will not discuss menopause openly. It arrives at the peak of their expertise, so the cost lands on organisations as lost institutional knowledge that is expensive to replace."
 keywords: "menopause and career, women in leadership menopause, menopause productivity at work, retaining female talent, menopause support for employees"
 hashtags: [TalentRetention, MenopauseAtWork, WomenInLeadership, Menopause]
 linkedin: https://www.linkedin.com/pulse/why-we-losing-top-tier-female-talent-peak-careers-resetwellplus-qpfrc
