@@ -2,12 +2,23 @@
 import { langFromUrl, localePaths, localizePath, LOCALE, useTranslations } from '../../../i18n';
 export const getStaticPaths = localePaths;
 import PageLayout from '../../../layouts/PageLayout.astro';
-import { SITE } from '../../../data/seo';
+import { SITE, serviceSchema } from '../../../data/seo';
 
 const lang = langFromUrl(Astro.url);
 const t = useTranslations(lang);
 const to = (href: string) => localizePath(href, lang);
 const p = t.pages.perimenopause101;
+
+// HRT guidance is a service the clinic provides, and this is the page that
+// covers it (see keywordTargets: 'is HRT safe in India'). No offers: it is
+// part of a consultation rather than a separately priced item.
+const service = serviceSchema({
+  name: p.serviceName,
+  description: p.description,
+  url: new URL(localizePath('/understand-your-symptoms/perimenopause-101/', lang), SITE.url).href,
+  serviceType: 'Hormone replacement therapy (HRT) guidance',
+  inLanguage: LOCALE[lang],
+});
 
 const medicalSchema = {
   '@context': 'https://schema.org',
@@ -29,7 +40,10 @@ const medicalSchema = {
   keywords={p.keywords}
   lede={p.lede}
 >
-  <script type="application/ld+json" slot="head" set:html={JSON.stringify(medicalSchema)} />
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(medicalSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(service)} />
+  </Fragment>
   <div class="grid sm:grid-cols-2 gap-4">
     {p.sections.map((s) => (
       <div class="bg-white border border-sand rounded-4xl p-7 reveal">

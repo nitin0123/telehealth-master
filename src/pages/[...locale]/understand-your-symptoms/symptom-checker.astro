@@ -3,7 +3,7 @@ import { langFromUrl, localePaths, localizePath, LOCALE, useTranslations } from 
 export const getStaticPaths = localePaths;
 import PageLayout from '../../../layouts/PageLayout.astro';
 import SymptomChecker from '../../../components/SymptomChecker.astro';
-import { SITE } from '../../../data/seo';
+import { SITE, serviceSchema } from '../../../data/seo';
 
 const lang = langFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -19,6 +19,17 @@ const medicalSchema = {
   audience: 'https://schema.org/Patient',
   inLanguage: LOCALE[lang],
 };
+
+// The checker is also a service the clinic offers, not only a page about a
+// condition, so it carries a Service node alongside the MedicalWebPage one.
+// No offers: the assessment is free and needs no sign-up.
+const service = serviceSchema({
+  name: p.serviceName,
+  description: p.description,
+  url: new URL(localizePath('/understand-your-symptoms/symptom-checker/', lang), SITE.url).href,
+  serviceType: 'Perimenopause symptom assessment',
+  inLanguage: LOCALE[lang],
+});
 ---
 <PageLayout
   section={t.nav.sections.symptoms.label}
@@ -29,6 +40,9 @@ const medicalSchema = {
   keywords={p.keywords}
   lede={p.lede}
 >
-  <script type="application/ld+json" slot="head" set:html={JSON.stringify(medicalSchema)} />
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(medicalSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(service)} />
+  </Fragment>
   <SymptomChecker />
 </PageLayout>

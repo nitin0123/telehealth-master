@@ -493,6 +493,8 @@ export const en = {
 
   pages: {
     howItWorks: {
+      /** schema.org Service name. The page title is a headline, not a service. */
+      serviceName: 'Online menopause and perimenopause consultation',
       kicker: 'Get Care',
       title: 'Your first appointment should feel like a relief, not an ordeal.',
       metaTitle: 'How Online Menopause Consultations Work | ResetWell Plus',
@@ -604,6 +606,8 @@ export const en = {
     },
 
     perimenopause101: {
+      /** schema.org Service name. The page title is a headline, not a service. */
+      serviceName: 'Hormone replacement therapy (HRT) guidance',
       kicker: 'Understand Your Symptoms',
       title: 'Perimenopause 101',
       metaTitle: 'Perimenopause 101: Symptoms in India | ResetWell Plus',
@@ -984,6 +988,12 @@ export const en = {
       tagsHeading: 'Topics',
       ctaChecker: 'Check Your Symptoms',
       ctaBook: 'Book a Consultation',
+      /** Secondary links under the post CTA, to the pages a reader asks about next. */
+      ctaMoreHeading: 'Also worth reading',
+      ctaHowItWorks: 'How a consultation works',
+      ctaPricing: 'Pricing: consultations from ₹1,599',
+      ctaFaqs: 'Frequently asked questions',
+      ctaPerimenopause: 'Perimenopause 101',
       backToAll: 'Back to all posts',
     },
 
@@ -1096,6 +1106,8 @@ export const en = {
     },
 
     workplaceWellness: {
+      /** schema.org Service name. The page title is a headline, not a service. */
+      serviceName: 'Workplace menopause wellness programme',
       kicker: 'Workplace Wellness',
       title: 'Partner with ResetWell Plus',
       metaTitle: 'Workplace Menopause Wellness in India | ResetWell Plus',
@@ -1547,6 +1559,8 @@ export const en = {
     },
 
     symptomChecker: {
+      /** schema.org Service name. The page title is a headline, not a service. */
+      serviceName: 'Perimenopause symptom checker',
       kicker: 'Is it perimenopause?',
       title: "Something has shifted. Let's understand what your body is telling you.",
       metaTitle: 'Free Perimenopause Symptom Checker | ResetWell Plus',

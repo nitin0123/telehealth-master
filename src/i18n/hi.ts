@@ -567,6 +567,7 @@ export const hi: DeepPartial<Dict> = {
 
   pages: {
     howItWorks: {
+      serviceName: 'ऑनलाइन मेनोपॉज़ और पेरिमेनोपॉज़ कंसल्टेशन',
       kicker: 'देखभाल पाएँ',
       title: 'आपकी पहली अपॉइंटमेंट राहत जैसी लगनी चाहिए, मुसीबत जैसी नहीं।',
       metaTitle: 'ऑनलाइन मेनोपॉज़ कंसल्टेशन कैसे होता है | ResetWell Plus',
@@ -663,6 +664,7 @@ export const hi: DeepPartial<Dict> = {
     },
 
     perimenopause101: {
+      serviceName: 'हार्मोन रिप्लेसमेंट थेरेपी (HRT) मार्गदर्शन',
       kicker: 'अपने लक्षण समझें',
       title: 'पेरिमेनोपॉज़ 101',
       metaTitle: 'भारत में पेरिमेनोपॉज़ के लक्षण: 101 | ResetWell Plus',
@@ -1043,6 +1045,11 @@ export const hi: DeepPartial<Dict> = {
       ctaBook: 'कंसल्टेशन बुक करें',
       backToAll: 'सभी लेखों पर वापस',
       tagsHeading: 'विषय',
+      ctaMoreHeading: 'यह भी पढ़ें',
+      ctaHowItWorks: 'कंसल्टेशन कैसे होता है',
+      ctaPricing: 'कीमत: कंसल्टेशन ₹1,599 से',
+      ctaFaqs: 'अक्सर पूछे जाने वाले सवाल',
+      ctaPerimenopause: 'पेरिमेनोपॉज़ 101',
     },
 
     blogTag: {
@@ -1195,12 +1202,16 @@ export const hi: DeepPartial<Dict> = {
     eventsUpcoming: {
       kicker: 'इवेंट्स',
       title: 'आगामी इवेंट्स',
+      description:
+        'पेरिमेनोपॉज़, मेनोपॉज़ और मिडलाइफ़ हेल्थ पर लाइव, विशेषज्ञों द्वारा संचालित ऑनलाइन सेशन, भारत में कहीं से भी मुफ़्त जुड़ें।',
       lede: 'लाइव, विशेषज्ञों द्वारा संचालित सेशन, जिनमें आप कहीं से भी जुड़ सकती हैं।',
     },
 
     eventsOnDemand: {
       kicker: 'इवेंट्स',
       title: 'ऑन डिमांड',
+      description:
+        'ResetWell Plus के पिछले सेशन देखें: मेनोपॉज़, HRT, नींद, हड्डियों की सेहत और बहुत कुछ, मुफ़्त और अपनी सुविधा से।',
       lede: 'पिछले सेशन कभी भी देखें, अपनी सुविधा से।',
     },
 
@@ -1263,6 +1274,8 @@ export const hi: DeepPartial<Dict> = {
     storiesOfReset: {
       kicker: 'कम्युनिटी',
       title: 'बदलाव की सच्ची कहानियाँ',
+      description:
+        'भारतीय महिलाओं की असली कहानियाँ: उनके मेनोपॉज़ सफ़र के वे मोड़, और वह देखभाल जिसने हालात बदल दिए।',
       lede: 'असली महिलाएँ, उन मोड़ों पर जिन्होंने सब कुछ बदल दिया।',
     },
 
@@ -1277,6 +1290,7 @@ export const hi: DeepPartial<Dict> = {
     },
 
     symptomChecker: {
+      serviceName: 'पेरिमेनोपॉज़ लक्षण जाँच',
       kicker: 'क्या यह पेरिमेनोपॉज़ है?',
       title: 'कुछ बदल गया है। आइए समझें कि आपका शरीर क्या कह रहा है।',
       metaTitle: 'मुफ़्त पेरिमेनोपॉज़ लक्षण जाँच (भारत) | ResetWell Plus',

@@ -1,14 +1,25 @@
 ---
-import { langFromUrl, localePaths, localizePath, useTranslations } from '../../../i18n';
+import { langFromUrl, localePaths, localizePath, LOCALE, useTranslations } from '../../../i18n';
 export const getStaticPaths = localePaths;
 import PageLayout from '../../../layouts/PageLayout.astro';
 import { BOOK_HREF } from '../../../data/nav';
 import PageFaq from '../../../components/PageFaq.astro';
+import { SITE, serviceSchema } from '../../../data/seo';
 
 const lang = langFromUrl(Astro.url);
 const t = useTranslations(lang);
 const to = (href: string) => localizePath(href, lang);
 const p = t.pages.howItWorks;
+
+// Service node for this offering, referencing the single organisation by @id.
+const service = serviceSchema({
+  name: p.serviceName,
+  description: p.description,
+  url: new URL(Astro.url.pathname, SITE.url).href,
+  serviceType: 'Menopause and perimenopause consultation',
+  priceFrom: 1599,
+  inLanguage: LOCALE[lang],
+});
 
 // FAQPage structured data. The same array renders visibly below, which is what
 // Google and answer engines require: markup must mirror on-page content.
@@ -34,6 +45,8 @@ const faqSchema = p.faqs?.length
   image="/virtual-care.jpeg"
   lede={p.lede}
 >
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(service)} />
+
   <div class="space-y-4">
     {p.steps.map((s) => (
       <div class="bg-white border border-sand rounded-4xl p-7 reveal">
