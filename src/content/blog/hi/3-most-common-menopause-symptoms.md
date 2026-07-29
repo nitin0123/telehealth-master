@@ -6,7 +6,7 @@ author: [Swati Singh, Reshma Tiwari]
 cover: /blog/3-most-common-menopause-symptoms/brain-fog-1.png
 publishedAt: 2026-03-31
 keywords: "मेनोपॉज़ लक्षण, पेरिमेनोपॉज़ लक्षण भारत, ब्रेन फ़ॉग मेनोपॉज़, हॉट फ़्लैशेज़ और रात का पसीना, मेनोपॉज़ नींद की समस्या, पेरिमेनोपॉज़ के शुरुआती संकेत"
-hashtags: [MenopauseSymptoms, BrainFog, HotFlashes, SleepProblems, Perimenopause, ResetWellPlus]
+hashtags: [MenopauseSymptoms, BrainFog, HotFlashes, SleepProblems, Perimenopause]
 faq:
   - q: "पेरिमेनोपॉज़ के सबसे आम लक्षण कौन से हैं?"
     a: "सबसे ज़्यादा दिखने वाले तीन हैं ब्रेन फ़ॉग और भूलने की दिक्कत, हॉट फ़्लैशेज़ और रात का पसीना, और नींद का टूटना। ये एस्ट्रोजन के घटते-बढ़ते स्तर से होते हैं, और ये जैविक हैं, इस बात का संकेत नहीं कि आपका दिमाग़ चल गया है।"

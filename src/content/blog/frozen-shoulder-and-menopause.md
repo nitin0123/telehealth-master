@@ -7,7 +7,7 @@ publishedAt: 2026-06-26
 cover: /blog/frozen-shoulder-and-menopause/cover.jpg
 metaTitle: "Frozen Shoulder and Menopause | ResetWell Plus"
 keywords: "frozen shoulder menopause, adhesive capsulitis women, oestrogen loss joint pain, menopause shoulder pain, frozen shoulder stages, menopause joint stiffness"
-hashtags: [FrozenShoulder, JointPain, MusculoskeletalHealth, Oestrogen, Menopause, ResetWellPlus]
+hashtags: [FrozenShoulder, JointPain, MusculoskeletalHealth, Oestrogen, Menopause]
 linkedin: https://www.linkedin.com/pulse/frozen-shoulder-menopause-how-oestrogen-loss-attacks-your-jsdgc
 faq:
   - q: "What is a frozen shoulder?"

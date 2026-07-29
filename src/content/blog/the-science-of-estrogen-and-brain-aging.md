@@ -6,7 +6,7 @@ author: [Swati Singh, Reshma Tiwari]
 publishedAt: 2026-07-06
 cover: /blog/the-science-of-estrogen-and-brain-aging/cover.jpg
 keywords: "estrogen and brain health, menopause brain aging, estrogen cognitive function, brain fog perimenopause, hormones and memory, neuroprotective effects of estrogen"
-hashtags: [Estrogen, BrainHealth, CognitiveHealth, Menopause, Perimenopause, ResetWellPlus]
+hashtags: [Estrogen, BrainHealth, CognitiveHealth, Menopause, Perimenopause]
 linkedin: https://www.linkedin.com/pulse/science-estrogen-brain-aging-resetwellplus-29o0c
 faq:
   - q: "How does estrogen affect the brain?"

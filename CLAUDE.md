@@ -56,6 +56,13 @@ db/migrate.sh "<postgres-url>"   # low-level: apply db/*.sql to an explicit URL
   overlay and a gentle image zoom — see `CareGrid.astro` for the canonical pattern; reuse it.
 - **Styling** is Tailwind utilities; brand colours in `tailwind.config.mjs`, global/reveal/carousel
   CSS in `src/styles/global.css`. Reuse existing color tokens (`ever`, `clay`, `sand`, `sage`, …).
+- **Blog tag pages** (`/blog/tag/<slug>/`, built per language from each post's `hashtags:`
+  frontmatter): **a tag page is indexed once it lists 2 or more posts.** Below that it renders
+  `noindex, follow` and is dropped from the sitemap, because a one-post listing just repeats that
+  post and would compete with it in search. `follow` keeps link equity flowing to the articles,
+  and tags cross the threshold on their own as posts are published. The threshold lives in
+  `TAG_INDEX_MIN_POSTS` (`src/data/tags.ts`) and is mirrored in `astro.config.mjs` for the sitemap
+  filter, which is plain ESM and can't import it: **change both.**
 - **Commits**: scoped, imperative subject (`feat:`/`style:`/`fix:`/`chore:`), and end the message
   with `Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>`.
 

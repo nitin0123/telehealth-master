@@ -7,7 +7,7 @@ publishedAt: 2026-06-26
 cover: /blog/frozen-shoulder-and-menopause/cover.jpg
 metaTitle: "फ़्रोज़न शोल्डर और मेनोपॉज़ | ResetWell Plus"
 keywords: "फ़्रोज़न शोल्डर मेनोपॉज़, एडहेसिव कैप्सुलाइटिस महिलाएँ, एस्ट्रोजन कमी जोड़ों का दर्द, मेनोपॉज़ कंधे का दर्द, फ़्रोज़न शोल्डर चरण, मेनोपॉज़ जोड़ों की अकड़न"
-hashtags: [FrozenShoulder, JointPain, MusculoskeletalHealth, Oestrogen, Menopause, ResetWellPlus]
+hashtags: [FrozenShoulder, JointPain, MusculoskeletalHealth, Oestrogen, Menopause]
 faq:
   - q: "फ़्रोज़न शोल्डर क्या होता है?"
     a: "इसे मेडिकल भाषा में एडहेसिव कैप्सुलाइटिस कहते हैं। यह तब होता है जब कंधे के जोड़ के चारों ओर मौजूद संयोजी ऊतक का कैप्सूल सूज जाता है, मोटा हो जाता है और कस जाता है, जिससे बने निशान ऊतक हिलने-डुलने की क्षमता को बहुत घटा देते हैं।"

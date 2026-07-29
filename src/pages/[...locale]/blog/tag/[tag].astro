@@ -8,7 +8,7 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
 import PageLayout from '../../../../layouts/PageLayout.astro';
 import PostCard from '../../../../components/PostCard.astro';
-import { collectTags, tagHref } from '../../../../data/tags';
+import { collectTags, isTagIndexable, tagHref } from '../../../../data/tags';
 import { fmt, HI_PREFIX, langFromUrl, localizePath, useTranslations, type Lang } from '../../../../i18n';
 
 export async function getStaticPaths() {
@@ -39,6 +39,11 @@ const count = fmt(sorted.length === 1 ? copy.countOne : copy.count, { n: sorted.
 // Sibling tags, so a reader who lands here has somewhere else to go. Built
 // from this language's posts only, for the same reason the listing is.
 const siblings = collectTags(sorted).filter((s) => s.label !== label).slice(0, 12);
+
+// A one-post listing is a near-copy of that post, so it stays out of the index
+// but keeps its links crawlable. See TAG_INDEX_MIN_POSTS; the sitemap filter in
+// astro.config.mjs applies the same rule.
+const thin = !isTagIndexable(sorted.length);
 ---
 
 <PageLayout
@@ -48,7 +53,7 @@ const siblings = collectTags(sorted).filter((s) => s.label !== label).slice(0, 1
   sectionHref="/blog/"
   metaTitle={fmt(copy.metaTitle, { tag: label })}
   description={fmt(copy.description, { tag: label, n: sorted.length })}
-  noindex
+  noindex={thin}
   followLinks
 >
   <div class="grid gap-4 lg:gap-5 sm:grid-cols-2">

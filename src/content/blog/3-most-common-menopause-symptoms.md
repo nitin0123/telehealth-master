@@ -6,7 +6,7 @@ author: [Swati Singh, Reshma Tiwari]
 cover: /blog/3-most-common-menopause-symptoms/brain-fog-1.png
 publishedAt: 2026-03-31
 keywords: "menopause symptoms, perimenopause symptoms India, brain fog menopause, hot flashes and night sweats, menopause sleep problems, early signs of perimenopause"
-hashtags: [MenopauseSymptoms, BrainFog, HotFlashes, SleepProblems, Perimenopause, ResetWellPlus]
+hashtags: [MenopauseSymptoms, BrainFog, HotFlashes, SleepProblems, Perimenopause]
 faq:
   - q: "What are the most common symptoms of perimenopause?"
     a: "The three that show up most often are brain fog and memory lapses, hot flashes and night sweats, and sleep disruptions. They are driven by fluctuating estrogen levels, and they are biological, not a sign that you are losing it."

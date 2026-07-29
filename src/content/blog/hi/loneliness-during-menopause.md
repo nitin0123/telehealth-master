@@ -7,7 +7,7 @@ publishedAt: 2026-07-17
 cover: /blog/loneliness-during-menopause/cover.jpg
 metaTitle: "मेनोपॉज़ में अकेलापन | ResetWell Plus"
 keywords: "मेनोपॉज़ में अकेलापन, मेनोपॉज़ भावनात्मक सेहत, मेनोपॉज़ घबराहट और अवसाद, मेनोपॉज़ मानसिक स्वास्थ्य, मिडलाइफ़ भावनात्मक अलगाव, मेनोपॉज़ सहयोग कम्युनिटी"
-hashtags: [Loneliness, EmotionalWellbeing, MenopauseAndMentalHealth, Menopause, WomensHealth, ResetWellPlus]
+hashtags: [Loneliness, EmotionalWellbeing, MenopauseAndMentalHealth, Menopause, WomensHealth]
 faq:
   - q: "मेनोपॉज़ के दौरान महिलाएँ अकेलापन क्यों महसूस करती हैं?"
     a: "घटता एस्ट्रोजन मूड और भावनाओं के संतुलन पर असर डालता है, और ज़्यादातर लक्षण दूसरों को दिखाई नहीं देते। कई महिलाएँ जज किए जाने के डर से चुप भी रह जाती हैं, इसलिए वे लोगों के बीच रहकर भी अकेली महसूस कर सकती हैं।"

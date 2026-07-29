@@ -12,6 +12,31 @@ import type { CollectionEntry } from 'astro:content';
 import { localizePath, type Lang } from '../i18n';
 
 /**
+ * A tag page is indexable once it lists this many posts.
+ *
+ * A listing with a single post has no content of its own: it repeats that
+ * post's title, synopsis and cover and nothing else. Indexed, it competes with
+ * the article itself for the same query, and the thin page can win. From two
+ * posts up, the page groups things a reader cannot get from any one article,
+ * which is a reason for it to exist in search.
+ *
+ * Below the threshold a tag page renders `noindex, follow` and stays out of the
+ * sitemap: still browsable, still passing link equity to the articles, just not
+ * a search result. Tags cross the line on their own as posts are published, so
+ * this needs no upkeep.
+ *
+ * Enforced in two places that must agree: the `noindex` prop in
+ * src/pages/[...locale]/blog/tag/[tag].astro, and the sitemap filter in
+ * astro.config.mjs.
+ */
+export const TAG_INDEX_MIN_POSTS = 2;
+
+/** Whether a tag listing this many posts should be indexed. */
+export function isTagIndexable(postCount: number): boolean {
+  return postCount >= TAG_INDEX_MIN_POSTS;
+}
+
+/**
  * URL slug for a tag: `FrozenShoulder` becomes `frozen-shoulder`, `HRLeadership`
  * becomes `hr-leadership`. Readable slugs beat a flattened `frozenshoulder`,
  * which search engines read as one long token.

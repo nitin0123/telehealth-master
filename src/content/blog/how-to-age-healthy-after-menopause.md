@@ -7,7 +7,7 @@ publishedAt: 2026-07-28
 cover: /blog/how-to-age-healthy-after-menopause/cover.jpg
 metaTitle: "How to Age Healthy After Menopause | ResetWell Plus"
 keywords: "healthy aging after menopause, postmenopausal health, bone density menopause, muscle mass menopause, heart health after menopause, menopause sleep, brain fog menopause"
-hashtags: [HealthyAging, BoneHealth, MuscleHealth, Menopause, MidlifeWellness, ResetWellPlus]
+hashtags: [HealthyAging, BoneHealth, MuscleHealth, Menopause, MidlifeWellness]
 linkedin: https://www.linkedin.com/pulse/how-age-healthy-after-menopause-practical-guide-thriving-c5cac
 faq:
   - q: "What is the most important thing to focus on after menopause?"

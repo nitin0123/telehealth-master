@@ -7,7 +7,7 @@ publishedAt: 2026-04-03
 cover: /blog/why-does-my-body-feel-like-i-ran-a-marathon-in-my-sleep/img-1.jpg
 metaTitle: "Menopause Joint Pain and Body Aches | ResetWell Plus"
 keywords: "menopause joint pain, perimenopause body aches, morning stiffness in women, estrogen and joint pain, menopause muscle aches, strength training menopause"
-hashtags: [JointPain, MenopauseSymptoms, StrengthTraining, Perimenopause, MidlifeHealth, ResetWellPlus]
+hashtags: [JointPain, MenopauseSymptoms, StrengthTraining, Perimenopause, MidlifeHealth]
 faq:
   - q: "Why does my body ache during perimenopause?"
     a: "The gradual decline of estrogen directly affects your joints, muscles, and inflammation levels. That can mean joint stiffness first thing in the morning, body aches with no obvious cause, and slower recovery after activity."

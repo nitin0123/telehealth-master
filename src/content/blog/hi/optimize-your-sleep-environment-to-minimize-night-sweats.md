@@ -7,7 +7,7 @@ publishedAt: 2026-06-16
 cover: /blog/optimize-your-sleep-environment-to-minimize-night-sweats/cover.jpg
 metaTitle: "रात के पसीने के लिए सोने के माहौल के सुझाव | ResetWell Plus"
 keywords: "मेनोपॉज़ रात का पसीना, रात के पसीने से राहत, रात के पसीने के लिए ठंडा बिस्तर, सोने का माहौल मेनोपॉज़, रात में हॉट फ़्लैशेज़, नमी सोखने वाले नाइटवियर"
-hashtags: [NightSweats, SleepHygiene, HotFlashes, Perimenopause, Menopause, ResetWellPlus]
+hashtags: [NightSweats, SleepHygiene, HotFlashes, Perimenopause, Menopause]
 faq:
   - q: "कमरे को बर्फ़ बनाए बिना रात का पसीना कैसे रोकूँ?"
     a: "सिर्फ़ थर्मोस्टैट नहीं, बिस्तर के भीतर का माहौल ठीक कीजिए: टेंसेल, बाँस या कॉटन पर्केल जैसा साँस लेने वाला बिस्तर, पंखे से चलती हवा, और ढीले नमी सोखने वाले नाइटवियर, ये बर्फ़ जैसे AC से बेहतर काम करते हैं।"

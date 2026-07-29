@@ -11,29 +11,56 @@ import vercel from '@astrojs/vercel/serverless';
 // Recursive: Hindi posts live in src/content/blog/hi/ and share their English
 // twin's slug, so both languages of a post get the same real <lastmod>.
 const blogDir = fileURLToPath(new URL('./src/content/blog', import.meta.url));
-const blogLastmod = Object.fromEntries(
-  readdirSync(blogDir, { recursive: true })
-    .map(String)
-    .filter((f) => f.endsWith('.md'))
-    .map((f) => {
-      const m = readFileSync(`${blogDir}/${f}`, 'utf8').match(/^publishedAt:\s*([0-9-]+)/m);
+const blogPosts = readdirSync(blogDir, { recursive: true })
+  .map(String)
+  .filter((f) => f.endsWith('.md'))
+  .map((f) => {
+    const raw = readFileSync(`${blogDir}/${f}`, 'utf8');
+    const date = raw.match(/^publishedAt:\s*([0-9-]+)/m);
+    const tags = raw.match(/^hashtags:\s*\[(.*?)\]/m);
+    return {
       // 'hi/foo.md' and 'foo.md' both key on 'foo'; the sitemap looks the slug
       // up without its locale prefix.
-      const slug = f.replace(/\.md$/, '').replace(/^hi\//, '');
-      return [slug, m ? new Date(m[1]).toISOString() : undefined];
-    })
-);
+      slug: f.replace(/\.md$/, '').replace(/^hi\//, ''),
+      hindi: f.startsWith('hi/'),
+      lastmod: date ? new Date(date[1]).toISOString() : undefined,
+      tags: tags ? tags[1].split(',').map((t) => t.trim()).filter(Boolean) : [],
+    };
+  });
+
+const blogLastmod = Object.fromEntries(blogPosts.map((p) => [p.slug, p.lastmod]));
 const BUILD_DATE = new Date().toISOString();
+
+// Tag archives are indexable only once they list this many posts; below it they
+// render `noindex, follow` and are dropped from the sitemap. Mirrors
+// TAG_INDEX_MIN_POSTS in src/data/tags.ts, which documents the reasoning and is
+// the value the pages themselves read. Kept as a literal here because this file
+// is plain ESM loaded before the TypeScript sources resolve: change both.
+const TAG_INDEX_MIN_POSTS = 2;
+
+/** Mirror of tagSlug() in src/data/tags.ts, for the same reason. */
+const tagSlug = (tag) =>
+  tag
+    .replace(/([A-Z]+)([A-Z][a-z])/g, '$1-$2')
+    .replace(/([a-z0-9])([A-Z])/g, '$1-$2')
+    .toLowerCase();
+
+// Count each tag per language, since the two editions are listed separately.
+const tagCounts = new Map();
+for (const post of blogPosts) {
+  for (const tag of post.tags) {
+    const key = `${post.hindi ? '/hindi' : ''}/blog/tag/${tagSlug(tag)}/`;
+    tagCounts.set(key, (tagCounts.get(key) ?? 0) + 1);
+  }
+}
+const THIN_TAG_PATHS = [...tagCounts]
+  .filter(([, count]) => count < TAG_INDEX_MIN_POSTS)
+  .map(([path]) => path);
 
 // Pre-launch pages that render `noindex`, so they're kept out of the sitemap.
 // `/get-care/book-a-consultation` is noindex while booking is pre-launch (all
 // CTAs point at `/coming-soon`); drop it from this list when booking opens.
-// `/blog/tag/` archives render `noindex, follow`: with a dozen posts across
-// forty-odd tags most listings hold one or two articles, which is too thin to
-// stand as a search landing page. They exist to make the archive browsable and
-// to pass link equity on to the articles, so they stay out of the sitemap.
-// Drop the entry once the tags carry enough posts each to be worth indexing.
-const NOINDEX_PATHS = ['/coming-soon', '/get-care/book-a-consultation', '/blog/tag/'];
+const NOINDEX_PATHS = ['/coming-soon', '/get-care/book-a-consultation', ...THIN_TAG_PATHS];
 
 // Inline a binary file as a base64 string at build time:
 //
