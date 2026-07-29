@@ -57,12 +57,16 @@ db/migrate.sh "<postgres-url>"   # low-level: apply db/*.sql to an explicit URL
 - **Styling** is Tailwind utilities; brand colours in `tailwind.config.mjs`, global/reveal/carousel
   CSS in `src/styles/global.css`. Reuse existing color tokens (`ever`, `clay`, `sand`, `sage`, …).
 - **Blog tag pages** (`/blog/tag/<slug>/`, built per language from each post's `hashtags:`
-  frontmatter): **a tag page is indexed once it lists 2 or more posts.** Below that it renders
-  `noindex, follow` and is dropped from the sitemap, because a one-post listing just repeats that
-  post and would compete with it in search. `follow` keeps link equity flowing to the articles,
-  and tags cross the threshold on their own as posts are published. The threshold lives in
+  frontmatter): **a tag page is indexed once it lists 4 or more posts, and every indexed tag needs
+  a hand-written intro** in `TAG_INTROS` (`src/data/tags.ts`). A listing has no prose of its own,
+  so without an intro it is ~150 words all recycled from the articles it links to, which competes
+  with them in search. Below the threshold a tag renders `noindex, follow` and leaves the sitemap;
+  `follow` keeps link equity flowing to the articles. Tags cross the threshold on their own as
+  posts are published, so **when one does, write its intro.** The threshold lives in
   `TAG_INDEX_MIN_POSTS` (`src/data/tagRules.mjs`), which is plain ESM precisely so the page code
   and `astro.config.mjs`'s sitemap filter share one definition. Change it there only.
+  Avoid two tags that resolve to the same set of posts: their listings are duplicates of each
+  other. `WorkplaceWellbeing` was dropped for exactly that reason (identical to `MenopauseAtWork`).
 - **Commits**: scoped, imperative subject (`feat:`/`style:`/`fix:`/`chore:`), and end the message
   with `Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>`.
 

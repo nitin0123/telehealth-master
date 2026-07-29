@@ -7,7 +7,7 @@ publishedAt: 2026-06-04
 cover: /blog/manage-menopause-brain-fog-at-work/cover.jpg
 metaTitle: "Menopause Brain Fog at Work | ResetWell Plus"
 keywords: "menopause brain fog, brain fog at work, menopause memory lapses, cognitive symptoms of menopause, how to manage brain fog, menopause and concentration"
-hashtags: [BrainFog, MenopauseAtWork, WomenInLeadership, WorkplaceWellbeing, Perimenopause]
+hashtags: [BrainFog, MenopauseAtWork, WomenInLeadership, Perimenopause]
 linkedin: https://www.linkedin.com/pulse/how-manage-menopause-brain-fog-work-without-losing-your-hozzc
 faq:
   - q: "What is menopause brain fog?"

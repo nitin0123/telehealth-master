@@ -9,18 +9,23 @@
 /**
  * A tag page is indexable once it lists this many posts.
  *
- * A listing with a single post has no content of its own: it repeats that
- * post's title, synopsis and cover and nothing else. Indexed, it competes with
- * the article itself for the same query, and the thin page can win. From two
- * posts up, the page groups something a reader cannot get from any one article,
- * which is a reason for it to exist in search.
+ * A tag listing has no prose of its own: it is an H1, a count and post cards
+ * lifted from the articles. Measured on the built output, a two-post listing
+ * came to 83 to 111 words, all of it recycled, against 674 to 1545 for a real
+ * article. That is a thin page, and indexed it competes with the very articles
+ * it links to. Four posts puts a listing near 154 words, and paired with the
+ * hand-written intro in TAG_INTROS (src/data/tags.ts) the page carries roughly
+ * 300 to 450 words with a third of it unique. That is worth indexing.
  *
  * Below the threshold a tag page renders `noindex, follow` and stays out of the
  * sitemap: still browsable, still passing link equity to the articles, just not
- * a search result. Tags cross the line on their own as posts are published, so
- * this needs no upkeep.
+ * a search result.
+ *
+ * Tags cross this line on their own as posts are published. When one does,
+ * write it an intro, or it goes into the index as the thin page this threshold
+ * exists to keep out.
  */
-export const TAG_INDEX_MIN_POSTS = 2;
+export const TAG_INDEX_MIN_POSTS = 4;
 
 /**
  * Whether a tag listing this many posts should be indexed.
