@@ -39,9 +39,12 @@ export const nav: NavSection[] = [
   {
     id: 'events', // Events
     children: [
+      // For Corporates has no menu entry: it overlaps Workplace Wellness, which
+      // is now a top-level item. The page is still live at
+      // /events/for-corporates/ and is linked from a blog post in both
+      // languages.
       { id: 'eventsUpcoming', href: '/events/upcoming/' },
       { id: 'eventsOnDemand', href: '/events/on-demand/' },
-      { id: 'eventsForCorporates', href: '/events/for-corporates/' },
     ],
   },
   {

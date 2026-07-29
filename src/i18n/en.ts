@@ -45,6 +45,7 @@ const navLinks: Record<string, LinkCopy> = {
   pricing: { label: 'Pricing (₹)', short: 'Pricing' },
   eventsUpcoming: { label: 'Upcoming' },
   eventsOnDemand: { label: 'On Demand' },
+  // No menu entry any more, but the page and its breadcrumb still use this.
   eventsForCorporates: { label: 'For Corporates' },
   communityJoin: { label: 'Join the Community', short: 'Join' },
   // Still used by the page itself and by the Testimonials link, even though
