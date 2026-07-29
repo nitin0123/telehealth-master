@@ -1,10 +1,11 @@
 ---
-import { fmt, localePaths, useTranslations } from '../../i18n';
+import { fmt, langFromUrl, localePaths, useTranslations } from '../../i18n';
 export const getStaticPaths = localePaths;
 import PageLayout from '../../layouts/PageLayout.astro';
 import { CONTACT } from '../../data/seo';
 
 const t = useTranslations(Astro.url);
+const lang = langFromUrl(Astro.url);
 const page = t.pages.contact;
 
 // Social icons (currentColor, so they inherit the link's hover colour).
@@ -29,6 +30,8 @@ const ytIcon = '<svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><pa
       <div class="bg-white border border-sand rounded-5xl p-6 lg:p-10 shadow-sm reveal">
         <h2 class="font-serif text-3xl text-ever mb-6">{page.formHeading}</h2>
         <form data-contact-form action="/api/contact" method="post" novalidate data-sending={page.sending} data-generic-error={t.common.genericError}>
+          {/* Tells the no-JS redirect which language edition to return to. */}
+          <input type="hidden" name="lang" value={lang} />
           <!-- Honeypot: hidden from users; bots that fill it are silently dropped -->
           <div class="hidden" aria-hidden="true">
             <label>Company<input type="text" name="company" tabindex="-1" autocomplete="off" /></label>

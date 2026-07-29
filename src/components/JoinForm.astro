@@ -6,11 +6,14 @@
 //
 // Button and error strings are passed to the script below as data attributes so
 // the bundled module stays language-agnostic.
-import { useTranslations } from '../i18n';
+import { langFromUrl, useTranslations } from '../i18n';
 const t = useTranslations(Astro.url);
+const lang = langFromUrl(Astro.url);
 ---
 <div class="max-w-md mx-auto bg-white border border-sand rounded-5xl p-8 reveal">
   <form data-join-form action="/api/subscribe" method="post" data-submitting={t.joinForm.submitting} data-generic-error={t.common.genericError}>
+    {/* Tells the no-JS redirect which language edition to return to. */}
+    <input type="hidden" name="lang" value={lang} />
     <input type="hidden" name="source" value="community-join" />
     <label class="block text-sm text-stone mb-1" for="join-email">{t.joinForm.email}</label>
     <input id="join-email" name="email" type="email" lang="en" dir="ltr" required autocomplete="email" class="w-full rounded-2xl border border-sand bg-cream px-4 py-3 mb-4 focus:outline-none focus:ring-2 focus:ring-clay/40" />

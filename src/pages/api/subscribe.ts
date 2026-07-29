@@ -8,7 +8,7 @@ import { db } from '../../lib/db';
 import { Resend } from 'resend';
 import { subscribeSchema, firstError } from '../../lib/schemas';
 import { rateLimited } from '../../lib/rateLimit';
-import { readBody, redirect } from '../../lib/formBody';
+import { langOf, localised, readBody, redirect } from '../../lib/formBody';
 
 const json = (body: unknown, status = 200) =>
   new Response(JSON.stringify(body), { status, headers: { 'Content-Type': 'application/json' } });
@@ -21,17 +21,22 @@ const SOURCES: Record<string, string> = {
 };
 
 export const POST: APIRoute = async ({ request, clientAddress }) => {
-  const back = '/community/join/';
+  const backPath = '/community/join/';
   const parsedBody = await readBody(request);
   if (!parsedBody) return json({ error: 'Invalid request body.' }, 400);
   const { data: body, isFormPost } = parsedBody;
+  // No-JS submissions redirect, so they must land on the visitor's own
+  // language edition rather than always on the English page.
+  const lang = langOf(body);
+  const back = localised(backPath, lang);
+  const thanks = localised('/thank-you/', lang);
   // A browser that posted the <form> itself cannot read a JSON reply, so every
   // exit below has to become a redirect for it.
   const fail = (message: string, status: number) =>
     isFormPost ? redirect(back) : json({ error: message }, status);
 
   // Honeypot: real users never fill this hidden field; bots do. Pretend success.
-  if (str(body.company)) return isFormPost ? redirect('/thank-you/') : json({ ok: true });
+  if (str(body.company)) return isFormPost ? redirect(thanks) : json({ ok: true });
 
   let ip: string | null = null;
   try { ip = clientAddress ?? null; } catch { ip = null; }
@@ -81,7 +86,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
     console.warn('[subscribe] RESEND_API_KEY or CONTACT_EMAIL_TO not set, skipping email.');
   }
 
-  if (isFormPost) return redirect('/thank-you/');
+  if (isFormPost) return redirect(thanks);
   return json({ ok: true });
 };
 

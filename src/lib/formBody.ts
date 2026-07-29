@@ -44,6 +44,32 @@ export async function readBody(request: Request): Promise<ParsedBody | null> {
 }
 
 /**
+ * Language the form was submitted in, from the hidden `lang` field every
+ * localised form carries.
+ *
+ * The no-JS path is the only one that redirects, and a redirect has to name a
+ * concrete URL, so the endpoint has to be told which language edition the
+ * visitor is on. A hidden field is used rather than the Referer header because
+ * Referrer-Policy is configurable and a stripped header would silently drop
+ * Hindi visitors back onto English pages, which is the bug this prevents.
+ *
+ * Anything other than 'hi' is treated as English, so a missing field on an
+ * English-only form (the corporate pages) behaves correctly by default.
+ */
+export function langOf(data: Record<string, unknown>): 'en' | 'hi' {
+  return data.lang === 'hi' ? 'hi' : 'en';
+}
+
+/**
+ * Localise a site path for the language a form was submitted in. Mirrors
+ * localizePath() in src/i18n, kept separate so the serverless bundles do not
+ * pull in both translation dictionaries just to prepend a prefix.
+ */
+export function localised(path: string, lang: 'en' | 'hi'): string {
+  return lang === 'hi' ? `/hindi${path}` : path;
+}
+
+/**
  * Where to send a browser that posted the form directly. `to` is the success
  * page; on failure the visitor goes back to the form they came from.
  */
