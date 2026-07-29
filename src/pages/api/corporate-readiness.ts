@@ -8,6 +8,7 @@ import { db } from '../../lib/db';
 import { Resend } from 'resend';
 import { corporateReadinessSchema, firstError } from '../../lib/schemas';
 import { rateLimited } from '../../lib/rateLimit';
+import { readBody, redirect } from '../../lib/formBody';
 import { readinessTier } from '../../lib/readiness';
 import { readinessQuestions } from '../../data/content';
 import { en } from '../../i18n/en';
@@ -35,26 +36,28 @@ const copy = en.pages.workplaceReadiness;
 const REPORT_FILENAME = 'ResetWell Plus - State of Menopause Report.pdf';
 
 export const POST: APIRoute = async ({ request, clientAddress }) => {
-  let body: Record<string, unknown>;
-  try {
-    body = await request.json();
-  } catch {
-    return json({ error: 'Invalid request body.' }, 400);
-  }
+  const back = '/about/workplace-wellness/readiness-score/';
+  const parsedBody = await readBody(request);
+  if (!parsedBody) return json({ error: 'Invalid request body.' }, 400);
+  const { data: body, isFormPost } = parsedBody;
+  // A browser that posted the <form> itself cannot read a JSON reply, so every
+  // exit below has to become a redirect for it.
+  const fail = (message: string, status: number) =>
+    isFormPost ? redirect(back) : json({ error: message }, status);
 
   // Honeypot: "website", not the usual "company" (which is a real field on this
   // form). Real users never fill it; bots do. Pretend success.
-  if (str(body.website)) return json({ ok: true });
+  if (str(body.website)) return isFormPost ? redirect('/thank-you/') : json({ ok: true });
 
   let ip: string | null = null;
   try { ip = clientAddress ?? null; } catch { ip = null; }
   if (rateLimited(ip)) {
-    return json({ error: 'Too many submissions from your network. Please try again in a few minutes.' }, 429);
+    return fail('Too many submissions from your network. Please try again in a few minutes.', 429);
   }
 
   const parsed = corporateReadinessSchema.safeParse(body);
   if (!parsed.success) {
-    return json({ error: firstError(parsed.error) }, 400);
+    return fail(firstError(parsed.error), 400);
   }
   const { name, company, email, answers } = parsed.data;
   const source = parsed.data.source ?? 'website';
@@ -97,7 +100,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
     isFirstSubmission = result.rows[0]?.is_new === true;
   } catch (err) {
     console.error('[corporate-readiness] DB insert failed:', err);
-    return json({ error: 'Sorry, something went wrong saving your answers. Please try again.' }, 500);
+    return fail('Sorry, something went wrong saving your answers. Please try again.', 500);
   }
 
   // 2) Email the report to the lead, and a notification to the team. Both are
@@ -193,6 +196,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
 
   // `reportSent` lets the page tell the visitor the report is already in their
   // inbox, rather than promising a second one that will never arrive.
+  if (isFormPost) return redirect('/thank-you/');
   return json({ ok: true, reportSent: isFirstSubmission });
 };
 

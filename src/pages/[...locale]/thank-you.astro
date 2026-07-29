@@ -1,0 +1,33 @@
+---
+// Landing page for form posts made without JavaScript. The enhanced path never
+// reaches here: it swaps in an inline success panel instead. Kept out of the
+// sitemap and search results, since it is a flow destination, not content.
+import { langFromUrl, localePaths, localizePath, useTranslations } from '../../i18n';
+export const getStaticPaths = localePaths;
+import PageLayout from '../../layouts/PageLayout.astro';
+
+const lang = langFromUrl(Astro.url);
+const t = useTranslations(lang);
+const to = (href: string) => localizePath(href, lang);
+const p = t.pages.thankYou;
+---
+<PageLayout
+  kicker={p.kicker}
+  title={p.title}
+  metaTitle={p.metaTitle}
+  description={p.description}
+  lede={p.lede}
+  noindex
+>
+  <div class="max-w-xl mx-auto bg-white border border-sand rounded-5xl p-6 lg:p-10 shadow-sm text-center reveal">
+    <div class="mx-auto grid h-14 w-14 place-items-center rounded-full bg-sand">
+      <svg class="h-7 w-7 text-ever" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M20 6L9 17l-5-5" />
+      </svg>
+    </div>
+    <p class="mt-5 text-stone leading-relaxed">{p.body}</p>
+    <a href={to('/')} class="mt-6 inline-block rounded-full bg-clay hover:bg-claydk text-white font-semibold px-8 py-3.5 transition">
+      {p.homeCta}
+    </a>
+  </div>
+</PageLayout>

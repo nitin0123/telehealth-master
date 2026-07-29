@@ -31,7 +31,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         {page.body}
       </p>
 
-      <form data-notify-form data-submitting={page.submitting} data-generic-error={t.common.genericError} class="mt-8 max-w-md mx-auto flex flex-col sm:flex-row gap-3 reveal" style="--reveal-delay:180ms">
+      <form data-notify-form action="/api/subscribe" method="post" data-submitting={page.submitting} data-generic-error={t.common.genericError} class="mt-8 max-w-md mx-auto flex flex-col sm:flex-row gap-3 reveal" style="--reveal-delay:180ms">
+    <input type="hidden" name="source" value="coming-soon" />
         <input type="email" name="email" lang="en" dir="ltr" required placeholder="you@example.com" autocomplete="email"
           class="flex-1 rounded-full border border-sand bg-white px-5 py-3.5 focus:outline-none focus:ring-2 focus:ring-clay/40" />
         <!-- Honeypot: hidden from users, catches bots -->

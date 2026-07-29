@@ -695,6 +695,16 @@ export const hi: DeepPartial<Dict> = {
       cta: 'मुफ़्त लक्षण क्विज़ लें',
     },
 
+    thankYou: {
+      kicker: 'धन्यवाद',
+      title: 'धन्यवाद',
+      metaTitle: 'धन्यवाद | ResetWell Plus',
+      description: 'हमें आपकी जानकारी मिल गई है और हम जल्द ही आपसे संपर्क करेंगे।',
+      lede: 'हमें आपकी जानकारी मिल गई है।',
+      body: 'ResetWell Plus की टीम जल्द ही आपसे संपर्क करेगी। ज़रूरी हो तो आप हमें WhatsApp पर भी संदेश भेज सकती हैं।',
+      homeCta: 'होम पर वापस जाएँ',
+    },
+
     contact: {
       kicker: 'संपर्क',
       title: 'संपर्क करें',

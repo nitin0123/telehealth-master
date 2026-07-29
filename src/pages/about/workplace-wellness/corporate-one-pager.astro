@@ -36,7 +36,7 @@ const inputClass =
       <h2 class="font-serif text-2xl text-ever">{page.formHeading}</h2>
       <p class="mt-2 text-stone leading-relaxed">{page.formBody}</p>
 
-      <form data-op-form novalidate class="mt-6">
+      <form data-op-form action="/api/corporate-lead" method="post" novalidate class="mt-6">
         <!-- Honeypot: "website", not "company" (a real field here). -->
         <div class="hidden" aria-hidden="true">
           <label>Website<input type="text" name="website" tabindex="-1" autocomplete="off" /></label>

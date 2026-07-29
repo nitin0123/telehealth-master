@@ -1021,6 +1021,18 @@ export const en = {
     // source in `sources`.
     // Gated download page for the corporate one-pager. English only, same as
     // the rest of the workplace-wellness section.
+    // Static destination for form posts that arrive without JavaScript, so a
+    // submit always lands somewhere that confirms it worked.
+    thankYou: {
+      kicker: 'Thank you',
+      title: 'Thank You',
+      metaTitle: 'Thank You | ResetWell Plus',
+      description: 'We have received your submission and will be in touch shortly.',
+      lede: 'We have received your details.',
+      body: 'Someone from the ResetWell Plus team will get back to you shortly. If your message was urgent, you can also reach us on WhatsApp.',
+      homeCta: 'Back to home',
+    },
+
     corporateOnePager: {
       kicker: 'Workplace Wellness',
       title: 'Corporate Wellness One-Pager',

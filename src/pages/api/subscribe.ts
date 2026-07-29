@@ -8,6 +8,7 @@ import { db } from '../../lib/db';
 import { Resend } from 'resend';
 import { subscribeSchema, firstError } from '../../lib/schemas';
 import { rateLimited } from '../../lib/rateLimit';
+import { readBody, redirect } from '../../lib/formBody';
 
 const json = (body: unknown, status = 200) =>
   new Response(JSON.stringify(body), { status, headers: { 'Content-Type': 'application/json' } });
@@ -20,25 +21,27 @@ const SOURCES: Record<string, string> = {
 };
 
 export const POST: APIRoute = async ({ request, clientAddress }) => {
-  let body: Record<string, unknown>;
-  try {
-    body = await request.json();
-  } catch {
-    return json({ error: 'Invalid request body.' }, 400);
-  }
+  const back = '/community/join/';
+  const parsedBody = await readBody(request);
+  if (!parsedBody) return json({ error: 'Invalid request body.' }, 400);
+  const { data: body, isFormPost } = parsedBody;
+  // A browser that posted the <form> itself cannot read a JSON reply, so every
+  // exit below has to become a redirect for it.
+  const fail = (message: string, status: number) =>
+    isFormPost ? redirect(back) : json({ error: message }, status);
 
   // Honeypot: real users never fill this hidden field; bots do. Pretend success.
-  if (str(body.company)) return json({ ok: true });
+  if (str(body.company)) return isFormPost ? redirect('/thank-you/') : json({ ok: true });
 
   let ip: string | null = null;
   try { ip = clientAddress ?? null; } catch { ip = null; }
   if (rateLimited(ip)) {
-    return json({ error: 'Too many submissions from your network. Please try again in a few minutes.' }, 429);
+    return fail('Too many submissions from your network. Please try again in a few minutes.', 429);
   }
 
   const parsed = subscribeSchema.safeParse(body);
   if (!parsed.success) {
-    return json({ error: firstError(parsed.error) }, 400);
+    return fail(firstError(parsed.error), 400);
   }
   const email = parsed.data.email;
   const source = parsed.data.source ?? 'unknown';
@@ -53,7 +56,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
     `;
   } catch (err) {
     console.error('[subscribe] DB insert failed:', err);
-    return json({ error: 'Sorry, something went wrong. Please try again.' }, 500);
+    return fail('Sorry, something went wrong. Please try again.', 500);
   }
 
   // 2) Email a notification (best-effort; the subscriber is already saved).
@@ -78,6 +81,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
     console.warn('[subscribe] RESEND_API_KEY or CONTACT_EMAIL_TO not set, skipping email.');
   }
 
+  if (isFormPost) return redirect('/thank-you/');
   return json({ ok: true });
 };
 

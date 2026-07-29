@@ -58,12 +58,12 @@ import LegalLangNote from '../../components/LegalLangNote.astro';
     </div>
 
     <!-- Consent capture form -->
-    <form data-sms-form novalidate class="mt-8 space-y-5" data-submitting={page.submitting} data-generic-error={t.common.genericError}>
+    <form data-sms-form action="/api/sms-consent" method="post" novalidate class="mt-8 space-y-5" data-submitting={page.submitting} data-generic-error={t.common.genericError}>
       <!-- Honeypot: hidden from users, catches bots -->
       <input type="text" name="company" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
       <div>
         <label class="block text-sm font-medium text-ink mb-1" for="sms-phone">{page.phoneLabel} <span class="text-clay">*</span></label>
-        <input id="sms-phone" name="phone" type="tel" lang="en" dir="ltr" required placeholder="+1 (555) 123-4567"
+        <input id="sms-phone" name="phoneNumber" type="tel" lang="en" dir="ltr" required placeholder="+1 (555) 123-4567"
           class="w-full rounded-2xl border border-sand bg-cream px-4 py-3 focus:outline-none focus:ring-2 focus:ring-clay/40" />
       </div>
 
@@ -112,7 +112,7 @@ import LegalLangNote from '../../components/LegalLangNote.astro';
 
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
-        const phone = (form.elements.namedItem('phone') as HTMLInputElement)?.value.trim();
+        const phone = (form.elements.namedItem('phoneNumber') as HTMLInputElement)?.value.trim();
         const marketing = (form.elements.namedItem('consentMarketing') as HTMLInputElement)?.checked;
         const informational = (form.elements.namedItem('consentInformational') as HTMLInputElement)?.checked;
 

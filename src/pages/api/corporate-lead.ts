@@ -7,6 +7,7 @@ import { db } from '../../lib/db';
 import { Resend } from 'resend';
 import { corporateLeadSchema, firstError } from '../../lib/schemas';
 import { rateLimited } from '../../lib/rateLimit';
+import { readBody, redirect } from '../../lib/formBody';
 import { LOGO_CID } from '../../lib/emails/readinessReport';
 import { corporateResourceHtml, corporateResourceText } from '../../lib/emails/corporateResource';
 import { SITE } from '../../data/seo';
@@ -36,25 +37,27 @@ const RESOURCES = {
 } as const;
 
 export const POST: APIRoute = async ({ request, clientAddress }) => {
-  let body: Record<string, unknown>;
-  try {
-    body = await request.json();
-  } catch {
-    return json({ error: 'Invalid request body.' }, 400);
-  }
+  const back = '/about/workplace-wellness/corporate-one-pager/';
+  const parsedBody = await readBody(request);
+  if (!parsedBody) return json({ error: 'Invalid request body.' }, 400);
+  const { data: body, isFormPost } = parsedBody;
+  // A browser that posted the <form> itself cannot read a JSON reply, so every
+  // exit below has to become a redirect for it.
+  const fail = (message: string, status: number) =>
+    isFormPost ? redirect(back) : json({ error: message }, status);
 
   // Honeypot: "website", not "company" (a real field on this form).
-  if (str(body.website)) return json({ ok: true });
+  if (str(body.website)) return isFormPost ? redirect('/thank-you/') : json({ ok: true });
 
   let ip: string | null = null;
   try { ip = clientAddress ?? null; } catch { ip = null; }
   if (rateLimited(ip)) {
-    return json({ error: 'Too many submissions from your network. Please try again in a few minutes.' }, 429);
+    return fail('Too many submissions from your network. Please try again in a few minutes.', 429);
   }
 
   const parsed = corporateLeadSchema.safeParse(body);
   if (!parsed.success) {
-    return json({ error: firstError(parsed.error) }, 400);
+    return fail(firstError(parsed.error), 400);
   }
   const { name, company, email, resource } = parsed.data;
   const source = parsed.data.source ?? 'workplace-wellness';
@@ -77,7 +80,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
     isFirstRequest = result.rows[0]?.is_new === true;
   } catch (err) {
     console.error('[corporate-lead] DB insert failed:', err);
-    return json({ error: 'Sorry, something went wrong saving your details. Please try again.' }, 500);
+    return fail('Sorry, something went wrong saving your details. Please try again.', 500);
   }
 
   // 2) Emails, both best-effort: the lead is already saved either way.
@@ -143,6 +146,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
     console.warn('[corporate-lead] RESEND_API_KEY not set, skipping emails.');
   }
 
+  if (isFormPost) return redirect('/thank-you/');
   return json({ ok: true, sent: isFirstRequest });
 };
 

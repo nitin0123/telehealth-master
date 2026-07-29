@@ -28,7 +28,7 @@ const ytIcon = '<svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><pa
     <div class="lg:col-span-3">
       <div class="bg-white border border-sand rounded-5xl p-6 lg:p-10 shadow-sm reveal">
         <h2 class="font-serif text-3xl text-ever mb-6">{page.formHeading}</h2>
-        <form data-contact-form novalidate data-sending={page.sending} data-generic-error={t.common.genericError}>
+        <form data-contact-form action="/api/contact" method="post" novalidate data-sending={page.sending} data-generic-error={t.common.genericError}>
           <!-- Honeypot: hidden from users; bots that fill it are silently dropped -->
           <div class="hidden" aria-hidden="true">
             <label>Company<input type="text" name="company" tabindex="-1" autocomplete="off" /></label>

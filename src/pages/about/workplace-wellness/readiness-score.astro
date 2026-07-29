@@ -51,6 +51,16 @@ const inputClass =
     data-success-body-repeat={page.successBodyRepeat}
     class="max-w-2xl mx-auto"
   >
+    <noscript>
+      <div class="mb-4 rounded-4xl border border-sand bg-sand/50 p-5 text-center">
+        <p class="text-stone leading-relaxed">
+          The assessment needs JavaScript to run. You can still
+          <a href="/contact/" class="font-semibold text-clay underline underline-offset-2">contact us</a>
+          and we will send the benchmark report by email.
+        </p>
+      </div>
+    </noscript>
+
     <!-- INTRO -->
     <section data-rw-panel="intro" class="bg-white border border-sand rounded-5xl p-6 lg:p-10 shadow-sm reveal">
       <h2 class="font-serif text-2xl lg:text-3xl text-ever">{page.introHeading}</h2>
@@ -182,7 +192,7 @@ const inputClass =
         <h3 class="font-serif text-xl text-ever">{page.formHeading}</h3>
         <p class="mt-1.5 text-sm text-stone">{page.formBody}</p>
 
-        <form data-rw-form novalidate class="mt-5">
+        <form data-rw-form action="/api/corporate-readiness" method="post" novalidate class="mt-5">
           <!-- Honeypot: "website", not "company" (a real field here). Bots that
                fill it are silently dropped. -->
           <div class="hidden" aria-hidden="true">
