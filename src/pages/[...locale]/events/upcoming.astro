@@ -7,6 +7,6 @@ import EventsList from '../../../components/EventsList.astro';
 const t = useTranslations(Astro.url);
 const p = t.pages.eventsUpcoming;
 ---
-<PageLayout section={t.nav.sections.events.label} kicker={p.kicker} title={p.title} lede={p.lede}>
+<PageLayout section={t.nav.sections.events.label} kicker={p.kicker} title={p.title} description={p.description} lede={p.lede}>
   <EventsList filter="Live" />
 </PageLayout>

@@ -60,9 +60,9 @@ const navLinks: Record<string, LinkCopy> = {
 
 export const en = {
   seo: {
-    defaultTitle: 'ResetWell Plus: Online Menopause & Perimenopause Care in India',
+    defaultTitle: 'Online Menopause Care in India | ResetWell Plus',
     defaultDescription:
-      "ResetWell Plus is India's expert-led platform for perimenopause and menopause. Consult a menopause specialist online, check your symptoms, and get a personalised treatment plan.",
+      "India's expert-led platform for perimenopause and menopause. Consult a specialist online, check your symptoms, and get a personalised treatment plan.",
     ogImageAlt: "ResetWell Plus: India's expert-led Menopause and Perimenopause care",
     homeKeywords:
       'menopause care India, perimenopause treatment India, online gynaecologist consultation India, menopause specialist India, HRT India',
@@ -494,9 +494,9 @@ export const en = {
     howItWorks: {
       kicker: 'Get Care',
       title: 'Your first appointment should feel like a relief, not an ordeal.',
-      metaTitle: 'How Online Menopause Consultations Work in India | ResetWell Plus',
+      metaTitle: 'How Online Menopause Consultations Work | ResetWell Plus',
       description:
-        'How an online gynaecologist consultation in India works at ResetWell Plus: symptom intake, specialist match, a 30-minute virtual appointment, and a written care plan you keep.',
+        'How a ResetWell Plus consultation works, from booking to your personalised plan, for Indian women who want to be taken seriously.',
       keywords:
         'online gynaecologist consultation India, menopause treatment India, online menopause doctor India, virtual menopause consultation',
       lede: 'For many Indian women, a medical appointment about menopause brings two feelings: nervousness about being dismissed again, and uncertainty about what to say. This page removes both. Here is exactly what happens from the moment you click Book to the moment you have a care plan.',
@@ -551,7 +551,7 @@ export const en = {
       title: 'Meet Our Specialists',
       metaTitle: 'Menopause Specialists & Experts in India | ResetWell Plus',
       description:
-        "ResetWell Plus is building a panel of menopause specialists in India: gynaecologists, endocrinologists and nutritionists who specialise in women's midlife health. Introductions coming soon.",
+        'Meet the ResetWell Plus clinicians who specialise in perimenopause, menopause and midlife hormonal health for women across India.',
       keywords: 'menopause expert India, menopause specialist India, gynaecologist menopause India',
       lede: "Clinicians who specialise in women's midlife health, so you feel heard from your first visit.",
       heading: 'Our specialist panel is on its way.',
@@ -562,7 +562,7 @@ export const en = {
 
     pricing: {
       title: 'Simple, Transparent Pricing',
-      metaTitle: 'Menopause Consultation Cost in India | ResetWell Plus Pricing',
+      metaTitle: 'Menopause Consultation Cost in India | ResetWell Plus',
       description:
         'Transparent menopause consultation pricing in India. Pay patients directly with no insurance paperwork. Single visits from ₹1,599 and ongoing care plans.',
       keywords: 'menopause consultation cost India, menopause treatment India, menopause consultation price',
@@ -591,9 +591,9 @@ export const en = {
     perimenopause101: {
       kicker: 'Understand Your Symptoms',
       title: 'Perimenopause 101',
-      metaTitle: 'Perimenopause Symptoms in India: Perimenopause 101 | ResetWell Plus',
+      metaTitle: 'Perimenopause 101: Symptoms in India | ResetWell Plus',
       description:
-        'Perimenopause symptoms in India explained: the signs, the average menopause age in India, early menopause, perimenopause at 38, and whether HRT is safe. Reviewed by menopause specialists.',
+        'What perimenopause is, the symptoms Indian women actually report, why it happens, and what genuinely helps. A plain-language guide.',
       keywords:
         'perimenopause symptoms in India, menopause age in India, early menopause India women, perimenopause at 38 India, is HRT safe in India',
       lede: 'The years before your last period can bring forty-plus symptoms. Here is what is happening for women in India, and what helps.',
@@ -969,7 +969,7 @@ export const en = {
       title: 'Meet the Founders',
       metaTitle: "About ResetWell Plus | Women's Midlife & Menopause Wellness",
       description:
-        "ResetWell Plus is a women's wellness platform for menopause and midlife, created by Swati Singh and Reshma Tiwari to bring clarity, compassion and community to women everywhere.",
+        "Meet the founders of ResetWell Plus, India's expert-led platform for perimenopause, menopause and midlife hormonal health.",
       keywords: "about ResetWell Plus, menopause wellness India, women's midlife community",
       lede: 'A space created by women who have walked the journey themselves, determined to make sure no one else walks it alone.',
       readBio: 'Read full bio',
@@ -1213,7 +1213,7 @@ export const en = {
       title: 'Menopause Workplace Readiness Score',
       metaTitle: 'Menopause Workplace Readiness Score | ResetWell Plus',
       description:
-        'A free six-question assessment for HR and CXO leaders in India. See where your organisation stands on supporting women 45+, and where the attrition risk is hiding.',
+        'A free six-question assessment for HR and CXO leaders in India. See where your organisation stands on supporting women 45+.',
       keywords:
         'menopause workplace policy India, HR menopause assessment, employee retention women 45+, workplace readiness score',
       lede: 'Six questions. See where your organisation stands on supporting women 45+, and where the attrition risk is hiding.',
@@ -1404,22 +1404,28 @@ export const en = {
     eventsUpcoming: {
       kicker: 'Events',
       title: 'Upcoming Events',
+      description:
+        'Live, expert-led online sessions on perimenopause, menopause and midlife health, free to join from anywhere in India.',
       lede: 'Live, expert-led sessions you can join from anywhere.',
     },
 
     eventsOnDemand: {
       kicker: 'Events',
       title: 'On Demand',
+      description:
+        'Watch past ResetWell Plus sessions on menopause, HRT, sleep, bone health and more, free and at your own pace.',
       lede: 'Watch past sessions anytime, at your own pace.',
     },
 
     forCorporates: {
       kicker: 'Events',
       title: 'ResetWell Plus for Employers',
-      metaTitle: 'Menopause at Work: Corporate Wellness in India | ResetWell Plus',
+      // Retargeted to session/workshop intent so it stops competing with
+      // /about/workplace-wellness/, which owns the programme and policy terms.
+      metaTitle: 'Menopause Workshops for Employees | ResetWell Plus',
       description:
-        'Bring expert menopause and midlife care to your workplace in India: workshops, webinars, subsidised employee consultations and policy support.',
-      keywords: 'menopause at work India, workplace wellness India, corporate menopause programme',
+        'Book expert-led menopause workshops, webinars and manager training sessions for your teams in India, delivered online.',
+      keywords: 'menopause workshop India, menopause webinar employees, manager training menopause India',
       lede: 'Offer expert midlife care as part of your benefits package.',
       blocks: [
         {
@@ -1436,6 +1442,10 @@ export const en = {
         },
       ] as { h: string; p: string }[],
       cta: 'Talk to our team',
+      programmeHeading: 'Looking for the full programme?',
+      programmeBody:
+        'Workshops are Tier 1 of the ResetWell Plus Corporate Wellness Programme. See the business case, the three tiers and what management needs to know.',
+      programmeCta: 'Workplace Wellness',
     },
 
     communityJoin: {
@@ -1473,13 +1483,15 @@ export const en = {
     storiesOfReset: {
       kicker: 'Community',
       title: 'True Stories of Transformation',
+      description:
+        'Real stories from Indian women on the turning points in their menopause journey, and the care that changed things.',
       lede: 'Real women on the turning points that changed everything.',
     },
 
     faqs: {
       metaTitle: 'Menopause & Perimenopause FAQs | ResetWell Plus',
       description:
-        'Straight answers to the questions women actually ask about perimenopause and menopause: symptoms, HRT safety, non-hormonal options, sexual and urinary health, early menopause, and long-term health.',
+        'Straight answers on perimenopause and menopause: symptoms, HRT safety, non-hormonal options, sexual health and early menopause.',
       keywords:
         'is HRT safe, menopause FAQ, perimenopause questions, menopause age, HRT breast cancer risk, vaginal estrogen safety',
       heading: 'Frequently Asked Questions',
@@ -1489,9 +1501,9 @@ export const en = {
     symptomChecker: {
       kicker: 'Is it perimenopause?',
       title: "Something has shifted. Let's understand what your body is telling you.",
-      metaTitle: 'Free Perimenopause Symptom Checker & Quiz (India) | ResetWell Plus',
+      metaTitle: 'Free Perimenopause Symptom Checker | ResetWell Plus',
       description:
-        'Take our free 5-minute perimenopause quiz, adapted for India. Check symptoms like joint pain, sleep, mood and hot flashes, and get a personalised next step. No sign-up.',
+        'A free 5-minute perimenopause self-assessment for Indian women. No sign-up needed, and your answers stay on your device.',
       keywords:
         'perimenopause quiz India, menopause symptom checker, perimenopause symptoms quiz, menopause joint pain India',
       lede: "This is not a medical diagnosis, only a specialist can provide that. But this 5-minute assessment will help you make sense of what you've been experiencing, understand whether your symptoms align with perimenopause, and know exactly what to discuss at your first consultation. It is free, private, and takes 5 minutes.",

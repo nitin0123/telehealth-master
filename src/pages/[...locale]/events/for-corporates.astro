@@ -25,6 +25,19 @@ const p = t.pages.forCorporates;
       </div>
     ))}
   </div>
+  {/* Points at the full programme page so the two corporate pages stop
+      competing: this one covers sessions, that one covers the programme.
+      English only, since Workplace Wellness has no Hindi twin. */}
+  {lang === 'en' && (
+    <div class="mt-6 bg-sand/50 border border-sand rounded-4xl p-6 lg:p-8 text-center reveal">
+      <h2 class="font-serif text-2xl text-ever">{p.programmeHeading}</h2>
+      <p class="mt-2 mx-auto max-w-xl text-stone leading-relaxed">{p.programmeBody}</p>
+      <a href="/about/workplace-wellness/" class="mt-5 inline-block rounded-full bg-clay hover:bg-claydk text-white font-semibold px-8 py-3.5 transition">
+        {p.programmeCta}
+      </a>
+    </div>
+  )}
+
   <div class="mt-8 text-center">
     <a href={to('/contact/')} class="btn-primary">{p.cta}</a>
   </div>

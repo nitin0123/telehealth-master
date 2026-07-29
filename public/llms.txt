@@ -1,11 +1,12 @@
 # ResetWell Plus
 
-> ResetWell Plus is India's expert-led online platform for perimenopause and menopause care. It offers virtual consultations with menopause specialists, a free symptom checker, educational events, and a private community for women in midlife. Consultations start at Rs 1,599. The platform serves women across India (English and Hindi) and was co-founded by Reshma Tiwari, a certified menopause coach, and Swati Singh, author of the book Menopause & Me.
+> ResetWell Plus is India's expert-led online platform for perimenopause and menopause care. It offers virtual consultations with menopause specialists, a free symptom checker, educational events, a private community for women in midlife, and menopause programmes for employers. Consultations start at Rs 1,599. The platform serves women across India (English and Hindi) and was co-founded by Reshma Tiwari, a certified menopause coach, and Swati Singh, author of the book Menopause & Me.
 
 Key facts:
 - One in three Indian women navigate perimenopause without a diagnosis; ResetWell Plus provides specialist care designed for them.
 - Services: menopause and perimenopause consultations (online), hormone replacement therapy (HRT) guidance, symptom assessment, workplace wellness programmes for corporates.
 - Care is delivered by clinicians who specialise in women's midlife health.
+- Indian women typically reach menopause around age 46 to 47, earlier than the global average.
 - Contact: via the form at https://www.resetwellplus.com/contact
 
 ## Understand your symptoms
@@ -18,7 +19,15 @@ Key facts:
 - [How it works](https://www.resetwellplus.com/get-care/how-it-works): The consultation process from booking to personalised plan.
 - [Our specialists](https://www.resetwellplus.com/get-care/our-specialists): The clinicians behind ResetWell Plus.
 - [Pricing](https://www.resetwellplus.com/get-care/pricing): Consultation fees, starting at Rs 1,599.
-- [Book a consultation](https://www.resetwellplus.com/get-care/book-a-consultation): Book an online visit with a menopause specialist.
+
+Note: online booking is not open yet. Enquiries go through the contact form at https://www.resetwellplus.com/contact
+
+## Workplace wellness (for employers)
+
+- [Workplace Wellness](https://www.resetwellplus.com/about/workplace-wellness): The corporate programme for Indian employers: the business case for supporting women 45+, the three service tiers, and what HR and management need to know. Cites published research on menopause and workforce retention.
+- [Menopause Workplace Readiness Score](https://www.resetwellplus.com/about/workplace-wellness/readiness-score): A free six-question assessment for HR and CXO leaders. Gives an instant readiness tier (Reactive, Developing or Leading) and a breakdown of gaps.
+- [Corporate Wellness one-pager](https://www.resetwellplus.com/about/workplace-wellness/corporate-one-pager): Request the summary document for circulating internally.
+- [Workshops and webinars](https://www.resetwellplus.com/events/for-corporates): Expert-led sessions for employees, managers and HR, in English and Hindi.
 
 ## Community and events
 
@@ -26,14 +35,25 @@ Key facts:
 - [Stories of Reset](https://www.resetwellplus.com/community/stories-of-reset): Real experiences from women who found care.
 - [FAQs](https://www.resetwellplus.com/community/faqs): Common questions on HRT safety in India, menopause age in India, payments, and consultations.
 - [Upcoming events](https://www.resetwellplus.com/events/upcoming): Live, expert-led online sessions.
-- [Workplace wellness](https://www.resetwellplus.com/about/workplace-wellness): Menopause awareness and support programmes for employers.
+- [On demand](https://www.resetwellplus.com/events/on-demand): Recordings of past sessions, free to watch anytime.
+
+## Blog
+
+- [Blog](https://www.resetwellplus.com/blog): Articles on perimenopause symptoms, HRT, sleep, brain fog, joint pain, loneliness, and menopause at work. Each article carries a FAQ section answering the questions readers actually ask.
 
 ## About
 
 - [Our story](https://www.resetwellplus.com/about/our-story): Why ResetWell Plus exists.
+- [Our team](https://www.resetwellplus.com/about/our-team): The clinicians and builders behind the platform.
 - [Reshma Tiwari](https://www.resetwellplus.com/about/reshma-tiwari): Co-founder, certified menopause coach.
 - [Swati Singh](https://www.resetwellplus.com/about/swati-singh): Co-founder and author of Menopause & Me.
+- [In the press](https://www.resetwellplus.com/about/in-the-press): Coverage in Press Trust of India, News18, Mid-Day, Dainik Jagran and others.
 - [The book](https://www.resetwellplus.com/book): Menopause & Me: It's Time to Reclaim Your Life, by Swati Singh, available on Amazon.
+
+## Languages
+
+- The site is published in English and Hindi. Hindi pages live under /hindi/, for example https://www.resetwellplus.com/hindi/community/faqs
+- The workplace wellness section is English only.
 
 ## Important notes
 
