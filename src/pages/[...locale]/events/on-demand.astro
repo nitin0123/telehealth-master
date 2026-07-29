@@ -1,12 +1,26 @@
 ---
-import { localePaths, useTranslations } from '../../../i18n';
+import { fmt, langFromUrl, localePaths, localizePath, useTranslations } from '../../../i18n';
 export const getStaticPaths = localePaths;
 import PageLayout from '../../../layouts/PageLayout.astro';
 import OnDemandVideos from '../../../components/OnDemandVideos.astro';
 
 const t = useTranslations(Astro.url);
 const p = t.pages.eventsOnDemand;
+const lang = langFromUrl(Astro.url);
+const to = (href: string) => localizePath(href, lang);
+
+// {upcoming} in liveBody becomes a link to the upcoming-events page.
+const liveHtml = fmt(p.liveBody, {
+  upcoming: `<a href="${to('/events/upcoming/')}" class="font-semibold text-clay underline decoration-clay/40 underline-offset-4 hover:decoration-clay transition">${p.liveLink}</a>`,
+});
 ---
 <PageLayout section={t.nav.sections.events.label} kicker={p.kicker} title={p.title} description={p.description} image="/events.jpeg" lede={p.lede}>
+  <h2 class="font-serif text-xl lg:text-2xl text-ever mb-5 reveal">{p.watchHeading}</h2>
   <OnDemandVideos />
+
+  <!-- The recordings page had no link to the live sessions before this -->
+  <section class="mt-10 rounded-4xl bg-white border border-sand shadow-sm p-6 sm:p-8 reveal">
+    <h2 class="font-serif text-xl lg:text-2xl text-ever">{p.liveHeading}</h2>
+    <p class="mt-2 text-stone leading-relaxed" set:html={liveHtml} />
+  </section>
 </PageLayout>

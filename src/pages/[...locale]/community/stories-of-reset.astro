@@ -1,12 +1,21 @@
 ---
-import { localePaths, useTranslations } from '../../../i18n';
+import { fmt, langFromUrl, localePaths, localizePath, useTranslations } from '../../../i18n';
 export const getStaticPaths = localePaths;
 import PageLayout from '../../../layouts/PageLayout.astro';
 
 const t = useTranslations(Astro.url);
 const p = t.pages.storiesOfReset;
+const lang = langFromUrl(Astro.url);
+const to = (href: string) => localizePath(href, lang);
+
+// {contact} and {community} in shareBody become links.
+const shareHtml = fmt(p.shareBody, {
+  contact: `<a href="${to('/contact/')}" class="font-semibold text-clay underline decoration-clay/40 underline-offset-4 hover:decoration-clay transition">${p.shareContact}</a>`,
+  community: `<a href="${to('/community/join/')}" class="font-semibold text-clay underline decoration-clay/40 underline-offset-4 hover:decoration-clay transition">${p.shareCommunity}</a>`,
+});
 ---
 <PageLayout section={t.nav.sections.about.label} sectionHref="/about/" kicker={p.kicker} title={p.title} description={p.description} lede={p.lede}>
+  <h2 class="font-serif text-xl lg:text-2xl text-ever mb-5 reveal">{p.quotesHeading}</h2>
   <div class="columns-1 sm:columns-2 lg:columns-3 gap-5 [&>*]:mb-5">
     {t.content.testimonials.map((item) => (
       <figure class="break-inside-avoid bg-white border border-sand rounded-3xl p-6 reveal">
@@ -16,4 +25,10 @@ const p = t.pages.storiesOfReset;
       </figure>
     ))}
   </div>
+
+  <!-- Somewhere to go after the quotes, and a route into the community -->
+  <section class="mt-10 rounded-4xl bg-white border border-sand shadow-sm p-6 sm:p-8 reveal">
+    <h2 class="font-serif text-xl lg:text-2xl text-ever">{p.shareHeading}</h2>
+    <p class="mt-2 text-stone leading-relaxed" set:html={shareHtml} />
+  </section>
 </PageLayout>

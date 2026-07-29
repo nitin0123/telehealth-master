@@ -938,6 +938,10 @@ export const en = {
     },
 
     book: {
+      /** Section headings. The page was one unbroken column before these. */
+      whereToBuyHeading: 'Where to buy',
+      whyHeading: 'Why this book exists',
+      insideHeading: 'What you will find inside',
       kicker: 'The Book',
       /** The book's own title, never translated. */
       title: 'Menopause & Me',
@@ -1048,6 +1052,8 @@ export const en = {
     },
 
     inThePress: {
+      coverageHeading: 'Coverage and features',
+      enquiriesHeading: 'Press enquiries',
       kicker: 'About',
       title: 'In The Press',
       metaTitle: 'In The Press | ResetWell Plus',
@@ -1472,6 +1478,12 @@ export const en = {
     },
 
     eventsOnDemand: {
+      watchHeading: 'Watch past sessions',
+      liveHeading: 'Join a live session',
+      /** {upcoming} becomes a link to /events/upcoming/. */
+      liveBody:
+        'Recordings are free and always will be, but the live sessions let you ask your own questions and hear what other women in the room are asking. {upcoming}.',
+      liveLink: 'See what is coming up next',
       kicker: 'Events',
       title: 'On Demand',
       description:
@@ -1543,6 +1555,13 @@ export const en = {
     },
 
     storiesOfReset: {
+      quotesHeading: 'What women say after care',
+      shareHeading: 'Share your own story',
+      /** {contact} and {community} become links. */
+      shareBody:
+        'Every story here started with someone deciding to say it out loud. If your own turning point might help another woman recognise hers, we would like to hear it. {contact}, or {community} and share it there.',
+      shareContact: 'Write to us',
+      shareCommunity: 'join the community',
       kicker: 'Community',
       title: 'True Stories of Transformation',
       description:

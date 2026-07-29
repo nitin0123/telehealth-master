@@ -48,16 +48,19 @@ const bookSchema = {
         height="946"
         class="w-full drop-shadow-xl"
       />
-      <a href={AMAZON_IN_URL} target="_blank" rel="noopener" class="btn-primary mt-6 w-full">{page.buyIndia}</a>
+      <h2 class="mt-6 text-xs font-semibold uppercase tracking-wide text-clay text-center lg:text-left">{page.whereToBuyHeading}</h2>
+      <a href={AMAZON_IN_URL} target="_blank" rel="noopener" class="btn-primary mt-3 w-full">{page.buyIndia}</a>
       <a href={AMAZON_INTL_URL} target="_blank" rel="noopener" class="btn-ghost mt-3 w-full text-center">{page.buyIntl}<br />{page.buyIntlRegions}</a>
       <a href={KINDLE_URL} target="_blank" rel="noopener" class="btn-ghost mt-3 w-full">{page.kindle}</a>
     </div>
 
     <!-- Blurb -->
     <div class="space-y-4 text-stone text-lg leading-relaxed reveal" style="--reveal-delay:80ms">
+      <h2 class="font-serif text-xl text-ever">{page.whyHeading}</h2>
       <p class="font-serif text-2xl text-ever">{page.lead}</p>
       {page.paras.map((para) => <p set:html={fmt(para, { title: `<em>${page.title}</em>` })} />)}
-      <p class="font-medium text-ink pt-2">{page.discoverIntro}</p>
+      <h2 class="font-serif text-xl text-ever pt-4">{page.insideHeading}</h2>
+      <p class="font-medium text-ink">{page.discoverIntro}</p>
       <ul class="list-disc pl-6 space-y-1">
         {page.discover.map((d) => <li>{d}</li>)}
       </ul>

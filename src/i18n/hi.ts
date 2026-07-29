@@ -998,6 +998,9 @@ export const hi: DeepPartial<Dict> = {
     },
 
     book: {
+      whereToBuyHeading: 'कहाँ से ख़रीदें',
+      whyHeading: 'यह किताब क्यों लिखी गई',
+      insideHeading: 'इसमें आपको क्या मिलेगा',
       kicker: 'किताब',
       title: 'Menopause & Me',
       metaTitle: 'Menopause & Me, लेखिका Swati Singh | ResetWell Plus',
@@ -1098,6 +1101,8 @@ export const hi: DeepPartial<Dict> = {
     },
 
     inThePress: {
+      coverageHeading: 'कवरेज और फ़ीचर',
+      enquiriesHeading: 'प्रेस पूछताछ',
       kicker: 'हमारे बारे में',
       title: 'मीडिया में',
       metaTitle: 'मीडिया में | ResetWell Plus',
@@ -1209,6 +1214,11 @@ export const hi: DeepPartial<Dict> = {
     },
 
     eventsOnDemand: {
+      watchHeading: 'पिछले सेशन देखें',
+      liveHeading: 'लाइव सेशन में जुड़िए',
+      liveBody:
+        'रिकॉर्डिंग मुफ़्त हैं और हमेशा रहेंगी, लेकिन लाइव सेशन में आप अपने सवाल पूछ सकती हैं और सुन सकती हैं कि कमरे में मौजूद दूसरी महिलाएँ क्या पूछ रही हैं। {upcoming}।',
+      liveLink: 'देखिए आगे क्या आ रहा है',
       kicker: 'इवेंट्स',
       title: 'ऑन डिमांड',
       description:
@@ -1273,6 +1283,12 @@ export const hi: DeepPartial<Dict> = {
     },
 
     storiesOfReset: {
+      quotesHeading: 'देखभाल के बाद महिलाएँ क्या कहती हैं',
+      shareHeading: 'अपनी कहानी साझा कीजिए',
+      shareBody:
+        'यहाँ की हर कहानी तब शुरू हुई जब किसी ने उसे खुलकर कहने का फ़ैसला किया। अगर आपका अपना मोड़ किसी और महिला को अपना मोड़ पहचानने में मदद कर सकता है, तो हम उसे सुनना चाहेंगे। {contact}, या {community} और वहाँ साझा कीजिए।',
+      shareContact: 'हमें लिखिए',
+      shareCommunity: 'कम्युनिटी से जुड़िए',
       kicker: 'कम्युनिटी',
       title: 'बदलाव की सच्ची कहानियाँ',
       description:
