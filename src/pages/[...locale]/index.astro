@@ -13,9 +13,13 @@ import DailyQuote from '../../components/DailyQuote.astro';
 import HowItWorks from '../../components/HowItWorks.astro';
 import FinalCta from '../../components/FinalCta.astro';
 import { useTranslations } from '../../i18n';
+import { websiteSchema } from '../../data/seo';
 const t = useTranslations(Astro.url);
 ---
 <BaseLayout keywords={t.seo.homeKeywords}>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+  </Fragment>
   <Hero />
   <DailyQuote />
   <ProblemStrip />

@@ -13,6 +13,8 @@ const blog = defineCollection({
     synopsis: z.string(),
     author: z.string().default('ResetWell Plus Editorial Team'),
     publishedAt: z.coerce.date(),
+    /** Optional. Set when a post is materially revised; drives dateModified. */
+    updatedAt: z.coerce.date().optional(),
     /** Optional card/OG image path under public/ (user-provided assets only) */
     cover: z.string().optional(),
     /** Comma-separated SEO/AEO keyword phrases for the meta tag + JSON-LD */

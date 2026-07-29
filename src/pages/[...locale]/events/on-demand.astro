@@ -7,6 +7,6 @@ import OnDemandVideos from '../../../components/OnDemandVideos.astro';
 const t = useTranslations(Astro.url);
 const p = t.pages.eventsOnDemand;
 ---
-<PageLayout section={t.nav.sections.events.label} kicker={p.kicker} title={p.title} description={p.description} lede={p.lede}>
+<PageLayout section={t.nav.sections.events.label} kicker={p.kicker} title={p.title} description={p.description} image="/events.jpeg" lede={p.lede}>
   <OnDemandVideos />
 </PageLayout>

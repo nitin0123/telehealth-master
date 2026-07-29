@@ -51,6 +51,13 @@ export const organizationSchema = {
     { '@type': 'MedicalProcedure', name: 'Hormone replacement therapy (HRT) consultation' },
   ],
   knowsLanguage: ['en', 'hi'],
+  // logo and image let search engines render a brand mark in knowledge panels;
+  // priceRange is the field Google looks for on a clinic listing. Address and
+  // telephone stay out on purpose: the practice is virtual-first and the
+  // numbers are already obfuscated on the contact page to deter harvesting.
+  logo: { '@type': 'ImageObject', url: `${SITE.url}/logo.png`, width: 224, height: 224 },
+  image: `${SITE.url}${SITE.ogImage}`,
+  priceRange: 'INR 1599 onwards',
   sameAs: [
     CONTACT.social.instagram,
     CONTACT.social.facebook,
@@ -86,4 +93,19 @@ export const keywordTargets: Record<string, string[]> = {
   '/community/join': ['menopause community India women', 'menopause support group India'],
   '/events/upcoming': ['hormonal health workshop India', 'menopause webinar India'],
   '/community/faqs': ['is HRT safe in India', 'menopause age in India'],
+};
+
+/**
+ * WebSite node, emitted once on the homepage. Deliberately without
+ * `potentialAction`/SearchAction: there is no site search to point it at, and
+ * declaring a search endpoint that 404s is worse than having none.
+ */
+export const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: SITE.name,
+  alternateName: 'ResetWell',
+  url: SITE.url,
+  inLanguage: ['en-IN', 'hi-IN'],
+  publisher: { '@type': 'Organization', name: SITE.legalName, url: SITE.url },
 };

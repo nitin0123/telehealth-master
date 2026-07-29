@@ -1153,6 +1153,8 @@ export const en = {
           },
         ] as { tier: string; h: string; p: string }[],
         note: 'Most organisations begin with a Tier 1 awareness session as a low-commitment pilot, then expand into Tier 2 telehealth access once employee interest is confirmed.',
+        sessionsLinkText: 'See the workshop and webinar formats',
+        sessionsLinkHref: '/events/for-corporates/',
       },
 
       management: {

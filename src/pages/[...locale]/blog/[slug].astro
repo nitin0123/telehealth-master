@@ -44,6 +44,9 @@ const articleSchema = {
   headline: title,
   description: synopsis,
   datePublished: publishedAt.toISOString(),
+  // Falls back to the publish date so the field is always present: search
+  // engines treat a missing dateModified as unknown rather than unchanged.
+  dateModified: (post.data.updatedAt ?? publishedAt).toISOString(),
   author: { '@type': 'Organization', name: author },
   publisher: { '@type': 'Organization', name: BRAND, url: SITE.url },
   mainEntityOfPage: new URL(Astro.url.pathname, SITE.url).href,

@@ -74,7 +74,10 @@ const eyebrow = 'eyebrow uppercase text-xs font-semibold text-clay';
         </div>
       ))}
     </div>
-    <p class="mt-4 text-sm text-stone leading-relaxed">{p.programme.note}</p>
+    <p class="mt-4 text-sm text-stone leading-relaxed">
+      {p.programme.note}{' '}
+      <a href={p.programme.sessionsLinkHref} class="font-semibold text-clay underline decoration-clay/40 underline-offset-4 hover:decoration-clay transition">{p.programme.sessionsLinkText}</a>.
+    </p>
   </section>
 
   <!-- Section 4: what management needs to know -->
