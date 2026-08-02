@@ -57,7 +57,19 @@ const pct = (n: number, total: number) => (total === 0 ? 0 : Math.round((n / tot
     </div>
   )}
 
-  {authorised && !standing && <div class={card}><p class="text-stone">No polls have been created yet.</p></div>}
+  {/* Drafts are filtered out of the picker, so "nothing here" means nothing has
+      been opened yet rather than nothing existing. Say which, or the message
+      reads as a fault. */}
+  {authorised && !standing && (
+    <div class={card}>
+      <p class="text-stone leading-relaxed">
+        No poll has been opened yet, so there are no results to show. Open one and this page fills in as answers arrive.
+      </p>
+      <p class="mt-3 text-xs text-stone">
+        <code class="rounded bg-sand/60 px-1.5 py-0.5">UPDATE polls SET status = 'open' WHERE id = '…';</code>
+      </p>
+    </div>
+  )}
 
   {authorised && standing && (
     <>
