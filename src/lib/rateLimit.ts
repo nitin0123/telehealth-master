@@ -31,46 +31,21 @@ const WINDOW_MINUTES = 10;
  *   it is submitted.
  *
  * - `poll-auth` guards a password and is used by us, not the room, so it stays
- *   the tightest of all. Raising it trades real brute-force protection for
- *   nothing.
+ *   as tight as the ordinary forms. Raising it trades real brute-force
+ *   protection for nothing.
  */
 const LIMITS: Record<string, number> = {
   default: 5,
   // Headroom for a full room plus retries and flaky-wifi resubmissions.
-  'poll-identify': 1500,
-  'poll-vote': 1500,
-  'poll-auth': 8,
+  'poll-identify': 2000,
+  'poll-vote': 2000,
+  // Listed rather than left to fall through to `default`, so raising the
+  // default for ordinary forms can never quietly loosen the password gate.
+  'poll-auth': 5,
 };
 
-/** Scopes the blanket RATE_LIMIT_MAX must never loosen. See maxHits(). */
-const PROTECTED_SCOPES = new Set(['poll-auth']);
-
-/**
- * Allowance for a scope, overridable from the environment so a load test does
- * not need a code change, and so Preview can run loose while Production stays
- * strict without branching on the environment in code.
- *
- *   RATE_LIMIT_MAX_POLL_VOTE=1000   one scope ('poll-vote' -> POLL_VOTE)
- *   RATE_LIMIT_MAX=1000             every scope without its own override
- *
- * Note that Vercel applies an environment variable change on the next
- * deployment, not to the one already running.
- *
- * Ignores anything that is not a positive integer, so a typo cannot
- * accidentally disable the limiter altogether.
- */
-function maxHits(scope: string): number {
-  const specific = process.env[`RATE_LIMIT_MAX_${scope.toUpperCase().replace(/-/g, '_')}`];
-  // Scopes guarding a secret ignore the blanket override on purpose: a variable
-  // set to run a load test must not be able to throw the password endpoint open
-  // to brute force as a side effect. Only its own named variable can move it.
-  const general = PROTECTED_SCOPES.has(scope) ? undefined : process.env.RATE_LIMIT_MAX;
-  for (const raw of [specific, general]) {
-    const n = Number(raw);
-    if (raw !== undefined && Number.isInteger(n) && n > 0) return n;
-  }
-  return LIMITS[scope] ?? LIMITS.default;
-}
+/** Submissions allowed for `scope` in one window. */
+const maxHits = (scope: string): number => LIMITS[scope] ?? LIMITS.default;
 
 const hits = new Map<string, number[]>();
 
