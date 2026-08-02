@@ -215,8 +215,17 @@ const pct = (n: number, total: number) => (total === 0 ? 0 : Math.round((n / tot
       frame = bits.length ? requestAnimationFrame(tick) : 0;
     };
 
+    // Ceiling on live particles. A room of 500 answering at once means bursts
+    // land every couple of seconds, and without a cap they accumulate until the
+    // canvas is soup and the frame rate drops. This keeps it celebratory on a
+    // projector rather than overwhelming.
+    const MAX_BITS = 220;
+
     const burst = (count: number) => {
       if (calm || !canvas) return;
+      const room = MAX_BITS - bits.length;
+      if (room <= 0) return;
+      count = Math.min(count, room);
       const w = canvas.offsetWidth;
       for (let i = 0; i < count; i++) {
         bits.push({
