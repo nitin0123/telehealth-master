@@ -15,6 +15,13 @@
 #
 #   PACE=0.2 ./scripts/poll-load-test.sh 500
 #
+# JOBS runs that many people at once (default 1). Sequentially each person costs
+# two round trips, roughly a second, so 500 takes ten minutes however small PACE
+# is; a real room answers in two or three. Parallel workers are the only way to
+# reproduce that shape:
+#
+#   JOBS=8 PACE=0 ./scripts/poll-load-test.sh 500
+#
 # Preview deployments sit behind Vercel Deployment Protection, which answers 401
 # to anything without a Vercel session. Generate a secret under Settings ->
 # Deployment Protection -> Protection Bypass for Automation and export it:
@@ -34,6 +41,10 @@ else
   BASE=""; COUNT="${1:-100}"; POLL="${2:-workplace-menopause-policy}"
 fi
 PACE="${PACE:-1}"
+# Concurrent workers. Past about 10 every request from this one IP is queueing
+# behind the same rate_limits row in Postgres, so you start measuring lock
+# contention rather than the poll.
+JOBS="${JOBS:-1}"
 
 command -v shuf >/dev/null || { echo "shuf not found (brew install coreutils)"; exit 1; }
 
@@ -120,49 +131,76 @@ case "$probe_vote" in
 esac
 
 # --- Run -------------------------------------------------------------------
-ok=0
-failed=0
-# Rough estimate: the pace plus a round trip for the two requests.
-mins=$(awk -v c="$COUNT" -v p="$PACE" 'BEGIN { printf "%.0f", (c * (p + 0.6)) / 60 }')
-echo "Sending $COUNT respondents to $POLL, ${PACE}s apart (roughly ${mins}m) ..."
+# Workers run concurrently, each taking every JOBS-th index, so the requests
+# overlap the way a room does. Sequential runs top out near one person per
+# second because each does two round trips, which cannot reproduce 500 people
+# answering over two minutes however small PACE gets.
+#
+# Counters cannot be shared: each worker is a subshell, so its variables die
+# with it. Each writes its own tally to a file and the parent sums them.
+RESULTS=$(mktemp -d)
+trap 'rm -rf "$RESULTS"' EXIT
 
-for i in $(seq 1 "$COUNT"); do
+person() {
+  local i="$1"
   # 10 digits, unique per index. The API stores it as +91XXXXXXXXXX.
-  phone=$(printf '9876%06d' "$i")
+  local phone; phone=$(printf '9876%06d' "$i")
 
   # -D captures the response headers so the Set-Cookie token can be read. No -c:
   # a cookie jar on stdout would mix into the response body.
-  headers=$(mktemp)
-  body=$(curl -s -D "$headers" -X POST "$BASE/api/poll-identify" \
+  local headers; headers=$(mktemp)
+  local body; body=$(curl -s -D "$headers" -X POST "$BASE/api/poll-identify" \
     "${HDRS[@]}" \
     -d "{\"name\":\"Test Person $i\",\"company\":\"Test Co $i\",\"phone\":\"$phone\"}")
 
-  token=$(grep -i '^set-cookie: *rw_poll_id=' "$headers" | head -1 | sed -E 's/.*rw_poll_id=([^;]*).*/\1/')
+  local token; token=$(grep -i '^set-cookie: *rw_poll_id=' "$headers" | head -1 | sed -E 's/.*rw_poll_id=([^;]*).*/\1/')
   rm -f "$headers"
 
   if [ -z "$token" ]; then
     echo "  [$i] identify failed: $body"
-    failed=$((failed + 1))
-    continue
+    return 1
   fi
 
-  opt=$(shuf -e yes no not-sure -n 1)
-  vote=$(curl -s -X POST "$BASE/api/poll-vote" "${HDRS[@]}" \
+  local opt; opt=$(shuf -e yes no not-sure -n 1)
+  local vote; vote=$(curl -s -X POST "$BASE/api/poll-vote" "${HDRS[@]}" \
     -H "Cookie: rw_poll_id=$token" \
     -d "{\"poll\":\"$POLL\",\"option\":\"$opt\"}")
 
   case "$vote" in
-    *'"ok":true'*) ok=$((ok + 1)); printf '\r  %d/%d voted' "$ok" "$COUNT" ;;
-    *) echo "  [$i] vote failed: $vote"; failed=$((failed + 1)) ;;
+    *'"ok":true'*) return 0 ;;
+    *) echo "  [$i] vote failed: $vote"; return 1 ;;
   esac
+}
 
-  # Paced so the results board shows arrivals rather than one lump. PACE=0 to
-  # hammer the endpoints instead.
-  [ "$PACE" != "0" ] && sleep "$PACE"
+# Each worker walks its own stride through the range, so the load stays even
+# even when some requests are slower than others.
+worker() {
+  local offset="$1" ok=0 failed=0 i
+  for ((i = offset; i <= COUNT; i += JOBS)); do
+    if person "$i"; then ok=$((ok + 1)); else failed=$((failed + 1)); fi
+    [ "$PACE" != "0" ] && sleep "$PACE"
+  done
+  echo "$ok $failed" > "$RESULTS/$offset"
+}
+
+# Two round trips per person, roughly 0.6s, divided across the workers.
+mins=$(awk -v c="$COUNT" -v p="$PACE" -v j="$JOBS" 'BEGIN { printf "%.1f", (c * (p + 0.6)) / j / 60 }')
+echo "Sending $COUNT respondents to $POLL: $JOBS in parallel, ${PACE}s apart (roughly ${mins}m) ..."
+
+started=$(date +%s)
+for ((w = 1; w <= JOBS; w++)); do worker "$w" & done
+wait
+
+ok=0; failed=0
+for f in "$RESULTS"/*; do
+  read -r a b < "$f"
+  ok=$((ok + a)); failed=$((failed + b))
 done
+took=$(( $(date +%s) - started ))
 
 echo
-echo "done: $ok voted, $failed failed"
+echo "done in ${took}s: $ok voted, $failed failed"
+[ "$ok" -gt 0 ] && echo "  ~$(awk -v o="$ok" -v t="$took" 'BEGIN { printf "%.1f", (t > 0 ? o / t : o) }') votes/second"
 echo
 echo "Clean up afterwards:"
 echo "  DELETE FROM poll_votes       WHERE phone LIKE '+919876%';"

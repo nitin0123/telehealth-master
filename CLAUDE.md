@@ -19,6 +19,7 @@ db/migrate.sh "<postgres-url>"   # low-level: apply db/*.sql to an explicit URL
 
 scripts/poll-load-test.sh 500            # simulate 500 respondents on the newest preview
 PACE=0.2 scripts/poll-load-test.sh 500   # …arriving 0.2s apart rather than 1s
+JOBS=8 PACE=0 scripts/poll-load-test.sh 500   # …8 at once, to mimic a live room
 ```
 
 - `scripts/poll-load-test.sh` drives `/api/poll-identify` + `/api/poll-vote` as N separate
@@ -29,6 +30,10 @@ PACE=0.2 scripts/poll-load-test.sh 500   # …arriving 0.2s apart rather than 1s
   A protected preview needs `export VERCEL_AUTOMATION_BYPASS_SECRET=…` (Vercel → Settings →
   Deployment Protection → Protection Bypass for Automation); production needs nothing. The poll
   must be `open` first, and the script prints the cleanup SQL for the rows it creates.
+  Each person costs two round trips, so a sequential run tops out near one per second and 500
+  takes ten minutes however small `PACE` is; `JOBS` is the only way to reproduce a room
+  answering in two or three. Past ~10 workers every request from one IP queues behind the same
+  `rate_limits` row, so you start measuring lock contention rather than the poll.
 
 - `db:push` / `db:push:prod` wrap `db/push.sh`, which reads the connection string from the
   matching `.env` file so you never paste URLs. Idempotent (`CREATE TABLE IF NOT EXISTS`); it
