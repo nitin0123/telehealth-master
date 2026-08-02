@@ -30,6 +30,7 @@ export const POST: APIRoute = async ({ request, clientAddress, cookies, url }) =
     secure: true,
   });
 
-  const poll = url.searchParams.get('poll');
-  return redirect(poll ? `/poll/results/?poll=${encodeURIComponent(poll)}` : '/poll/results/');
+  // Send them back to whatever they were trying to see, run or poll.
+  const qs = url.search.replace(/^\?/, '');
+  return redirect(qs ? `/poll/results/?${qs}` : '/poll/results/');
 };

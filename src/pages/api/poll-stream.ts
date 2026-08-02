@@ -23,8 +23,8 @@ export const GET: APIRoute = async ({ url, cookies }) => {
     return new Response('Unauthorised', { status: 401 });
   }
 
-  const pollId = url.searchParams.get('poll');
-  if (!pollId) return new Response('Missing poll', { status: 400 });
+  const runId = Number(url.searchParams.get('run'));
+  if (!Number.isInteger(runId) || runId <= 0) return new Response('Missing run', { status: 400 });
 
   const encoder = new TextEncoder();
   let timer: ReturnType<typeof setInterval> | undefined;
@@ -57,7 +57,7 @@ export const GET: APIRoute = async ({ url, cookies }) => {
 
       const push = async () => {
         try {
-          const current = await tally(pollId);
+          const current = await tally(runId);
           if (!current) return finish();
           const serialised = JSON.stringify(current);
           if (serialised === last) return;

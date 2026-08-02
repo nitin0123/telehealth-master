@@ -59,46 +59,77 @@ export interface Poll {
   intro: string | null;
   status: 'draft' | 'open' | 'closed';
   options: PollOption[];
+  /**
+   * The run this poll is being read in: one open-to-close cycle. Null for a
+   * question that has never been opened. Votes and tallies key on this, not on
+   * the poll, so the same question asked again months later counts separately
+   * and the same person may answer both times.
+   */
+  runId: number | null;
 }
 
-/** One poll with its options, or null when the id is unknown. */
-export async function getPoll(id: string): Promise<Poll | null> {
+async function optionsFor(pollId: string): Promise<PollOption[]> {
   // Always `db().sql`, never a detached `const sql = db().sql`: the tagged
   // template reads the connection string off `this`, so pulling it off the
   // pool throws at query time.
-  const polls = await db().sql`SELECT id, question, intro, status FROM polls WHERE id = ${id}`;
-  if (polls.rowCount === 0) return null;
-  const options = await db().sql`
-    SELECT option_id, label FROM poll_options WHERE poll_id = ${id} ORDER BY position, option_id
+  const rows = await db().sql`
+    SELECT option_id, label FROM poll_options WHERE poll_id = ${pollId} ORDER BY position, option_id
   `;
-  const row = polls.rows[0];
+  return rows.rows.map((o) => ({ id: o.option_id as string, label: o.label as string }));
+}
+
+/** One poll, paired with its most recent run. Null when the id is unknown. */
+export async function getPoll(id: string): Promise<Poll | null> {
+  const rows = await db().sql`
+    SELECT p.id, p.question, p.intro, p.status,
+           (SELECT r.id FROM poll_runs r WHERE r.poll_id = p.id ORDER BY r.opened_at DESC LIMIT 1) AS run_id
+    FROM polls p WHERE p.id = ${id}
+  `;
+  if (rows.rowCount === 0) return null;
+  const row = rows.rows[0];
   return {
     id: row.id,
     question: row.question,
     intro: row.intro,
     status: row.status,
-    options: options.rows.map((o) => ({ id: o.option_id, label: o.label })),
+    runId: row.run_id === null ? null : Number(row.run_id),
+    options: await optionsFor(row.id),
+  };
+}
+
+/** The poll in a specific run, so a finished round reads as it did then. */
+export async function getPollByRun(runId: number): Promise<Poll | null> {
+  const rows = await db().sql`
+    SELECT p.id, p.question, p.intro, p.status, r.id AS run_id
+    FROM poll_runs r JOIN polls p ON p.id = r.poll_id WHERE r.id = ${runId}
+  `;
+  if (rows.rowCount === 0) return null;
+  const row = rows.rows[0];
+  return {
+    id: row.id,
+    question: row.question,
+    intro: row.intro,
+    status: row.status,
+    runId: Number(row.run_id),
+    options: await optionsFor(row.id),
   };
 }
 
 /**
  * The poll currently accepting votes, or null when none is.
  *
- * A partial unique index guarantees at most one row is open, so this cannot
- * silently pick one of several.
+ * Read from the live run rather than polls.status, so it cannot disagree with
+ * where the votes are actually going. A partial unique index guarantees at most
+ * one run is live, so this never silently picks one of several.
  */
 export async function getOpenPoll(): Promise<Poll | null> {
-  const rows = await db().sql`SELECT id FROM polls WHERE status = 'open' LIMIT 1`;
-  return rows.rowCount === 0 ? null : getPoll(rows.rows[0].id);
+  const rows = await db().sql`SELECT id FROM poll_runs WHERE closed_at IS NULL LIMIT 1`;
+  return rows.rowCount === 0 ? null : getPollByRun(Number(rows.rows[0].id));
 }
-
-// There is no listPolls(): the results page shows the open poll and nothing
-// else, and a partial unique index means at most one poll is ever open, so
-// getOpenPoll() is the whole list. Any other poll, draft or closed, is still
-// reachable by its explicit ?poll= link.
 
 export interface Tally {
   pollId: string;
+  runId: number;
   question: string;
   status: string;
   total: number;
@@ -106,18 +137,19 @@ export interface Tally {
   results: { id: string; label: string; votes: number }[];
 }
 
-/** Current standing for one poll. */
-export async function tally(pollId: string): Promise<Tally | null> {
-  const poll = await getPoll(pollId);
+/** Standing for one run. Never merges a question's separate runs. */
+export async function tally(runId: number): Promise<Tally | null> {
+  const poll = await getPollByRun(runId);
   if (!poll) return null;
 
   const rows = await db().sql`
-    SELECT option_id, count(*)::int AS n FROM poll_votes WHERE poll_id = ${pollId} GROUP BY option_id
+    SELECT option_id, count(*)::int AS n FROM poll_votes WHERE run_id = ${runId} GROUP BY option_id
   `;
   const counts = new Map<string, number>(rows.rows.map((r) => [r.option_id as string, r.n as number]));
 
   return {
     pollId: poll.id,
+    runId,
     question: poll.question,
     status: poll.status,
     total: [...counts.values()].reduce((a, b) => a + b, 0),
@@ -125,10 +157,10 @@ export async function tally(pollId: string): Promise<Tally | null> {
   };
 }
 
-/** The option this respondent already chose for a poll, or null. */
-export async function existingVote(pollId: string, token: string): Promise<string | null> {
+/** The option this respondent chose in this run, or null. */
+export async function existingVote(runId: number, token: string): Promise<string | null> {
   const rows = await db().sql`
-    SELECT option_id FROM poll_votes WHERE poll_id = ${pollId} AND token = ${token}
+    SELECT option_id FROM poll_votes WHERE run_id = ${runId} AND token = ${token}
   `;
   return rows.rowCount === 0 ? null : (rows.rows[0].option_id as string);
 }

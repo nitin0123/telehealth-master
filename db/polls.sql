@@ -78,11 +78,60 @@ CREATE INDEX IF NOT EXISTS idx_poll_respondents_phone      ON poll_respondents (
 CREATE INDEX IF NOT EXISTS idx_poll_respondents_created_at ON poll_respondents (created_at DESC);
 
 -- ---------------------------------------------------------------------------
+-- Runs
+-- ---------------------------------------------------------------------------
+-- One row per open->close cycle. A question can be asked again months later,
+-- and that later asking is a separate poll with its own count: the same person
+-- may answer both, and the two tallies never mix.
+--
+-- You do not manage these by hand. The trigger below opens a run when a poll's
+-- status becomes 'open' and closes it when the status leaves 'open', so the
+-- statement you already use keeps working:
+--
+--   UPDATE polls SET status = 'open'   WHERE id = '<id>';   -- starts a new run
+--   UPDATE polls SET status = 'closed' WHERE id = '<id>';   -- ends it
+CREATE TABLE IF NOT EXISTS poll_runs (
+  id        BIGINT      GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  poll_id   TEXT        NOT NULL REFERENCES polls (id) ON DELETE CASCADE,
+  opened_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  closed_at TIMESTAMPTZ                       -- NULL while the run is live
+);
+
+-- At most one run live at a time, across every question. The expression is
+-- constant for matching rows, so the index permits exactly one of them.
+CREATE UNIQUE INDEX IF NOT EXISTS idx_poll_runs_single_open
+  ON poll_runs ((closed_at IS NULL)) WHERE closed_at IS NULL;
+
+CREATE INDEX IF NOT EXISTS idx_poll_runs_poll ON poll_runs (poll_id, opened_at DESC);
+
+-- Keeps runs in step with polls.status, so opening and closing stays one
+-- familiar UPDATE rather than new syntax to remember during an event.
+CREATE OR REPLACE FUNCTION poll_status_sync() RETURNS TRIGGER AS $$
+BEGIN
+  IF NEW.status = 'open' AND (TG_OP = 'INSERT' OR OLD.status IS DISTINCT FROM 'open') THEN
+    INSERT INTO poll_runs (poll_id) VALUES (NEW.id);
+  ELSIF NEW.status <> 'open' AND TG_OP = 'UPDATE' AND OLD.status = 'open' THEN
+    UPDATE poll_runs SET closed_at = now() WHERE poll_id = NEW.id AND closed_at IS NULL;
+  END IF;
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+DROP TRIGGER IF EXISTS trg_poll_status_sync ON polls;
+CREATE TRIGGER trg_poll_status_sync
+  AFTER INSERT OR UPDATE OF status ON polls
+  FOR EACH ROW EXECUTE FUNCTION poll_status_sync();
+
+-- ---------------------------------------------------------------------------
 -- Votes
 -- ---------------------------------------------------------------------------
--- One vote per respondent per poll, enforced by the primary key. That makes the
--- rule as strong as the cookie holding the token: clearing cookies yields a new
--- token and therefore a new vote, which is the agreed behaviour.
+-- One vote per respondent per RUN, enforced by the primary key. Keyed on the
+-- run rather than the poll on purpose: the same person answering the same
+-- question in a later run is a new row, not a rejected duplicate.
+--
+-- Within a run the rule is only as strong as the cookie holding the token:
+-- clearing cookies yields a new token and therefore another vote, which is the
+-- agreed behaviour.
 --
 -- `company` and `phone` are copied in rather than only joined, so a vote row is
 -- self-contained: who answered, and what they answered, without a join. That
@@ -93,19 +142,53 @@ CREATE INDEX IF NOT EXISTS idx_poll_respondents_created_at ON poll_respondents (
 --
 -- Add UNIQUE (poll_id, phone) to make one-vote-per-person absolute.
 CREATE TABLE IF NOT EXISTS poll_votes (
+  run_id     BIGINT      NOT NULL REFERENCES poll_runs (id) ON DELETE CASCADE,
   poll_id    TEXT        NOT NULL REFERENCES polls (id) ON DELETE CASCADE,
   token      TEXT        NOT NULL REFERENCES poll_respondents (token),
   option_id  TEXT        NOT NULL,
   company    TEXT        NOT NULL DEFAULT '',
   phone      TEXT        NOT NULL,
   created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
-  PRIMARY KEY (poll_id, token)
+  PRIMARY KEY (run_id, token)
 );
 
--- Existing installs predating the company column.
+-- Upgrades from before runs existed.
 ALTER TABLE poll_votes ADD COLUMN IF NOT EXISTS company TEXT NOT NULL DEFAULT '';
+ALTER TABLE poll_votes ADD COLUMN IF NOT EXISTS run_id BIGINT REFERENCES poll_runs (id) ON DELETE CASCADE;
 
-CREATE INDEX IF NOT EXISTS idx_poll_votes_tally ON poll_votes (poll_id, option_id);
+-- Votes cast before runs existed belong to one implied, already-finished run
+-- per question. Give them one rather than dropping them on the floor.
+DO $$
+DECLARE orphan RECORD; new_run BIGINT;
+BEGIN
+  FOR orphan IN SELECT DISTINCT poll_id FROM poll_votes WHERE run_id IS NULL LOOP
+    INSERT INTO poll_runs (poll_id, opened_at, closed_at)
+      VALUES (orphan.poll_id, now(), now()) RETURNING id INTO new_run;
+    UPDATE poll_votes SET run_id = new_run WHERE poll_id = orphan.poll_id AND run_id IS NULL;
+  END LOOP;
+END $$;
+
+-- Swap the primary key from (poll_id, token) to (run_id, token). A fresh
+-- install already has the right one, so both halves are conditional.
+DO $$
+BEGIN
+  IF EXISTS (
+    SELECT 1 FROM pg_constraint
+    WHERE conrelid = 'poll_votes'::regclass AND contype = 'p'
+      AND pg_get_constraintdef(oid) LIKE '%(poll_id, token)%'
+  ) THEN
+    ALTER TABLE poll_votes DROP CONSTRAINT poll_votes_pkey;
+  END IF;
+
+  IF NOT EXISTS (
+    SELECT 1 FROM pg_constraint WHERE conrelid = 'poll_votes'::regclass AND contype = 'p'
+  ) THEN
+    ALTER TABLE poll_votes ALTER COLUMN run_id SET NOT NULL;
+    ALTER TABLE poll_votes ADD PRIMARY KEY (run_id, token);
+  END IF;
+END $$;
+
+CREATE INDEX IF NOT EXISTS idx_poll_votes_tally ON poll_votes (run_id, option_id);
 
 -- ---------------------------------------------------------------------------
 -- Who answered what
@@ -114,11 +197,19 @@ CREATE INDEX IF NOT EXISTS idx_poll_votes_tally ON poll_votes (poll_id, option_i
 -- option label resolved, so reading the results needs no joins by hand.
 --
 --   SELECT * FROM poll_responses WHERE poll_id = 'workplace-menopause-policy';
+--   SELECT * FROM poll_responses WHERE run_id = 3;   -- one run in isolation
 --
 -- A respondent identifies once and then answers every poll, so filtering by
 -- phone shows one person's answers across all of them.
-CREATE OR REPLACE VIEW poll_responses AS
+-- DROP first: CREATE OR REPLACE VIEW can only append columns, so adding run_id
+-- at the front fails against an existing view. Dropping is safe, a view holds
+-- no data.
+DROP VIEW IF EXISTS poll_responses;
+CREATE VIEW poll_responses AS
 SELECT
+  v.run_id,
+  run.opened_at AS run_opened_at,
+  run.closed_at AS run_closed_at,
   v.poll_id,
   p.question,
   r.name,
@@ -130,6 +221,7 @@ SELECT
   r.created_at AS registered_at,
   v.token
 FROM poll_votes v
+JOIN poll_runs run      ON run.id = v.run_id
 JOIN polls p            ON p.id = v.poll_id
 JOIN poll_respondents r ON r.token = v.token
 LEFT JOIN poll_options o ON o.poll_id = v.poll_id AND o.option_id = v.option_id;

@@ -12,20 +12,34 @@
 export const prerender = false;
 
 import PageLayout from '../../layouts/PageLayout.astro';
-import { getOpenPoll, hasResultsAccess, RESULTS_COOKIE, tally } from '../../lib/poll';
+import { getOpenPoll, getPoll, hasResultsAccess, RESULTS_COOKIE, tally } from '../../lib/poll';
 
 const authorised = hasResultsAccess(Astro.cookies.get(RESULTS_COOKIE)?.value);
 const configured = !!process.env.POLL_RESULTS_PASSWORD;
 const failed = Astro.url.searchParams.get('error');
 
-// The board shows the poll that is running, and only that one. A closed or
-// draft poll is still reachable by an explicit ?poll= link, which is how you
-// go back to a finished round's numbers.
-const requested = Astro.url.searchParams.get('poll');
-const open = authorised && !requested ? await getOpenPoll() : null;
-const pollId = requested ?? open?.id ?? null;
+// Which run to show, in order of precedence:
+//   ?run=<n>   an exact run, so a finished round keeps a stable link
+//   ?poll=<id> that question's most recent run
+//   neither    whatever is live now
+//
+// A question can run many times, and the runs never merge, so the board always
+// resolves to exactly one of them rather than to a question.
+const requestedRun = Number(Astro.url.searchParams.get('run'));
+const requestedPoll = Astro.url.searchParams.get('poll');
 
-const standing = authorised && pollId ? await tally(pollId) : null;
+let runId: number | null = null;
+if (authorised) {
+  if (Number.isInteger(requestedRun) && requestedRun > 0) {
+    runId = requestedRun;
+  } else if (requestedPoll) {
+    runId = (await getPoll(requestedPoll))?.runId ?? null;
+  } else {
+    runId = (await getOpenPoll())?.runId ?? null;
+  }
+}
+
+const standing = runId ? await tally(runId) : null;
 
 const card = 'rounded-4xl bg-white border border-sand shadow-sm p-6 sm:p-8';
 const pct = (n: number, total: number) => (total === 0 ? 0 : Math.round((n / total) * 100));
@@ -39,7 +53,7 @@ const pct = (n: number, total: number) => (total === 0 ? 0 : Math.round((n / tot
           POLL_RESULTS_PASSWORD is not set for this environment, so results cannot be unlocked. Add it in Vercel and redeploy.
         </p>
       ) : (
-        <form method="post" action={`/api/poll-auth${requested ? `?poll=${encodeURIComponent(requested)}` : ''}`}>
+        <form method="post" action={`/api/poll-auth${Astro.url.search}`}>
           <label class="block text-sm text-stone mb-1" for="poll-password">Password</label>
           <input id="poll-password" name="password" type="password" required autocomplete="current-password"
                  class="w-full rounded-2xl border border-sand bg-cream px-4 py-3 focus:outline-none focus:ring-2 focus:ring-clay/40" />
@@ -66,7 +80,8 @@ const pct = (n: number, total: number) => (total === 0 ? 0 : Math.round((n / tot
         <code class="rounded bg-sand/60 px-1.5 py-0.5">UPDATE polls SET status = 'open' WHERE id = '…';</code>
       </p>
       <p class="mt-3 text-xs text-stone leading-relaxed">
-        A finished round is still readable at <code class="rounded bg-sand/60 px-1.5 py-0.5">/poll/results/?poll=&lt;id&gt;</code>.
+        A finished round is still readable at <code class="rounded bg-sand/60 px-1.5 py-0.5">/poll/results/?run=&lt;n&gt;</code>,
+        or <code class="rounded bg-sand/60 px-1.5 py-0.5">?poll=&lt;id&gt;</code> for that question's latest run.
       </p>
     </div>
   )}
@@ -75,7 +90,7 @@ const pct = (n: number, total: number) => (total === 0 ? 0 : Math.round((n / tot
     <>
 
       <div class="relative overflow-hidden rounded-5xl bg-gradient-to-br from-ever via-everdk to-ink p-6 sm:p-10 text-cream shadow-xl"
-           data-results data-poll-id={standing.pollId}>
+           data-results data-run-id={standing.runId}>
         {/* Confetti fires here on every new vote. Behind the content, so a
             burst never sits on top of the numbers being celebrated. */}
         <canvas data-confetti class="pointer-events-none absolute inset-0 h-full w-full" aria-hidden="true"></canvas>
@@ -127,7 +142,7 @@ const pct = (n: number, total: number) => (total === 0 ? 0 : Math.round((n / tot
 <script>
   const root = document.querySelector('[data-results]') as HTMLElement | null;
   if (root) {
-    const pollId = root.dataset.pollId ?? '';
+    const runId = root.dataset.runId ?? '';
     const live = root.querySelector('[data-live]') as HTMLElement | null;
     const totalEl = root.querySelector('[data-total]') as HTMLElement | null;
     const statusEl = root.querySelector('[data-status]') as HTMLElement | null;
@@ -257,7 +272,7 @@ const pct = (n: number, total: number) => (total === 0 ? 0 : Math.round((n / tot
     let source: EventSource | null = null;
     const connect = () => {
       source?.close();
-      source = new EventSource(`/api/poll-stream?poll=${encodeURIComponent(pollId)}`);
+      source = new EventSource(`/api/poll-stream?run=${encodeURIComponent(runId)}`);
       source.addEventListener('results', (e) => {
         setLive('live', true);
         render(JSON.parse((e as MessageEvent).data));

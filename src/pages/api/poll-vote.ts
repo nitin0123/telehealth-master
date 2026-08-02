@@ -35,26 +35,31 @@ export const POST: APIRoute = async ({ request, clientAddress, cookies }) => {
 
   const poll = await getPoll(result.data.poll);
   if (!poll) return json({ error: 'That poll does not exist.' }, 404);
-  if (poll.status !== 'open') return json({ error: 'This poll is not accepting votes.' }, 409);
+  // Both checks matter: the status says it should be running, the run says
+  // where the vote goes. A poll with no live run cannot receive one.
+  if (poll.status !== 'open' || poll.runId === null) {
+    return json({ error: 'This poll is not accepting votes.' }, 409);
+  }
 
   // Never trust the submitted option: it must be one this poll actually offers.
   if (!poll.options.some((o) => o.id === result.data.option)) {
     return json({ error: 'That is not an option on this poll.' }, 400);
   }
 
-  // One vote per respondent per poll is the table's primary key, so a double
-  // submission is absorbed here rather than racing two inserts.
+  // One vote per respondent per RUN is the table's primary key, so a double
+  // submission is absorbed here rather than racing two inserts. Keyed on the
+  // run, so this same person may answer again when the question runs afresh.
   const written = await db().sql`
-    INSERT INTO poll_votes (poll_id, token, option_id, company, phone)
-    VALUES (${poll.id}, ${token}, ${result.data.option},
+    INSERT INTO poll_votes (run_id, poll_id, token, option_id, company, phone)
+    VALUES (${poll.runId}, ${poll.id}, ${token}, ${result.data.option},
             ${respondent.rows[0].company}, ${respondent.rows[0].phone})
-    ON CONFLICT (poll_id, token) DO NOTHING
+    ON CONFLICT (run_id, token) DO NOTHING
     RETURNING option_id
   `;
 
   if (written.rowCount === 0) {
     const already = await db().sql`
-      SELECT option_id FROM poll_votes WHERE poll_id = ${poll.id} AND token = ${token}
+      SELECT option_id FROM poll_votes WHERE run_id = ${poll.runId} AND token = ${token}
     `;
     return json({ ok: true, alreadyVoted: true, option: already.rows[0]?.option_id ?? null });
   }

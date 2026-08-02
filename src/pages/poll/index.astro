@@ -25,7 +25,9 @@ if (token) {
   known = (await db().sql`SELECT 1 FROM poll_respondents WHERE token = ${token}`).rowCount > 0;
 }
 
-const answered = poll && token && known ? await existingVote(poll.id, token) : null;
+// Scoped to the current run: someone who answered a previous run of the same
+// question is asked again, which is the point of runs.
+const answered = poll?.runId && token && known ? await existingVote(poll.runId, token) : null;
 const answeredLabel = answered ? poll?.options.find((o) => o.id === answered)?.label : null;
 
 const card = 'rounded-4xl bg-white border border-sand shadow-sm p-6 sm:p-8 reveal';
