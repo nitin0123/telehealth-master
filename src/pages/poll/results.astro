@@ -1,15 +1,18 @@
 ---
 // Live results, behind a shared password.
 //
-// Server-rendered and password gated: the tallies and the respondent list are
-// internal, and the list carries company names and phone numbers, so this page
-// must never be reachable without the password. The stream endpoint checks the
-// same cookie, or the gate would only hide the page and not the data.
+// Server-rendered and password gated. The stream endpoint checks the same
+// cookie, or the gate would only hide the page and not the data.
+//
+// Counts only, deliberately. This board is meant to go on a projector in front
+// of the room, so it must never show who answered what: company names and phone
+// numbers on a screen in front of 500 people is a privacy breach, not a
+// feature. Per-respondent answers stay in the database for later analysis, via
+// the poll_responses view in db/polls.sql.
 export const prerender = false;
 
 import PageLayout from '../../layouts/PageLayout.astro';
 import { getOpenPoll, hasResultsAccess, RESULTS_COOKIE, tally } from '../../lib/poll';
-import { db } from '../../lib/db';
 
 const authorised = hasResultsAccess(Astro.cookies.get(RESULTS_COOKIE)?.value);
 const configured = !!process.env.POLL_RESULTS_PASSWORD;
@@ -23,12 +26,6 @@ const open = authorised && !requested ? await getOpenPoll() : null;
 const pollId = requested ?? open?.id ?? null;
 
 const standing = authorised && pollId ? await tally(pollId) : null;
-const responses = authorised && pollId
-  ? (await db().sql`
-      SELECT company, phone, answer, answered_at
-      FROM poll_responses WHERE poll_id = ${pollId} ORDER BY answered_at DESC
-    `).rows
-  : [];
 
 const card = 'rounded-4xl bg-white border border-sand shadow-sm p-6 sm:p-8';
 const pct = (n: number, total: number) => (total === 0 ? 0 : Math.round((n / total) * 100));
@@ -123,39 +120,6 @@ const pct = (n: number, total: number) => (total === 0 ? 0 : Math.round((n / tot
         </div>
       </div>
 
-      <section class="mt-6">
-        <h2 class="font-serif text-lg text-ever mb-3">Who answered what</h2>
-        <div class="overflow-x-auto rounded-4xl border border-sand bg-white">
-          <table class="w-full text-sm">
-            <thead class="text-left text-xs uppercase tracking-wide text-stone">
-              <tr class="border-b border-sand">
-                <th class="px-4 py-3 font-semibold">Company</th>
-                <th class="px-4 py-3 font-semibold">Phone</th>
-                <th class="px-4 py-3 font-semibold">Answer</th>
-                <th class="px-4 py-3 font-semibold whitespace-nowrap">Answered</th>
-              </tr>
-            </thead>
-            <tbody>
-              {responses.length === 0 && (
-                <tr><td colspan="4" class="px-4 py-4 text-stone">No responses yet.</td></tr>
-              )}
-              {responses.map((r) => (
-                <tr class="border-b border-sand/60 last:border-0">
-                  <td class="px-4 py-3 text-ink">{r.company}</td>
-                  <td class="px-4 py-3 text-stone" dir="ltr">{r.phone}</td>
-                  <td class="px-4 py-3 text-ever font-medium">{r.answer}</td>
-                  <td class="px-4 py-3 text-stone whitespace-nowrap">
-                    {new Date(r.answered_at).toLocaleString('en-IN', { dateStyle: 'medium', timeStyle: 'short' })}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-        <p class="mt-2 text-xs text-stone">
-          The table is a snapshot; reload for new rows. The tallies above update live.
-        </p>
-      </section>
     </>
   )}
 </PageLayout>
