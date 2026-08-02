@@ -27,9 +27,11 @@ export const CONTACT = {
     instagram: 'https://www.instagram.com/resetwellplus',
     instagramHandle: '@resetwellplus',
     facebook: 'https://www.facebook.com/resetwellplus',
+    facebookHandle: '/resetwellplus',
     linkedin: 'https://www.linkedin.com/company/resetwellplus',
     linkedinHandle: '/resetwellplus',
     youtube: 'https://www.youtube.com/@resetwellplus',
+    youtubeHandle: '@resetwellplus',
     whatsapp: 'https://chat.whatsapp.com/CLWhb62O00qKW1bdOevWzT',
   },
 };
@@ -61,13 +63,17 @@ export const organizationSchema = {
     { '@type': 'MedicalProcedure', name: 'Hormone replacement therapy (HRT) consultation' },
   ],
   knowsLanguage: ['en', 'hi'],
-  // logo and image let search engines render a brand mark in knowledge panels;
-  // priceRange is the field Google looks for on a clinic listing. Address and
-  // telephone stay out on purpose: the practice is virtual-first and the
-  // numbers are already obfuscated on the contact page to deter harvesting.
+  // logo and image let search engines render a brand mark in knowledge panels.
+  //
+  // priceRange is omitted while fees are being finalised. It is the field Google
+  // reads for a clinic listing, so naming a figure the site no longer publishes
+  // would advertise a price we are not committing to. Restore it when fees go
+  // live.
+  //
+  // Address and telephone stay out on purpose: the practice is virtual-first and
+  // the numbers are already obfuscated on the contact page to deter harvesting.
   logo: { '@type': 'ImageObject', url: `${SITE.url}/logo.png`, width: 224, height: 224 },
   image: `${SITE.url}${SITE.ogImage}`,
-  priceRange: 'INR 1599 onwards',
   sameAs: [
     CONTACT.social.instagram,
     CONTACT.social.facebook,
@@ -76,10 +82,6 @@ export const organizationSchema = {
   ],
 };
 
-/**
- * India-specific keyword targets mapped to pages.
- * Used for reference/documentation and woven into each page's copy + meta.
- */
 interface ServiceInput {
   /** Service name, in the page's language. */
   name: string;
@@ -95,6 +97,9 @@ interface ServiceInput {
   inLanguage: string;
 }
 
+/** Stable @id for the Service node described on `url`. */
+export const serviceId = (url: string) => `${url}#service`;
+
 /**
  * `Service` node for one of the things the clinic actually offers.
  *
@@ -103,14 +108,12 @@ interface ServiceInput {
  * its own described, addressable node on the page that explains it, pointing
  * back at the single organisation via ORG_ID.
  *
- * `offers` is emitted only where a price is genuinely published. No booking
+ * `offers` is emitted only where a price is genuinely published, which is
+ * nowhere at present while fees are being finalised. No booking
  * action is declared while consultations are pre-launch and every CTA routes
  * to /coming-soon: claiming a reservation endpoint that does not accept
  * bookings would be a false capability.
  */
-/** Stable @id for the Service node described on `url`. */
-export const serviceId = (url: string) => `${url}#service`;
-
 export function serviceSchema({ name, description, url, serviceType, priceFrom, inLanguage }: ServiceInput) {
   return {
     '@context': 'https://schema.org',
@@ -138,6 +141,10 @@ export function serviceSchema({ name, description, url, serviceType, priceFrom, 
   };
 }
 
+/**
+ * India-specific keyword targets mapped to pages.
+ * Used for reference/documentation and woven into each page's copy + meta.
+ */
 export const keywordTargets: Record<string, string[]> = {
   '/understand-your-symptoms/perimenopause-101': [
     'perimenopause symptoms in India',

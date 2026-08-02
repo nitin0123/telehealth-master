@@ -42,7 +42,7 @@ const navLinks: Record<string, LinkCopy> = {
   howItWorks: { label: 'How It Works' },
   ourSpecialists: { label: 'Our Specialists' },
   bookConsultation: { label: 'Book a Consultation' },
-  pricing: { label: 'Pricing (₹)', short: 'Pricing' },
+  pricing: { label: 'Pricing', short: 'Pricing' },
   eventsUpcoming: { label: 'Upcoming' },
   eventsOnDemand: { label: 'On Demand' },
   // No menu entry any more, but the page and its breadcrumb still use this.
@@ -415,7 +415,7 @@ export const en = {
   content: {
     stats: [
       { value: '30 min', label: 'unhurried specialist visit' },
-      { value: '₹1,599', label: 'flat consultation fee' },
+      { value: 'Coming soon', label: 'flat consultation fee' },
     ] as StatItem[],
 
     careNeeds: {
@@ -474,7 +474,7 @@ export const en = {
         a: 'We charge patients directly, a flat transparent fee per consultation, with no insurance paperwork or hidden costs. See the Pricing page for details.',
       },
       { q: 'Online or in person?', a: 'All consultations are online, so you can get expert care from wherever you are.' },
-      { q: 'What does it cost?', a: 'Consultations start at ₹1,599. See the Pricing page for full details.' },
+      { q: 'What does it cost?', a: 'Consultation fees are being finalised and will be published before booking opens. See the Pricing page for details.' },
     ] as FaqItem[],
 
     events: {
@@ -535,7 +535,7 @@ export const en = {
         { q: "What if I'm in a smaller city?", a: 'We serve all of India. Evening and weekend slots are available.' },
         {
           q: 'What does it cost?',
-          a: 'First consultation from ₹1,599. Follow-ups are included in the Care Plan. No hidden charges.',
+          a: 'Consultation fees are being finalised and will be published before booking opens. Follow-ups are included in the Care Plan, and there are no hidden charges.',
         },
         {
           q: 'Can I continue with my current gynaecologist?',
@@ -571,18 +571,18 @@ export const en = {
     },
 
     pricing: {
-      title: 'Simple, Transparent Pricing',
+      title: 'Simple, Transparent & Fair Pricing',
       metaTitle: 'Menopause Consultation Cost in India | ResetWell Plus',
       description:
-        'Transparent menopause consultation pricing in India. Pay patients directly with no insurance paperwork. Single visits from ₹1,599 and ongoing care plans.',
+        'Transparent menopause consultation pricing in India. Pay patients directly with no insurance paperwork and no hidden fees. Consultation fees are being finalised and will be published here.',
       keywords: 'menopause consultation cost India, menopause treatment India, menopause consultation price',
-      lede: 'We charge patients directly, with no insurance paperwork and no hidden fees. All prices in ₹.',
+      lede: 'We charge patients directly, with no insurance paperwork and no hidden fees. Our fees are being finalised and will be published here.',
       /** Keys match the tier ids in the page. */
       tiers: {
         single: {
           name: 'Single visit',
-          price: '₹1,599',
-          sub: 'per consultation',
+          price: 'Coming soon',
+          sub: 'fee to be announced',
           desc: 'Everything you need for a focused, unhurried first consultation with a menopause specialist.',
           items: [
             '30-minute specialist consultation',
@@ -598,7 +598,7 @@ export const en = {
       } as Record<string, { name: string; price: string; sub: string; desc: string; items: string[]; note: string; cta: string }>,
       faqHeading: 'Common questions about cost',
       faqs: [
-        { q: 'How much does a menopause consultation cost in India?', a: 'A ResetWell Plus consultation starts at Rs 1,599. You pay us directly, so there is no insurance paperwork and no hidden fees. All prices are in Indian rupees.' },
+        { q: 'How much does a menopause consultation cost in India?', a: 'Consultation fees are being finalised and will be published on this page before booking opens. You will pay us directly, so there is no insurance paperwork and no hidden fees, and the price will be the same for everyone and known before you book.' },
         { q: 'Do I need insurance to book a consultation?', a: 'No. We charge patients directly rather than billing insurers, which is why the price is the same for everyone and is known before you book.' },
         { q: 'Is the first consultation longer than a follow-up?', a: 'Yes. The first appointment is a full assessment of your symptoms, history and goals, so it is scheduled for longer than a follow-up visit.' },
         { q: 'What is included in the fee?', a: 'The consultation with a menopause specialist and a written care plan you keep. Any medication or laboratory tests your clinician recommends are billed separately by the pharmacy or lab.' },
@@ -997,7 +997,7 @@ export const en = {
       /** Secondary links under the post CTA, to the pages a reader asks about next. */
       ctaMoreHeading: 'Also worth reading',
       ctaHowItWorks: 'How a consultation works',
-      ctaPricing: 'Pricing: consultations from ₹1,599',
+      ctaPricing: 'Pricing and what is included',
       ctaFaqs: 'Frequently asked questions',
       ctaPerimenopause: 'Perimenopause 101',
       backToAll: 'Back to all posts',
