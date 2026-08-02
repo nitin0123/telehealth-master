@@ -26,7 +26,7 @@ export const POST: APIRoute = async ({ request, clientAddress, cookies }) => {
   const token = cookies.get(RESPONDENT_COOKIE)?.value;
   if (!token) return json({ error: 'Please enter your details before voting.' }, 401);
 
-  const respondent = await db()`SELECT company, phone FROM poll_respondents WHERE token = ${token}`;
+  const respondent = await db().sql`SELECT company, phone FROM poll_respondents WHERE token = ${token}`;
   if (respondent.rowCount === 0) {
     // A token we have never seen: most likely a cookie surviving a database
     // reset. Ask for details again rather than inventing a respondent.
@@ -44,7 +44,7 @@ export const POST: APIRoute = async ({ request, clientAddress, cookies }) => {
 
   // One vote per respondent per poll is the table's primary key, so a double
   // submission is absorbed here rather than racing two inserts.
-  const written = await db()`
+  const written = await db().sql`
     INSERT INTO poll_votes (poll_id, token, option_id, company, phone)
     VALUES (${poll.id}, ${token}, ${result.data.option},
             ${respondent.rows[0].company}, ${respondent.rows[0].phone})
@@ -53,7 +53,7 @@ export const POST: APIRoute = async ({ request, clientAddress, cookies }) => {
   `;
 
   if (written.rowCount === 0) {
-    const already = await db()`
+    const already = await db().sql`
       SELECT option_id FROM poll_votes WHERE poll_id = ${poll.id} AND token = ${token}
     `;
     return json({ ok: true, alreadyVoted: true, option: already.rows[0]?.option_id ?? null });

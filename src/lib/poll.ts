@@ -63,10 +63,12 @@ export interface Poll {
 
 /** One poll with its options, or null when the id is unknown. */
 export async function getPoll(id: string): Promise<Poll | null> {
-  const sql = db();
-  const polls = await sql`SELECT id, question, intro, status FROM polls WHERE id = ${id}`;
+  // Always `db().sql`, never a detached `const sql = db().sql`: the tagged
+  // template reads the connection string off `this`, so pulling it off the
+  // pool throws at query time.
+  const polls = await db().sql`SELECT id, question, intro, status FROM polls WHERE id = ${id}`;
   if (polls.rowCount === 0) return null;
-  const options = await sql`
+  const options = await db().sql`
     SELECT option_id, label FROM poll_options WHERE poll_id = ${id} ORDER BY position, option_id
   `;
   const row = polls.rows[0];
@@ -86,13 +88,13 @@ export async function getPoll(id: string): Promise<Poll | null> {
  * silently pick one of several.
  */
 export async function getOpenPoll(): Promise<Poll | null> {
-  const rows = await db()`SELECT id FROM polls WHERE status = 'open' LIMIT 1`;
+  const rows = await db().sql`SELECT id FROM polls WHERE status = 'open' LIMIT 1`;
   return rows.rowCount === 0 ? null : getPoll(rows.rows[0].id);
 }
 
 /** Every poll, newest first, for the results page's picker. */
 export async function listPolls(): Promise<{ id: string; question: string; status: string }[]> {
-  const rows = await db()`SELECT id, question, status FROM polls ORDER BY created_at DESC`;
+  const rows = await db().sql`SELECT id, question, status FROM polls ORDER BY created_at DESC`;
   return rows.rows as { id: string; question: string; status: string }[];
 }
 
@@ -110,7 +112,7 @@ export async function tally(pollId: string): Promise<Tally | null> {
   const poll = await getPoll(pollId);
   if (!poll) return null;
 
-  const rows = await db()`
+  const rows = await db().sql`
     SELECT option_id, count(*)::int AS n FROM poll_votes WHERE poll_id = ${pollId} GROUP BY option_id
   `;
   const counts = new Map<string, number>(rows.rows.map((r) => [r.option_id as string, r.n as number]));
@@ -126,7 +128,7 @@ export async function tally(pollId: string): Promise<Tally | null> {
 
 /** The option this respondent already chose for a poll, or null. */
 export async function existingVote(pollId: string, token: string): Promise<string | null> {
-  const rows = await db()`
+  const rows = await db().sql`
     SELECT option_id FROM poll_votes WHERE poll_id = ${pollId} AND token = ${token}
   `;
   return rows.rowCount === 0 ? null : (rows.rows[0].option_id as string);

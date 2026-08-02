@@ -22,7 +22,7 @@ const poll = await getOpenPoll();
 const token = Astro.cookies.get(RESPONDENT_COOKIE)?.value;
 let known = false;
 if (token) {
-  known = (await db()`SELECT 1 FROM poll_respondents WHERE token = ${token}`).rowCount > 0;
+  known = (await db().sql`SELECT 1 FROM poll_respondents WHERE token = ${token}`).rowCount > 0;
 }
 
 const answered = poll && token && known ? await existingVote(poll.id, token) : null;

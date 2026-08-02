@@ -35,12 +35,12 @@ export const POST: APIRoute = async ({ request, clientAddress, cookies }) => {
   // the form does not fragment one person into several respondents.
   const existing = cookies.get(RESPONDENT_COOKIE)?.value;
   if (existing) {
-    const known = await db()`SELECT 1 FROM poll_respondents WHERE token = ${existing}`;
+    const known = await db().sql`SELECT 1 FROM poll_respondents WHERE token = ${existing}`;
     if (known.rowCount > 0) return json({ ok: true, token: existing });
   }
 
   const token = newToken();
-  await db()`
+  await db().sql`
     INSERT INTO poll_respondents (token, company, phone, ip_address, user_agent)
     VALUES (${token}, ${result.data.company}, ${result.data.phone},
             ${clientAddress ?? null}, ${request.headers.get('user-agent') ?? null})

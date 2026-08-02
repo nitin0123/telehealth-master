@@ -24,7 +24,7 @@ const pollId = requested ?? open?.id ?? polls[0]?.id ?? null;
 
 const standing = authorised && pollId ? await tally(pollId) : null;
 const responses = authorised && pollId
-  ? (await db()`
+  ? (await db().sql`
       SELECT company, phone, answer, answered_at
       FROM poll_responses WHERE poll_id = ${pollId} ORDER BY answered_at DESC
     `).rows
