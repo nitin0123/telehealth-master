@@ -106,8 +106,15 @@ const indianPhone = z
   .transform((d) => `+91${d}`);
 
 export const pollIdentifySchema = z.object({
-  name: z.string().trim().min(1, 'Please enter your name.').max(200, 'That name is too long.'),
-  company: z.string().trim().min(1, 'Please enter your company name.').max(200, 'That company name is too long.'),
+  // required_error, not just min(1): an absent key is an invalid_type in zod
+  // and reports a bare "Required", which tells a caller nothing about which
+  // field it wants.
+  name: z
+    .string({ required_error: 'Please enter your name.' })
+    .trim().min(1, 'Please enter your name.').max(200, 'That name is too long.'),
+  company: z
+    .string({ required_error: 'Please enter your company name.' })
+    .trim().min(1, 'Please enter your company name.').max(200, 'That company name is too long.'),
   phone: indianPhone,
 });
 export type PollIdentifyInput = z.infer<typeof pollIdentifySchema>;

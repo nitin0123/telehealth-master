@@ -135,7 +135,7 @@ for i in $(seq 1 "$COUNT"); do
   headers=$(mktemp)
   body=$(curl -s -D "$headers" -X POST "$BASE/api/poll-identify" \
     "${HDRS[@]}" \
-    -d "{\"company\":\"Test Co $i\",\"phone\":\"$phone\"}")
+    -d "{\"name\":\"Test Person $i\",\"company\":\"Test Co $i\",\"phone\":\"$phone\"}")
 
   token=$(grep -i '^set-cookie: *rw_poll_id=' "$headers" | head -1 | sed -E 's/.*rw_poll_id=([^;]*).*/\1/')
   rm -f "$headers"
