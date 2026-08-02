@@ -188,7 +188,29 @@ BEGIN
   END IF;
 END $$;
 
-CREATE INDEX IF NOT EXISTS idx_poll_votes_tally ON poll_votes (run_id, option_id);
+-- Indexes for the three ways poll_votes is actually read.
+--
+-- DROP first, not CREATE INDEX IF NOT EXISTS: that matches on NAME, so when
+-- this index changed from (poll_id, option_id) to (run_id, option_id) it
+-- silently kept the old definition. Re-running the migration looked clean while
+-- the hot query had no usable index.
+
+-- 1. The tally, run every couple of seconds for every viewer of the results
+--    board. (run_id, option_id) makes it an index-only scan: without option_id
+--    in the index the planner reads the row heap just to learn what was voted
+--    for, which was 81 heap blocks at 6000 votes.
+DROP INDEX IF EXISTS idx_poll_votes_tally;
+CREATE INDEX idx_poll_votes_tally ON poll_votes (run_id, option_id);
+
+-- 2. The foreign key to poll_respondents. The primary key is (run_id, token),
+--    so token is its second column and cannot serve a lookup on its own. Every
+--    DELETE FROM poll_respondents then sequentially scans poll_votes once per
+--    row, which is what clearing a few hundred test respondents does.
+CREATE INDEX IF NOT EXISTS idx_poll_votes_token ON poll_votes (token);
+
+-- 3. The admin view filtered by question rather than by run, which is how you
+--    read every round of one question at once. Nothing else covers poll_id.
+CREATE INDEX IF NOT EXISTS idx_poll_votes_poll ON poll_votes (poll_id, created_at DESC);
 
 -- ---------------------------------------------------------------------------
 -- Who answered what
