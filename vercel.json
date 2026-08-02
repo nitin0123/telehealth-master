@@ -2,6 +2,17 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "redirects": [
     {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "poll.resetwellplus.com"
+        }
+      ],
+      "destination": "https://www.resetwellplus.com/poll/",
+      "permanent": false
+    },
+    {
       "source": "/:path*",
       "has": [
         {
