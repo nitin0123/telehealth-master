@@ -23,6 +23,17 @@ export const POST: APIRoute = async ({ request, clientAddress, cookies }) => {
   const result = pollVoteSchema.safeParse(parsed.data);
   if (!result.success) return json({ error: firstError(result.error) }, 400);
 
+  const poll = await getPoll(result.data.poll);
+  if (!poll) return json({ error: 'That poll does not exist.' }, 404);
+  // Checked before the caller's identity on purpose. Whether a poll accepts
+  // votes has nothing to do with who is asking, and testing identity first made
+  // a closed poll answer "enter your details", indistinguishable from a missing
+  // cookie. Both checks matter: the status says it should be running, the run
+  // says where the vote goes.
+  if (poll.status !== 'open' || poll.runId === null) {
+    return json({ error: 'This poll is not accepting votes.' }, 409);
+  }
+
   const token = cookies.get(RESPONDENT_COOKIE)?.value;
   if (!token) return json({ error: 'Please enter your details before voting.' }, 401);
 
@@ -31,14 +42,6 @@ export const POST: APIRoute = async ({ request, clientAddress, cookies }) => {
     // A token we have never seen: most likely a cookie surviving a database
     // reset. Ask for details again rather than inventing a respondent.
     return json({ error: 'Please enter your details before voting.' }, 401);
-  }
-
-  const poll = await getPoll(result.data.poll);
-  if (!poll) return json({ error: 'That poll does not exist.' }, 404);
-  // Both checks matter: the status says it should be running, the run says
-  // where the vote goes. A poll with no live run cannot receive one.
-  if (poll.status !== 'open' || poll.runId === null) {
-    return json({ error: 'This poll is not accepting votes.' }, 409);
   }
 
   // Never trust the submitted option: it must be one this poll actually offers.
