@@ -8,19 +8,19 @@
 export const prerender = false;
 
 import PageLayout from '../../layouts/PageLayout.astro';
-import { getOpenPoll, hasResultsAccess, listPolls, RESULTS_COOKIE, tally } from '../../lib/poll';
+import { getOpenPoll, hasResultsAccess, RESULTS_COOKIE, tally } from '../../lib/poll';
 import { db } from '../../lib/db';
 
 const authorised = hasResultsAccess(Astro.cookies.get(RESULTS_COOKIE)?.value);
 const configured = !!process.env.POLL_RESULTS_PASSWORD;
 const failed = Astro.url.searchParams.get('error');
 
-// Default to whatever is running; fall back to the most recent poll so the page
-// is useful between rounds.
-const polls = authorised ? await listPolls() : [];
+// The board shows the poll that is running, and only that one. A closed or
+// draft poll is still reachable by an explicit ?poll= link, which is how you
+// go back to a finished round's numbers.
 const requested = Astro.url.searchParams.get('poll');
 const open = authorised && !requested ? await getOpenPoll() : null;
-const pollId = requested ?? open?.id ?? polls[0]?.id ?? null;
+const pollId = requested ?? open?.id ?? null;
 
 const standing = authorised && pollId ? await tally(pollId) : null;
 const responses = authorised && pollId
@@ -57,32 +57,25 @@ const pct = (n: number, total: number) => (total === 0 ? 0 : Math.round((n / tot
     </div>
   )}
 
-  {/* Drafts are filtered out of the picker, so "nothing here" means nothing has
-      been opened yet rather than nothing existing. Say which, or the message
-      reads as a fault. */}
+  {/* Only an open poll appears on its own, so "nothing here" means nothing is
+      running rather than nothing existing. Say which, and say how to reach a
+      finished round, or this reads as a fault. */}
   {authorised && !standing && (
     <div class={card}>
       <p class="text-stone leading-relaxed">
-        No poll has been opened yet, so there are no results to show. Open one and this page fills in as answers arrive.
+        No poll is open, so there are no live results to show. Open one and this page fills in as answers arrive.
       </p>
       <p class="mt-3 text-xs text-stone">
         <code class="rounded bg-sand/60 px-1.5 py-0.5">UPDATE polls SET status = 'open' WHERE id = '…';</code>
+      </p>
+      <p class="mt-3 text-xs text-stone leading-relaxed">
+        A finished round is still readable at <code class="rounded bg-sand/60 px-1.5 py-0.5">/poll/results/?poll=&lt;id&gt;</code>.
       </p>
     </div>
   )}
 
   {authorised && standing && (
     <>
-      {polls.length > 1 && (
-        <nav class="mb-5 flex flex-wrap gap-2" aria-label="Choose a poll">
-          {polls.map((p) => (
-            <a href={`/poll/results/?poll=${encodeURIComponent(p.id)}`}
-               class={`rounded-full border px-3.5 py-1.5 text-xs font-medium transition ${
-                 p.id === standing.pollId ? 'border-clay bg-peach/50 text-clay' : 'border-sand bg-white text-stone hover:border-clay/40'
-               }`}>{p.question}</a>
-          ))}
-        </nav>
-      )}
 
       <div class="relative overflow-hidden rounded-5xl bg-gradient-to-br from-ever via-everdk to-ink p-6 sm:p-10 text-cream shadow-xl"
            data-results data-poll-id={standing.pollId}>

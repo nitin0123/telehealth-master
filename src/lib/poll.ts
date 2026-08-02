@@ -92,21 +92,10 @@ export async function getOpenPoll(): Promise<Poll | null> {
   return rows.rowCount === 0 ? null : getPoll(rows.rows[0].id);
 }
 
-/**
- * Polls worth showing on the results page, newest first.
- *
- * Drafts are excluded: one has never been opened, so it has no votes and
- * nothing to report, and listing it only pads the picker with dead entries.
- * Closed polls stay, since their final numbers are the reason to keep them.
- * A draft is still reachable by its explicit ?poll= link if you want to check
- * one before opening it.
- */
-export async function listPolls(): Promise<{ id: string; question: string; status: string }[]> {
-  const rows = await db().sql`
-    SELECT id, question, status FROM polls WHERE status <> 'draft' ORDER BY created_at DESC
-  `;
-  return rows.rows as { id: string; question: string; status: string }[];
-}
+// There is no listPolls(): the results page shows the open poll and nothing
+// else, and a partial unique index means at most one poll is ever open, so
+// getOpenPoll() is the whole list. Any other poll, draft or closed, is still
+// reachable by its explicit ?poll= link.
 
 export interface Tally {
   pollId: string;
