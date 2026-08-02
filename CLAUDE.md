@@ -17,15 +17,18 @@ npm run db:push        # apply db/*.sql to the PREVIEW db (.env.local: POSTGRES_
 npm run db:push:prod   # apply db/*.sql to the PRODUCTION db (.env.prod: PROD_DATABASE_URL)
 db/migrate.sh "<postgres-url>"   # low-level: apply db/*.sql to an explicit URL
 
-scripts/poll-load-test.sh <base-url> [count] [poll-id]   # simulate poll respondents
+scripts/poll-load-test.sh 500            # simulate 500 respondents on the newest preview
+PACE=0.2 scripts/poll-load-test.sh 500   # …arriving 0.2s apart rather than 1s
 ```
 
 - `scripts/poll-load-test.sh` drives `/api/poll-identify` + `/api/poll-vote` as N separate
-  people, to watch the results board fill up before a live event. It preflights the deployment
-  and the poll's status, so it stops with a reason rather than failing silently. A protected
-  preview needs `export VERCEL_AUTOMATION_BYPASS_SECRET=…` (Vercel → Settings → Deployment
-  Protection → Protection Bypass for Automation); production needs nothing. The poll must be
-  `open` first, and the script prints the cleanup SQL for the rows it creates.
+  people, to watch the results board fill up before a live event. With no URL it asks
+  `vercel ls` for the newest **Preview** deployment, since a preview URL changes on every push
+  and a stale one still answers; pass a URL explicitly to override. It preflights the
+  deployment and the poll's status, so it stops with a reason rather than failing silently.
+  A protected preview needs `export VERCEL_AUTOMATION_BYPASS_SECRET=…` (Vercel → Settings →
+  Deployment Protection → Protection Bypass for Automation); production needs nothing. The poll
+  must be `open` first, and the script prints the cleanup SQL for the rows it creates.
 
 - `db:push` / `db:push:prod` wrap `db/push.sh`, which reads the connection string from the
   matching `.env` file so you never paste URLs. Idempotent (`CREATE TABLE IF NOT EXISTS`); it
