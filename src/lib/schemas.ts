@@ -79,3 +79,19 @@ export type SmsConsentInput = z.infer<typeof smsConsentSchema>;
 export function firstError(err: z.ZodError): string {
   return err.issues[0]?.message ?? 'Please check the form and try again.';
 }
+
+// Poll identity capture (/poll/<id>/).
+//
+// The honeypot here is "website", NOT "company": the poll asks for the company
+// as a real, required field, exactly as the corporate forms do.
+export const pollIdentifySchema = z.object({
+  company: z.string().trim().min(1, 'Please enter your company name.').max(200, 'That company name is too long.'),
+  phone: z.string().trim().min(1, 'Please enter your phone number.').max(50, 'That phone number is too long.'),
+});
+export type PollIdentifyInput = z.infer<typeof pollIdentifySchema>;
+
+export const pollVoteSchema = z.object({
+  poll: z.string().trim().min(1).max(100),
+  option: z.string().trim().min(1).max(100),
+});
+export type PollVoteInput = z.infer<typeof pollVoteSchema>;

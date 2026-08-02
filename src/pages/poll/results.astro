@@ -1,0 +1,186 @@
+---
+// Live results, behind a shared password.
+//
+// Server-rendered and password gated: the tallies and the respondent list are
+// internal, and the list carries company names and phone numbers, so this page
+// must never be reachable without the password. The stream endpoint checks the
+// same cookie, or the gate would only hide the page and not the data.
+export const prerender = false;
+
+import PageLayout from '../../layouts/PageLayout.astro';
+import { getOpenPoll, hasResultsAccess, listPolls, RESULTS_COOKIE, tally } from '../../lib/poll';
+import { db } from '../../lib/db';
+
+const authorised = hasResultsAccess(Astro.cookies.get(RESULTS_COOKIE)?.value);
+const configured = !!process.env.POLL_RESULTS_PASSWORD;
+const failed = Astro.url.searchParams.get('error');
+
+// Default to whatever is running; fall back to the most recent poll so the page
+// is useful between rounds.
+const polls = authorised ? await listPolls() : [];
+const requested = Astro.url.searchParams.get('poll');
+const open = authorised && !requested ? await getOpenPoll() : null;
+const pollId = requested ?? open?.id ?? polls[0]?.id ?? null;
+
+const standing = authorised && pollId ? await tally(pollId) : null;
+const responses = authorised && pollId
+  ? (await db()`
+      SELECT company, phone, answer, answered_at
+      FROM poll_responses WHERE poll_id = ${pollId} ORDER BY answered_at DESC
+    `).rows
+  : [];
+
+const card = 'rounded-4xl bg-white border border-sand shadow-sm p-6 sm:p-8';
+const pct = (n: number, total: number) => (total === 0 ? 0 : Math.round((n / total) * 100));
+---
+
+<PageLayout title="Poll results" metaTitle="Poll results | ResetWell Plus" description="Internal poll results." noindex>
+  {!authorised && (
+    <div class={`${card} max-w-md`}>
+      {!configured ? (
+        <p class="text-clay">
+          POLL_RESULTS_PASSWORD is not set for this environment, so results cannot be unlocked. Add it in Vercel and redeploy.
+        </p>
+      ) : (
+        <form method="post" action={`/api/poll-auth${requested ? `?poll=${encodeURIComponent(requested)}` : ''}`}>
+          <label class="block text-sm text-stone mb-1" for="poll-password">Password</label>
+          <input id="poll-password" name="password" type="password" required autocomplete="current-password"
+                 class="w-full rounded-2xl border border-sand bg-cream px-4 py-3 focus:outline-none focus:ring-2 focus:ring-clay/40" />
+          {failed && (
+            <p class="mt-3 text-sm text-clay">
+              {failed === 'rate' ? 'Too many attempts. Please wait a few minutes.' : 'That password is not right.'}
+            </p>
+          )}
+          <button type="submit" class="btn-primary mt-4 w-full">View results</button>
+        </form>
+      )}
+    </div>
+  )}
+
+  {authorised && !standing && <div class={card}><p class="text-stone">No polls have been created yet.</p></div>}
+
+  {authorised && standing && (
+    <>
+      {polls.length > 1 && (
+        <nav class="mb-5 flex flex-wrap gap-2" aria-label="Choose a poll">
+          {polls.map((p) => (
+            <a href={`/poll/results/?poll=${encodeURIComponent(p.id)}`}
+               class={`rounded-full border px-3.5 py-1.5 text-xs font-medium transition ${
+                 p.id === standing.pollId ? 'border-clay bg-peach/50 text-clay' : 'border-sand bg-white text-stone hover:border-clay/40'
+               }`}>{p.question}</a>
+          ))}
+        </nav>
+      )}
+
+      <div class={card} data-results data-poll-id={standing.pollId}>
+        <div class="flex flex-wrap items-baseline justify-between gap-2">
+          <h2 class="font-serif text-xl lg:text-2xl text-ever">{standing.question}</h2>
+          <span data-status class="text-xs font-semibold uppercase tracking-wide text-stone">{standing.status}</span>
+        </div>
+
+        <p class="mt-1 text-sm text-stone">
+          <span data-total>{standing.total}</span> responses ·
+          <span data-live class="text-clay"> connecting…</span>
+        </p>
+
+        <ul class="mt-5 space-y-4" data-bars>
+          {standing.results.map((r) => (
+            <li data-option={r.id}>
+              <div class="flex items-baseline justify-between text-sm">
+                <span class="font-medium text-ever">{r.label}</span>
+                <span class="text-stone"><span data-votes>{r.votes}</span> · <span data-pct>{pct(r.votes, standing.total)}</span>%</span>
+              </div>
+              <div class="mt-1.5 h-2.5 rounded-full bg-sand overflow-hidden">
+                <div data-bar class="h-full rounded-full bg-gradient-to-r from-ever to-clay transition-[width] duration-500 ease-out"
+                     style={`width:${pct(r.votes, standing.total)}%`}></div>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <section class="mt-6">
+        <h2 class="font-serif text-lg text-ever mb-3">Who answered what</h2>
+        <div class="overflow-x-auto rounded-4xl border border-sand bg-white">
+          <table class="w-full text-sm">
+            <thead class="text-left text-xs uppercase tracking-wide text-stone">
+              <tr class="border-b border-sand">
+                <th class="px-4 py-3 font-semibold">Company</th>
+                <th class="px-4 py-3 font-semibold">Phone</th>
+                <th class="px-4 py-3 font-semibold">Answer</th>
+                <th class="px-4 py-3 font-semibold whitespace-nowrap">Answered</th>
+              </tr>
+            </thead>
+            <tbody>
+              {responses.length === 0 && (
+                <tr><td colspan="4" class="px-4 py-4 text-stone">No responses yet.</td></tr>
+              )}
+              {responses.map((r) => (
+                <tr class="border-b border-sand/60 last:border-0">
+                  <td class="px-4 py-3 text-ink">{r.company}</td>
+                  <td class="px-4 py-3 text-stone" dir="ltr">{r.phone}</td>
+                  <td class="px-4 py-3 text-ever font-medium">{r.answer}</td>
+                  <td class="px-4 py-3 text-stone whitespace-nowrap">
+                    {new Date(r.answered_at).toLocaleString('en-IN', { dateStyle: 'medium', timeStyle: 'short' })}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p class="mt-2 text-xs text-stone">
+          The table is a snapshot; reload for new rows. The tallies above update live.
+        </p>
+      </section>
+    </>
+  )}
+</PageLayout>
+
+<script>
+  const root = document.querySelector('[data-results]') as HTMLElement | null;
+  if (root) {
+    const pollId = root.dataset.pollId ?? '';
+    const live = root.querySelector('[data-live]') as HTMLElement | null;
+    const totalEl = root.querySelector('[data-total]') as HTMLElement | null;
+    const statusEl = root.querySelector('[data-status]') as HTMLElement | null;
+
+    const setLive = (text: string, tone: string) => {
+      if (!live) return;
+      live.textContent = ` ${text}`;
+      live.className = tone;
+    };
+
+    const render = (data: { total: number; status: string; results: { id: string; votes: number }[] }) => {
+      if (totalEl) totalEl.textContent = String(data.total);
+      if (statusEl) statusEl.textContent = data.status;
+      for (const r of data.results) {
+        const li = root.querySelector(`[data-option="${r.id}"]`);
+        if (!li) continue;
+        const share = data.total === 0 ? 0 : Math.round((r.votes / data.total) * 100);
+        (li.querySelector('[data-votes]') as HTMLElement).textContent = String(r.votes);
+        (li.querySelector('[data-pct]') as HTMLElement).textContent = String(share);
+        (li.querySelector('[data-bar]') as HTMLElement).style.width = `${share}%`;
+      }
+    };
+
+    // The stream is closed deliberately every ~50s because a serverless
+    // function cannot run forever. `bye` marks a planned handover, so reconnect
+    // straight away; anything else is a real drop, so back off a little.
+    let source: EventSource | null = null;
+    const connect = () => {
+      source?.close();
+      source = new EventSource(`/api/poll-stream?poll=${encodeURIComponent(pollId)}`);
+      source.addEventListener('results', (e) => {
+        setLive('live', 'text-sage font-medium');
+        render(JSON.parse((e as MessageEvent).data));
+      });
+      source.addEventListener('bye', () => { source?.close(); connect(); });
+      source.onerror = () => {
+        setLive('reconnecting…', 'text-stone');
+        source?.close();
+        setTimeout(connect, 3000);
+      };
+    };
+    connect();
+  }
+</script>

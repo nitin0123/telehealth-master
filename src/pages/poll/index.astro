@@ -1,0 +1,157 @@
+---
+// The poll. One permanent link: whichever question is open in the database is
+// the one shown, so the same URL serves every round.
+//
+// Server-rendered, because the question, its options and whether it is running
+// all live in the database (db/polls.sql). That also means the page arrives in
+// the right state: a returning respondent never sees the identity form flash
+// before being recognised.
+//
+// Outside src/pages/[...locale]/ so no Hindi twin is built; '/poll' is listed
+// in EN_ONLY, which keeps the language toggle and hreflang off it.
+export const prerender = false;
+
+import PageLayout from '../../layouts/PageLayout.astro';
+import { existingVote, getOpenPoll, RESPONDENT_COOKIE } from '../../lib/poll';
+import { db } from '../../lib/db';
+
+const poll = await getOpenPoll();
+
+// A token only counts if we still hold the respondent it names; a cookie can
+// outlive the row it points at.
+const token = Astro.cookies.get(RESPONDENT_COOKIE)?.value;
+let known = false;
+if (token) {
+  known = (await db()`SELECT 1 FROM poll_respondents WHERE token = ${token}`).rowCount > 0;
+}
+
+const answered = poll && token && known ? await existingVote(poll.id, token) : null;
+const answeredLabel = answered ? poll?.options.find((o) => o.id === answered)?.label : null;
+
+const card = 'rounded-4xl bg-white border border-sand shadow-sm p-6 sm:p-8 reveal';
+---
+
+<PageLayout
+  title={poll ? poll.question : 'Poll'}
+  lede={poll?.intro ?? undefined}
+  metaTitle="Poll | ResetWell Plus"
+  description="A one-question poll for HR and workplace leaders."
+  noindex
+>
+  {!poll && (
+    <div class={card}>
+      <p class="text-stone leading-relaxed">
+        There is no poll running right now. Thank you for stopping by, and do check back when we share the next one.
+      </p>
+    </div>
+  )}
+
+  {poll && answered && (
+    <div class={card}>
+      <p class="font-serif text-2xl text-ever">Thank you, your answer is recorded.</p>
+      <p class="mt-2 text-stone">You answered <strong class="text-ever">{answeredLabel}</strong>.</p>
+      <p class="mt-4 text-sm text-stone">We will share what the results tell us once the poll closes.</p>
+    </div>
+  )}
+
+  {poll && !answered && (
+    <div class={card}>
+      {/* Step 1, shown only to someone we do not yet know. */}
+      <form data-poll-identify class={known ? 'hidden' : ''} novalidate>
+        <p class="text-stone leading-relaxed">
+          Tell us who you are and your answer stays with your organisation. We ask once: your next answer will go straight through.
+        </p>
+
+        {/* Honeypot. "website", not "company": company is a real field here. */}
+        <div class="absolute left-[-9999px]" aria-hidden="true">
+          <label>Website<input type="text" name="website" tabindex="-1" autocomplete="off" /></label>
+        </div>
+
+        <label class="block mt-5 text-sm text-stone mb-1" for="poll-company">Company name</label>
+        <input id="poll-company" name="company" type="text" required autocomplete="organization"
+               class="w-full rounded-2xl border border-sand bg-cream px-4 py-3 focus:outline-none focus:ring-2 focus:ring-clay/40" />
+
+        <label class="block mt-4 text-sm text-stone mb-1" for="poll-phone">Phone number</label>
+        <input id="poll-phone" name="phone" type="tel" required autocomplete="tel" lang="en" dir="ltr"
+               class="w-full rounded-2xl border border-sand bg-cream px-4 py-3 focus:outline-none focus:ring-2 focus:ring-clay/40" />
+
+        <p data-poll-identify-error class="hidden mt-3 text-sm text-clay"></p>
+        <button type="submit" class="btn-primary mt-5 w-full">Continue</button>
+        {/* This form stores a phone number, so it says so plainly. */}
+        <p class="mt-3 text-xs text-stone leading-relaxed">
+          We store your company name and phone number so we can recognise you on later questions, and we do not publish them.
+          See our <a href="/privacy-policy/" class="text-clay underline decoration-clay/40 underline-offset-4 hover:decoration-clay transition">Privacy Policy</a>.
+        </p>
+      </form>
+
+      {/* Step 2. Rendered for everyone so a recognised visitor sees it at once. */}
+      <form data-poll-vote data-poll-id={poll.id} class={known ? '' : 'hidden'}>
+        <fieldset>
+          <legend class="font-serif text-xl text-ever">{poll.question}</legend>
+          <div class="mt-4 space-y-2.5">
+            {poll.options.map((o) => (
+              <label class="flex items-center gap-3 rounded-2xl border border-sand bg-cream px-4 py-3 cursor-pointer transition hover:border-clay/50 has-[:checked]:border-clay has-[:checked]:bg-peach/40">
+                <input type="radio" name="option" value={o.id} required class="accent-clay w-4 h-4" />
+                <span class="text-ink">{o.label}</span>
+              </label>
+            ))}
+          </div>
+        </fieldset>
+        <p data-poll-vote-error class="hidden mt-3 text-sm text-clay"></p>
+        <button type="submit" class="btn-primary mt-5 w-full">Submit my answer</button>
+      </form>
+
+      <noscript>
+        <p class="mt-4 text-sm text-clay">This poll needs JavaScript enabled.</p>
+      </noscript>
+    </div>
+  )}
+</PageLayout>
+
+<script>
+  const GENERIC = 'Something went wrong. Please try again.';
+
+  function wire(form: HTMLFormElement, errorEl: HTMLElement | null, endpoint: string, extra: () => Record<string, string>) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!form.reportValidity()) return;
+      errorEl?.classList.add('hidden');
+
+      const btn = form.querySelector('button[type=submit]') as HTMLButtonElement | null;
+      const original = btn?.textContent ?? '';
+      if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+
+      try {
+        const body = { ...Object.fromEntries(new FormData(form).entries()), ...extra() };
+        const res = await fetch(endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body),
+        });
+        const info = await res.json().catch(() => ({}));
+        if (!res.ok) throw new Error(info.error || GENERIC);
+        // The server decides what comes next, so reload and let it render the
+        // real state rather than duplicating that logic here.
+        location.reload();
+      } catch (err) {
+        if (errorEl) {
+          errorEl.textContent = err instanceof Error ? err.message : GENERIC;
+          errorEl.classList.remove('hidden');
+        }
+        if (btn) { btn.disabled = false; btn.textContent = original; }
+      }
+    });
+  }
+
+  const identify = document.querySelector('[data-poll-identify]') as HTMLFormElement | null;
+  if (identify) {
+    wire(identify, document.querySelector('[data-poll-identify-error]'), '/api/poll-identify', () => ({}));
+  }
+
+  const vote = document.querySelector('[data-poll-vote]') as HTMLFormElement | null;
+  if (vote) {
+    wire(vote, document.querySelector('[data-poll-vote-error]'), '/api/poll-vote', () => ({
+      poll: vote.dataset.pollId ?? '',
+    }));
+  }
+</script>

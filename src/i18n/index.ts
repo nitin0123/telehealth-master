@@ -49,7 +49,7 @@ export const LANG_SHORT: Record<Lang, string> = { en: 'EN', hi: 'हिं' };
  * no Hindi twins are built. The prefix match covers the nested readiness-score
  * and one-pager pages too.
  */
-export const EN_ONLY: readonly string[] = ['/404', '/about/workplace-wellness'];
+export const EN_ONLY: readonly string[] = ['/404', '/about/workplace-wellness', '/poll'];
 
 // ---------------------------------------------------------------------------
 // Paths

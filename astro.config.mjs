@@ -51,7 +51,9 @@ const THIN_TAG_PATHS = [...tagCounts]
 // CTAs point at `/coming-soon`); drop it from this list when booking opens.
 // `/thank-you` is a post-submission confirmation: nothing to rank, and it only
 // makes sense arrived at from a form, so it renders noindex in both languages.
-const NOINDEX_PATHS = ['/coming-soon', '/get-care/book-a-consultation', '/thank-you', ...THIN_TAG_PATHS];
+// `/poll` and its results page are a campaign link and an internal dashboard:
+// both render noindex, and neither belongs in a sitemap.
+const NOINDEX_PATHS = ['/coming-soon', '/get-care/book-a-consultation', '/thank-you', '/poll', ...THIN_TAG_PATHS];
 
 // Inline a binary file as a base64 string at build time:
 //
