@@ -63,12 +63,16 @@ CREATE INDEX IF NOT EXISTS idx_poll_options_order ON poll_options (poll_id, posi
 -- carries no company name or phone number.
 CREATE TABLE IF NOT EXISTS poll_respondents (
   token      TEXT        PRIMARY KEY,
+  name       TEXT        NOT NULL DEFAULT '',
   company    TEXT        NOT NULL,
   phone      TEXT        NOT NULL,
   ip_address TEXT,
   user_agent TEXT,
   created_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
+
+-- Existing installs predating the name column.
+ALTER TABLE poll_respondents ADD COLUMN IF NOT EXISTS name TEXT NOT NULL DEFAULT '';
 
 CREATE INDEX IF NOT EXISTS idx_poll_respondents_phone      ON poll_respondents (phone);
 CREATE INDEX IF NOT EXISTS idx_poll_respondents_created_at ON poll_respondents (created_at DESC);
@@ -117,6 +121,7 @@ CREATE OR REPLACE VIEW poll_responses AS
 SELECT
   v.poll_id,
   p.question,
+  r.name,
   v.company,
   v.phone,
   v.option_id,

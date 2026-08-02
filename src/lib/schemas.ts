@@ -106,6 +106,7 @@ const indianPhone = z
   .transform((d) => `+91${d}`);
 
 export const pollIdentifySchema = z.object({
+  name: z.string().trim().min(1, 'Please enter your name.').max(200, 'That name is too long.'),
   company: z.string().trim().min(1, 'Please enter your company name.').max(200, 'That company name is too long.'),
   phone: indianPhone,
 });

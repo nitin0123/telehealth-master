@@ -41,8 +41,8 @@ export const POST: APIRoute = async ({ request, clientAddress, cookies }) => {
 
   const token = newToken();
   await db().sql`
-    INSERT INTO poll_respondents (token, company, phone, ip_address, user_agent)
-    VALUES (${token}, ${result.data.company}, ${result.data.phone},
+    INSERT INTO poll_respondents (token, name, company, phone, ip_address, user_agent)
+    VALUES (${token}, ${result.data.name}, ${result.data.company}, ${result.data.phone},
             ${clientAddress ?? null}, ${request.headers.get('user-agent') ?? null})
   `;
 
