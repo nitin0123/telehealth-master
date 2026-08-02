@@ -72,31 +72,50 @@ const pct = (n: number, total: number) => (total === 0 ? 0 : Math.round((n / tot
         </nav>
       )}
 
-      <div class={card} data-results data-poll-id={standing.pollId}>
-        <div class="flex flex-wrap items-baseline justify-between gap-2">
-          <h2 class="font-serif text-xl lg:text-2xl text-ever">{standing.question}</h2>
-          <span data-status class="text-xs font-semibold uppercase tracking-wide text-stone">{standing.status}</span>
+      <div class="relative overflow-hidden rounded-5xl bg-gradient-to-br from-ever via-everdk to-ink p-6 sm:p-10 text-cream shadow-xl"
+           data-results data-poll-id={standing.pollId}>
+        {/* Confetti fires here on every new vote. Behind the content, so a
+            burst never sits on top of the numbers being celebrated. */}
+        <canvas data-confetti class="pointer-events-none absolute inset-0 h-full w-full" aria-hidden="true"></canvas>
+
+        <div class="relative">
+          <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
+            <span data-status class="rounded-full bg-cream/15 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider">{standing.status}</span>
+            <span class="inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wider text-sage">
+              <span data-dot class="h-1.5 w-1.5 rounded-full bg-sage/50"></span>
+              <span data-live>connecting</span>
+            </span>
+          </div>
+
+          <h2 class="mt-3 font-serif text-2xl lg:text-3xl leading-snug">{standing.question}</h2>
+
+          <div class="mt-6 flex items-end gap-3">
+            <span data-total class="font-serif text-6xl lg:text-7xl leading-none tabular-nums">{standing.total}</span>
+            <span class="pb-1.5 text-sm text-sand/80">responses so far</span>
+          </div>
+
+          <ul class="mt-8 space-y-5" data-bars>
+            {standing.results.map((r) => (
+              <li data-option={r.id}>
+                <div class="flex items-baseline justify-between gap-3">
+                  <span class="font-medium flex items-center gap-2">
+                    {r.label}
+                    <span data-leader class="hidden rounded-full bg-sage/25 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-sage">Leading</span>
+                  </span>
+                  <span class="text-sm text-sand/80 tabular-nums">
+                    <span data-pct class="text-cream font-semibold">{pct(r.votes, standing.total)}</span>% ·
+                    <span data-votes>{r.votes}</span>
+                  </span>
+                </div>
+                <div class="mt-2 h-3 rounded-full bg-cream/10 overflow-hidden">
+                  <div data-bar
+                       class="h-full rounded-full bg-gradient-to-r from-sage via-clay to-sage bg-[length:200%_100%] transition-[width] duration-700 ease-out"
+                       style={`width:${pct(r.votes, standing.total)}%`}></div>
+                </div>
+              </li>
+            ))}
+          </ul>
         </div>
-
-        <p class="mt-1 text-sm text-stone">
-          <span data-total>{standing.total}</span> responses ·
-          <span data-live class="text-clay"> connecting…</span>
-        </p>
-
-        <ul class="mt-5 space-y-4" data-bars>
-          {standing.results.map((r) => (
-            <li data-option={r.id}>
-              <div class="flex items-baseline justify-between text-sm">
-                <span class="font-medium text-ever">{r.label}</span>
-                <span class="text-stone"><span data-votes>{r.votes}</span> · <span data-pct>{pct(r.votes, standing.total)}</span>%</span>
-              </div>
-              <div class="mt-1.5 h-2.5 rounded-full bg-sand overflow-hidden">
-                <div data-bar class="h-full rounded-full bg-gradient-to-r from-ever to-clay transition-[width] duration-500 ease-out"
-                     style={`width:${pct(r.votes, standing.total)}%`}></div>
-              </div>
-            </li>
-          ))}
-        </ul>
       </div>
 
       <section class="mt-6">
@@ -144,23 +163,114 @@ const pct = (n: number, total: number) => (total === 0 ? 0 : Math.round((n / tot
     const totalEl = root.querySelector('[data-total]') as HTMLElement | null;
     const statusEl = root.querySelector('[data-status]') as HTMLElement | null;
 
-    const setLive = (text: string, tone: string) => {
-      if (!live) return;
-      live.textContent = ` ${text}`;
-      live.className = tone;
+    const dot = root.querySelector('[data-dot]') as HTMLElement | null;
+    const canvas = root.querySelector('[data-confetti]') as HTMLCanvasElement | null;
+
+    // Someone who asked for less motion gets the numbers without the party.
+    const calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const setLive = (text: string, live_: boolean) => {
+      if (live) live.textContent = text;
+      if (dot) dot.className = `h-1.5 w-1.5 rounded-full ${live_ ? 'bg-sage animate-pulse' : 'bg-sage/40'}`;
     };
 
+    // ---- Confetti -------------------------------------------------------
+    // Hand-rolled on a canvas: the content security policy allows no external
+    // scripts, and a burst of paper is a few lines of physics anyway.
+    const COLOURS = ['#C4B5FD', '#9333EA', '#EBD9FB', '#7C5BBE', '#FCFAFF'];
+    type Bit = { x: number; y: number; vx: number; vy: number; r: number; spin: number; a: number; c: string };
+    let bits: Bit[] = [];
+    let frame = 0;
+
+    const fit = () => {
+      if (!canvas) return;
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = canvas.offsetWidth * dpr;
+      canvas.height = canvas.offsetHeight * dpr;
+      canvas.getContext('2d')?.setTransform(dpr, 0, 0, dpr, 0, 0);
+    };
+    fit();
+    window.addEventListener('resize', fit);
+
+    const tick = () => {
+      const ctx = canvas?.getContext('2d');
+      if (!ctx || !canvas) return;
+      ctx.clearRect(0, 0, canvas.offsetWidth, canvas.offsetHeight);
+      bits = bits.filter((b) => b.a > 0 && b.y < canvas.offsetHeight + 40);
+      for (const b of bits) {
+        b.x += b.vx;
+        b.y += b.vy;
+        b.vy += 0.16;        // gravity
+        b.vx *= 0.995;       // drag
+        b.r += b.spin;
+        b.a -= 0.008;        // fade, so nothing lingers after it lands
+        ctx.save();
+        ctx.globalAlpha = Math.max(b.a, 0);
+        ctx.translate(b.x, b.y);
+        ctx.rotate(b.r);
+        ctx.fillStyle = b.c;
+        ctx.fillRect(-3.5, -2, 7, 4);
+        ctx.restore();
+      }
+      frame = bits.length ? requestAnimationFrame(tick) : 0;
+    };
+
+    const burst = (count: number) => {
+      if (calm || !canvas) return;
+      const w = canvas.offsetWidth;
+      for (let i = 0; i < count; i++) {
+        bits.push({
+          x: w * (0.15 + Math.random() * 0.7),
+          y: -10 - Math.random() * 40,
+          vx: (Math.random() - 0.5) * 3,
+          vy: 1 + Math.random() * 2.5,
+          r: Math.random() * Math.PI,
+          spin: (Math.random() - 0.5) * 0.3,
+          a: 1,
+          c: COLOURS[(Math.random() * COLOURS.length) | 0],
+        });
+      }
+      if (!frame) frame = requestAnimationFrame(tick);
+    };
+
+    // ---- Rendering ------------------------------------------------------
+    // Count up rather than snapping, so a jump from 12 to 19 reads as arrivals.
+    const countTo = (el: HTMLElement, to: number) => {
+      const from = Number(el.textContent) || 0;
+      if (from === to || calm) { el.textContent = String(to); return; }
+      const started = performance.now();
+      const step = (now: number) => {
+        const k = Math.min((now - started) / 600, 1);
+        const eased = 1 - Math.pow(1 - k, 3);
+        el.textContent = String(Math.round(from + (to - from) * eased));
+        if (k < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    };
+
+    let seenTotal = Number(totalEl?.textContent) || 0;
+
     const render = (data: { total: number; status: string; results: { id: string; votes: number }[] }) => {
-      if (totalEl) totalEl.textContent = String(data.total);
+      const gained = data.total - seenTotal;
+      seenTotal = data.total;
+      if (totalEl) countTo(totalEl, data.total);
       if (statusEl) statusEl.textContent = data.status;
+
+      const best = Math.max(...data.results.map((r) => r.votes), 0);
       for (const r of data.results) {
         const li = root.querySelector(`[data-option="${r.id}"]`);
         if (!li) continue;
         const share = data.total === 0 ? 0 : Math.round((r.votes / data.total) * 100);
-        (li.querySelector('[data-votes]') as HTMLElement).textContent = String(r.votes);
-        (li.querySelector('[data-pct]') as HTMLElement).textContent = String(share);
+        countTo(li.querySelector('[data-votes]') as HTMLElement, r.votes);
+        countTo(li.querySelector('[data-pct]') as HTMLElement, share);
         (li.querySelector('[data-bar]') as HTMLElement).style.width = `${share}%`;
+        // Only badge a leader once there is something to lead.
+        (li.querySelector('[data-leader]') as HTMLElement).classList.toggle('hidden', !(best > 0 && r.votes === best));
       }
+
+      // Scale the celebration to the number of votes that just landed, and
+      // never fire on the first paint: that is history, not news.
+      if (gained > 0) burst(Math.min(24 + gained * 14, 90));
     };
 
     // The stream is closed deliberately every ~50s because a serverless
@@ -171,12 +281,12 @@ const pct = (n: number, total: number) => (total === 0 ? 0 : Math.round((n / tot
       source?.close();
       source = new EventSource(`/api/poll-stream?poll=${encodeURIComponent(pollId)}`);
       source.addEventListener('results', (e) => {
-        setLive('live', 'text-sage font-medium');
+        setLive('live', true);
         render(JSON.parse((e as MessageEvent).data));
       });
       source.addEventListener('bye', () => { source?.close(); connect(); });
       source.onerror = () => {
-        setLive('reconnecting…', 'text-stone');
+        setLive('reconnecting', false);
         source?.close();
         setTimeout(connect, 3000);
       };

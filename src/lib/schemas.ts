@@ -84,9 +84,30 @@ export function firstError(err: z.ZodError): string {
 //
 // The honeypot here is "website", NOT "company": the poll asks for the company
 // as a real, required field, exactly as the corporate forms do.
+/**
+ * Indian mobile number, entered as 10 digits behind a fixed +91 prefix.
+ *
+ * Forgiving on input, strict on output: a pasted '+91 98765 43210',
+ * '098765 43210' or '9876543210' all normalise to the same +919876543210, so
+ * one person is never stored as two respondents because of formatting.
+ * Deliberately does not require a 6-9 first digit; the cost of turning away a
+ * real respondent is higher than the cost of accepting an odd number.
+ */
+const indianPhone = z
+  .string({ required_error: 'Please enter your phone number.' })
+  .trim()
+  .transform((v) => {
+    const digits = v.replace(/\D/g, '');
+    if (digits.length === 12 && digits.startsWith('91')) return digits.slice(2);
+    if (digits.length === 11 && digits.startsWith('0')) return digits.slice(1);
+    return digits;
+  })
+  .refine((d) => d.length === 10, 'Please enter a 10 digit mobile number.')
+  .transform((d) => `+91${d}`);
+
 export const pollIdentifySchema = z.object({
   company: z.string().trim().min(1, 'Please enter your company name.').max(200, 'That company name is too long.'),
-  phone: z.string().trim().min(1, 'Please enter your phone number.').max(50, 'That phone number is too long.'),
+  phone: indianPhone,
 });
 export type PollIdentifyInput = z.infer<typeof pollIdentifySchema>;
 

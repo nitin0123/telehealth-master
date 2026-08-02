@@ -71,9 +71,20 @@ const card = 'rounded-4xl bg-white border border-sand shadow-sm p-6 sm:p-8 revea
         <input id="poll-company" name="company" type="text" required autocomplete="organization"
                class="w-full rounded-2xl border border-sand bg-cream px-4 py-3 focus:outline-none focus:ring-2 focus:ring-clay/40" />
 
-        <label class="block mt-4 text-sm text-stone mb-1" for="poll-phone">Phone number</label>
-        <input id="poll-phone" name="phone" type="tel" required autocomplete="tel" lang="en" dir="ltr"
-               class="w-full rounded-2xl border border-sand bg-cream px-4 py-3 focus:outline-none focus:ring-2 focus:ring-clay/40" />
+        <label class="block mt-4 text-sm text-stone mb-1" for="poll-phone">Mobile number</label>
+        {/* The poll is India-only, so the country code is fixed rather than
+            asked for: the visitor types the 10 digits and nothing else. The
+            prefix is a sibling of the input, not placeholder text, so it stays
+            visible while typing and is never submitted as part of the value. */}
+        <div class="flex items-stretch rounded-2xl border border-sand bg-cream focus-within:ring-2 focus-within:ring-clay/40">
+          <span class="grid place-items-center px-3.5 text-stone border-r border-sand select-none" aria-hidden="true">+91</span>
+          <input id="poll-phone" name="phone" type="tel" required
+                 inputmode="numeric" autocomplete="tel-national" maxlength="10" pattern="[0-9]{10}"
+                 placeholder="10 digit number" aria-describedby="poll-phone-hint"
+                 lang="en" dir="ltr"
+                 class="flex-1 min-w-0 rounded-r-2xl bg-transparent px-4 py-3 focus:outline-none" />
+        </div>
+        <p id="poll-phone-hint" class="mt-1 text-xs text-stone">Indian mobile number, without the country code.</p>
 
         <p data-poll-identify-error class="hidden mt-3 text-sm text-clay"></p>
         <button type="submit" class="btn-primary mt-5 w-full">Continue</button>
@@ -145,6 +156,19 @@ const card = 'rounded-4xl bg-white border border-sand shadow-sm p-6 sm:p-8 revea
 
   const identify = document.querySelector('[data-poll-identify]') as HTMLFormElement | null;
   if (identify) {
+    // Keep the field to digits as it is typed, so a pasted '+91 98765 43210'
+    // or '98765-43210' becomes the ten digits the field asks for rather than
+    // tripping the pattern check. The server normalises too; this is only so
+    // the visitor sees what will be sent.
+    const phone = identify.querySelector('#poll-phone') as HTMLInputElement | null;
+    phone?.addEventListener('input', () => {
+      let digits = phone.value.replace(/\D/g, '');
+      if (digits.length === 12 && digits.startsWith('91')) digits = digits.slice(2);
+      else if (digits.length === 11 && digits.startsWith('0')) digits = digits.slice(1);
+      const trimmed = digits.slice(0, 10);
+      if (phone.value !== trimmed) phone.value = trimmed;
+    });
+
     wire(identify, document.querySelector('[data-poll-identify-error]'), '/api/poll-identify', () => ({}));
   }
 
