@@ -53,8 +53,11 @@
   transform-origin: top center;
   transition: opacity 0.2s ease, transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), visibility 0.28s;
 }
-/* Matches the xl breakpoint where the desktop nav appears (see Nav.astro). */
-@media (min-width: 1280px) {
+/* Must match the breakpoint where the desktop bar appears (`lg:flex` in
+   Nav.astro). Gated at all because the panel markup exists in the DOM at every
+   width; without this the dropdowns would open on a stray hover while the bar
+   itself is hidden. Move both together or the triggers render but never open. */
+@media (min-width: 1024px) {
   .nav-item:hover .nav-panel,
   .nav-item:focus-within .nav-panel {
     opacity: 1;
