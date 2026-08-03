@@ -49,6 +49,7 @@ export const hi: DeepPartial<Dict> = {
     theBook: 'किताब',
     contact: 'संपर्क करें',
     bookCta: 'कंसल्टेशन बुक करें',
+    bookCtaShort: 'बुक करें',
     brandHome: '{brand} होम',
     openMenu: 'मेन्यू खोलें',
     closeMenu: 'मेन्यू बंद करें',

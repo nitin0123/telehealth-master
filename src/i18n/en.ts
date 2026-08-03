@@ -30,7 +30,8 @@ const navSections: Record<string, SectionCopy> = {
   symptoms: { label: 'Symptoms' },
   care: { label: 'Get Care' },
   events: { label: 'Events' },
-  workplaceWellness: { label: 'Workplace Wellness' },
+  // `short` is shown only in the 1024-1280 band, where the full bar is tight.
+  workplaceWellness: { label: 'Workplace Wellness', short: 'Workplace' },
   blog: { label: 'Blog' },
   about: { label: 'About' },
 };
@@ -75,6 +76,8 @@ export const en = {
     theBook: 'The Book',
     contact: 'Contact Us',
     bookCta: 'Book a Consultation',
+    /** Header CTA in the compact 1024-1280 band, where the menu needs the room */
+    bookCtaShort: 'Book',
     /** aria-label on the logo. {brand} is replaced with the wordmark. */
     brandHome: '{brand} home',
     openMenu: 'Open menu',
