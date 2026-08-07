@@ -1,4 +1,4 @@
--- Corporate resource downloads (currently the Workplace Wellness one-pager)
+-- Corporate resource downloads (currently the Workplace Wellness two-pager)
 -- One row per HR/CXO lead who asked for a gated corporate resource from
 -- /about/workplace-wellness/. Kept separate from `corporate_readiness` because
 -- there is no score or set of answers here, only a request for a document.
@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS corporate_leads (
   name        TEXT        NOT NULL,
   company     TEXT        NOT NULL,
   work_email  TEXT        NOT NULL,
-  resource    TEXT        NOT NULL,               -- e.g. 'one-pager'
+  resource    TEXT        NOT NULL,               -- e.g. 'two-pager'
   source      TEXT,                               -- e.g. 'workplace-wellness'
   ip_address  TEXT,                               -- captured server-side
   created_at  TIMESTAMPTZ NOT NULL DEFAULT now(), -- first request

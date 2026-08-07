@@ -1,0 +1,159 @@
+---
+// Gated download for the corporate wellness two-pager.
+//
+// Outside src/pages/[...locale]/ and covered by the '/about/workplace-wellness'
+// prefix in EN_ONLY, so no Hindi twin is built.
+import PageLayout from '../../../layouts/PageLayout.astro';
+import { useTranslations } from '../../../i18n';
+
+const t = useTranslations('en');
+const page = t.pages.corporateTwoPager;
+const parent = t.pages.workplaceWellness;
+
+const inputClass =
+  'w-full rounded-2xl border border-sand bg-cream px-4 py-3 focus:outline-none focus:ring-2 focus:ring-clay/40';
+---
+
+<PageLayout
+  section={parent.title}
+  sectionHref="/about/workplace-wellness/"
+  kicker={page.kicker}
+  title={page.title}
+  metaTitle={page.metaTitle}
+  description={page.description}
+  keywords={page.keywords}
+  lede={page.lede}
+>
+  <div
+    data-two-pager
+    data-generic-error={t.common.genericError}
+    data-sending={page.sending}
+    data-success-body={page.successBody}
+    data-success-body-repeat={page.successBodyRepeat}
+    class="max-w-xl mx-auto"
+  >
+    <section data-op-panel="form" class="bg-white border border-sand rounded-5xl p-6 lg:p-10 shadow-sm reveal">
+      <h2 class="font-serif text-2xl text-ever">{page.formHeading}</h2>
+      <p class="mt-2 text-stone leading-relaxed">{page.formBody}</p>
+
+      <form data-op-form action="/api/corporate-lead" method="post" novalidate class="mt-6">
+        <!-- Honeypot: "website", not "company" (a real field here). -->
+        <div class="hidden" aria-hidden="true">
+          <label>Website<input type="text" name="website" tabindex="-1" autocomplete="off" /></label>
+        </div>
+
+        <div class="mb-4">
+          <label class="block text-sm text-stone mb-1" for="op-name">
+            {page.nameLabel} <span class="text-clay">*</span>
+          </label>
+          <input id="op-name" name="name" required autocomplete="name" placeholder={page.namePlaceholder} class={inputClass} />
+        </div>
+        <div class="mb-4">
+          <label class="block text-sm text-stone mb-1" for="op-company">
+            {page.companyLabel} <span class="text-clay">*</span>
+          </label>
+          <input id="op-company" name="company" required autocomplete="organization" placeholder={page.companyPlaceholder} class={inputClass} />
+        </div>
+        <div class="mb-5">
+          <label class="block text-sm text-stone mb-1" for="op-email">
+            {page.emailLabel} <span class="text-clay">*</span>
+          </label>
+          <input id="op-email" name="email" type="email" required autocomplete="email" placeholder={page.emailPlaceholder} class={inputClass} />
+        </div>
+
+        <button class="w-full rounded-full bg-clay hover:bg-claydk text-white font-semibold px-8 py-3.5 transition disabled:opacity-60 disabled:cursor-not-allowed">
+          {page.submit}
+        </button>
+        <p data-op-error role="alert" aria-live="polite" class="hidden mt-3 text-sm text-clay"></p>
+      </form>
+      <p class="mt-3 text-center text-xs text-stone">{page.fineprint}</p>
+    </section>
+
+    <section data-op-panel="thanks" class="hidden bg-white border border-sand rounded-5xl p-6 lg:p-10 shadow-sm text-center">
+      <div class="mx-auto grid h-14 w-14 place-items-center rounded-full bg-sand">
+        <svg class="h-7 w-7 text-ever" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M20 6L9 17l-5-5" />
+        </svg>
+      </div>
+      <h2 class="mt-5 font-serif text-2xl text-ever">{page.successHeading}</h2>
+      <p data-op-thanks class="mt-3 text-stone"></p>
+
+      <a href="/about/workplace-wellness/readiness-score/" class="mt-6 inline-block rounded-full bg-clay hover:bg-claydk text-white font-semibold px-8 py-3.5 transition">
+        {page.readinessCta}
+      </a>
+      <a href="/contact/" class="mt-4 block text-sm text-stone hover:text-clay transition">{page.contactCta}</a>
+    </section>
+  </div>
+
+  <script>
+    import { validateCorporateLead } from '../../../lib/validate';
+
+    const root = document.querySelector<HTMLElement>('[data-two-pager]');
+    if (root) {
+      const form = root.querySelector<HTMLFormElement>('[data-op-form]')!;
+      const errEl = root.querySelector<HTMLElement>('[data-op-error]')!;
+      const formPanel = root.querySelector<HTMLElement>('[data-op-panel="form"]')!;
+      const thanksPanel = root.querySelector<HTMLElement>('[data-op-panel="thanks"]')!;
+      const genericError = root.dataset.genericError ?? 'Something went wrong. Please try again.';
+      const sendingLabel = root.dataset.sending ?? 'Sending…';
+
+      const fill = (tpl: string, vars: Record<string, string>) =>
+        tpl.replace(/\{(\w+)\}/g, (m, k) => vars[k] ?? m);
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        if (!form.reportValidity()) return;
+        errEl.classList.add('hidden');
+
+        const fd = new FormData(form);
+        const payload = {
+          name: String(fd.get('name') ?? ''),
+          company: String(fd.get('company') ?? ''),
+          email: String(fd.get('email') ?? ''),
+          resource: 'two-pager' as const,
+          source: 'workplace-wellness',
+        };
+
+        const problem = validateCorporateLead(payload);
+        if (problem) {
+          errEl.textContent = problem;
+          errEl.classList.remove('hidden');
+          return;
+        }
+
+        const btn = form.querySelector('button')!;
+        const original = btn.textContent ?? '';
+        btn.disabled = true;
+        btn.textContent = sendingLabel;
+
+        try {
+          const res = await fetch('/api/corporate-lead', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ ...payload, website: String(fd.get('website') ?? '') }),
+          });
+          const info = await res.json().catch(() => ({}) as Record<string, unknown>);
+          if (!res.ok) throw new Error((info.error as string) || genericError);
+
+          // The PDF is only emailed the first time an address requests it.
+          const tpl = info.sent === false
+            ? (root.dataset.successBodyRepeat ?? '')
+            : (root.dataset.successBody ?? '');
+          root.querySelector<HTMLElement>('[data-op-thanks]')!.textContent = fill(tpl, {
+            name: payload.name.split(' ')[0],
+            company: payload.company,
+            email: payload.email,
+          });
+          formPanel.classList.add('hidden');
+          thanksPanel.classList.remove('hidden');
+        } catch (err) {
+          errEl.textContent = err instanceof Error ? err.message : genericError;
+          errEl.classList.remove('hidden');
+        } finally {
+          btn.disabled = false;
+          btn.textContent = original;
+        }
+      });
+    }
+  </script>
+</PageLayout>

@@ -13,9 +13,9 @@ import { corporateResourceHtml, corporateResourceText } from '../../lib/emails/c
 import { SITE } from '../../data/seo';
 // Inlined at build time (see `base64Asset` in astro.config.mjs) so neither the
 // attachment nor the logo depends on the deployment being publicly fetchable.
-// Deliberately NOT in public/: the one-pager is gated behind this form, and
+// Deliberately NOT in public/: the two-pager is gated behind this form, and
 // anything under public/ is served as a static file at a guessable URL.
-import onePagerBase64 from '../../assets/reports/resetwellplus-corporate-wellness-one-pager.pdf?base64';
+import twoPagerBase64 from '../../assets/reports/resetwellplus-corporate-wellness-two-pager.pdf?base64';
 import logoBase64 from '../../../public/logo.png?base64';
 
 const json = (body: unknown, status = 200) =>
@@ -29,15 +29,15 @@ const str = (v: unknown) => (typeof v === 'string' ? v.trim() : '');
  * picks it up at build time.
  */
 const RESOURCES = {
-  'one-pager': {
-    label: 'Corporate Wellness one-pager',
-    filename: 'ResetWell Plus - Corporate Wellness One-Pager.pdf',
-    content: onePagerBase64,
+  'two-pager': {
+    label: 'Corporate Wellness two-pager',
+    filename: 'ResetWell Plus - Corporate Wellness Two-Pager.pdf',
+    content: twoPagerBase64,
   },
 } as const;
 
 export const POST: APIRoute = async ({ request, clientAddress }) => {
-  const back = '/about/workplace-wellness/corporate-one-pager/';
+  const back = '/about/workplace-wellness/corporate-two-pager/';
   const parsedBody = await readBody(request);
   if (!parsedBody) return json({ error: 'Invalid request body.' }, 400);
   const { data: body, isFormPost } = parsedBody;

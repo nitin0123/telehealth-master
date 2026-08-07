@@ -10,7 +10,7 @@ import { LOGO_CID } from './readinessReport';
 export interface CorporateResourceEmailInput {
   name: string;
   company: string;
-  /** Human-readable document name, e.g. 'Corporate Wellness one-pager'. */
+  /** Human-readable document name, e.g. 'Corporate Wellness two-pager'. */
   resourceLabel: string;
   contactUrl: string;
   readinessUrl: string;

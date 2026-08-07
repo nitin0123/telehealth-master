@@ -1073,7 +1073,7 @@ export const en = {
     // src/pages/[...locale]/ and the path is listed in EN_ONLY, so no Hindi
     // twin is built. The statistics below are the client's, each tied to a
     // source in `sources`.
-    // Gated download page for the corporate one-pager. English only, same as
+    // Gated download page for the corporate two-pager. English only, same as
     // the rest of the workplace-wellness section.
     // Static destination for form posts that arrive without JavaScript, so a
     // submit always lands somewhere that confirms it worked.
@@ -1087,31 +1087,31 @@ export const en = {
       homeCta: 'Back to home',
     },
 
-    corporateOnePager: {
+    corporateTwoPager: {
       kicker: 'Workplace Wellness',
-      title: 'Corporate Wellness One-Pager',
-      metaTitle: 'Corporate Menopause Wellness One-Pager | ResetWell Plus',
+      title: 'Corporate Wellness Two-Pager',
+      metaTitle: 'Corporate Menopause Wellness Two-Pager | ResetWell Plus',
       description:
-        'Get the ResetWell Plus corporate wellness one-pager: the business case for menopause support in Indian workplaces, and how the programme works.',
-      keywords: 'corporate menopause one-pager, workplace menopause India, HR menopause resource',
+        'Get the ResetWell Plus corporate wellness two-pager: the business case for menopause support in Indian workplaces, and how the programme works.',
+      keywords: 'corporate menopause two-pager, workplace menopause India, HR menopause resource',
       lede: 'The business case and the programme, in a single document you can circulate internally.',
       formHeading: 'Where should we send it?',
-      formBody: 'We will email the one-pager straight away, so you have it on file to share with your team.',
+      formBody: 'We will email the two-pager straight away, so you have it on file to share with your team.',
       nameLabel: 'Your name',
       namePlaceholder: 'Priya Sharma',
       companyLabel: 'Company',
       companyPlaceholder: 'Your organisation',
       emailLabel: 'Work email',
       emailPlaceholder: 'you@company.com',
-      submit: 'Email me the one-pager',
+      submit: 'Email me the two-pager',
       sending: 'Sending\u2026',
       fineprint: 'We follow up within 48 hours with pilot options. No spam, ever.',
       successHeading: 'On its way.',
       /** {name}, {company} and {email} are filled in from the form. */
-      successBody: 'Thanks, {name}. The one-pager for {company} is on its way to {email}.',
-      /** Shown when this address has already been sent the one-pager. */
+      successBody: 'Thanks, {name}. The two-pager for {company} is on its way to {email}.',
+      /** Shown when this address has already been sent the two-pager. */
       successBodyRepeat:
-        'Thanks, {name}. We have already sent the one-pager to {email}, so check your inbox rather than waiting for a new one.',
+        'Thanks, {name}. We have already sent the two-pager to {email}, so check your inbox rather than waiting for a new one.',
       readinessCta: 'Take the readiness assessment',
       contactCta: 'Talk to us about a pilot',
     },
@@ -1244,7 +1244,7 @@ export const en = {
         heading: 'Talk to us',
         body: 'Start with a conversation, or take something to circulate internally first.',
         primaryCta: 'Talk to us',
-        secondaryCta: 'Download the Corporate Wellness one-pager',
+        secondaryCta: 'Download the Corporate Wellness two-pager',
         secondaryNote: 'For HR leaders who want to circulate internally before committing to a call.',
         tertiaryCta: 'Take the Menopause Workplace Readiness Score',
         tertiaryNote: 'Six questions, an instant benchmark, and the full report by email.',

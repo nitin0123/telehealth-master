@@ -47,7 +47,7 @@ export const LANG_SHORT: Record<Lang, string> = { en: 'EN', hi: 'हिं' };
  * `/about/workplace-wellness`: the corporate section is English-only, aimed at
  * HR and CXO audiences. Its page files live outside src/pages/[...locale]/ so
  * no Hindi twins are built. The prefix match covers the nested readiness-score
- * and one-pager pages too.
+ * and two-pager pages too.
  */
 export const EN_ONLY: readonly string[] = ['/404', '/about/workplace-wellness', '/poll'];
 
