@@ -29,7 +29,6 @@
       "permanent": false
     },
     {
-      "comment": "Renamed once the document became two pages. Permanent, unlike the redirect above: this is a rename that is not coming back, and the old URL is indexed and linked from llms.txt.",
       "source": "/about/workplace-wellness/corporate-one-pager",
       "destination": "/about/workplace-wellness/corporate-two-pager",
       "permanent": true
