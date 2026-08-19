@@ -601,8 +601,13 @@
     "sw": true,
     "sr": true
   },
+  "/press-republic-world.webp": {
+    "w": 1200,
+    "h": 675,
+    "sw": true
+  },
   "/press-times-of-india.jpg": {
-    "w": 1280,
+    "w": 576,
     "h": 720,
     "sw": true,
     "sr": true
