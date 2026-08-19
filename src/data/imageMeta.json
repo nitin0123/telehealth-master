@@ -595,6 +595,18 @@
     "w": 1080,
     "h": 720
   },
+  "/press-republic-world.jpg": {
+    "w": 1200,
+    "h": 675,
+    "sw": true,
+    "sr": true
+  },
+  "/press-times-of-india.jpg": {
+    "w": 1280,
+    "h": 720,
+    "sw": true,
+    "sr": true
+  },
   "/reshma.jpeg": {
     "w": 289,
     "h": 494
