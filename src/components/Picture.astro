@@ -22,12 +22,16 @@ interface Props {
 
 const { src, alt, class: className = '', sizes = '100vw', priority = false, loading } = Astro.props;
 
-const entry = (meta as Record<string, { w: number; h: number }>)[src];
+const entry = (meta as Record<string, { w: number; h: number; sw?: boolean; sr?: boolean }>)[src];
 const ext = src.slice(src.lastIndexOf('.'));
 const base = src.slice(0, src.lastIndexOf('.'));
 
-// `npm run images` only writes 480px variants when the source is wider.
-const hasSmall = !!entry && entry.w > 480;
+// `sw`/`sr` say which 480px variants `npm run images` actually wrote. Never
+// re-derive that from the width: a WebP source gets no variants at all, so
+// guessing from `entry.w > 480` advertises a file that 404s.
+const isWebpSource = ext.toLowerCase() === '.webp';
+const hasSmallWebp = !!entry?.sw;
+const hasSmallRaster = !!entry?.sr && !isWebpSource;
 const webp = `${base}.webp`;
 const webpSmall = `${base}-480.webp`;
 const rasterSmall = `${base}-480${ext}`;
@@ -39,12 +43,16 @@ const eager = priority || loading === 'eager';
     behaving as a direct child of whatever laid it out before, which makes this
     a drop-in replacement for a bare <img> including absolute positioning. */}
 <picture class="contents">
-  <source
-    type="image/webp"
-    srcset={hasSmall ? `${webpSmall} 480w, ${webp} ${entry.w}w` : webp}
-    sizes={hasSmall ? sizes : undefined}
-  />
-  {hasSmall && <source type={ext === '.png' ? 'image/png' : 'image/jpeg'} srcset={`${rasterSmall} 480w, ${src} ${entry.w}w`} sizes={sizes} />}
+  {/* Skipped when the src is already WebP and has no small variant: the
+      <source> would just repeat the <img> src. */}
+  {(!isWebpSource || hasSmallWebp) && (
+    <source
+      type="image/webp"
+      srcset={hasSmallWebp ? `${webpSmall} 480w, ${webp} ${entry.w}w` : webp}
+      sizes={hasSmallWebp ? sizes : undefined}
+    />
+  )}
+  {hasSmallRaster && <source type={ext === '.png' ? 'image/png' : 'image/jpeg'} srcset={`${rasterSmall} 480w, ${src} ${entry.w}w`} sizes={sizes} />}
   <img
     src={src}
     alt={alt}

@@ -143,6 +143,24 @@ export interface PressFeature {
 // Ordered newest first; keep it that way when adding entries.
 export const pressFeatures: PressFeature[] = [
   {
+    publication: 'The Times of India',
+    title: "Menopause may be India's most overlooked marriage challenge, say wellness advocates Swati Singh and Reshma Tiwari",
+    href: 'https://timesofindia.indiatimes.com/life-style/spotlight/menopause-may-be-indias-most-overlooked-marriage-challenge-say-resetwell-plus-swati-singh-and-reshma-tiwari/articleshow/133321024.cms',
+    date: 'Aug 2026',
+  },
+  {
+    publication: 'Republic World',
+    title: "ResetWell Plus founders Swati Singh and Reshma Tiwari spark public debate on menopause and women's wellbeing",
+    href: 'https://www.republicworld.com/initiatives/resetwell-plus-founders-swati-singh-and-reshma-tiwari-spark-public-debate-on-menopause-and-women-s-wellbeing-2026-08-08-134314',
+    date: 'Aug 2026',
+  },
+  {
+    publication: 'The Wire',
+    title: "ResetWell Plus founders Swati Singh and Reshma Tiwari: Menopause may be India's most overlooked marriage challenge",
+    href: 'https://thewire.in/ptiprnews/resetwell-plus-founders-swati-singh-and-reshma-tiwari-menopause-may-be-indias-most-overlooked-marriage-challenge',
+    date: 'Jul 2026',
+  },
+  {
     publication: 'Press Trust of India',
     title: 'Platform launches initiative to boost menopause awareness, workplace support',
     href: 'https://www.ptinews.com/story/NATIONAL/platform-launches-initiative-to-boost-menopause-awareness-workplace-support/3828389',

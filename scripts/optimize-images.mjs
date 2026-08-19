@@ -9,6 +9,9 @@
 //   <name>-480.webp      480px wide, WebP       (only if the source is wider)
 //   <name>-480.<ext>     480px wide, original format, as the <img> fallback
 //
+// The manifest records `sw`/`sr` for the variants that were actually written,
+// so <Picture> never advertises a file that is not there.
+//
 // Originals are never modified or deleted: they stay the fallback for clients
 // without WebP support. Re-running is cheap, unchanged outputs are skipped.
 import sharp from 'sharp';
@@ -46,7 +49,6 @@ for (const file of sources) {
   const base = file.slice(0, -ext.length);
   const url = '/' + relative(PUBLIC, file).split(/[\\/]/).join('/');
   const meta = await sharp(file).metadata();
-  manifest[url] = { w: meta.width, h: meta.height };
 
   // A source that is already WebP only needs its dimensions recording.
   const jobs = ext.toLowerCase() === '.webp' ? [] : [[`${base}.webp`, (img) => img.webp({ quality: 78 })]];
@@ -60,6 +62,17 @@ for (const file of sources) {
     await transform(sharp(file)).toFile(out);
     written++;
   }
+
+  // Record which 480px variants actually exist on disk rather than letting
+  // <Picture> re-derive it: the rules above (source must be wider, and a WebP
+  // source gets no variants at all) drifted out of sync once already and a
+  // srcset candidate that was never written 404s the image.
+  manifest[url] = {
+    w: meta.width,
+    h: meta.height,
+    ...(existsSync(`${base}-${SMALL_WIDTH}.webp`) && { sw: true }),
+    ...(existsSync(`${base}-${SMALL_WIDTH}${ext}`) && ext.toLowerCase() !== '.webp' && { sr: true }),
+  };
 }
 
 writeFileSync(MANIFEST, JSON.stringify(manifest, null, 2) + '\n');

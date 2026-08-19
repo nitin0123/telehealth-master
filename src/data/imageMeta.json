@@ -1,11 +1,14 @@
 {
   "/about/founding-team.jpg": {
     "w": 1200,
-    "h": 800
+    "h": 800,
+    "sw": true,
+    "sr": true
   },
   "/about/founding-team.webp": {
     "w": 1200,
-    "h": 800
+    "h": 800,
+    "sw": true
   },
   "/blog/3-most-common-menopause-symptoms/brain-fog-1.png": {
     "w": 265,
@@ -57,11 +60,14 @@
   },
   "/blog/frozen-shoulder-and-menopause/cover.jpg": {
     "w": 847,
-    "h": 506
+    "h": 506,
+    "sw": true,
+    "sr": true
   },
   "/blog/frozen-shoulder-and-menopause/cover.webp": {
     "w": 847,
-    "h": 506
+    "h": 506,
+    "sw": true
   },
   "/blog/frozen-shoulder-and-menopause/inline-1.png": {
     "w": 439,
@@ -73,231 +79,333 @@
   },
   "/blog/frozen-shoulder-and-menopause/inline-2.jpg": {
     "w": 575,
-    "h": 370
+    "h": 370,
+    "sw": true,
+    "sr": true
   },
   "/blog/frozen-shoulder-and-menopause/inline-2.webp": {
     "w": 575,
-    "h": 370
+    "h": 370,
+    "sw": true
   },
   "/blog/how-to-age-healthy-after-menopause/cover.jpg": {
     "w": 1279,
-    "h": 720
+    "h": 720,
+    "sw": true,
+    "sr": true
+  },
+  "/blog/how-to-age-healthy-after-menopause/cover.webp": {
+    "w": 1279,
+    "h": 720,
+    "sw": true
   },
   "/blog/how-to-age-healthy-after-menopause/inline-1.jpg": {
     "w": 1032,
-    "h": 1000
+    "h": 1000,
+    "sw": true,
+    "sr": true
+  },
+  "/blog/how-to-age-healthy-after-menopause/inline-1.webp": {
+    "w": 1032,
+    "h": 1000,
+    "sw": true
   },
   "/blog/how-to-age-healthy-after-menopause/inline-2.jpg": {
     "w": 1039,
-    "h": 1000
+    "h": 1000,
+    "sw": true,
+    "sr": true
+  },
+  "/blog/how-to-age-healthy-after-menopause/inline-2.webp": {
+    "w": 1039,
+    "h": 1000,
+    "sw": true
   },
   "/blog/loneliness-during-menopause/cover.jpg": {
     "w": 900,
-    "h": 519
+    "h": 519,
+    "sw": true,
+    "sr": true
   },
   "/blog/loneliness-during-menopause/cover.webp": {
     "w": 900,
-    "h": 519
+    "h": 519,
+    "sw": true
   },
   "/blog/loneliness-during-menopause/inline-1.jpg": {
     "w": 710,
-    "h": 400
+    "h": 400,
+    "sw": true,
+    "sr": true
   },
   "/blog/loneliness-during-menopause/inline-1.webp": {
     "w": 710,
-    "h": 400
+    "h": 400,
+    "sw": true
   },
   "/blog/loneliness-during-menopause/inline-2.jpg": {
     "w": 710,
-    "h": 400
+    "h": 400,
+    "sw": true,
+    "sr": true
   },
   "/blog/loneliness-during-menopause/inline-2.webp": {
     "w": 710,
-    "h": 400
+    "h": 400,
+    "sw": true
   },
   "/blog/manage-menopause-brain-fog-at-work/cover.jpg": {
     "w": 889,
-    "h": 506
+    "h": 506,
+    "sw": true,
+    "sr": true
   },
   "/blog/manage-menopause-brain-fog-at-work/cover.webp": {
     "w": 889,
-    "h": 506
+    "h": 506,
+    "sw": true
   },
   "/blog/manage-menopause-brain-fog-at-work/inline-1.jpg": {
     "w": 900,
-    "h": 900
+    "h": 900,
+    "sw": true,
+    "sr": true
   },
   "/blog/manage-menopause-brain-fog-at-work/inline-1.webp": {
     "w": 900,
-    "h": 900
+    "h": 900,
+    "sw": true
   },
   "/blog/manage-menopause-brain-fog-at-work/inline-2.jpg": {
     "w": 900,
-    "h": 900
+    "h": 900,
+    "sw": true,
+    "sr": true
   },
   "/blog/manage-menopause-brain-fog-at-work/inline-2.webp": {
     "w": 900,
-    "h": 900
+    "h": 900,
+    "sw": true
   },
   "/blog/manage-menopause-brain-fog-at-work/inline-3.jpg": {
     "w": 900,
-    "h": 900
+    "h": 900,
+    "sw": true,
+    "sr": true
   },
   "/blog/manage-menopause-brain-fog-at-work/inline-3.webp": {
     "w": 900,
-    "h": 900
+    "h": 900,
+    "sw": true
   },
   "/blog/optimize-your-sleep-environment-to-minimize-night-sweats/cover.jpg": {
     "w": 892,
-    "h": 506
+    "h": 506,
+    "sw": true,
+    "sr": true
   },
   "/blog/optimize-your-sleep-environment-to-minimize-night-sweats/cover.webp": {
     "w": 892,
-    "h": 506
+    "h": 506,
+    "sw": true
   },
   "/blog/optimize-your-sleep-environment-to-minimize-night-sweats/inline-1.jpg": {
     "w": 900,
-    "h": 900
+    "h": 900,
+    "sw": true,
+    "sr": true
   },
   "/blog/optimize-your-sleep-environment-to-minimize-night-sweats/inline-1.webp": {
     "w": 900,
-    "h": 900
+    "h": 900,
+    "sw": true
   },
   "/blog/optimize-your-sleep-environment-to-minimize-night-sweats/inline-2.jpg": {
     "w": 900,
-    "h": 900
+    "h": 900,
+    "sw": true,
+    "sr": true
   },
   "/blog/optimize-your-sleep-environment-to-minimize-night-sweats/inline-2.webp": {
     "w": 900,
-    "h": 900
+    "h": 900,
+    "sw": true
   },
   "/blog/optimize-your-sleep-environment-to-minimize-night-sweats/inline-3.jpg": {
     "w": 900,
-    "h": 900
+    "h": 900,
+    "sw": true,
+    "sr": true
   },
   "/blog/optimize-your-sleep-environment-to-minimize-night-sweats/inline-3.webp": {
     "w": 900,
-    "h": 900
+    "h": 900,
+    "sw": true
   },
   "/blog/optimize-your-sleep-environment-to-minimize-night-sweats/inline-4.jpg": {
     "w": 587,
-    "h": 378
+    "h": 378,
+    "sw": true,
+    "sr": true
   },
   "/blog/optimize-your-sleep-environment-to-minimize-night-sweats/inline-4.webp": {
     "w": 587,
-    "h": 378
+    "h": 378,
+    "sw": true
   },
   "/blog/the-science-of-estrogen-and-brain-aging/cover.jpg": {
     "w": 833,
-    "h": 480
+    "h": 480,
+    "sw": true,
+    "sr": true
   },
   "/blog/the-science-of-estrogen-and-brain-aging/cover.webp": {
     "w": 833,
-    "h": 480
+    "h": 480,
+    "sw": true
   },
   "/blog/the-science-of-estrogen-and-brain-aging/inline-1.jpg": {
     "w": 600,
-    "h": 400
+    "h": 400,
+    "sw": true,
+    "sr": true
   },
   "/blog/the-science-of-estrogen-and-brain-aging/inline-1.webp": {
     "w": 600,
-    "h": 400
+    "h": 400,
+    "sw": true
   },
   "/blog/the-science-of-estrogen-and-brain-aging/inline-2.jpg": {
     "w": 900,
-    "h": 720
+    "h": 720,
+    "sw": true,
+    "sr": true
   },
   "/blog/the-science-of-estrogen-and-brain-aging/inline-2.webp": {
     "w": 900,
-    "h": 720
+    "h": 720,
+    "sw": true
   },
   "/blog/why-are-we-losing-top-tier-female-talent-at-the-peak-of-their-careers/img-1.jpg": {
     "w": 712,
-    "h": 343
+    "h": 343,
+    "sw": true,
+    "sr": true
   },
   "/blog/why-are-we-losing-top-tier-female-talent-at-the-peak-of-their-careers/img-1.webp": {
     "w": 712,
-    "h": 343
+    "h": 343,
+    "sw": true
   },
   "/blog/why-does-my-body-feel-like-i-ran-a-marathon-in-my-sleep/img-1.jpg": {
     "w": 900,
-    "h": 386
+    "h": 386,
+    "sw": true,
+    "sr": true
   },
   "/blog/why-does-my-body-feel-like-i-ran-a-marathon-in-my-sleep/img-1.webp": {
     "w": 900,
-    "h": 386
+    "h": 386,
+    "sw": true
   },
   "/blog/why-does-my-body-feel-like-i-ran-a-marathon-in-my-sleep/img-2.jpg": {
     "w": 844,
-    "h": 372
+    "h": 372,
+    "sw": true,
+    "sr": true
   },
   "/blog/why-does-my-body-feel-like-i-ran-a-marathon-in-my-sleep/img-2.webp": {
     "w": 844,
-    "h": 372
+    "h": 372,
+    "sw": true
   },
   "/blog/why-menopause-awareness-matters-in-the-workplace/img-1.jpg": {
     "w": 727,
-    "h": 331
+    "h": 331,
+    "sw": true,
+    "sr": true
   },
   "/blog/why-menopause-awareness-matters-in-the-workplace/img-1.webp": {
     "w": 727,
-    "h": 331
+    "h": 331,
+    "sw": true
   },
   "/blog/why-should-hr-talk-menopause/cover.jpg": {
     "w": 891,
-    "h": 506
+    "h": 506,
+    "sw": true,
+    "sr": true
   },
   "/blog/why-should-hr-talk-menopause/cover.webp": {
     "w": 891,
-    "h": 506
+    "h": 506,
+    "sw": true
   },
   "/blog/why-should-hr-talk-menopause/inline-1.jpg": {
     "w": 900,
-    "h": 897
+    "h": 897,
+    "sw": true,
+    "sr": true
   },
   "/blog/why-should-hr-talk-menopause/inline-1.webp": {
     "w": 900,
-    "h": 897
+    "h": 897,
+    "sw": true
   },
   "/blog/why-should-hr-talk-menopause/inline-2.jpg": {
     "w": 900,
-    "h": 900
+    "h": 900,
+    "sw": true,
+    "sr": true
   },
   "/blog/why-should-hr-talk-menopause/inline-2.webp": {
     "w": 900,
-    "h": 900
+    "h": 900,
+    "sw": true
   },
   "/blog/why-should-hr-talk-menopause/inline-3.jpg": {
     "w": 900,
-    "h": 900
+    "h": 900,
+    "sw": true,
+    "sr": true
   },
   "/blog/why-should-hr-talk-menopause/inline-3.webp": {
     "w": 900,
-    "h": 900
+    "h": 900,
+    "sw": true
   },
   "/blog/why-sleep-tracking-may-be-misleading-during-menopause/cover.jpg": {
     "w": 900,
-    "h": 516
+    "h": 516,
+    "sw": true,
+    "sr": true
   },
   "/blog/why-sleep-tracking-may-be-misleading-during-menopause/cover.webp": {
     "w": 900,
-    "h": 516
+    "h": 516,
+    "sw": true
   },
   "/blog/why-sleep-tracking-may-be-misleading-during-menopause/inline-1.jpg": {
     "w": 600,
-    "h": 400
+    "h": 400,
+    "sw": true,
+    "sr": true
   },
   "/blog/why-sleep-tracking-may-be-misleading-during-menopause/inline-1.webp": {
     "w": 600,
-    "h": 400
+    "h": 400,
+    "sw": true
   },
   "/blog/why-sleep-tracking-may-be-misleading-during-menopause/inline-2.jpg": {
     "w": 600,
-    "h": 400
+    "h": 400,
+    "sw": true,
+    "sr": true
   },
   "/blog/why-sleep-tracking-may-be-misleading-during-menopause/inline-2.webp": {
     "w": 600,
-    "h": 400
+    "h": 400,
+    "sw": true
   },
   "/book-cover-3d.webp": {
     "w": 768,
@@ -305,115 +413,157 @@
   },
   "/community.jpeg": {
     "w": 800,
-    "h": 533
+    "h": 533,
+    "sw": true,
+    "sr": true
   },
   "/community.webp": {
     "w": 800,
-    "h": 533
+    "h": 533,
+    "sw": true
   },
   "/events.jpeg": {
     "w": 800,
-    "h": 533
+    "h": 533,
+    "sw": true,
+    "sr": true
   },
   "/events.webp": {
     "w": 800,
-    "h": 533
+    "h": 533,
+    "sw": true
   },
   "/expertise-empathy.jpeg": {
     "w": 1568,
-    "h": 1003
+    "h": 1003,
+    "sw": true,
+    "sr": true
   },
   "/expertise-empathy.webp": {
     "w": 1568,
-    "h": 1003
+    "h": 1003,
+    "sw": true
   },
   "/hero-photo.jpeg": {
     "w": 1536,
-    "h": 1024
+    "h": 1024,
+    "sw": true,
+    "sr": true
   },
   "/hero-photo.webp": {
     "w": 1536,
-    "h": 1024
+    "h": 1024,
+    "sw": true
   },
   "/illustrations/bone-heart.jpeg": {
     "w": 800,
-    "h": 533
+    "h": 533,
+    "sw": true,
+    "sr": true
   },
   "/illustrations/bone-heart.webp": {
     "w": 800,
-    "h": 533
+    "h": 533,
+    "sw": true
   },
   "/illustrations/hair-skin.jpeg": {
     "w": 800,
-    "h": 533
+    "h": 533,
+    "sw": true,
+    "sr": true
   },
   "/illustrations/hair-skin.webp": {
     "w": 800,
-    "h": 533
+    "h": 533,
+    "sw": true
   },
   "/illustrations/menopause.jpeg": {
     "w": 800,
-    "h": 533
+    "h": 533,
+    "sw": true,
+    "sr": true
   },
   "/illustrations/menopause.webp": {
     "w": 800,
-    "h": 533
+    "h": 533,
+    "sw": true
   },
   "/illustrations/mood-memory.jpeg": {
     "w": 800,
-    "h": 533
+    "h": 533,
+    "sw": true,
+    "sr": true
   },
   "/illustrations/mood-memory.webp": {
     "w": 800,
-    "h": 533
+    "h": 533,
+    "sw": true
   },
   "/illustrations/perimenopause.jpeg": {
     "w": 800,
-    "h": 533
+    "h": 533,
+    "sw": true,
+    "sr": true
   },
   "/illustrations/perimenopause.webp": {
     "w": 800,
-    "h": 533
+    "h": 533,
+    "sw": true
   },
   "/illustrations/sexual-wellness.jpeg": {
     "w": 800,
-    "h": 533
+    "h": 533,
+    "sw": true,
+    "sr": true
   },
   "/illustrations/sexual-wellness.webp": {
     "w": 800,
-    "h": 533
+    "h": 533,
+    "sw": true
   },
   "/illustrations/sleep.jpeg": {
     "w": 800,
-    "h": 533
+    "h": 533,
+    "sw": true,
+    "sr": true
   },
   "/illustrations/sleep.webp": {
     "w": 800,
-    "h": 533
+    "h": 533,
+    "sw": true
   },
   "/illustrations/weight.jpeg": {
     "w": 800,
-    "h": 533
+    "h": 533,
+    "sw": true,
+    "sr": true
   },
   "/illustrations/weight.webp": {
     "w": 800,
-    "h": 533
+    "h": 533,
+    "sw": true
   },
   "/menopause-and-me-cover.jpg": {
     "w": 683,
-    "h": 1024
+    "h": 1024,
+    "sw": true,
+    "sr": true
   },
   "/menopause-and-me-cover.webp": {
     "w": 683,
-    "h": 1024
+    "h": 1024,
+    "sw": true
   },
   "/press-ahmedabad-mirror.jpg": {
     "w": 900,
-    "h": 675
+    "h": 675,
+    "sw": true,
+    "sr": true
   },
   "/press-ahmedabad-mirror.webp": {
     "w": 900,
-    "h": 675
+    "h": 675,
+    "sw": true
   },
   "/press-dainik-jagran.webp": {
     "w": 600,
@@ -421,19 +571,25 @@
   },
   "/press-hindustan-express.jpg": {
     "w": 800,
-    "h": 600
+    "h": 600,
+    "sw": true,
+    "sr": true
   },
   "/press-hindustan-express.webp": {
     "w": 800,
-    "h": 600
+    "h": 600,
+    "sw": true
   },
   "/press-india-global-live.jpg": {
     "w": 800,
-    "h": 533
+    "h": 533,
+    "sw": true,
+    "sr": true
   },
   "/press-india-global-live.webp": {
     "w": 800,
-    "h": 533
+    "h": 533,
+    "sw": true
   },
   "/press-mid-day.webp": {
     "w": 1080,
@@ -457,82 +613,112 @@
   },
   "/virtual-care.jpeg": {
     "w": 800,
-    "h": 533
+    "h": 533,
+    "sw": true,
+    "sr": true
   },
   "/virtual-care.webp": {
     "w": 800,
-    "h": 533
+    "h": 533,
+    "sw": true
   },
   "/yt--KA06dsUXK4.jpg": {
     "w": 800,
-    "h": 450
+    "h": 450,
+    "sw": true,
+    "sr": true
   },
   "/yt--KA06dsUXK4.webp": {
     "w": 800,
-    "h": 450
+    "h": 450,
+    "sw": true
   },
   "/yt-0tN_inyZV6o.jpg": {
     "w": 800,
-    "h": 450
+    "h": 450,
+    "sw": true,
+    "sr": true
   },
   "/yt-0tN_inyZV6o.webp": {
     "w": 800,
-    "h": 450
+    "h": 450,
+    "sw": true
   },
   "/yt-6qfcU5D18iQ.jpg": {
     "w": 800,
-    "h": 450
+    "h": 450,
+    "sw": true,
+    "sr": true
   },
   "/yt-6qfcU5D18iQ.webp": {
     "w": 800,
-    "h": 450
+    "h": 450,
+    "sw": true
   },
   "/yt-LqFxWZ-MhtM.jpg": {
     "w": 800,
-    "h": 450
+    "h": 450,
+    "sw": true,
+    "sr": true
   },
   "/yt-LqFxWZ-MhtM.webp": {
     "w": 800,
-    "h": 450
+    "h": 450,
+    "sw": true
   },
   "/yt-Mj8I8rJJ8pQ.jpg": {
     "w": 800,
-    "h": 450
+    "h": 450,
+    "sw": true,
+    "sr": true
   },
   "/yt-Mj8I8rJJ8pQ.webp": {
     "w": 800,
-    "h": 450
+    "h": 450,
+    "sw": true
   },
   "/yt-SbfSDdyyQtg.jpg": {
     "w": 800,
-    "h": 450
+    "h": 450,
+    "sw": true,
+    "sr": true
   },
   "/yt-SbfSDdyyQtg.webp": {
     "w": 800,
-    "h": 450
+    "h": 450,
+    "sw": true
   },
   "/yt-YqBrxIa-xZE.jpg": {
     "w": 800,
-    "h": 450
+    "h": 450,
+    "sw": true,
+    "sr": true
   },
   "/yt-YqBrxIa-xZE.webp": {
     "w": 800,
-    "h": 450
+    "h": 450,
+    "sw": true
   },
   "/yt-pIMAaq4ur2U.jpg": {
     "w": 800,
-    "h": 450
+    "h": 450,
+    "sw": true,
+    "sr": true
   },
   "/yt-pIMAaq4ur2U.webp": {
     "w": 800,
-    "h": 450
+    "h": 450,
+    "sw": true
   },
   "/yt-yEvF9rqyKq0.jpg": {
     "w": 800,
-    "h": 450
+    "h": 450,
+    "sw": true,
+    "sr": true
   },
   "/yt-yEvF9rqyKq0.webp": {
     "w": 800,
-    "h": 450
+    "h": 450,
+    "sw": true
   }
 }
