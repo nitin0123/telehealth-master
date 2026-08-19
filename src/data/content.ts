@@ -157,6 +157,12 @@ export const pressFeatures: PressFeature[] = [
     img: '/press-republic-world.jpg',
   },
   {
+    publication: 'Press Trust of India',
+    title: "ResetWell Plus founders Swati Singh and Reshma Tiwari: Menopause may be India's most overlooked marriage challenge",
+    href: 'https://www.ptinews.com/press-release/resetwell-plus-founders-swati-singh-and-reshma-tiwari-menopause-may-be-india-s-most-overlooked-marriage-challenge/3918615',
+    date: 'Jul 2026',
+  },
+  {
     publication: 'The Wire',
     title: "ResetWell Plus founders Swati Singh and Reshma Tiwari: Menopause may be India's most overlooked marriage challenge",
     href: 'https://thewire.in/ptiprnews/resetwell-plus-founders-swati-singh-and-reshma-tiwari-menopause-may-be-indias-most-overlooked-marriage-challenge',
