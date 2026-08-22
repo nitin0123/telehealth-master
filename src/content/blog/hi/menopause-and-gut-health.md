@@ -18,7 +18,7 @@ faq:
     a: "हर पाचन बदलाव हॉर्मोन की वजह से नहीं होता। पेट में लगातार दर्द, बिना वजह वज़न घटना, स्टूल में ख़ून, या मल त्याग की आदत में बड़ा और लंबा बदलाव हो तो डॉक्टर से मिलें, ताकि असली वजह मानी नहीं, जाँची जाए।"
 ---
 
-<img src="/blog/menopause-and-gut-health/cover.jpg" alt="पेट की सेहत और मेनोपॉज़: वह जुड़ाव जिसके बारे में महिलाओं को पता होना चाहिए" width="1279" height="720" srcset="/blog/menopause-and-gut-health/cover-480.jpg 480w, /blog/menopause-and-gut-health/cover.jpg 1279w" sizes="(max-width: 640px) 92vw, 680px" loading="lazy" />
+<img src="/blog/menopause-and-gut-health/cover.jpg" alt="पेट की सेहत और मेनोपॉज़: वह जुड़ाव जिसके बारे में महिलाओं को पता होना चाहिए" width="1279" height="694" srcset="/blog/menopause-and-gut-health/cover-480.jpg 480w, /blog/menopause-and-gut-health/cover.jpg 1279w" sizes="(max-width: 640px) 92vw, 680px" loading="lazy" />
 
 मेनोपॉज़ की बात चलती है तो चर्चा अक्सर [हॉट फ़्लैशेज़, मूड स्विंग्स और नींद न आने](/hindi/blog/3-most-common-menopause-symptoms/) तक ही सिमट जाती है, पाचन तक कम ही पहुँचती है।
 
@@ -28,7 +28,7 @@ faq:
 
 एस्ट्रोजन और प्रोजेस्टेरोन का काम प्रजनन तक सीमित नहीं है। मेनोपॉज़ के दौरान जब ये हॉर्मोन ऊपर-नीचे होते हैं और घटते हैं, तो शरीर के कई तंत्रों पर असर पड़ सकता है, और पाचन तंत्र उनमें से एक है।
 
-<img src="/blog/menopause-and-gut-health/inline-1.jpg" alt="आपका पेट अलग क्यों महसूस होता है? मेनोपॉज़ इस बात को बदल सकता है कि आपका पेट कैसा महसूस करता है" width="1333" height="1000" srcset="/blog/menopause-and-gut-health/inline-1-480.jpg 480w, /blog/menopause-and-gut-health/inline-1.jpg 1333w" sizes="(max-width: 640px) 92vw, 680px" loading="lazy" />
+<img src="/blog/menopause-and-gut-health/inline-1.jpg" alt="आपका पेट अलग क्यों महसूस होता है? मेनोपॉज़ इस बात को बदल सकता है कि आपका पेट कैसा महसूस करता है" width="1333" height="963" srcset="/blog/menopause-and-gut-health/inline-1-480.jpg 480w, /blog/menopause-and-gut-health/inline-1.jpg 1333w" sizes="(max-width: 640px) 92vw, 680px" loading="lazy" />
 
 ये हॉर्मोनल बदलाव पाचन, आँतों की चाल और उनके भीतर के सूक्ष्मजीवों के संतुलन पर असर डाल सकते हैं। नतीजा धीमा पाचन, क़ब्ज़, पेट फूलना और मल त्याग की बदली हुई आदतें हो सकता है।
 

@@ -19,7 +19,7 @@ faq:
     a: "Not every digestive change is hormonal. See a doctor for persistent abdominal pain, unexplained weight loss, blood in the stool, or a major lasting change in bowel habits, so the real cause is identified rather than assumed."
 ---
 
-<img src="/blog/menopause-and-gut-health/cover.jpg" alt="Gut Health and Menopause: the connection women should know about" width="1279" height="720" srcset="/blog/menopause-and-gut-health/cover-480.jpg 480w, /blog/menopause-and-gut-health/cover.jpg 1279w" sizes="(max-width: 640px) 92vw, 680px" loading="lazy" />
+<img src="/blog/menopause-and-gut-health/cover.jpg" alt="Gut Health and Menopause: the connection women should know about" width="1279" height="694" srcset="/blog/menopause-and-gut-health/cover-480.jpg 480w, /blog/menopause-and-gut-health/cover.jpg 1279w" sizes="(max-width: 640px) 92vw, 680px" loading="lazy" />
 
 Whenever menopause comes up, the conversation tends to land on [hot flashes, mood swings and insomnia](/blog/3-most-common-menopause-symptoms/), rarely on digestion.
 
@@ -29,7 +29,7 @@ Yet digestive trouble is common for many women moving through [perimenopause and
 
 The effects of estrogen and progesterone go well beyond reproduction. When these hormones fluctuate and fall during menopause, they can influence several body systems, the digestive system among them.
 
-<img src="/blog/menopause-and-gut-health/inline-1.jpg" alt="Why does your gut feel different? Menopause can change the way your gut feels" width="1333" height="1000" srcset="/blog/menopause-and-gut-health/inline-1-480.jpg 480w, /blog/menopause-and-gut-health/inline-1.jpg 1333w" sizes="(max-width: 640px) 92vw, 680px" loading="lazy" />
+<img src="/blog/menopause-and-gut-health/inline-1.jpg" alt="Why does your gut feel different? Menopause can change the way your gut feels" width="1333" height="963" srcset="/blog/menopause-and-gut-health/inline-1-480.jpg 480w, /blog/menopause-and-gut-health/inline-1.jpg 1333w" sizes="(max-width: 640px) 92vw, 680px" loading="lazy" />
 
 Those hormonal changes can affect digestion, the movement of the gut, and the microbial balance inside it. The result can be slower digestion, constipation, bloating and altered bowel habits.
 
