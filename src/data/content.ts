@@ -53,6 +53,12 @@ export interface OnDemandVideo {
 }
 export const onDemandVideos: OnDemandVideo[] = [
   {
+    title: 'Menopause & The Workplace | Transforming Women\u2019s Health | ResetWell Plus | India HR Summit 2026',
+    href: 'https://www.youtube.com/watch?v=MIbfWiIDFEQ',
+    img: '/yt-MIbfWiIDFEQ.jpg',
+    date: '19 Aug 2026',
+  },
+  {
     title: 'Perimenopause: What No One Tells Women About This Transition',
     href: 'https://www.youtube.com/watch?v=pIMAaq4ur2U',
     img: '/yt-pIMAaq4ur2U.jpg',

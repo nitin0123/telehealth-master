@@ -1481,7 +1481,6 @@ export const en = {
     },
 
     eventsOnDemand: {
-      watchHeading: 'Watch past sessions',
       liveHeading: 'Join a live session',
       /** {upcoming} becomes a link to /events/upcoming/. */
       liveBody:

@@ -612,6 +612,11 @@
     "sw": true,
     "sr": true
   },
+  "/press-times-of-india.webp": {
+    "w": 576,
+    "h": 720,
+    "sw": true
+  },
   "/reshma.jpeg": {
     "w": 289,
     "h": 494
@@ -682,6 +687,12 @@
     "w": 800,
     "h": 450,
     "sw": true
+  },
+  "/yt-MIbfWiIDFEQ.jpg": {
+    "w": 1280,
+    "h": 720,
+    "sw": true,
+    "sr": true
   },
   "/yt-Mj8I8rJJ8pQ.jpg": {
     "w": 800,
