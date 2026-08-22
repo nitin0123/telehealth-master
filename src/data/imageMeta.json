@@ -198,6 +198,24 @@
     "h": 900,
     "sw": true
   },
+  "/blog/menopause-and-gut-health/cover.jpg": {
+    "w": 1279,
+    "h": 720,
+    "sw": true,
+    "sr": true
+  },
+  "/blog/menopause-and-gut-health/inline-1.jpg": {
+    "w": 1333,
+    "h": 1000,
+    "sw": true,
+    "sr": true
+  },
+  "/blog/menopause-and-gut-health/inline-2.jpg": {
+    "w": 711,
+    "h": 400,
+    "sw": true,
+    "sr": true
+  },
   "/blog/optimize-your-sleep-environment-to-minimize-night-sweats/cover.jpg": {
     "w": 892,
     "h": 506,
@@ -693,6 +711,11 @@
     "h": 720,
     "sw": true,
     "sr": true
+  },
+  "/yt-MIbfWiIDFEQ.webp": {
+    "w": 1280,
+    "h": 720,
+    "sw": true
   },
   "/yt-Mj8I8rJJ8pQ.jpg": {
     "w": 800,
