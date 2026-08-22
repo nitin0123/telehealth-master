@@ -1102,7 +1102,6 @@ export const hi: DeepPartial<Dict> = {
     },
 
     inThePress: {
-      coverageHeading: 'कवरेज और फ़ीचर',
       enquiriesHeading: 'प्रेस पूछताछ',
       kicker: 'हमारे बारे में',
       title: 'मीडिया में',

@@ -1055,7 +1055,6 @@ export const en = {
     },
 
     inThePress: {
-      coverageHeading: 'Coverage and features',
       enquiriesHeading: 'Press enquiries',
       kicker: 'About',
       title: 'In The Press',
