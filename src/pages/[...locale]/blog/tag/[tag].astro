@@ -60,6 +60,10 @@ const intro = tagIntro(label, lang);
   noindex={thin}
   followLinks
 >
+  <p class="mb-6 reveal">
+    <a href={localizePath('/blog/', lang)} class="text-sm font-medium text-clay hover:text-claydk transition">&larr; {t.pages.blog.backToAll}</a>
+  </p>
+
   {intro && (
     <div class="max-w-4xl mb-8 lg:mb-10 space-y-4 text-stone leading-relaxed reveal">
       {intro.map((para) => <p>{para}</p>)}
@@ -86,7 +90,4 @@ const intro = tagIntro(label, lang);
     </section>
   )}
 
-  <p class="mt-8 reveal">
-    <a href={localizePath('/blog/', lang)} class="text-sm font-medium text-clay hover:text-claydk transition">&larr; {t.pages.blog.backToAll}</a>
-  </p>
 </PageLayout>
